@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using DevExpress.Xpf.Core;
 
 namespace BuglistIC2
 {
@@ -13,5 +13,9 @@ namespace BuglistIC2
     /// </summary>
     public partial class App : Application
     {
+        private void OnAppStartup_UpdateThemeName(object sender, StartupEventArgs e)
+        {
+            DevExpress.Xpf.Core.ApplicationThemeHelper.UpdateApplicationThemeName();
+        }
     }
 }
