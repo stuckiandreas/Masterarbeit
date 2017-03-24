@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,8 @@ namespace BuglistIC2.Data
         public BuglistInfo()
         {
         }
-
+       
+        public int BuglistId { get; set; }
         public string FailureType { get; set; }
         public string ControllerGeneration { get; set; }
         public string HardwareIdentificationLevel1 { get; set; }

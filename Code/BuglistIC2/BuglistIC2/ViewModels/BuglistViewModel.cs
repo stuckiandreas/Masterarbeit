@@ -14,7 +14,7 @@ namespace BuglistIC2.ViewModels
     [POCOViewModel]
     public class BuglistViewModel
     {
-        public IEnumerable<BuglistInfo> Buglist
+        public List<BuglistInfo> Buglist
         {
             get;
             /* We only want to set this through the ViewModel code */
@@ -30,6 +30,11 @@ namespace BuglistIC2.ViewModels
         protected BuglistViewModel()
         {
             Messenger.Default.Register<RequerySuggestedMessage>(this, OnRequerySuggested);
+        }
+
+        public static BuglistViewModel Create()
+        {
+            return ViewModelSource.Create(() => new BuglistViewModel());
         }
 
         private class RequerySuggestedMessage
@@ -66,7 +71,7 @@ namespace BuglistIC2.ViewModels
                                      DateFound = buglist.DateFound ?? DateTime.Today,
                                      DateFixed = buglist.DateFixed ?? DateTime.Today
                                  };
-                    Buglist = new ObservableCollection<BuglistInfo>(result.ToList());
+                    Buglist = new List<BuglistInfo>(result.ToList());
                 }
                  ((IDispatcherService)state).BeginInvoke(() =>
                  {

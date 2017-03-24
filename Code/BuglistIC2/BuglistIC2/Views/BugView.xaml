@@ -1,16 +1,14 @@
-﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="BuglistIC2.Views.BuglistView"
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="BuglistIC2.Views.BugView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ViewModels="clr-namespace:BuglistIC2.ViewModels"
              mc:Ignorable="d"
-             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:BuglistViewModel}"
+             DataContext="{dxmvvm:ViewModelSource Type=ViewModels:BugViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <dxe:TextEdit />
-        <dxe:TextEdit />
-        <dxe:TextEdit />
-        <dxe:TextEdit />
+        <dxe:TextEdit Text="{Binding FailureType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        
     </StackPanel>
 </UserControl>
