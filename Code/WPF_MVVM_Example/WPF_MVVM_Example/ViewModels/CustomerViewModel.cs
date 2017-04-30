@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using System.Windows.Media;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
@@ -9,7 +10,13 @@ namespace WPF_MVVM_Example.ViewModels
     [POCOViewModel]
     public class CustomerViewModel
     {
-        private Customer obj = new Customer();
+        private Customer obj = new Customer("Andreas Stucki", 2000, "Not Married");
+
+        public CustomerViewModel()
+        {
+            TaxCommand = new ActionCommand(OnTaxCommand, OnCanExecuteTaxCommand);
+        }
+
 
         public string TxtCustomerName
         {
@@ -55,14 +62,15 @@ namespace WPF_MVVM_Example.ViewModels
             }
 
         }
-
-        private void DisplayUi(CustomerViewModel o)
+        public void Calculate()
         {
-            TxtCustomerName = o.TxtCustomerName;
-            /*lblAmount.Content = o.TxtAmount;
-            BrushConverter brushconv = new BrushConverter();
-            lblBuyingHabits.Background = brushconv.ConvertFromString(o.LblAmountColor) as SolidColorBrush;
-            chkMarried.IsChecked = o.IsMarried;*/
+            obj.CalculateTax();
+        }
+
+        public ICommand TaxCommand
+        {
+            get;
+            private set;
         }
     }
 }

@@ -7,12 +7,38 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="WPF_MVVM_Example.Views.CustomerView"
              mc:Ignorable="d"
              DataContext="{dxmvvm:ViewModelSource Type={x:Type ViewModels:CustomerViewModel}}">
+    <Grid>
 
-    <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <dxe:TextEdit 
-            HorizontalAlignment="Right" Width="300" Height="20" Text="Customer Name" EditValue="{Binding TxtCustomerName, Mode=OneWay}" AllowNullInput="True">    
-        </dxe:TextEdit>
-    </StackPanel>
+        <Label Grid.Row="0" Grid.Column="0" Width="100" Height="20" Content="Customer Name"/>
+        <dxe:TextEdit Grid.Row="0" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtCustomerName, Mode=OneWay}"/>
+        
+        <Label Grid.Row="1" Grid.Column="0" Width="100" Height="20" Content="Amount"/>
+        <dxe:TextEdit Grid.Row="1" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtAmount, Mode=OneWay}" VerticalAlignment="Bottom"/>
 
-</UserControl>
+        <Label Grid.Row="2" Grid.Column="0" Width="100" Height="20" Content="Buying Habits"/>
+        <dxe:TextEdit Grid.Row="2" Grid.Column="1" Width="20" Height="20" Background="{Binding LblAmountColor}"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Width="100" Height="20" Content="Buying Habits"/>
+        <CheckBox Grid.Row="3" Grid.Column="1"  Width="20" Height="20" IsChecked="{Binding IsMarried, Mode=OneWay}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Width="100" Height="20" Content="Tax"/>
+
+        <CheckBox IsChecked="{Binding IsMarried, Mode=OneWay}"/>
+        <Button Grid.Row="5" Grid.Column="1"  Width="100" Height="20" Command="{Binding TaxCommand}" Content="Calculate_Tax"/>
+    </Grid>
+
+ </UserControl>

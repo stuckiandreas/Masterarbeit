@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersionManagement", "VersionManagement\VersionManagement.csproj", "{DC558E4A-4B2A-4893-B7CA-76383084260B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersionManagementUnitTest", "VersionManagementUnitTest\VersionManagementUnitTest.csproj", "{BE908304-C893-480A-B264-DBA11A0B3FF0}"
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "FirmwareDatabaseSetup", "FirmwareDatabaseSetup\FirmwareDatabaseSetup.isproj", "{79056E13-8C90-4E04-B13F-7BD980EABC0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC558E4A-4B2A-4893-B7CA-76383084260B} = {DC558E4A-4B2A-4893-B7CA-76383084260B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{DC558E4A-4B2A-4893-B7CA-76383084260B}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{BE908304-C893-480A-B264-DBA11A0B3FF0}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.Debug|Any CPU.ActiveCfg = SingleImage
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.Debug|Any CPU.Build.0 = SingleImage
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.DVD-5|Any CPU.Build.0 = DVD-5
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.Release|Any CPU.ActiveCfg = SingleImage
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.Release|Any CPU.Build.0 = SingleImage
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{79056E13-8C90-4E04-B13F-7BD980EABC0E}.SingleImage|Any CPU.Build.0 = SingleImage
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://brandadrian.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = VersionManagement\\VersionManagement.csproj
+		SccProjectName1 = VersionManagement
+		SccLocalPath1 = VersionManagement
+		SccProjectUniqueName2 = VersionManagementUnitTest\\VersionManagementUnitTest.csproj
+		SccProjectName2 = VersionManagementUnitTest
+		SccLocalPath2 = VersionManagementUnitTest
+		SccProjectUniqueName3 = FirmwareDatabaseSetup\\FirmwareDatabaseSetup.isproj
+		SccProjectName3 = FirmwareDatabaseSetup
+		SccLocalPath3 = FirmwareDatabaseSetup
+	EndGlobalSection
+EndGlobal

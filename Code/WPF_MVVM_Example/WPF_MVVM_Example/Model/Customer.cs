@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,15 @@ namespace WPF_MVVM_Example.Model
         public String Married;
 
         private double _Tax;
+
+        public Customer(String CustomerName, double Amount, String Married)
+        {
+            this.CustomerName = CustomerName;
+            this.Amount = Amount;
+            this.Married = Married;
+        }
+
+
         public double Tax
         {
             get { return _Tax; }
