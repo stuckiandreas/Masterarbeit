@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
+using WPF_MVVM_Example.Commands;
 using WPF_MVVM_Example.Model;
 
 namespace WPF_MVVM_Example.ViewModels
@@ -14,9 +16,24 @@ namespace WPF_MVVM_Example.ViewModels
 
         public CustomerViewModel()
         {
-            TaxCommand = new ActionCommand(OnTaxCommand, OnCanExecuteTaxCommand);
+            BtnClick = new ActionCommand(OnBtnClick, OnCanExecuteBtnClick);
         }
 
+        public ICommand BtnClick
+        {
+            get;
+            private set;
+        }
+
+        public bool OnCanExecuteBtnClick(object parameter)
+        {
+            return obj.IsValid();
+        }
+
+        private void OnBtnClick(object parameter)
+        {
+            obj.CalculateTax();
+        }
 
         public string TxtCustomerName
         {
@@ -62,15 +79,10 @@ namespace WPF_MVVM_Example.ViewModels
             }
 
         }
+
         public void Calculate()
         {
             obj.CalculateTax();
-        }
-
-        public ICommand TaxCommand
-        {
-            get;
-            private set;
         }
     }
 }

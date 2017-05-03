@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="Views\CustomerView.xaml.cs">

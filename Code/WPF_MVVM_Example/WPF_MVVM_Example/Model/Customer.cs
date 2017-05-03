@@ -51,5 +51,16 @@ namespace WPF_MVVM_Example.Model
                 _Tax = 5;
             }
         }
+        public bool IsValid()
+        {
+            if (_Amount == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
