@@ -68,7 +68,7 @@ CREATE TABLE Buglist(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	FailureType VARCHAR(100),							/*repeatable misbehaviour, unaccountable behaviour*/
 	ControllerGenertion VARCHAR(100),					/*IC2H1, IC2H2, IC2H3*/
-	HardwareIdentificationLevel1 VARCHAR(100),			/*General,Interface, Option, Valve*/
+	HardwareIdentificationLevel1 VARCHAR(100),			/*General, Interface, Option, Valve*/
 	HardwareIdentificationLevel2 VARCHAR(100),			/*Interface: RS232/EtherCAT, DeviceNET, Logic; Option: Cluster, PFO; Valve: SFV, FaceSeal, R62;*/
 	Bug	VARCHAR(200),						
 	Comment VARCHAR(200),
