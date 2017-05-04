@@ -13,7 +13,7 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -25,7 +25,7 @@
 
         <Label Grid.Row="0" Grid.Column="0" Width="100" Height="20" Content="Customer Name"/>
         <dxe:TextEdit Grid.Row="0" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtCustomerName, Mode=OneWay}"/>
-        
+
         <Label Grid.Row="1" Grid.Column="0" Width="100" Height="20" Content="Amount"/>
         <dxe:TextEdit Grid.Row="1" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtAmount, Mode=OneWay}" VerticalAlignment="Bottom"/>
 
@@ -37,7 +37,7 @@
 
         <Label Grid.Row="4" Grid.Column="0" Width="100" Height="20" Content="Tax"/>
 
-        <Button Grid.Row="5" Grid.Column="1"  Width="100" Height="20" Command="{Binding BtnClick}" Content="Calculate_Tax" IsHitTestVisible="False"/>
+        <Button Command="{Binding BtnClick}" Content="Calculate_Tax" Grid.Row="5" Grid.Column="1"  Width="100"/>
     </Grid>
 
- </UserControl>
+</UserControl>
