@@ -10,9 +10,11 @@ using WPF_MVVM_Example.Model;
 namespace WPF_MVVM_Example.ViewModels
 {
     [POCOViewModel]
-    public class CustomerViewModel
+    public class CustomerViewModel : INotifyPropertyChanged
     {
         private Customer obj = new Customer("Andreas Stucki", 2000, "Not Married");
+        public event PropertyChangedEventHandler PropertyChanged;
+        public virtual void RaisePropertyChanged(string propertyName) { }
 
         public CustomerViewModel()
         {
@@ -33,6 +35,11 @@ namespace WPF_MVVM_Example.ViewModels
         private void OnBtnClick(object parameter)
         {
             obj.CalculateTax();
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("TxtTax"));
+            }
         }
 
         public string TxtCustomerName
@@ -47,6 +54,15 @@ namespace WPF_MVVM_Example.ViewModels
             set { obj.Amount = Convert.ToDouble(value); }
         }
 
+        public string TxtTax
+        {
+            get { return Convert.ToString(obj.Tax); }
+            set
+            {
+                obj.Tax = Convert.ToDouble(value);
+                OnPropertyChanged("TxtTax");
+            }
+        }
 
         public string LblAmountColor
         {
@@ -83,6 +99,12 @@ namespace WPF_MVVM_Example.ViewModels
         public void Calculate()
         {
             obj.CalculateTax();
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

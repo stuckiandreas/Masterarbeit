@@ -27,7 +27,7 @@
         <dxe:TextEdit Grid.Row="0" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtCustomerName, Mode=OneWay}"/>
 
         <Label Grid.Row="1" Grid.Column="0" Width="100" Height="20" Content="Amount"/>
-        <dxe:TextEdit Grid.Row="1" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtAmount, Mode=OneWay}" VerticalAlignment="Bottom"/>
+        <dxe:TextEdit Grid.Row="1" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtAmount, Mode=TwoWay}" VerticalAlignment="Bottom"/>
 
         <Label Grid.Row="2" Grid.Column="0" Width="100" Height="20" Content="Buying Habits"/>
         <dxe:TextEdit Grid.Row="2" Grid.Column="1" Width="20" Height="20" Background="{Binding LblAmountColor}"/>
@@ -36,8 +36,9 @@
         <CheckBox Grid.Row="3" Grid.Column="1"  Width="20" Height="20" IsChecked="{Binding IsMarried, Mode=OneWay}"/>
 
         <Label Grid.Row="4" Grid.Column="0" Width="100" Height="20" Content="Tax"/>
+        <dxe:TextEdit Grid.Row="4" Grid.Column="1" Width="200" Height="20" EditValue="{Binding TxtTax, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom"/>
 
-        <Button Command="{Binding BtnClick}" Content="Calculate_Tax" Grid.Row="5" Grid.Column="1"  Width="100"/>
+        <dx:SimpleButton Content="Calculte Tax" HorizontalAlignment="Center" Height="40" Grid.Row="5" VerticalAlignment="Top" Width="100" Grid.Column="1" Command="{Binding BtnClick}" Visibility="Visible" IsEnabled="True"/>
     </Grid>
 
 </UserControl>

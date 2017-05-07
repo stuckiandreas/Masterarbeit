@@ -34,15 +34,16 @@ namespace WPF_MVVM_Example.Model
         public double Tax
         {
             get { return _Tax; }
+            set { Tax = _Tax; }
         }
 
         public void CalculateTax()
         {
-            if (_Amount > 2000)
+            if (Amount > 2000)
             {
                 _Tax = 20;
             }
-            else if (_Amount > 1000)
+            else if (Amount > 1000)
             {
                 _Tax = 10;
             }
@@ -53,7 +54,7 @@ namespace WPF_MVVM_Example.Model
         }
         public bool IsValid()
         {
-            if (_Amount == 0)
+            if (Amount == 0)
             {
                 return false;
             }
