@@ -18,7 +18,7 @@ CREATE TABLE Systems(
 CREATE TABLE SystemSoftwares(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Software VARCHAR(100),
-	System_Id int references Systems(Id));
+	Systems_Id int references Systems(Id));
 CREATE TABLE DocumentTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	DocumentType VARCHAR(100) NOT NULL);	
@@ -30,6 +30,21 @@ CREATE TABLE Users(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	UserName VARCHAR(100) NOT NULL,
 	UserRight INT);
+
+	/*Save a single software entrie*/
+CREATE TABLE SoftwareVersions(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	SystemSoftwares_Id int references SystemSoftwares(Id),
+	BaseSoftwares_Id int references BaseSoftwares(Id),
+	Customer_Id int references Customers(Id),
+	Author_Id int references Authors(Id),
+	Date DATETIME NOT NULL,
+	PssNumber INT,
+	Status INT,
+	PssStatus INT,
+	Description VARCHAR(500),
+	PrivateInfosBugs VARCHAR(500),
+	AdditionalInformation VARCHAR(500));
 	
 /*TABLES with FOREIGN KEY of the SoftwareVersions TABLE*/
 CREATE TABLE Properties(
@@ -46,19 +61,6 @@ CREATE TABLE Documents(
 	DocumentType_Id int references DocumentTypes(Id),
 	SoftwareVersions_Id int references SoftwareVersions(Id));
 
-/*Save a single software entrie*/
-CREATE TABLE SoftwareVersions(
-	Id int IDENTITY(0,1) PRIMARY KEY,
-	SystemSoftwares_Id int references SystemSoftwares(Id),
-	BaseSoftwares_Id int references BaseSoftwares(Id),
-	Customer_Id int references Customers(Id),
-	Author_Id int references Authors(Id),
-	Date DATETIME NOT NULL,
-	PssNumber INT,
-	Status INT,
-	PssStatus INT,
-	Description VARCHAR(500),
-	PrivateInfosBugs VARCHAR(500),
-	AdditionalInformation VARCHAR(500));
+
 
 
