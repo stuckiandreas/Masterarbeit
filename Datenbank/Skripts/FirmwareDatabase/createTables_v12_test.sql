@@ -1,43 +1,32 @@
 /*TABLES to save specific information that can be inserted to the main table*/
 CREATE TABLE BaseSoftwares(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	BaseSoftware VARCHAR(100));
+	Name VARCHAR(100));
 CREATE TABLE Customers(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Customer VARCHAR(100));
+	Name VARCHAR(100));
 CREATE TABLE Authors(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Author VARCHAR(100));
+	Name VARCHAR(40),
+	Surname VARCHAR(40));
 CREATE TABLE PropertyTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	PropertyType VARCHAR(100) NOT NULL,
+	Name VARCHAR(100) NOT NULL,
 	Description VARCHAR(100));
 CREATE TABLE Systems(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	System VARCHAR(100) NOT NULL);
-CREATE TABLE SystemSoftwares(
-	Id int IDENTITY(0,1) PRIMARY KEY,
-	Software VARCHAR(100),
-	Systems_Id int references Systems(Id));
+	Name VARCHAR(100) NOT NULL);
 CREATE TABLE DocumentTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	DocumentType VARCHAR(100) NOT NULL);	
-CREATE TABLE ConfigData(
-	Id int IDENTITY(0,1) PRIMARY KEY,
-	ConfigString VARCHAR(100),
-	ConfigNumber INT);
-CREATE TABLE Users(
-	Id int IDENTITY(0,1) PRIMARY KEY,
-	UserName VARCHAR(100) NOT NULL,
-	UserRight INT);
+	Name VARCHAR(100) NOT NULL);	
 
-	/*Save a single software entrie*/
+/*Save a single software entrie*/
 CREATE TABLE SoftwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	SystemSoftwares_Id int references SystemSoftwares(Id),
+	Name VARCHAR(100) NOT NULL,
 	BaseSoftwares_Id int references BaseSoftwares(Id),
-	Customer_Id int references Customers(Id),
-	Author_Id int references Authors(Id),
+	Customers_Id int references Customers(Id),
+	Authors_Id int references Authors(Id),
 	Date DATETIME NOT NULL,
 	PssNumber INT,
 	Status INT,
@@ -47,20 +36,36 @@ CREATE TABLE SoftwareVersions(
 	AdditionalInformation VARCHAR(500));
 	
 /*TABLES with FOREIGN KEY of the SoftwareVersions TABLE*/
+CREATE TABLE SoftwareVersions_System(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	SoftwareVersions_Id int references SoftwareVersions(Id),
+	Systems_Id int references Systems(Id));
 CREATE TABLE Properties(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	PropertyTypes_Id int references PropertyTypes(Id),
 	SoftwareVersions_Id int references SoftwareVersions(Id));
-CREATE TABLE Softwares(
+CREATE TABLE Compatibilities(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	SystemSoftwares_Id int references SystemSoftwares(Id),
+	SoftwareVersions_System_Id int references SoftwareVersions_System(Id),
 	SoftwareVersions_Id int references SoftwareVersions(Id));
 CREATE TABLE Documents(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Document VARCHAR(100) NOT NULL,
-	DocumentType_Id int references DocumentTypes(Id),
+	Path VARCHAR(200) NOT NULL,
+	DocumentTypes_Id int references DocumentTypes(Id),
 	SoftwareVersions_Id int references SoftwareVersions(Id));
-
+	
+/*TABLES to save environment Information*/
+CREATE TABLE EnvironmentVersions(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	Name VARCHAR(100) NOT NULL,
+	Version VARCHAR(10) NOT NULL);
+CREATE TABLE UserRightTypes(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	UserRightType VARCHAR(40) NOT NULL);
+CREATE TABLE Users(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	UserName VARCHAR(100) NOT NULL,
+	UserRightTypes_Id int references UserRightTypes(Id));
 
 
 
