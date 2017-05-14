@@ -66,6 +66,13 @@ CREATE TABLE Users(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	UserName VARCHAR(100) NOT NULL,
 	UserRightTypes_Id int references UserRightTypes(Id));
-
+	
+/*TABLES to save information witch not for the application*/
+CREATE TABLE ConfigurationFiles(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	Name VARCHAR(20));
+CREATE TABLE DriveParameterFiles(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	Name VARCHAR(20));
 
 
