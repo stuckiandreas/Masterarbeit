@@ -62,3 +62,12 @@ CREATE TABLE Users(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	UserName VARCHAR(100),
 	UserRight INT);
+	
+/*TABLES for additional Information (not used in SoftfwareVersionsDatabase)*/
+CREATE TABLE ConfigurationFiles(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	ConfigurationFile VARCHAR(20) NOT NULL);
+	
+CREATE TABLE DriveParameterFiles(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	DriveParameterFile VARCHAR(20) NOT NULL);
