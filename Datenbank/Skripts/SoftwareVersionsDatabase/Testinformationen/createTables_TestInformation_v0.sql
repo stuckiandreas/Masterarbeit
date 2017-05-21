@@ -13,7 +13,7 @@ CREATE TABLE ModulNames(
 /*For each test is possible that he has multiple versions*/
 CREATE TABLE TestVersion(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Index UNSIGNED SMALLINT NOT NULL,
+	Number SMALLINT NOT NULL,
 	Description VARCHAR(400),
 	Durating TIME,
 	ModulNames_Id int references ModulNames(Id),
@@ -23,107 +23,107 @@ CREATE TABLE TestVersion(
 /*TABLES to save specific information that can be inserted to the TestVersion table*/
 CREATE TABLE Module1Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module1Type UNSIGNED SMALLINT NOT NULL,
+	Module1Type SMALLINT NOT NULL,
 	Module1TypeEnum VARCHAR(100));
 
 CREATE TABLE Module2Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module2Type UNSIGNED SMALLINT NOT NULL,
+	Module2Type SMALLINT NOT NULL,
 	Module2TypeEnum VARCHAR(100));
 
 CREATE TABLE Module3Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module3Type UNSIGNED SMALLINT NOT NULL,
+	Module3Type SMALLINT NOT NULL,
 	Module3TypeEnum VARCHAR(100));
 
 CREATE TABLE Module4Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module4Type UNSIGNED SMALLINT NOT NULL,
+	Module4Type SMALLINT NOT NULL,
 	Module4TypeEnum VARCHAR(100));
 	
 CREATE TABLE Module1HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module1HardwareVersion UNSIGNED SMALLINT NOT NULL,
+	Module1HardwareVersion SMALLINT NOT NULL,
 	Module1HardwareVersionEnum VARCHAR(100));
 	
 CREATE TABLE Module2HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module2HardwareVersion UNSIGNED SMALLINT NOT NULL,
+	Module2HardwareVersion SMALLINT NOT NULL,
 	Module2HardwareVersionEnum VARCHAR(100));
 	
 CREATE TABLE Module3HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module3HardwareVersion UNSIGNED SMALLINT NOT NULL,
+	Module3HardwareVersion SMALLINT NOT NULL,
 	Module3HardwareVersionEnum VARCHAR(100));
 	
 CREATE TABLE Module4HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module4HardwareVersion UNSIGNED SMALLINT NOT NULL,
+	Module4HardwareVersion SMALLINT NOT NULL,
 	Module4HardwareVersionEnum VARCHAR(100));
 	
 CREATE TABLE Module1AssemblyVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module1AssemblyVersion UNSIGNED SMALLINT NOT NULL,
+	Module1AssemblyVersion SMALLINT NOT NULL,
 	Module1AssemblyVersionEnum VARCHAR(100));
 	
 CREATE TABLE Module2AssemblyVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module2AssemblyVersion UNSIGNED SMALLINT NOT NULL,
+	Module2AssemblyVersion SMALLINT NOT NULL,
 	Module2AssemblyVersionEnum VARCHAR(100));
 	
 CREATE TABLE Module3AssemblyVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module3AssemblyVersion UNSIGNED SMALLINT NOT NULL,
+	Module3AssemblyVersion SMALLINT NOT NULL,
 	Module3AssemblyVersionEnum VARCHAR(100));
 
 CREATE TABLE Module4AssemblyVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Module4AssemblyVersion UNSIGNED SMALLINT NOT NULL,
+	Module4AssemblyVersion SMALLINT NOT NULL,
 	Module4AssemblyVersionEnum VARCHAR(100));
 	
 CREATE TABLE ControllerHardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ControllerHardwareVersion UNSIGNED SMALLINT NOT NULL,
+	ControllerHardwareVersion SMALLINT NOT NULL,
 	ControllerHardwareVersionEnum VARCHAR(100));
 	
 CREATE TABLE InterfaceHardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	InterfaceHardwareVersion UNSIGNED SMALLINT NOT NULL,
+	InterfaceHardwareVersion SMALLINT NOT NULL,
 	InterfaceHardwareVersionEnum VARCHAR(100));
 	
 CREATE TABLE ControllerAssemblyVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ControllerAssemblyVersion UNSIGNED SMALLINT NOT NULL,
+	ControllerAssemblyVersion SMALLINT NOT NULL,
 	ControllerAssemblyVersionEnum VARCHAR(100));
 	
 CREATE TABLE InterfaceAssemblyVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	InterfaceAssemblyVersion UNSIGNED SMALLINT NOT NULL,
+	InterfaceAssemblyVersion SMALLINT NOT NULL,
 	InterfaceAssemblyVersionEnum VARCHAR(100));
 	
 CREATE TABLE OptionTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	OptionType UNSIGNED SMALLINT NOT NULL,
+	OptionType SMALLINT NOT NULL,
 	OptionTypeEnum VARCHAR(40));
 	
 CREATE TABLE ControllerTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ControllerType UNSIGNED SMALLINT NOT NULL,
+	ControllerType SMALLINT NOT NULL,
 	ControllerTypeEnum VARCHAR(40));
 	
 CREATE TABLE InterfaceTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	InterfaceType UNSIGNED SMALLINT NOT NULL,
+	InterfaceType SMALLINT NOT NULL,
 	InterfaceTypeEnum VARCHAR(40));
 	
 CREATE TABLE ValveSeries(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ValveSerie UNSIGNED SMALLINT NOT NULL,
+	ValveSerie SMALLINT NOT NULL,
 	ValveSerieEnum VARCHAR(40));
 	
 CREATE TABLE TestHardwareTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	TestHardwareType UNSIGNED SMALLINT NOT NULL,
+	TestHardwareType SMALLINT NOT NULL,
 	TestHardwareTypeEnum VARCHAR(60));
 
 /*TABLES with FOREIGN KEY of the TestVersion TABLE*/

@@ -4,10 +4,7 @@ CREATE TABLE FailureTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	FailureType VARCHAR(100) NOT NULL);	
 	
-/*IC2H1, IC2H2, IC2H3*/
-CREATE TABLE ControllerTypes(
-	Id int IDENTITY(0,1) PRIMARY KEY,
-	ControllerType VARCHAR(40) NOT NULL);
+/*IC2H1, IC2H2, IC2H3* ControllerTypes is defined in TestInformation/
 	
 /*Low, Medium, High*/
 CREATE TABLE Priorities(
