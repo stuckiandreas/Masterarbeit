@@ -81,6 +81,7 @@ CREATE TABLE DriveParameterFiles(
 CREATE TABLE TestInformation(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(40) NOT NULL,
+	Description VARCHAR(400) NOT NULL,
 	CreationDate DATE,
 	CreationAuthor VARCHAR(30));
 	
@@ -93,7 +94,7 @@ CREATE TABLE ModulNames(
 CREATE TABLE TestVersion(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Number SMALLINT NOT NULL,
-	Description VARCHAR(400),
+	Modification VARCHAR(400),
 	Durating TIME,
 	ModulNames_Id int references ModulNames(Id),
 	ExternalIsolationValveOption BIT NOT NULL,
