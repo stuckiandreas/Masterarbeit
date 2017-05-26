@@ -1,5 +1,5 @@
 /*TABLES to save specific information that can be inserted to the Buglist table*/
-/*repeatable misbehaviour, unaccountable behaviour*/
+/*repeatable misbehaviour, unaccountable behaviour, solved*/
 CREATE TABLE FailureTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	FailureType VARCHAR(100) NOT NULL);	

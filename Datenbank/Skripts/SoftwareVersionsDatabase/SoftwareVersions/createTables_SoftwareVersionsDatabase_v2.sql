@@ -340,11 +340,17 @@ CREATE TABLE TestCollection_TestInformation(
 	TestInfomation_Id int references TestInformation(Id),
 	TestCollection_Id int references TestCollection(Id));
 	
+/* TABLE which defined the abort reason (by error, user cancelled)*/
+CREATE TABLE AbortTypes(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	Name VARCHAR(30) NOT NULL);
+	
 /*TABLE witch save the information of the completed test collection*/
 CREATE TABLE TestCollectionResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	ExecutionDate DATE,
 	UserName VARCHAR(30),
+	AbortTypes_Id int references AbortTypes(Id),
 	CountErrorTests SMALLINT,
 	InitialStateValve_Id int references InitialStateValve(Id)); 
 
