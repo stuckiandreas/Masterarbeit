@@ -1,6 +1,9 @@
-﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
+﻿//-----------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="VAT Vakuumventile AG">
+//     Copyright (c) 2015 . All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 

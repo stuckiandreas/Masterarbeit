@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="App.xaml.cs" company="VAT Vakuumventile AG">
+//     Copyright (c) 2015 . All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace ETIC2
 {
+    using System.Windows;
+
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for <c>App.xaml</c>
     /// </summary>
     public partial class App : Application
     {
