@@ -372,7 +372,7 @@ CREATE TABLE TestErrorMessage(
 /*TABLE which saves all computer names*/
 CREATE TABLE ComputerNames(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ComputerName VARCHAR(40) NOT NULL);
+	Name VARCHAR(40) NOT NULL);
 	
 /*TABLE witch will override by starting the TTIC2 application (binding test and the used version)*/
 CREATE TABLE CurrentTestsVersion(
