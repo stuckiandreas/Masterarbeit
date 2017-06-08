@@ -345,7 +345,7 @@ CREATE TABLE AbortTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(30) NOT NULL);
 	
-/*TABLE witch save the information of the completed test collection*/
+/*TABLE which save the information of the completed test collection*/
 CREATE TABLE TestCollectionResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	ExecutionDate DATE,
@@ -354,7 +354,7 @@ CREATE TABLE TestCollectionResult(
 	CountErrorTests SMALLINT,
 	InitialStateValve_Id int references InitialStateValve(Id)); 
 
-/*TABLE witch save the information of the completed test*/
+/*TABLE which save the information of the completed test*/
 CREATE TABLE TestResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	StartTime DATETIME,
@@ -363,16 +363,21 @@ CREATE TABLE TestResult(
 	TestCollectionResult_Id int references TestCollectionResult(Id),
 	TestVersion_Id int references TestVersion(Id));
 	
-/*TABLE witch save the information of the test error message*/
+/*TABLE which save the information of the test error message*/
 CREATE TABLE TestErrorMessage(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(400),
 	TestResult_Id int references TestResult(Id));
 	
+/*TABLE which saves all computer names*/
+CREATE TABLE ComputerNames(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	ComputerName VARCHAR(40) NOT NULL);
+	
 /*TABLE witch will override by starting the TTIC2 application (binding test and the used version)*/
 CREATE TABLE CurrentTestsVersion(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ComputerName VARCHAR(40) NOT NULL,
+	ComputerNames_Id int references ComputerNames(Id),
 	TestVersion_Id int references TestVersion(Id));
 
 
