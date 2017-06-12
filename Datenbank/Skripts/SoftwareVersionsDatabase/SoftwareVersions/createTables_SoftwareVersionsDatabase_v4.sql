@@ -325,12 +325,12 @@ CREATE TABLE TestCollection(
 /*TABLE for saving test results*/
 CREATE TABLE InitialStateValve(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ValveFirmwareID INT NOT NULL,							
+	SoftwareVersions_Id_Firmware int references SoftwareVersions(Id),							
 	ValveFirmwareReleaseTime DATETIME NOT NULL,					
-	MotionControllerFirmwareVersion VARCHAR(100) NOT NULL,			
-	InterfaceFirmwareVersion VARCHAR(100) NOT NULL,			
-	DriveParameterID VARCHAR(20) NOT NULL,						
-	ConfigurationParameterID VARCHAR(20) NOT NULL,
+	SoftwareVersions_Id_MotionController int references SoftwareVersions(Id),			
+	SoftwareVersions_Id_Interface int references SoftwareVersions(Id),			
+	DriveParameterFiles_ID int references DriveParameterFiles(Id),						
+	ConfigurationFiles_ID int references ConfigurationFiles(Id),
 	TestCollection_Id int references TestCollection(Id));
 	
 /*TABLE for binding tests with a test collection*/
@@ -389,6 +389,11 @@ CREATE TABLE FailureTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(100) NOT NULL);	
 	
+/*open, solved, no solution*/
+CREATE TABLE StatusTypes(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	Name VARCHAR(100) NOT NULL);
+	
 /*IC2H1, IC2H2, IC2H3* ControllerTypes is defined in TestInformation*/
 	
 /*Low, Medium, High*/
@@ -410,10 +415,11 @@ CREATE TABLE HardwareIdentificationLevels2(
 /*TABLE for Saving Buglist Infos*/
 CREATE TABLE Buglist(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	FailureType_Id int references FailureTypes(Id),							
+	FailureTypes_Id int references FailureTypes(Id),	
+	StatusTypes_Id int references StatusTypes(Id),
 	ControllerTypes_Id int references ControllerTypes(Id),					
-	HardwareIdentificationLevel1_Id int references HardwareIdentificationLevels1(Id),			
-	HardwareIdentificationLevel2_Id int references HardwareIdentificationLevels2(Id),			
+	HardwareIdentificationLevels1_Id int references HardwareIdentificationLevels1(Id),			
+	HardwareIdentificationLevels2_Id int references HardwareIdentificationLevels2(Id),			
 	Bug	VARCHAR(200) NOT NULL,						
 	Comment VARCHAR(200),
 	Priorities_Id int references Priorities(Id),
