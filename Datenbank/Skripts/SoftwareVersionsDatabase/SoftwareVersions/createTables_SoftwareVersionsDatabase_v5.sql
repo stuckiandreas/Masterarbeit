@@ -76,7 +76,6 @@ CREATE TABLE DriveParameterFiles(
 
 	
 	
-/*TABLES to save test information* (not included in master work)*/ 
 /*TABLE to save test information (for every test a single entrie)*/
 CREATE TABLE TestInformation(
 	Id int IDENTITY(0,1) PRIMARY KEY,
@@ -103,108 +102,128 @@ CREATE TABLE TestVersion(
 /*TABLES to save specific information that can be inserted to the TestVersion table*/
 CREATE TABLE Module1Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 
 CREATE TABLE Module2Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 
 CREATE TABLE Module3Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 
 CREATE TABLE Module4Types(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module1HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module2HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module3HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module4HardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module1AssemblyVariants(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module2AssemblyVariants(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE Module3AssemblyVariants(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 
 CREATE TABLE Module4AssemblyVariants(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE ControllerHardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE InterfaceHardwareVersions(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE ControllerAssemblyVariants(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE InterfaceAssemblyVariants(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(100));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(100));
 	
 CREATE TABLE OptionTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(40));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(40));
 	
 CREATE TABLE ControllerTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(40));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(40));
 	
 CREATE TABLE InterfaceTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(40));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(40));
 	
 CREATE TABLE ValveSeries(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number INT NOT NULL,
-	Name VARCHAR(40));
+	EnumIndex SMALLINT NOT NULL,
+	EnumValue SMALLINT NOT NULL,
+	Enum VARCHAR(40));
 	
 CREATE TABLE TestHardwareTypes(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Number SMALLINT NOT NULL,
-	Name VARCHAR(60));
+	EnumIndex SMALLINT NOT NULL,
+	Enum VARCHAR(60));
 
 /*TABLES with FOREIGN KEY of the TestVersion TABLE*/
 CREATE TABLE Module1Type(
