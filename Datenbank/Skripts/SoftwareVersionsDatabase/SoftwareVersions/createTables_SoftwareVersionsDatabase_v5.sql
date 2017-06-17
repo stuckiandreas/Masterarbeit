@@ -86,7 +86,7 @@ CREATE TABLE TestInformation(
 	
 CREATE TABLE ModulNames(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Name VARCHAR(40) NOT NULL);
+	Enum VARCHAR(40) NOT NULL);
 
 	
 /*For each test is possible that he has multiple versions*/
