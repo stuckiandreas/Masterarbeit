@@ -217,7 +217,7 @@ CREATE TABLE InterfaceTypes(
 CREATE TABLE ValveSeries(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	EnumIndex SMALLINT NOT NULL,
-	EnumValue SMALLINT NOT NULL,
+	EnumValue INT NOT NULL,
 	Enum VARCHAR(40));
 	
 CREATE TABLE TestHardwareTypes(
