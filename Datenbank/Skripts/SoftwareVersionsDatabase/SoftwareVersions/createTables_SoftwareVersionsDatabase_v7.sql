@@ -65,13 +65,13 @@ CREATE TABLE Users(
 	UserRight INT);
 	
 /*TABLES for additional Information (not used in SoftfwareVersionsDatabase)*/
-CREATE TABLE ConfigurationFiles(
+CREATE TABLE ConfigurationParameterFiles(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ConfigurationFile VARCHAR(20) NOT NULL);
+	Name VARCHAR(20) NOT NULL);
 	
 CREATE TABLE DriveParameterFiles(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	DriveParameterFile VARCHAR(20) NOT NULL);
+	Name VARCHAR(20) NOT NULL);
 	
 
 	
@@ -349,7 +349,7 @@ CREATE TABLE InitialStateValve(
 	SoftwareVersions_Id_MotionController int references SoftwareVersions(Id),			
 	SoftwareVersions_Id_Interface int references SoftwareVersions(Id),			
 	DriveParameterFiles_ID int references DriveParameterFiles(Id),						
-	ConfigurationFiles_ID int references ConfigurationFiles(Id),
+	ConfigurationParameterFiles_ID int references ConfigurationParameterFiles(Id),
 	TestCollection_Id int references TestCollection(Id));
 	
 /*TABLE which save the valve hardware*/
