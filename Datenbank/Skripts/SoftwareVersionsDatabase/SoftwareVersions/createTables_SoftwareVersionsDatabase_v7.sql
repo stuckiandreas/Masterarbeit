@@ -380,7 +380,6 @@ CREATE TABLE ValveHardware(
 /*TABLE for binding tests with a test collection*/
 CREATE TABLE TestCollection_TestInformation(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Name VARCHAR(45) NOT NULL,
 	TestInfomation_Id int references TestInformation(Id),
 	TestCollection_Id int references TestCollection(Id));
 	
