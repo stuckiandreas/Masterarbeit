@@ -380,7 +380,7 @@ CREATE TABLE ValveHardware(
 /*TABLE for binding tests with a test collection*/
 CREATE TABLE TestCollection_TestInformation(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	TestInfomation_Id int references TestInformation(Id),
+	TestInformation_Id int references TestInformation(Id),
 	TestCollection_Id int references TestCollection(Id));
 	
 /* TABLE which defined the abort reason (by error, user cancelled)*/
