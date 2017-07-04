@@ -338,7 +338,7 @@ CREATE TABLE TestHardwareType(
 /*TABLE for all test collections*/
 CREATE TABLE TestCollection(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	Name VARCHAR(45) NOT NULL,
+	Name VARCHAR(100) NOT NULL,
 	Description VARCHAR(400));	
 	
 /*TABLE for saving test results*/
