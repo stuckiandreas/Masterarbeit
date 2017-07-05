@@ -340,6 +340,7 @@ CREATE TABLE TestCollection(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(100) NOT NULL,
 	Description VARCHAR(400),
+	CreationDate DATE NOT NULL,
 	ActivityState SMALLINT NOT NULL);	
 	
 /*TABLE for saving test results*/
