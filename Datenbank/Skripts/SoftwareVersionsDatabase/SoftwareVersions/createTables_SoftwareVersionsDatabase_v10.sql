@@ -363,7 +363,7 @@ CREATE TABLE ValveHardware(
 	InterfaceType_Id int references InterfaceType(Id),
 	ControllerType_Id int references ControllerType(Id),
 	OptionType_Id int references OptionType(Id),
-	ExternalIsolationValveOption BIT NOT NULL,
+	ExternalIsolationValveOption SMALLINT NOT NULL,
 	ControllerHardwareVersion_Id int references ControllerHardwareVersion(Id),
 	InterfaceHardwareVersion_Id int references InterfaceHardwareVersion(Id),
 	ControllerAssemblyVariant_Id int references ControllerAssemblyVariant(Id),
