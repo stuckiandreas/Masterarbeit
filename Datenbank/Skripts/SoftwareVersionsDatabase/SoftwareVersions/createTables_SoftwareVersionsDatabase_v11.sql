@@ -345,7 +345,7 @@ CREATE TABLE TestCollection(
 	ActivityState SMALLINT NOT NULL);	
 	
 /*TABLE for saving test results*/
-CREATE TABLE InitialStateValve(
+CREATE TABLE InitialStateFirmware(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	SoftwareVersions_Id_Firmware int references SoftwareVersions(Id),							
 	ValveFirmwareReleaseTime DATETIME NOT NULL,					
@@ -405,7 +405,7 @@ CREATE TABLE TestCollectionResult(
 	AbortType_Id int references AbortType(Id),
 	CountErrorTest SMALLINT,
 	ValveHardware_Id int references ValveHardware(Id),
-	InitialStateValve_Id int references InitialStateValve(Id)); 
+	InitialStateFirmware_Id int references InitialStateFirmware(Id)); 
 
 /*TABLE which save the information of the completed test*/
 CREATE TABLE TestResult(
