@@ -400,7 +400,7 @@ CREATE TABLE AbortType(
 /*TABLE which save the information of the completed test collection*/
 CREATE TABLE TestCollectionResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ExecutionDate DATE,
+	ExecutionDateTime DATETIME,
 	UserName VARCHAR(30),
 	AbortType_Id int references AbortType(Id),
 	CountErrorTest SMALLINT,
