@@ -31,8 +31,6 @@ namespace DXSample {
 
         public WorkspaceViewModel workspaceViewModel;
 
-        private int a;
-
         //public IList Items { get; private set; }
 
         //public MainViewModel()
@@ -46,7 +44,6 @@ namespace DXSample {
         public MainViewModel()
         {
             workspaceViewModel = new WorkspaceViewModel();
-            a = 10;
         }
 
     }
