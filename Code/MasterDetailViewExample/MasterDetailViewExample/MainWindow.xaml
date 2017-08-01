@@ -9,57 +9,10 @@
         x:Class="MasterDetailViewExample.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+
     <Grid>
-
-        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True">
-            <dxg:GridControl.DetailDescriptor>
-                <dxg:DataControlDetailDescriptor Name="gridDetailDescriptor" ItemsSourceBinding="{Binding Path=Orders}" ShowHeader="false">
-                    <dxg:GridControl Name="detailGrid">
-                        <dxg:GridControl.DetailDescriptor>
-                            <dxg:DataControlDetailDescriptor ItemsSourceBinding="{Binding Path=OrderDetails}" ShowHeader="false">
-                                <dxg:GridControl Name="subDetailGrid">
-                                    <dxg:GridControl.Columns>
-                                        <dxg:GridColumn FieldName="ProductName" />
-                                        <dxg:GridColumn FieldName="UnitPrice" />
-                                        <dxg:GridColumn FieldName="Quantity" />
-                                        <dxg:GridColumn FieldName="TotalPrice"  UnboundType="Decimal"  UnboundExpression="[UnitPrice]*[Quantity]" />
-                                        <dxg:GridColumn FieldName="Discount" />
-                                    </dxg:GridControl.Columns>
-                                    <dxg:GridControl.View>
-                                        <dxg:TableView Name="subDetailView" DetailHeaderContent="Order details" AutoWidth="True"
-                                                       UseAnimationWhenExpanding="true" ShowColumnHeaders="True"
-                                                       AllowFixedColumnMenu="true" ShowTotalSummary="True" />
-                                    </dxg:GridControl.View>
-                                </dxg:GridControl>
-                            </dxg:DataControlDetailDescriptor>
-                        </dxg:GridControl.DetailDescriptor>
-                        <dxg:GridControl.Columns>
-                            <dxg:GridColumn FieldName="Name" />
-                            <dxg:GridColumn FieldName="Value" />
-                            <dxg:GridColumn FieldName="Price" />
-                        </dxg:GridControl.Columns>
-                        <dxg:GridControl.View>
-                            <dxg:TableView Name="detailView" DetailHeaderContent="Order" UseAnimationWhenExpanding="true"
-                                           ShowColumnHeaders="True"  AllowFixedColumnMenu="true" AutoWidth="True"
-                                           ShowTotalSummary="True"/>
-                        </dxg:GridControl.View>
-                    </dxg:GridControl>
-                </dxg:DataControlDetailDescriptor>
-            </dxg:GridControl.DetailDescriptor>
-            <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Surname" />
-                <dxg:GridColumn FieldName="Lastname" />
-            </dxg:GridControl.Columns>
-            <dxg:GridControl.View>
-                <dxg:TableView Name="masterView" DetailHeaderContent="Customers" AllowScrollAnimation="true" AllowFixedGroups="true"
-                               NavigationStyle="Cell" AllowFixedColumnMenu="true" AutoWidth="True" ShowTotalSummary="True">
-                    <dxmvvm:Interaction.Triggers>
-                        <dxmvvm:EventToCommand EventName="Loaded" CommandParameter="1" ProcessEventsFromDisabledEventOwner="true"
-                                                   Command="{Binding Commands.ExpandMasterRow, ElementName=masterView}" />
-                    </dxmvvm:Interaction.Triggers>
-                </dxg:TableView>
-            </dxg:GridControl.View>
-        </dxg:GridControl>
-
+        <DockPanel LastChildFill="True">
+            <ContentControl Content="{Binding WorkspaceViewModel}"/>
+        </DockPanel>
     </Grid>
 </Window>
