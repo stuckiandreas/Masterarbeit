@@ -24,93 +24,106 @@ namespace DXSample.Utils {
 }
 
 namespace DXSample {
-    
+
     using DXSample.Utils;
-
+    using T105266.ViewModel;
     public class MainViewModel {
-        public IList Items { get; private set; }
 
-        public MainViewModel() {
-            Items = new ObservableCollection<League>();
+        public WorkspaceViewModel workspaceViewModel;
 
-            for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
-                Items.Add(new League());
-        }
-    }
+        private int a;
 
+        //public IList Items { get; private set; }
 
-    public class League {
-        string _Name;
-        string _Info;
+        //public MainViewModel()
+        //{
+        //    Items = new ObservableCollection<League>();
 
-        public string Name
+        //    for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
+        //        Items.Add(new League());
+        //}
+
+        public MainViewModel()
         {
-            get { return _Name; }
-            set { this._Name = value; }
-        }
-
-        public string Info { 
-            get { return _Info; }
-            set { this._Info = value; }
-        }
-        public ObservableCollection<Division> Divisions { get; private set; }
-
-        public League() {
-            Name = RandomStringHelper.GetRandomString();
-            Info = "Test";
-
-            Divisions = new ObservableCollection<Division>();
-            for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
-                Divisions.Add(new Division());
+            workspaceViewModel = new WorkspaceViewModel();
+            a = 10;
         }
 
     }
 
-    public class Division  {
-        string _Name;
-        public string Name {
-            get { return _Name; }
-            set { this._Name = value; }
-        }
-        public ObservableCollection<Team> Teams { get; private set; }
 
-        public Division() {
-            Name = RandomStringHelper.GetRandomString();
+    //public class League {
+    //    string _Name;
+    //    string _Info;
 
-            Teams = new ObservableCollection<Team>();
-            for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
-                Teams.Add(new Team());
-        }
-    }
+    //    public string Name
+    //    {
+    //        get { return _Name; }
+    //        set { this._Name = value; }
+    //    }
 
-    public class Team  {
-        string _Name;
-        public string Name {
-            get { return _Name; }
-            set { this._Name = value; }
-        }
-        public ObservableCollection<Player> Players { get; private set; }
+    //    public string Info { 
+    //        get { return _Info; }
+    //        set { this._Info = value; }
+    //    }
+    //    public ObservableCollection<Division> Divisions { get; private set; }
 
-        public Team() {
-            Name = RandomStringHelper.GetRandomString();
+    //    public League() {
+    //        Name = RandomStringHelper.GetRandomString();
+    //        Info = "Test";
 
-            Players = new ObservableCollection<Player>();
-            for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
-                Players.Add(new Player());
-        }
-    }
+    //        Divisions = new ObservableCollection<Division>();
+    //        for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
+    //            Divisions.Add(new Division());
+    //    }
 
-    public class Player {
-        string _Name;
-        public string Name {
-            get { return _Name; }
-            set { this._Name = value; }
-        }
+    //}
 
-        public Player() {
-            Name = RandomStringHelper.GetRandomString();
-        }
-    }
+    //public class Division  {
+    //    string _Name;
+    //    public string Name {
+    //        get { return _Name; }
+    //        set { this._Name = value; }
+    //    }
+    //    public ObservableCollection<Team> Teams { get; private set; }
+
+    //    public Division() {
+    //        Name = RandomStringHelper.GetRandomString();
+
+    //        Teams = new ObservableCollection<Team>();
+    //        for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
+    //            Teams.Add(new Team());
+    //    }
+    //}
+
+    //public class Team  {
+    //    string _Name;
+    //    public string Name {
+    //        get { return _Name; }
+    //        set { this._Name = value; }
+    //    }
+    //    public ObservableCollection<Player> Players { get; private set; }
+
+    //    public Team() {
+    //        Name = RandomStringHelper.GetRandomString();
+
+    //        Players = new ObservableCollection<Player>();
+    //        for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
+    //            Players.Add(new Player());
+    //    }
+    //}
+
+    //public class Player {
+    //    string _Name;
+    //    public string Name {
+    //        get { return _Name; }
+    //        set { this._Name = value; }
+    //    }
+
+    //    public Player() {
+    //        Name = RandomStringHelper.GetRandomString();
+    //    }
+    //}
 
 
 }

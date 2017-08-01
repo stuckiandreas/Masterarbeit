@@ -9,6 +9,18 @@
     <Window.DataContext>
         <dxs:MainViewModel />
     </Window.DataContext>
+
+
+    <!--This definition of the resource directory location is used to know about the mapping of the ViewModel and View.
+        It has to be declared once. All child views know the location automatically-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
