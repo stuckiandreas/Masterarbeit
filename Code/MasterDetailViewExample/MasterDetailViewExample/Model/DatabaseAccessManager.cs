@@ -13,7 +13,7 @@ namespace MasterDetailViewExample.Model
 
         public DatabaseAccessManager()
         {
-            
+            ConnectDatabase();
         }
 
         public void ConnectDatabase()
