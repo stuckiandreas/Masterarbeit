@@ -13,12 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DXGridSample {
+namespace OrderList.Views
+{
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WorkspaceView.xaml
     /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class WorkspaceView : UserControl
+    {
+        public WorkspaceView()
+        {
             InitializeComponent();
         }
     }

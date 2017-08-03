@@ -1,35 +1,15 @@
-﻿<Window x:Class="DXGridSample.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-        xmlns:viewModel="clr-namespace:T105266.ViewModel"
-        xmlns:dxs="clr-namespace:DXSample"
-        Title="MainWindow" Height="350" Width="525">
-
-    <Window.DataContext>
-        <viewModel:WorkspaceViewModel/>
-    </Window.DataContext>
-
-    <!--This definition of the resource directory location is used to know about the mapping of the ViewModel and View.
-        It has to be declared once. All child views know the location automatically-->
-    <!--<Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionaries/Dictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>-->
-
+﻿<UserControl x:Class="OrderList.Views.WorkspaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:local="clr-namespace:OrderList.Views"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <DockPanel LastChildFill="True">
-            <TextBlock Name="TextBlock" Text="Hallo" DockPanel.Dock="Top"/>
-            <ContentControl Content="{Binding WorkspaceViewModel}"/>
-        </DockPanel>
-    </Grid>
 
-    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -89,6 +69,5 @@
             </dxg:GridControl.View>
         </dxg:GridControl>
 
-    </Grid>-->
-
-</Window>
+    </Grid>
+</UserControl>

@@ -1,13 +1,13 @@
-﻿using DXSample.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace T105266.ViewModel
+namespace OrderList.ViewModels.DataViewModel
 {
-    public class Division
+    public class Team
     {
         string _Name;
         public string Name
@@ -15,15 +15,15 @@ namespace T105266.ViewModel
             get { return _Name; }
             set { this._Name = value; }
         }
-        public ObservableCollection<Team> Teams { get; private set; }
+        public ObservableCollection<Player> Players { get; private set; }
 
-        public Division()
+        public Team()
         {
             Name = RandomStringHelper.GetRandomString();
 
-            Teams = new ObservableCollection<Team>();
+            Players = new ObservableCollection<Player>();
             for (int i = 0; i < RandomStringHelper.Random.Next(5, 10); i++)
-                Teams.Add(new Team());
+                Players.Add(new Player());
         }
     }
 }
