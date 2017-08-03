@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="BasisViewModel.cs" company="VAT Vakuumventile AG">
-//     Copyright (c) 2015 . All rights reserved.
+//     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -24,10 +24,6 @@ namespace ETIC2.ViewModels
         /// </summary>
         protected ViewModelEvents events;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BasisViewModel"/> class.
-        /// </summary>
-        /// <param name="currentEvents">The current events.</param>
         protected BasisViewModel(ViewModelEvents currentEvents)
         {
             this.events = currentEvents;
@@ -38,51 +34,28 @@ namespace ETIC2.ViewModels
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
         public virtual void Init()
         {
         }
 
-        /// <summary>
-        /// Subscribes the events.
-        /// </summary>
         public virtual void SubscribeEvents()
         {
         }
 
-        /// <summary>
-        /// Unsubscribes the events.
-        /// </summary>
         public virtual void UnsubscribeEvents()
         {
         }
 
-        /// <summary>
-        /// Called when [handle error].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="ErrorHandlerEventArgs"/> instance containing the event data.</param>
         public void OnHandleError(object sender, ErrorHandlerEventArgs e)
         {
             this.events.OnHandleError(sender, e);
         }
 
-        /// <summary>
-        /// Called when [user feedback].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="UserFeedbackEventArgs"/> instance containing the event data.</param>
         public void OnUserFeedback(object sender, UserFeedbackEventArgs e)
         {
             this.events.OnUserFeedback(sender, e);
         }
 
-        /// <summary>
-        /// Property Changed Event helper method
-        /// </summary>
-        /// <param name="propertyName">Name of the changed Property</param>
         protected void OnPropertyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)

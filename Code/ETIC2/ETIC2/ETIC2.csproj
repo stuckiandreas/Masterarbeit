@@ -55,6 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActionCommands\ActionCommand.cs" />
+    <Compile Include="Events\EventArgs\Cursor\CursorLoadingEventArgs.cs" />
+    <Compile Include="Events\EventArgs\DatabaseAccess\DatabaseAccessEventArgs.cs" />
+    <Compile Include="Events\EventArgs\Dialog\DialogEventArgs.cs" />
+    <Compile Include="Events\EventArgs\Error\ErrorHandlerEventArgs.cs" />
+    <Compile Include="Events\EventArgs\Error\ExpectedErrorHandlerEventArgs.cs" />
+    <Compile Include="Events\EventArgs\Error\UnexpectedErrorHandlerEventArgs.cs" />
+    <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackErrorEventArgs.cs" />
+    <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackEventArgs.cs" />
+    <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackInfoEventArgs.cs" />
+    <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackQuestionEventArgs.cs" />
+    <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
+    <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
@@ -107,7 +120,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Model\Application\" />
     <Folder Include="Model\EntityFramework\" />
