@@ -12,15 +12,18 @@ namespace ETIC2.Model.Application
     {
         public ETIC2Model()
         {
-            this.InitialStateValveDatabaseAccessManager = new InitialStateValveDatabaseAccessManager();
-            this.TestCollectionResultDatabaseAccessManager = new TestCollectionResultDatabaseAccessManager();
+            this.InitialStateFirmwareDatabaseAccessManager = new InitialStateFirmwareDatabaseAccessManager();
+            this.TestCollectionResultWithHardwareDatabaseAccessManager = new TestCollectionResultWithHardwareDatabaseAccessManager();
             this.TestResultDatabaseAccessManager = new TestResultDatabaseAccessManager();
+            this.TestErrorMessageDatabaseAccessManager = new TestErrorMessageDatabaseAccessManager();
         }
 
-        public InitialStateValveDatabaseAccessManager InitialStateValveDatabaseAccessManager { get; }
+        public InitialStateFirmwareDatabaseAccessManager InitialStateFirmwareDatabaseAccessManager { get; }
 
-        public TestCollectionResultDatabaseAccessManager TestCollectionResultDatabaseAccessManager { get; }
+        public TestCollectionResultWithHardwareDatabaseAccessManager TestCollectionResultWithHardwareDatabaseAccessManager { get; }
 
         public TestResultDatabaseAccessManager TestResultDatabaseAccessManager { get; }
+
+        public TestErrorMessageDatabaseAccessManager TestErrorMessageDatabaseAccessManager { get; }
     }
 }

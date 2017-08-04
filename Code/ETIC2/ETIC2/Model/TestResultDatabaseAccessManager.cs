@@ -3,6 +3,7 @@
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
+
 namespace ETIC2.Model
 {
     /// <summary>
