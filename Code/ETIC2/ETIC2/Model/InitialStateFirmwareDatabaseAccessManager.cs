@@ -10,7 +10,7 @@ namespace ETIC2.Model
     /// Gets the Information from the InitialStateFirmware table
     /// Neccesary to define a initial state firmware because the TTIC2 application needs this information to update valve hardware before the test collection starts
     /// </summary>
-    public class InitialStateFirmwareDatabaseAccessManager
+    public class InitialStateFirmwareDatabaseAccessManager : DatabaseAccessManager
     {
     }
 }

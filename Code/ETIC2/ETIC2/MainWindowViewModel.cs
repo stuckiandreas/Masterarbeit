@@ -5,9 +5,11 @@
 //-----------------------------------------------------------------------
 namespace ETIC2
 {
-    using System;
     using ETIC2.Model.Application;
     using ETIC2.ViewModels;
+    using Events;
+    using ViewModels.MenuViewModels;
+    using ViewModels.StatusbarViewModels;
 
     /// <summary>
     /// Main Window which has the child menu for status, menu and workspace

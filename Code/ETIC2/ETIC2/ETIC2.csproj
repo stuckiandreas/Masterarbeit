@@ -72,7 +72,21 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Model\DatabaseAccessManager.cs" />
+    <Compile Include="Model\DatabaseConnectionSettingsDatabaseAccessManager.cs" />
+    <Compile Include="Model\InitialStateFirmwareDatabaseAccessManager.cs" />
+    <Compile Include="Model\TestCollectionResultWithHardwareDatabaseAccessManager.cs" />
+    <Compile Include="Model\TestErrorMessageDatabaseAccessManager.cs" />
+    <Compile Include="ViewModels\AboutDialogViewModels\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
+    <Compile Include="ViewModels\DatabaseDataGridViewModel.cs" />
+    <Compile Include="ViewModels\ExecuteDialogViewModels\ExecuteDialogViewModel.cs" />
+    <Compile Include="ViewModels\ExecuteDialogViewModels\SaveExecuteDoubleDialogViewModel.cs" />
+    <Compile Include="ViewModels\ExecuteDialogViewModels\SaveSettingsExecuteDialogViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModels\InputBaseViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
@@ -93,8 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\ETIC2Model.cs" />
-    <Compile Include="Model\InitialStateValveDatabaseAccessManager.cs" />
-    <Compile Include="Model\TestCollectionResultDatabaseAccessManager.cs" />
     <Compile Include="Model\TestResultDatabaseAccessManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

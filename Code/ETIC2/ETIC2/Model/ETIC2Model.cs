@@ -12,11 +12,14 @@ namespace ETIC2.Model.Application
     {
         public ETIC2Model()
         {
+            this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettingsDatabaseAccessManager();
             this.InitialStateFirmwareDatabaseAccessManager = new InitialStateFirmwareDatabaseAccessManager();
             this.TestCollectionResultWithHardwareDatabaseAccessManager = new TestCollectionResultWithHardwareDatabaseAccessManager();
             this.TestResultDatabaseAccessManager = new TestResultDatabaseAccessManager();
             this.TestErrorMessageDatabaseAccessManager = new TestErrorMessageDatabaseAccessManager();
         }
+
+        public DatabaseConnectionSettingsDatabaseAccessManager DatabaseConnectionSettingsDatabaseAccessManager { get; }
 
         public InitialStateFirmwareDatabaseAccessManager InitialStateFirmwareDatabaseAccessManager { get; }
 

@@ -6,6 +6,7 @@
 namespace ETIC2.ViewModels
 {
     using ETIC2.Model.Application;
+    using Events;
 
     /// <summary>
     /// Mainly View Model. Interface to the model. Included the detailInformation and dataBaseDataGrid view. 
@@ -22,7 +23,7 @@ namespace ETIC2.ViewModels
         /// <summary>
         /// Data grid with software information items
         /// </summary>
-        private readonly DatabaseDataGridViewModel dataGridViewatabaseDataGridViewModel;
+        private readonly DatabaseDataGridViewModel databaseDataGridViewModel;
         
         /// <summary>
         /// Reference to the model

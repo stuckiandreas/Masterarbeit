@@ -10,7 +10,7 @@ namespace ETIC2.Model
     /// Gets the Information from the TestResult table
     /// Shows a single test result. Important if the test are failed to see the first three error messages
     /// </summary>
-    public class TestResultDatabaseAccessManager
+    public class TestResultDatabaseAccessManager : DatabaseAccessManager
     {
     }
 }

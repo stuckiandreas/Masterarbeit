@@ -9,7 +9,7 @@ namespace ETIC2.Model
     /// <summary>
     /// Gets the Information from the TestErrorMessage table
     /// </summary>
-    public class TestErrorMessageDatabaseAccessManager
+    public class TestErrorMessageDatabaseAccessManager : DatabaseAccessManager
     {
     }
 }

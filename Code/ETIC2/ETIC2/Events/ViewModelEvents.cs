@@ -69,5 +69,11 @@ namespace ETIC2.Events
             if (this.CursorLoading != null)
                 this.CursorLoading(sender, cursorLoadingEventArgs);
         }
+
+        public void OnChangeDatabaseSettings(object sender, DatabaseAccessEventArgs databaseAccessEventArgs)
+        {
+            if (this.ChangeDatabaseSettings != null)
+                this.ChangeDatabaseSettings(sender, databaseAccessEventArgs);
+        }
     }
 }

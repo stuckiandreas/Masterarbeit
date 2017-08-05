@@ -8,6 +8,9 @@
 namespace ETIC2.ViewModels
 {
     using System.ComponentModel;
+    using Events;
+    using Events.EventArgs.Error;
+    using Events.EventArgs.UserFeedback;
 
     /// <summary>
     /// BasisViewModel for all ViewModels.
