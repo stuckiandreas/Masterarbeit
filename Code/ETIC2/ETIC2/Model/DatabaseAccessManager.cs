@@ -9,6 +9,7 @@ namespace ETIC2.Model
     using System;
     using System.Data.SqlClient;
     using Events.EventArgs.DatabaseAccess;
+    using EntityFramework;
 
     /// <summary>
     /// Managed the access to the database
@@ -18,7 +19,7 @@ namespace ETIC2.Model
         /// <summary>
         /// The database context
         /// </summary>
-        protected ETIC2DatabaseContext databaseContext;
+        protected SoftwareVersionsDatabaseContext databaseContext;
 
         public DatabaseAccessManager()
         {
@@ -64,7 +65,7 @@ namespace ETIC2.Model
         public void BuildDatabaseContext(string databaseName, string serverName)
         {
             string sqlConnectionString = this.GetSqlConnectionString(databaseName, serverName);
-            this.databaseContext = new ETIC2DatabaseContext(sqlConnectionString);
+            this.databaseContext = new SoftwareVersionsDatabaseContext(sqlConnectionString);
         }
 
         protected void OnDatabaseAccessEvent(object sender, DatabaseAccessEventArgs eventArgs)

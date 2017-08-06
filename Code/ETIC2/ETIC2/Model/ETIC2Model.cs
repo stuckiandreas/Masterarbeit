@@ -10,6 +10,8 @@ namespace ETIC2.Model.Application
     /// </summary>
     public class ETIC2Model
     {
+        public Converter Converter;
+
         public ETIC2Model()
         {
             this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettingsDatabaseAccessManager();

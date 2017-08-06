@@ -38,8 +38,19 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,8 +83,50 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Model\Application\InitialStateFirmware.cs" />
+    <Compile Include="Model\Converter.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
     <Compile Include="Model\DatabaseConnectionSettingsDatabaseAccessManager.cs" />
+    <Compile Include="Model\EntityFramework\AbortType.cs" />
+    <Compile Include="Model\EntityFramework\Buglist.cs" />
+    <Compile Include="Model\EntityFramework\ConfigData.cs" />
+    <Compile Include="Model\EntityFramework\ConfigurationParameterFile.cs" />
+    <Compile Include="Model\EntityFramework\ControllerAssemblyVariant.cs" />
+    <Compile Include="Model\EntityFramework\ControllerHardwareVersion.cs" />
+    <Compile Include="Model\EntityFramework\ControllerType.cs" />
+    <Compile Include="Model\EntityFramework\DriveParameterFile.cs" />
+    <Compile Include="Model\EntityFramework\FailureType.cs" />
+    <Compile Include="Model\EntityFramework\HardwareIdentificationLevel1.cs" />
+    <Compile Include="Model\EntityFramework\HardwareIdentificationLevel2.cs" />
+    <Compile Include="Model\EntityFramework\InitialStateFirmware.cs" />
+    <Compile Include="Model\EntityFramework\InterfaceAssemblyVariant.cs" />
+    <Compile Include="Model\EntityFramework\InterfaceHardwareVersion.cs" />
+    <Compile Include="Model\EntityFramework\InterfaceType.cs" />
+    <Compile Include="Model\EntityFramework\Module1AssemblyVariant.cs" />
+    <Compile Include="Model\EntityFramework\Module1HardwareVersion.cs" />
+    <Compile Include="Model\EntityFramework\Module1Type.cs" />
+    <Compile Include="Model\EntityFramework\Module2AssemblyVariant.cs" />
+    <Compile Include="Model\EntityFramework\Module2HardwareVersion.cs" />
+    <Compile Include="Model\EntityFramework\Module2Type.cs" />
+    <Compile Include="Model\EntityFramework\Module3AssemblyVariant.cs" />
+    <Compile Include="Model\EntityFramework\Module3HardwareVersion.cs" />
+    <Compile Include="Model\EntityFramework\Module3Type.cs" />
+    <Compile Include="Model\EntityFramework\Module4AssemblyVariant.cs" />
+    <Compile Include="Model\EntityFramework\Module4HardwareVersion.cs" />
+    <Compile Include="Model\EntityFramework\Module4Type.cs" />
+    <Compile Include="Model\EntityFramework\OptionType.cs" />
+    <Compile Include="Model\EntityFramework\Priority.cs" />
+    <Compile Include="Model\EntityFramework\SoftwareVersions.cs" />
+    <Compile Include="Model\EntityFramework\SoftwareVersionsDatabaseContext.cs" />
+    <Compile Include="Model\EntityFramework\StatusType.cs" />
+    <Compile Include="Model\EntityFramework\TestCollection.cs" />
+    <Compile Include="Model\EntityFramework\TestCollectionResult.cs" />
+    <Compile Include="Model\EntityFramework\TestErrorMessage.cs" />
+    <Compile Include="Model\EntityFramework\TestInformation.cs" />
+    <Compile Include="Model\EntityFramework\TestResult.cs" />
+    <Compile Include="Model\EntityFramework\TestVersion.cs" />
+    <Compile Include="Model\EntityFramework\ValveHardware.cs" />
+    <Compile Include="Model\EntityFramework\ValveSerie.cs" />
     <Compile Include="Model\InitialStateFirmwareDatabaseAccessManager.cs" />
     <Compile Include="Model\TestCollectionResultWithHardwareDatabaseAccessManager.cs" />
     <Compile Include="Model\TestErrorMessageDatabaseAccessManager.cs" />
@@ -125,6 +178,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -137,12 +191,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="Model\Application\" />
-    <Folder Include="Model\EntityFramework\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
