@@ -11,9 +11,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ETIC2")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Show vacuum test results")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("VAT")]
 [assembly: AssemblyProduct("ETIC2")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

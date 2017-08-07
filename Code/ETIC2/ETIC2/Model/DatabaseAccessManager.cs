@@ -8,8 +8,8 @@ namespace ETIC2.Model
 {
     using System;
     using System.Data.SqlClient;
-    using Events.EventArgs.DatabaseAccess;
     using EntityFramework;
+    using Events.EventArgs.DatabaseAccess;
 
     /// <summary>
     /// Managed the access to the database

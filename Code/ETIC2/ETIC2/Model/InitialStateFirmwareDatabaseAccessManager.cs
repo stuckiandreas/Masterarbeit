@@ -8,7 +8,6 @@ namespace ETIC2.Model
 {
     using System.Collections.Generic;
     using System.Linq;
-    using ETIC2.Model.EntityFramework;
 
     /// <summary>
     /// Gets the Information from the InitialStateFirmware table
@@ -21,52 +20,78 @@ namespace ETIC2.Model
         }
 
         /// <summary>
-        /// Gets a List with all InitialStateValveFirmware Entries. Included with SoftwareVersionsId and TestCollectionId.
+        /// Gets a List with all InitialStateFirmware Entries. Included with SoftwareVersionsId and TestCollectionId. With ID's -> EntityFramework Type InitialStateFirmware
         /// </summary>
-        /// <returns></returns>
-        public List<InitialStateFirmware> GetInitialStateFirmwares()
+        /// <returns>List with all InitialStateFirmware Entries</returns>
+        public List<EntityFramework.InitialStateFirmware> GetEntityFrameworkInitialStateFirmwares()
         {
             return databaseContext.InitialStateFirmware.ToList();
         }
 
         /// <summary>
+        /// Gets a List with all InitailStateFirmware Entries. Without any ID's -> Application Type InitialStateValve
+        /// </summary>
+        /// <returns>List with all InitailStateFirmware Entries</returns>
+        public List<Application.InitialStateFirmware> GetApplicationInitialStateFirmwares()
+        {
+            List<EntityFramework.InitialStateFirmware> initialStateFirmwareDatabaseList = this.GetEntityFrameworkInitialStateFirmwares();
+            List<Application.InitialStateFirmware> initialStateFirmwareList = new List<Application.InitialStateFirmware>();
+            Application.InitialStateFirmware tempInitialStateFirmware = null;
+
+            foreach (var initialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
+            {
+                tempInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
+                tempInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;
+                tempInitialStateFirmware.MotionControllerFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_MotionController);
+                tempInitialStateFirmware.InterfaceFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Interface);
+                tempInitialStateFirmware.DriveParameterID = this.GetDriveParameterID((int)initialStateFirmwareDatabase.DriveParameterFile_ID);
+                tempInitialStateFirmware.ConfigurationParameterID = this.GetConfigurationParameterID((int)initialStateFirmwareDatabase.ConfigurationParameterFile_ID);
+                tempInitialStateFirmware.TestCollection = this.GetTestCollectionName((int)initialStateFirmwareDatabase.TestCollection_Id);
+
+                initialStateFirmwareList.Add(tempInitialStateFirmware);
+            }
+
+            return initialStateFirmwareList;
+        }
+
+        /// <summary>
         /// Gets the name of the test collection with the test collection id entry.
         /// </summary>
-        /// <param name="TestCollectionId">The test collection identifier.</param>
-        /// <returns></returns>
-        public string GetTestCollectionName(int TestCollectionId)
+        /// <param name="testCollectionId">The test collection identifier.</param>
+        /// <returns>name of the test collection</returns>
+        public string GetTestCollectionName(int testCollectionId)
         {
-            return databaseContext.TestCollection.Where(x => x.Id == TestCollectionId).FirstOrDefault().Name;
+            return databaseContext.TestCollection.Where(x => x.Id == testCollectionId).FirstOrDefault().Name;
         }
 
         /// <summary>
         /// Gets the name of the software versions with the software versions id entry.
         /// </summary>
-        /// <param name="SoftwareVersionsId">The software versions identifier.</param>
-        /// <returns></returns>
-        public string GetSoftwareVersionsName(int SoftwareVersionsId)
+        /// <param name="softwareVersionsId">The software versions identifier.</param>
+        /// <returns>name of the software versions</returns>
+        public string GetSoftwareVersionsName(int softwareVersionsId)
         {
-            return databaseContext.SoftwareVersions.Where(x => x.Id == SoftwareVersionsId).FirstOrDefault().Software;
+            return databaseContext.SoftwareVersions.Where(x => x.Id == softwareVersionsId).FirstOrDefault().Software;
         }
 
         /// <summary>
         /// Gets the drive parameter string id with the drive parameter id entry.
         /// </summary>
-        /// <param name="DriveParameterId">The drive parameter identifier.</param>
-        /// <returns></returns>
-        public string GetDriveParameterID(int DriveParameterId)
+        /// <param name="driveParameterId">The drive parameter identifier.</param>
+        /// <returns>drive parameter string id</returns>
+        public string GetDriveParameterID(int driveParameterId)
         {
-            return databaseContext.DriveParameterFile.Where(x => x.Id == DriveParameterId).FirstOrDefault().Name;
+            return databaseContext.DriveParameterFile.Where(x => x.Id == driveParameterId).FirstOrDefault().Name;
         }
 
         /// <summary>
         /// Gets the configuration parameter string id with the drive parameter id entry.
         /// </summary>
-        /// <param name="ConfigurationParameterId">The configuration parameter identifier.</param>
-        /// <returns></returns>
-        public string GetConfigurationParameterID(int ConfigurationParameterId)
+        /// <param name="configurationParameterId">The configuration parameter identifier.</param>
+        /// <returns>configuration parameter string id</returns>
+        public string GetConfigurationParameterID(int configurationParameterId)
         {
-            return databaseContext.ConfigurationParameterFile.Where(x => x.Id == ConfigurationParameterId).FirstOrDefault().Name;
+            return databaseContext.ConfigurationParameterFile.Where(x => x.Id == configurationParameterId).FirstOrDefault().Name;
         }
     }
 }

@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ETIC2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        MinHeight="500"
+        Title="ETIC2" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    
+    <!--This definition of the resource directory location is used to know about the mapping of the ViewModel and View.
+        It has to be declared once. All child views know the location automatically-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        
+        <DockPanel LastChildFill="True">
+            <ContentControl Content="{Binding MenuViewModel}" DockPanel.Dock="Top"/>
+            <ContentControl Content="{Binding StatusbarViewModel}" DockPanel.Dock="Bottom"/>
+            <ContentControl Content="{Binding WorkspaceViewModel}" IsEnabled="{Binding IsWorkspaceEnabled}"/>
+        </DockPanel>
     </Grid>
 </Window>

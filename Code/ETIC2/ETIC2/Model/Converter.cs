@@ -15,34 +15,13 @@ namespace ETIC2.Model
     /// </summary>
     public class Converter
     {
-        public InitialStateFirmwareDatabaseAccessManager initialStateFirmwareDatabaseAccessManager;
-
         public Converter()
         {
         }
 
-        public List<Application.InitialStateFirmware> ConvertInitialStateFirmware()
-        {
-            initialStateFirmwareDatabaseAccessManager = new InitialStateFirmwareDatabaseAccessManager();
-            List<EntityFramework.InitialStateFirmware> initialStateFirmwareDatabaseList;
-            List<Application.InitialStateFirmware> initialStateFirmwareList =  new List<Application.InitialStateFirmware>();
-            Application.InitialStateFirmware tempInitialStateFirmware = null;
-
-            initialStateFirmwareDatabaseList = initialStateFirmwareDatabaseAccessManager.GetInitialStateFirmwares();
-            foreach(var InitialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
-            {
-                tempInitialStateFirmware.ValveFirmware = initialStateFirmwareDatabaseAccessManager.GetSoftwareVersionsName((int)InitialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
-                tempInitialStateFirmware.ValveFirmwareReleaseTime = InitialStateFirmwareDatabase.ValveFirmwareReleaseTime;
-                tempInitialStateFirmware.MotionControllerFirmware = initialStateFirmwareDatabaseAccessManager.GetSoftwareVersionsName((int)InitialStateFirmwareDatabase.SoftwareVersions_Id_MotionController);
-                tempInitialStateFirmware.InterfaceFirmware = initialStateFirmwareDatabaseAccessManager.GetSoftwareVersionsName((int)InitialStateFirmwareDatabase.SoftwareVersions_Id_Interface);
-                tempInitialStateFirmware.DriveParameterID = initialStateFirmwareDatabaseAccessManager.GetDriveParameterID((int)InitialStateFirmwareDatabase.DriveParameterFile_ID);
-                tempInitialStateFirmware.ConfigurationParameterID = initialStateFirmwareDatabaseAccessManager.GetConfigurationParameterID((int)InitialStateFirmwareDatabase.ConfigurationParameterFile_ID);
-                tempInitialStateFirmware.TestCollection = initialStateFirmwareDatabaseAccessManager.GetTestCollectionName((int)InitialStateFirmwareDatabase.TestCollection_Id);
-
-                initialStateFirmwareList.Add(tempInitialStateFirmware);
-            }
-            return initialStateFirmwareList;
-        }
+        //public List<Application.InitialStateFirmware> ConvertInitialStateFirmware()
+        //{
+        //}
     }
 }
 

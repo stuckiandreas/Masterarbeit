@@ -6,6 +6,10 @@
 
 namespace ETIC2.Model
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using EntityFramework;
+
     /// <summary>
     /// Class is used to ask and set the database version.
     /// </summary>

@@ -1,5 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ETIC2">
-    
+                    xmlns:views="clr-namespace:ETIC2.Views"
+                    xmlns:statusbarViews="clr-namespace:ETIC2.Views.StatusbarViews"
+                    xmlns:menuViews="clr-namespace:ETIC2.Views.MenuViews"
+                    xmlns:viewModels="clr-namespace:ETIC2.ViewModels"
+                    xmlns:statusbarViewModels="clr-namespace:ETIC2.ViewModels.StatusbarViewModels"
+                    xmlns:menuViewModels="clr-namespace:ETIC2.ViewModels.MenuViewModels">
+
+    <!--Main Views-->
+    <DataTemplate DataType="{x:Type viewModels:WorkspaceViewModel}">
+        <views:WorkspaceView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:DatabaseDataGridViewModel}">
+        <views:DatabaseDataGridView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type menuViewModels:MenuViewModel}">
+        <menuViews:MenuView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type statusbarViewModels:StatusbarViewModel}">
+        <statusbarViews:StatusbarView />
+    </DataTemplate>
+
 </ResourceDictionary>
