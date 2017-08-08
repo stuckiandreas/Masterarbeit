@@ -7,7 +7,7 @@
                     xmlns:statusbarViewModels="clr-namespace:ETIC2.ViewModels.StatusbarViewModels"
                     xmlns:menuViewModels="clr-namespace:ETIC2.ViewModels.MenuViewModels">
 
-    <!--Main Views-->
+    <!--Main Views-->  
     <DataTemplate DataType="{x:Type viewModels:WorkspaceViewModel}">
         <views:WorkspaceView />
     </DataTemplate>

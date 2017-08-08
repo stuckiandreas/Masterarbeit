@@ -16,7 +16,7 @@
 
         <dx:BackgroundPanel Grid.RowSpan="2"/>
 
-        <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" Grid.Row="1" AutoPopulateColumns="True">
+        <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" Grid.Row="1" AutoPopulateColumns="True" Margin="103,0,-103,0">
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="Valve Firmware"/>
                 <dxg:GridColumn FieldName="Valve Firmware Release Time" />

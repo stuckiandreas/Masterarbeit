@@ -5,9 +5,12 @@
 //-----------------------------------------------------------------------
 namespace ETIC2
 {
+    using System;
     using ETIC2.Model.Application;
     using ETIC2.ViewModels;
     using Events;
+    using Events.EventArgs.DatabaseAccess;
+    using Events.EventArgs.Error;
     using ViewModels.MenuViewModels;
     using ViewModels.StatusbarViewModels;
 
@@ -110,11 +113,41 @@ namespace ETIC2
         public override void SubscribeEvents()
         {
             base.SubscribeEvents();
+            this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.TestResultDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
         }
 
         public override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
+            this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.TestResultDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+        }
+
+        /// <summary>
+        /// If the database access manager sends an database access event than the workspace view is enabled, that mean the main window is not bright gray. 
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DatabaseAccessEventArgs"/> instance containing the event data.</param>
+        private void SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent(object sender, DatabaseAccessEventArgs e)
+        {
+            try
+            {
+                this.IsWorkspaceEnabled = true;
+
+                this.statusbarViewModel.Status = string.Format("Database: {0}  -  Status: {1}", e.DatabaseName, e.DatabaseAvailability.ToString());
+
+                if (e.DatabaseAvailability != DatabaseAvailability.Available)
+                    this.IsWorkspaceEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+            }
         }
     }
 }

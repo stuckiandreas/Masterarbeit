@@ -34,6 +34,9 @@ namespace ETIC2.ViewModels
         public WorkspaceViewModel(ViewModelEvents viewModelEvents, ETIC2Model etic2Model)
             : base(viewModelEvents)
         {
+            this.etic2Model = etic2Model;
+            this.ViewModelEvents = viewModelEvents;
+            this.databaseDataGridViewModel = new DatabaseDataGridViewModel(viewModelEvents);
         }
 
         public DatabaseDataGridViewModel DatabaseDataGridViewModel
