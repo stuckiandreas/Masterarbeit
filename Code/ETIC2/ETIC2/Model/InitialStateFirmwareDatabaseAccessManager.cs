@@ -6,6 +6,7 @@
 
 namespace ETIC2.Model
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -36,19 +37,20 @@ namespace ETIC2.Model
         {
             List<EntityFramework.InitialStateFirmware> initialStateFirmwareDatabaseList = this.GetEntityFrameworkInitialStateFirmwares();
             List<Application.InitialStateFirmware> initialStateFirmwareList = new List<Application.InitialStateFirmware>();
-            Application.InitialStateFirmware tempInitialStateFirmware = new Application.InitialStateFirmware();
+            Application.InitialStateFirmware emptyInitialStateFirmware;
 
             foreach (var initialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
             {
-                tempInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
-                tempInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;
-                tempInitialStateFirmware.MotionControllerFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_MotionController);
-                tempInitialStateFirmware.InterfaceFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Interface);
-                tempInitialStateFirmware.DriveParameterID = this.GetDriveParameterID((int)initialStateFirmwareDatabase.DriveParameterFile_ID);
-                tempInitialStateFirmware.ConfigurationParameterID = this.GetConfigurationParameterID((int)initialStateFirmwareDatabase.ConfigurationParameterFile_ID);
-                tempInitialStateFirmware.TestCollection = this.GetTestCollectionName((int)initialStateFirmwareDatabase.TestCollection_Id);
+                emptyInitialStateFirmware = new Application.InitialStateFirmware() { ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
+                emptyInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
+                emptyInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;
+                emptyInitialStateFirmware.MotionControllerFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_MotionController);
+                emptyInitialStateFirmware.InterfaceFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Interface);
+                emptyInitialStateFirmware.DriveParameterID = this.GetDriveParameterID((int)initialStateFirmwareDatabase.DriveParameterFile_ID);
+                emptyInitialStateFirmware.ConfigurationParameterID = this.GetConfigurationParameterID((int)initialStateFirmwareDatabase.ConfigurationParameterFile_ID);
+                emptyInitialStateFirmware.TestCollection = this.GetTestCollectionName((int)initialStateFirmwareDatabase.TestCollection_Id);
 
-                initialStateFirmwareList.Add(tempInitialStateFirmware);
+                initialStateFirmwareList.Add(emptyInitialStateFirmware);
             }
 
             return initialStateFirmwareList;

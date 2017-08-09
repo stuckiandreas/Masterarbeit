@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿//-----------------------------------------------------------------------
+// <copyright file="AboutDialogView.xaml.cs" company="VAT Vakuumventile AG">
+//     Copyright (c) 2017 . All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace ETIC2.Views.AboutDialogViews
 {
+    using System.Windows.Controls;
+
     /// <summary>
-    /// Interaction logic for AboutDialogView.xaml
+    /// About Dialog View which shows the version for the software and database application.
     /// </summary>
     public partial class AboutDialogView : UserControl
     {
         public AboutDialogView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
