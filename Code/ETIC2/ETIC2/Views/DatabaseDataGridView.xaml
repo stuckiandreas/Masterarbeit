@@ -27,12 +27,34 @@
                 <dxg:GridColumn FieldName="TestCollection" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.DetailDescriptor>
-                <dxg:DataControlDetailDescriptor ItemsSourcePath="Divisions">
+                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestCollectionResultWithValveHardwareViewModels">
                     <dxg:DataControlDetailDescriptor.DataControl>
                         <dxg:GridControl AutoPopulateColumns="True">
                             <dxg:GridControl.Columns>
-                                <dxg:GridColumn FieldName="Name"/>
-                                <dxg:GridColumn FieldName="Teams" Visible="False" ShowInColumnChooser="False" />
+                                <dxg:GridColumn FieldName="ExecutionTime"/>
+                                <dxg:GridColumn FieldName="UserName"/>
+                                <dxg:GridColumn FieldName="AbortType"/>
+                                <dxg:GridColumn FieldName="CountErrorTest"/>
+                                <dxg:GridColumn FieldName="ValveSerie"/>
+                                <dxg:GridColumn FieldName="InterfaceType"/>
+                                <dxg:GridColumn FieldName="ControllerType"/>
+                                <dxg:GridColumn FieldName="OptionType"/>
+                                <dxg:GridColumn FieldName="ExternalIsolationValve" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="ControllerHardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="ControllerAssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="InterfaceAssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module1Type" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module1HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module1AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module2Type" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module2HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module2AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module3Type" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module3HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module3AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module4Type" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module4HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                                <dxg:GridColumn FieldName="Module4AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
                             </dxg:GridControl.Columns>
                             <dxg:GridControl.DetailDescriptor>
                                 <dxg:DataControlDetailDescriptor ItemsSourcePath="Teams">

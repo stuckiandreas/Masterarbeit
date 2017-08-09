@@ -17,14 +17,14 @@ namespace ETIC2.Model.EntityFramework
 
         public int Id { get; set; }
 
-        public DateTime? ExecutionDateTime { get; set; }
+        public DateTime ExecutionDateTime { get; set; }
 
         [StringLength(30)]
         public string UserName { get; set; }
 
         public int? AbortType_Id { get; set; }
 
-        public short? CountErrorTest { get; set; }
+        public short CountErrorTest { get; set; }
 
         public int? ValveHardware_Id { get; set; }
 

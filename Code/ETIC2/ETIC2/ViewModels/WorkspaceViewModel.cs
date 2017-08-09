@@ -76,9 +76,13 @@ namespace ETIC2.ViewModels
             this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
 
             List<InitialStateFirmware> initialStateFirmwareList = this.etic2Model.InitialStateFirmwareDatabaseAccessManager.GetApplicationInitialStateFirmwares();
+            List<TestCollectionResultWithValveHardware> testCollectionResultWithValveHardwareList;
 
             foreach (InitialStateFirmware initialStateFirmware in initialStateFirmwareList)
-                this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(initialStateFirmware));
+            {
+                testCollectionResultWithValveHardwareList = this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.GetApplicationTestCollectionResultWithValveHardware(initialStateFirmware.Id);
+                this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(initialStateFirmware, testCollectionResultWithValveHardwareList));
+            }      
         }
     }
 }

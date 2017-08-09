@@ -41,7 +41,8 @@ namespace ETIC2.Model
 
             foreach (var initialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
             {
-                emptyInitialStateFirmware = new Application.InitialStateFirmware() { ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
+                emptyInitialStateFirmware = new Application.InitialStateFirmware() { Id = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
+                emptyInitialStateFirmware.Id = initialStateFirmwareDatabase.Id;
                 emptyInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
                 emptyInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;
                 emptyInitialStateFirmware.MotionControllerFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_MotionController);

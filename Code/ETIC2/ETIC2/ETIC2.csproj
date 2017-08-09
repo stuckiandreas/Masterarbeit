@@ -129,6 +129,7 @@
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\Application\InitialStateFirmware.cs" />
+    <Compile Include="Model\Application\TestCollectionResultWithValveHardware.cs" />
     <Compile Include="Model\Converter.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
     <Compile Include="Model\DatabaseConnectionSettingsDatabaseAccessManager.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
+    <Compile Include="ViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">
       <DependentUpon>AboutDialogView.xaml</DependentUpon>

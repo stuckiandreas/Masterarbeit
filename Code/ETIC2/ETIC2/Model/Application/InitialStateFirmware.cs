@@ -8,8 +8,13 @@ namespace ETIC2.Model.Application
 {
     using System;
 
+    /// <summary>
+    /// Seperate Entity Framework Datatype from Application. Without references
+    /// </summary>
     public class InitialStateFirmware
     {
+        public int Id;
+
         public string ValveFirmware;
 
         public DateTime ValveFirmwareReleaseTime;
