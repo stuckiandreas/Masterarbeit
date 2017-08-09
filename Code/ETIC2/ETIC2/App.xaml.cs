@@ -9,10 +9,11 @@ namespace ETIC2
     using System;
     using System.Windows;
     using Events;
+    using Events.EventArgs.Dialog;
     using Events.EventArgs.Error;
     using Events.EventArgs.UserFeedback;
     using Model.Application;
-
+    
     /// <summary>
     /// Interaction logic for <c>App.xaml</c>
     /// </summary>
@@ -118,7 +119,7 @@ namespace ETIC2
         {
             this.viewModelEvents.HandleError += new EventHandler<ErrorHandlerEventArgs>(this.ViewModelEvents_HandleError);
             this.viewModelEvents.UserFeedback += new EventHandler<UserFeedbackEventArgs>(this.ViewModelEvents_UserFeedback);
-            //this.viewModelEvents.OpenDialog += this.ViewModelEvents_OpenDialog;
+            this.viewModelEvents.OpenDialog += this.ViewModelEvents_OpenDialog;
             this.viewModelEvents.CursorLoading += this.ViewModelEvents_CursorLoading;
 
             this.mainWindowViewModel.SubscribeEvents();
@@ -128,7 +129,7 @@ namespace ETIC2
         {
             this.viewModelEvents.HandleError -= new EventHandler<ErrorHandlerEventArgs>(this.ViewModelEvents_HandleError);
             this.viewModelEvents.UserFeedback -= new EventHandler<UserFeedbackEventArgs>(this.ViewModelEvents_UserFeedback);
-            //this.viewModelEvents.OpenDialog -= this.ViewModelEvents_OpenDialog;
+            this.viewModelEvents.OpenDialog -= this.ViewModelEvents_OpenDialog;
             this.viewModelEvents.CursorLoading -= this.ViewModelEvents_CursorLoading;
 
             this.mainWindowViewModel.UnsubscribeEvents();
@@ -148,17 +149,17 @@ namespace ETIC2
         }
 
         /// <summary>
-        /// Opens the dialog window in which the database settings can be definded. 
+        /// Opens the dialog window. To set the database settings.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        //private void ViewModelEvents_OpenDialog(object sender, EventArgs e)
-        //{
-        //    DialogWindowViewModel dialogWindowViewModel = new DialogWindowViewModel(viewModelEvents, ((DialogEventArgs)e).ViewModel, ((DialogEventArgs)e).WindowTitle, ((DialogEventArgs)e).WindowHeight, ((DialogEventArgs)e).WindowWidth);
-        //    DialogWindow window = new DialogWindow();
-        //    window.DataContext = dialogWindowViewModel;
-        //    window.ShowDialog();
-        //}
+        private void ViewModelEvents_OpenDialog(object sender, EventArgs e)
+        {
+            DialogWindowViewModel dialogWindowViewModel = new DialogWindowViewModel(this.viewModelEvents, ((DialogEventArgs)e).ViewModel, ((DialogEventArgs)e).WindowTitle, ((DialogEventArgs)e).WindowHeight, ((DialogEventArgs)e).WindowWidth);
+            DialogWindow window = new DialogWindow();
+            window.DataContext = dialogWindowViewModel;
+            window.ShowDialog();
+        }
 
         private void ViewModelEvents_HandleError(object sender, ErrorHandlerEventArgs e)
         {

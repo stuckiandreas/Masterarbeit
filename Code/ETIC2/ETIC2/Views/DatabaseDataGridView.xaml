@@ -18,13 +18,13 @@
 
         <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" Grid.Row="1" AutoPopulateColumns="True" Margin="103,0,-103,0">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Valve Firmware"/>
-                <dxg:GridColumn FieldName="Valve Firmware Release Time" />
-                <dxg:GridColumn FieldName="Motion Controller Firmware" />
-                <dxg:GridColumn FieldName="Interface Firmware" />
-                <dxg:GridColumn FieldName="Drive Parameter ID" />
-                <dxg:GridColumn FieldName="Configuration Parameter ID" />
-                <dxg:GridColumn FieldName="Test Collection" />
+                <dxg:GridColumn FieldName="ValveFirmware"/>
+                <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" />
+                <dxg:GridColumn FieldName="MotionControllerFirmware" />
+                <dxg:GridColumn FieldName="InterfaceFirmware" />
+                <dxg:GridColumn FieldName="DriveParameterID" />
+                <dxg:GridColumn FieldName="ConfigurationParameterID" />
+                <dxg:GridColumn FieldName="TestCollection" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.DetailDescriptor>
                 <dxg:DataControlDetailDescriptor ItemsSourcePath="Divisions">

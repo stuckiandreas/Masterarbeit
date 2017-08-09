@@ -33,10 +33,10 @@ namespace ETIC2.ViewModels.AboutDialogViewModels
 
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
             AssemblyCompanyAttribute company = (AssemblyCompanyAttribute)executingAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false)[0];
-            this.FirmwareDatabaseVersion = this.TranslateVersionNumberToString(Properties.Settings.Default.ETIC2Version);
+            this.ETIC2Version = this.TranslateVersionNumberToString(Properties.Settings.Default.ETIC2Version);
             this.DatabaseVersion = this.TranslateVersionNumberToString(etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.GetDatabaseVersion());
 
-            this.Product = "ETIC2 (Evaluation Tool Integrated Controller 2)";
+            this.Product = "ETIC2";
             this.Company = company.Company;
         }
 
@@ -46,7 +46,7 @@ namespace ETIC2.ViewModels.AboutDialogViewModels
             private set;
         }
 
-        public string FirmwareDatabaseVersion
+        public string ETIC2Version
         {
             get;
             private set;

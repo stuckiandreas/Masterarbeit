@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActionCommands\ActionCommand.cs" />
+    <Compile Include="DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindowViewModel.cs" />
     <Compile Include="Events\EventArgs\Cursor\CursorLoadingEventArgs.cs" />
     <Compile Include="Events\EventArgs\DatabaseAccess\DatabaseAccessEventArgs.cs" />
     <Compile Include="Events\EventArgs\Dialog\DialogEventArgs.cs" />
@@ -266,9 +270,21 @@
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">
+      <DependentUpon>AboutDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DatabaseDataGridView.xaml.cs">
       <DependentUpon>DatabaseDataGridView.xaml</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Views\ExecuteDialogViews\SaveExecuteDoubleDialogView.xaml.cs">
+      <DependentUpon>SaveExecuteDoubleDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecuteDialogViews\SaveSettingsExecuteDialogView.xaml.cs">
+      <DependentUpon>SaveSettingsExecuteDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputViews\TextInputView.xaml.cs">
+      <DependentUpon>TextInputView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuViews\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
@@ -280,6 +296,10 @@
       <DependentUpon>WorkspaceView.xaml</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Page Include="DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,7 +316,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AboutDialogViews\AboutDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DatabaseDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExecuteDialogViews\SaveExecuteDoubleDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExecuteDialogViews\SaveSettingsExecuteDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputViews\TextInputView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +402,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="vat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

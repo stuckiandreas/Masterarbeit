@@ -8,7 +8,7 @@ namespace ETIC2.ViewModels
 {
     using ETIC2.Model.Application;
     using Events;
-
+    using System.Collections.Generic;
     /// <summary>
     /// Mainly View Model. Interface to the model. Included the detailInformation and dataBaseDataGrid view. 
     /// Only references to the Model are allowed. References to Views are not allowed
@@ -63,6 +63,22 @@ namespace ETIC2.ViewModels
         {
             // Init base class
             base.Init();
+
+            ReloadDataGrid();
+        }
+
+        /// <summary>
+        /// Write database information in the DatabaseDataGridView
+        /// </summary>
+        private void ReloadDataGrid()
+        {
+            databaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
+
+            List<InitialStateFirmware> initialStateFirmwareList = etic2Model.InitialStateFirmwareDatabaseAccessManager.GetApplicationInitialStateFirmwares();
+
+            foreach (InitialStateFirmware initialStateFirmware in initialStateFirmwareList)
+                databaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(initialStateFirmware));
+
         }
     }
 }

@@ -117,10 +117,10 @@ namespace ETIC2.ViewModels.MenuViewModels
         {
             try
             {
-                FileInfo fi = new FileInfo(@"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\Verbesserungsvorschläge\Verbesserungsvorschläge_Firmware_Database.xlsx");
+                FileInfo fi = new FileInfo(@"\\Hq.vat\chvat\metpd\Development\Software\ETIC2\Verbesserungsvorschläge\Verbesserungsvorschläge_ETIC2.xlsx");
                 if (fi.Exists)
                 {
-                    System.Diagnostics.Process.Start(@"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\Verbesserungsvorschläge\Verbesserungsvorschläge_Firmware_Database.xlsx");
+                    System.Diagnostics.Process.Start(@"\\Hq.vat\chvat\metpd\Development\Software\ETIC2\Verbesserungsvorschläge\Verbesserungsvorschläge_ETIC2.xlsx");
                 }
                 else
                 {
