@@ -16,7 +16,7 @@ namespace ETIC2.ViewModels
     /// </summary>
     public class TestCollectionResultWithValveHardwareViewModel
     {
-        public TestCollectionResultWithValveHardwareViewModel(TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, List<TestResult> testResultList)
+        public TestCollectionResultWithValveHardwareViewModel(TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, List<TestResultViewModel> testResultViewModelList)
         {
             this.ExecutionTime = testCollectionResultWithValveHardware.ExecutionTime;
             this.UserName = testCollectionResultWithValveHardware.UserName;
@@ -43,10 +43,7 @@ namespace ETIC2.ViewModels
             this.Module4Type = testCollectionResultWithValveHardware.Module4Type;
             this.Module4HardwareVersion = testCollectionResultWithValveHardware.Module4HardwareVersion;
             this.Module4AssemblyVariant = testCollectionResultWithValveHardware.Module4AssemblyVariant;
-            this.TestResultViewModels = new ObservableCollection<TestResultViewModel>();
-
-            foreach (TestResult testResult in testResultList)
-                this.TestResultViewModels.Add(new TestResultViewModel(testResult));
+            this.TestResultViewModels = testResultViewModelList;
         }
 
         //TestCollectionResult
@@ -201,7 +198,7 @@ namespace ETIC2.ViewModels
             set;
         }
 
-        public ObservableCollection<TestResultViewModel> TestResultViewModels
+        public List<TestResultViewModel> TestResultViewModels
         {
             get;
             private set;

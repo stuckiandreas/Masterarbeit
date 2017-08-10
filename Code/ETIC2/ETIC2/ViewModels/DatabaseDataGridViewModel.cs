@@ -6,9 +6,10 @@
 
 namespace ETIC2.ViewModels
 {
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Events;
-
+   
     /// <summary>
     /// Contains data grid data items.
     /// </summary>
@@ -17,12 +18,17 @@ namespace ETIC2.ViewModels
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>
-        private ObservableCollection<InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
+        private List<InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
 
         /// <summary>
         /// List of all test test collection result entries in the grid view.
         /// </summary>
-        private ObservableCollection<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModels;
+        private List<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModels;
+
+        /// <summary>
+        /// List of all test test result entries in the grid view.
+        /// </summary>
+        private List<TestResultViewModel> testResultVieModels;
 
         /// <summary>
         /// Events which are available in all view models.
@@ -33,11 +39,12 @@ namespace ETIC2.ViewModels
             : base(viewModelEvents)
         {
             this.viewModelEvents = viewModelEvents;
-            this.initialStateFirmwareViewModels = new ObservableCollection<InitialStateFirmwareViewModel>();
-            this.testCollectionResultWithValveHardwareViewModels = new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
+            this.initialStateFirmwareViewModels = new List<InitialStateFirmwareViewModel>();
+            this.testCollectionResultWithValveHardwareViewModels = new List<TestCollectionResultWithValveHardwareViewModel>();
+            this.testResultVieModels = new List<TestResultViewModel>();
         }
 
-        public ObservableCollection<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
+        public List<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
         {
             get
             {
@@ -45,11 +52,19 @@ namespace ETIC2.ViewModels
             }
         }
 
-        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
+        public List<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
         {
             get
             {
                 return this.testCollectionResultWithValveHardwareViewModels;
+            }
+        }
+
+        public List<TestResultViewModel> TestResultViewModels
+        {
+            get
+            {
+                return this.testResultVieModels;
             }
         }
     }

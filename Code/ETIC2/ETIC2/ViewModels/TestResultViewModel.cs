@@ -7,6 +7,7 @@
 namespace ETIC2.ViewModels
 {
     using System;
+    using System.Collections.Generic;
     using ETIC2.Model.Application;
 
     /// <summary>
@@ -14,12 +15,13 @@ namespace ETIC2.ViewModels
     /// </summary>
     public class TestResultViewModel
     {
-        public TestResultViewModel(TestResult testResult)
+        public TestResultViewModel(TestResult testResult, List<TestErrorMessageViewModel> testErrorMessageViewModelList)
         {
             this.StartTime = testResult.StartTime;
             this.EndTime = testResult.EndTime;
             this.Result = testResult.Result;
             this.TestVersion = testResult.TestVersion;
+            this.TestErrorMessageViewModels = testErrorMessageViewModelList;
         }
 
         public DateTime StartTime
@@ -44,6 +46,12 @@ namespace ETIC2.ViewModels
         {
             get;
             set;
+        }
+
+        public List<TestErrorMessageViewModel> TestErrorMessageViewModels
+        {
+            get;
+            private set;
         }
     }
 }

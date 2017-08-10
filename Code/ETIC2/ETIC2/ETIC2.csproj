@@ -130,6 +130,7 @@
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\Application\InitialStateFirmware.cs" />
     <Compile Include="Model\Application\TestCollectionResultWithValveHardware.cs" />
+    <Compile Include="Model\Application\TestErrorMessage.cs" />
     <Compile Include="Model\Application\TestResult.cs" />
     <Compile Include="Model\Converter.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
@@ -275,6 +276,7 @@
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
     <Compile Include="ViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
+    <Compile Include="ViewModels\TestErrorMessageViewModel.cs" />
     <Compile Include="ViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">

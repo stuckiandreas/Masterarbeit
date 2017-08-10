@@ -44,7 +44,7 @@ namespace ETIC2.Model
         }
 
         /// <summary>
-        /// Gets a List with all TestCollectionResult Entries. Without the Id from database -&gt; Application Type.
+        /// Gets a List with all TestCollectionResult Entries which has the InitialSateFirmware value. Without the Id from database -> Application Type.
         /// </summary>
         /// <returns>
         /// List with all TestCollectionResult Entries

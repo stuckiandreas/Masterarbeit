@@ -23,21 +23,55 @@ namespace ETIC2.Model
         /// <summary>
         /// Gets a List with all TestResult Entries. Included with Id for Result and TestVersion definitions.
         /// </summary>
+        /// <returns>List with all TestResult Entries</returns>
+        public List<EntityFramework.TestResult> GetEntityFrameworkTestResults()
+        {
+            return databaseContext.TestResult.ToList();
+        }
+
+        /// <summary>
+        /// Gets a List with all TestResult Entries which has the TestCollectionResult value. Included with Id for Result and TestVersion definitions.
+        /// </summary>
         /// <param name="testCollectionResultId">The test collection result identifier.</param>
         /// <returns>List with all TestResult Entries</returns>
-        public List<EntityFramework.TestResult> GetEntityFrameworkTestResults(int testCollectionResultId)
+        public List<EntityFramework.TestResult> GetEntityFrameworkTestResultsWithTestCollectionResultFilter(int testCollectionResultId)
         {
             return databaseContext.TestResult.Where(x => x.TestCollectionResult_Id == testCollectionResultId).ToList();
         }
 
         /// <summary>
-        /// Gets the application test results.
+        /// Gets a List with all TestResult Entries. Withoud Id for Result and TestVersion definitions -> Application Type
+        /// </summary>
+        /// <returns>List with all TestResult Entries</returns>
+        public List<Application.TestResult> GetApplicationTestResults()
+        {
+            List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResults();
+            List<Application.TestResult> testResultList = new List<Application.TestResult>();
+            Application.TestResult emptyTestResult;
+
+            foreach (var testResultDatabase in testResultDatabaseList)
+            {
+                emptyTestResult = new Application.TestResult() { Id = default(int), StartTime = default(DateTime), EndTime = default(DateTime), Result = default(string), TestVersion = default(short) };
+                emptyTestResult.Id = testResultDatabase.Id;
+                emptyTestResult.StartTime = testResultDatabase.StartTime;
+                emptyTestResult.EndTime = testResultDatabase.EndTime;
+                emptyTestResult.Result = this.GetResultName((int)testResultDatabase.ResultType_Id);
+                emptyTestResult.TestVersion = this.GetTestVersion((int)testResultDatabase.TestVersion_Id);
+
+                testResultList.Add(emptyTestResult);
+            }
+
+            return testResultList;
+        }
+
+        /// <summary>
+        /// Gets a List with all TestResult Entries which has the TestCollectionResult value. Withoud Id for Result and TestVersion definitions -> Application Type
         /// </summary>
         /// <param name="testCollectionResultId">The test collection result identifier.</param>
         /// <returns>List with all TestResult Entries</returns>
-        public List<Application.TestResult> GetApplicationTestResults(int testCollectionResultId)
+        public List<Application.TestResult> GetApplicationTestResultsWithTestCollectionResultFilter(int testCollectionResultId)
         {
-            List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResults(testCollectionResultId);
+            List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResultsWithTestCollectionResultFilter(testCollectionResultId);
             List<Application.TestResult> testResultList = new List<Application.TestResult>();
             Application.TestResult emptyTestResult;
 

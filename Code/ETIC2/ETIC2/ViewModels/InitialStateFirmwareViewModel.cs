@@ -16,7 +16,7 @@ namespace ETIC2.ViewModels
     /// </summary>
     public class InitialStateFirmwareViewModel
     {
-        public InitialStateFirmwareViewModel(InitialStateFirmware initialStateFirmware, List<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModel)
+        public InitialStateFirmwareViewModel(InitialStateFirmware initialStateFirmware, List<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList)
         {
             this.ValveFirmware = initialStateFirmware.ValveFirmware;
             this.ValveFirmwareReleaseTime = initialStateFirmware.ValveFirmwareReleaseTime;
@@ -25,7 +25,7 @@ namespace ETIC2.ViewModels
             this.DriveParameterID = initialStateFirmware.DriveParameterID;
             this.ConfigurationParameterID = initialStateFirmware.ConfigurationParameterID;
             this.TestCollection = initialStateFirmware.TestCollection;
-            this.TestCollectionResultWithValveHardwareViewModels = testCollectionResultWithValveHardwareViewModel;
+            this.TestCollectionResultWithValveHardwareViewModels = testCollectionResultWithValveHardwareViewModelList;
         }
 
         public string ValveFirmware
