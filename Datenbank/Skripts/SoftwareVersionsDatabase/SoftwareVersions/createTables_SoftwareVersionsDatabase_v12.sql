@@ -400,19 +400,24 @@ CREATE TABLE AbortType(
 /*TABLE which save the information of the completed test collection*/
 CREATE TABLE TestCollectionResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	ExecutionDateTime DATETIME,
+	ExecutionDateTime DATETIME NOT NULL,
 	UserName VARCHAR(30),
 	AbortType_Id int references AbortType(Id),
-	CountErrorTest SMALLINT,
+	CountErrorTest SMALLINT NOT NULL,
 	ValveHardware_Id int references ValveHardware(Id),
 	InitialStateFirmware_Id int references InitialStateFirmware(Id)); 
+	
+/*TABLE which defined the test result (Succesfull, User Cancel, Error)*/
+CREATE TABLE ResultType(
+	Id int IDENTITY(0,1) PRIMARY KEY,
+	Name VARCHAR(20));
 
 /*TABLE which save the information of the completed test*/
 CREATE TABLE TestResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	StartTime DATETIME,
-	EndTime DATETIME,
-	TestResult SMALLINT NOT NULL,
+	StartTime DATETIME NOT NULL,
+	EndTime DATETIME NOT NULL,
+	ResultType_Id int references ResultType(Id));,
 	TestCollectionResult_Id int references TestCollectionResult(Id),
 	TestVersion_Id int references TestVersion(Id));
 	
