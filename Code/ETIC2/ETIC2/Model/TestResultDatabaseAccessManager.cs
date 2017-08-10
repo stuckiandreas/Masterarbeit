@@ -6,6 +6,7 @@
 
 namespace ETIC2.Model
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -29,28 +30,40 @@ namespace ETIC2.Model
             return databaseContext.TestResult.Where(x => x.TestCollectionResult_Id == testCollectionResultId).ToList();
         }
 
-        public List<Application.TestResult> GetApplicationTestResults()
+        /// <summary>
+        /// Gets the application test results.
+        /// </summary>
+        /// <param name="testCollectionResultId">The test collection result identifier.</param>
+        /// <returns>List with all TestResult Entries</returns>
+        public List<Application.TestResult> GetApplicationTestResults(int testCollectionResultId)
         {
-            List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResults();
-            List<Application.InitialStateFirmware> initialStateFirmwareList = new List<Application.InitialStateFirmware>();
-            Application.InitialStateFirmware emptyInitialStateFirmware;
+            List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResults(testCollectionResultId);
+            List<Application.TestResult> testResultList = new List<Application.TestResult>();
+            Application.TestResult emptyTestResult;
 
-            foreach (var initialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
+            foreach (var testResultDatabase in testResultDatabaseList)
             {
-                emptyInitialStateFirmware = new Application.InitialStateFirmware() { Id = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
-                emptyInitialStateFirmware.Id = initialStateFirmwareDatabase.Id;
-                emptyInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
-                emptyInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;
-                emptyInitialStateFirmware.MotionControllerFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_MotionController);
-                emptyInitialStateFirmware.InterfaceFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Interface);
-                emptyInitialStateFirmware.DriveParameterID = this.GetDriveParameterID((int)initialStateFirmwareDatabase.DriveParameterFile_ID);
-                emptyInitialStateFirmware.ConfigurationParameterID = this.GetConfigurationParameterID((int)initialStateFirmwareDatabase.ConfigurationParameterFile_ID);
-                emptyInitialStateFirmware.TestCollection = this.GetTestCollectionName((int)initialStateFirmwareDatabase.TestCollection_Id);
+                emptyTestResult = new Application.TestResult() { Id = default(int), StartTime = default(DateTime), EndTime = default(DateTime), Result = default(string), TestVersion = default(short) };
+                emptyTestResult.Id = testResultDatabase.Id;
+                emptyTestResult.StartTime = testResultDatabase.StartTime;
+                emptyTestResult.EndTime = testResultDatabase.EndTime;
+                emptyTestResult.Result = this.GetResultName((int)testResultDatabase.ResultType_Id);
+                emptyTestResult.TestVersion = this.GetTestVersion((int)testResultDatabase.TestVersion_Id);
 
-                initialStateFirmwareList.Add(emptyInitialStateFirmware);
+                testResultList.Add(emptyTestResult);
             }
 
-            return initialStateFirmwareList;
+            return testResultList;
+        }
+
+        public string GetResultName(int resultTypeId)
+        {
+            return databaseContext.ResultType.Where(x => x.Id == resultTypeId).FirstOrDefault().Name;
+        }
+
+        public short GetTestVersion(int testVersionId)
+        {
+            return databaseContext.TestVersion.Where(x => x.Id == testVersionId).FirstOrDefault().Number;
         }
     }
 }

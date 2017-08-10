@@ -21,7 +21,7 @@ namespace ETIC2.Model.Application
 
         public string Result;
 
-        public string TestVersion;
+        public short TestVersion;
 
         public TestResult()
         {

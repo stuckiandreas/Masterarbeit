@@ -57,12 +57,14 @@
                                 <dxg:GridColumn FieldName="Module4AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
                             </dxg:GridControl.Columns>
                             <dxg:GridControl.DetailDescriptor>
-                                <dxg:DataControlDetailDescriptor ItemsSourcePath="Teams">
+                                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestResultViewModels">
                                     <dxg:DataControlDetailDescriptor.DataControl>
                                         <dxg:GridControl AutoPopulateColumns="True">
                                             <dxg:GridControl.Columns>
-                                                <dxg:GridColumn FieldName="Name"/>
-                                                <dxg:GridColumn FieldName="Players" Visible="False" ShowInColumnChooser="False" />
+                                                <dxg:GridColumn FieldName="StartTime"/>
+                                                <dxg:GridColumn FieldName="EndTime"/>
+                                                <dxg:GridColumn FieldName="Result"/>
+                                                <dxg:GridColumn FieldName="TestVersion"/>
                                             </dxg:GridControl.Columns>
                                             <dxg:GridControl.DetailDescriptor>
                                                 <dxg:DataControlDetailDescriptor ItemsSourcePath="Players">

@@ -21,12 +21,13 @@ namespace ETIC2.Model.EntityFramework
 
         public DateTime EndTime { get; set; }
 
-        [Column("TestResult")]
-        public short TestResult1 { get; set; }
+        public int? ResultType_Id { get; set; }
 
         public int? TestCollectionResult_Id { get; set; }
 
         public int? TestVersion_Id { get; set; }
+
+        public virtual ResultType ResultType { get; set; }
 
         public virtual TestCollectionResult TestCollectionResult { get; set; }
 

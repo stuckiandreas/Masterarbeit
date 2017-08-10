@@ -41,6 +41,7 @@ namespace ETIC2.Model.EntityFramework
         public virtual DbSet<Module4Type> Module4Type { get; set; }
         public virtual DbSet<OptionType> OptionType { get; set; }
         public virtual DbSet<Priority> Priority { get; set; }
+        public virtual DbSet<ResultType> ResultType { get; set; }
         public virtual DbSet<SoftwareVersions> SoftwareVersions { get; set; }
         public virtual DbSet<StatusType> StatusType { get; set; }
         public virtual DbSet<TestCollection> TestCollection { get; set; }
@@ -309,6 +310,15 @@ namespace ETIC2.Model.EntityFramework
                 .HasMany(e => e.Buglist)
                 .WithOptional(e => e.Priority)
                 .HasForeignKey(e => e.Priority_Id);
+
+            modelBuilder.Entity<ResultType>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ResultType>()
+                .HasMany(e => e.TestResult)
+                .WithOptional(e => e.ResultType)
+                .HasForeignKey(e => e.ResultType_Id);
 
             modelBuilder.Entity<SoftwareVersions>()
                 .Property(e => e.Software)

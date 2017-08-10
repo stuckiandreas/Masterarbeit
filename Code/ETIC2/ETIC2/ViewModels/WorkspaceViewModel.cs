@@ -76,13 +76,25 @@ namespace ETIC2.ViewModels
             this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
 
             List<InitialStateFirmware> initialStateFirmwareList = this.etic2Model.InitialStateFirmwareDatabaseAccessManager.GetApplicationInitialStateFirmwares();
-            List<TestCollectionResultWithValveHardware> testCollectionResultWithValveHardwareList;
+            List<TestCollectionResultWithValveHardware> testCollectionResultWithValveHardwareListInitialStateFirmwareFilter;
+            List<TestCollectionResultWithValveHardware> testCollectionResultWithValveHardwareList = this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.GetApplicationTestCollectionResultsWithValveHardware();
+            List<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList; 
+            List<TestResult> testResultList = null;
 
             foreach (InitialStateFirmware initialStateFirmware in initialStateFirmwareList)
             {
-                testCollectionResultWithValveHardwareList = this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.GetApplicationTestCollectionResultWithValveHardware(initialStateFirmware.Id);
-                this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(initialStateFirmware, testCollectionResultWithValveHardwareList));
-            }      
+                //List has to be empty by start every iteration
+                testCollectionResultWithValveHardwareViewModelList = new List<TestCollectionResultWithValveHardwareViewModel>(); 
+                testCollectionResultWithValveHardwareListInitialStateFirmwareFilter = this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.GetApplicationTestCollectionResultsWithValveHardwareWithInitialStateFirmwareFilter(initialStateFirmware.Id);
+
+                foreach (TestCollectionResultWithValveHardware testCollectionResultWithValveHardware in testCollectionResultWithValveHardwareListInitialStateFirmwareFilter)
+                {
+                    testResultList = this.etic2Model.TestResultDatabaseAccessManager.GetApplicationTestResults(testCollectionResultWithValveHardware.Id);
+                    testCollectionResultWithValveHardwareViewModelList.Add(new TestCollectionResultWithValveHardwareViewModel(testCollectionResultWithValveHardware, testResultList));
+                }
+
+                this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(initialStateFirmware, testCollectionResultWithValveHardwareViewModelList));
+            }
         }
     }
 }

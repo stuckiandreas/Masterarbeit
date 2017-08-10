@@ -15,9 +15,14 @@ namespace ETIC2.ViewModels
     public class DatabaseDataGridViewModel : BasisViewModel
     {
         /// <summary>
-        /// List of all software items in the grid view.
+        /// List of all test initial state firmware entries in the grid view.
         /// </summary>
         private ObservableCollection<InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
+
+        /// <summary>
+        /// List of all test test collection result entries in the grid view.
+        /// </summary>
+        private ObservableCollection<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModels;
 
         /// <summary>
         /// Events which are available in all view models.
@@ -29,6 +34,7 @@ namespace ETIC2.ViewModels
         {
             this.viewModelEvents = viewModelEvents;
             this.initialStateFirmwareViewModels = new ObservableCollection<InitialStateFirmwareViewModel>();
+            this.testCollectionResultWithValveHardwareViewModels = new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
         }
 
         public ObservableCollection<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
@@ -36,6 +42,14 @@ namespace ETIC2.ViewModels
             get
             {
                 return this.initialStateFirmwareViewModels;
+            }
+        }
+
+        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
+        {
+            get
+            {
+                return this.testCollectionResultWithValveHardwareViewModels;
             }
         }
     }
