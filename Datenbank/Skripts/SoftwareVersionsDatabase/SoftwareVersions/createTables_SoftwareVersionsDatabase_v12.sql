@@ -417,7 +417,7 @@ CREATE TABLE TestResult(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	StartTime DATETIME NOT NULL,
 	EndTime DATETIME NOT NULL,
-	ResultType_Id int references ResultType(Id));,
+	ResultType_Id int references ResultType(Id),
 	TestCollectionResult_Id int references TestCollectionResult(Id),
 	TestVersion_Id int references TestVersion(Id));
 	
