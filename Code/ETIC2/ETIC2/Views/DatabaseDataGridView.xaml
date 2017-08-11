@@ -4,41 +4,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:local="clr-namespace:ETIC2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <dx:BackgroundPanel Grid.RowSpan="2"/>
-
-        <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" Grid.Row="1" AutoPopulateColumns="True" Margin="103,0,-103,0">
+    
+  <Grid>
+    <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" AutoGenerateColumns="None">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="ValveFirmware"/>
-                <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" />
-                <dxg:GridColumn FieldName="MotionControllerFirmware" />
-                <dxg:GridColumn FieldName="InterfaceFirmware" />
-                <dxg:GridColumn FieldName="DriveParameterID" />
-                <dxg:GridColumn FieldName="ConfigurationParameterID" />
-                <dxg:GridColumn FieldName="TestCollection" />
+                <dxg:GridColumn FieldName="ValveFirmware" AllowEditing="False" BestFitArea="Rows"/>
+                <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" UnboundType="Decimal" AllowEditing="False" BestFitArea="Rows">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayFormat="G" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="MotionControllerFirmware" AllowEditing="False" BestFitArea="Rows"/>
+                <dxg:GridColumn FieldName="InterfaceFirmware" AllowEditing="False" BestFitArea="Rows" />
+                <dxg:GridColumn FieldName="DriveParameterID" AllowEditing="False" BestFitArea="Rows" />
+                <dxg:GridColumn FieldName="ConfigurationParameterID" AllowEditing="False" BestFitArea="Rows" />
+                <dxg:GridColumn FieldName="TestCollection" AllowEditing="False" BestFitArea="Rows" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.DetailDescriptor>
                 <dxg:DataControlDetailDescriptor ItemsSourcePath="TestCollectionResultWithValveHardwareViewModels">
                     <dxg:DataControlDetailDescriptor.DataControl>
                         <dxg:GridControl AutoPopulateColumns="True">
                             <dxg:GridControl.Columns>
-                                <dxg:GridColumn FieldName="ExecutionTime"/>
-                                <dxg:GridColumn FieldName="UserName"/>
-                                <dxg:GridColumn FieldName="AbortType"/>
-                                <dxg:GridColumn FieldName="CountErrorTest"/>
-                                <dxg:GridColumn FieldName="ValveSerie"/>
-                                <dxg:GridColumn FieldName="InterfaceType"/>
-                                <dxg:GridColumn FieldName="ControllerType"/>
-                                <dxg:GridColumn FieldName="OptionType"/>
+                                <dxg:GridColumn FieldName="ExecutionTime" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="UserName" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="AbortType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="CountErrorTest" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="ValveSerie" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="InterfaceType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="ControllerType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="OptionType" BestFitArea="Rows"/>
                                 <dxg:GridColumn FieldName="ExternalIsolationValve" Visible="False" ShowInColumnChooser="True"/>
                                 <dxg:GridColumn FieldName="ControllerHardwareVersion" Visible="False" ShowInColumnChooser="True"/>
                                 <dxg:GridColumn FieldName="ControllerAssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
@@ -61,17 +60,28 @@
                                     <dxg:DataControlDetailDescriptor.DataControl>
                                         <dxg:GridControl AutoPopulateColumns="True">
                                             <dxg:GridControl.Columns>
-                                                <dxg:GridColumn FieldName="StartTime"/>
-                                                <dxg:GridColumn FieldName="EndTime"/>
-                                                <dxg:GridColumn FieldName="Result"/>
-                                                <dxg:GridColumn FieldName="TestVersion"/>
+                                                <dxg:GridColumn FieldName="StartTime" UnboundType="Decimal" BestFitArea="Rows">
+                                                <dxg:GridColumn.EditSettings>
+                                                    <dxe:TextEditSettings DisplayFormat="G" />
+                                                </dxg:GridColumn.EditSettings>
+                                                </dxg:GridColumn>
+                                                <dxg:GridColumn FieldName="EndTime" UnboundType="Decimal" BestFitArea="Rows">
+                                                <dxg:GridColumn.EditSettings>
+                                                    <dxe:TextEditSettings DisplayFormat="G" />
+                                                </dxg:GridColumn.EditSettings>
+                                                </dxg:GridColumn>
+                                                <dxg:GridColumn FieldName="Result" BestFitArea="Rows"/>
+                                                <dxg:GridColumn FieldName="TestVersion" BestFitArea="Rows"/>
                                             </dxg:GridControl.Columns>
                                             <dxg:GridControl.DetailDescriptor>
                                                 <dxg:DataControlDetailDescriptor ItemsSourcePath="TestErrorMessageViewModels">
                                                     <dxg:DataControlDetailDescriptor.DataControl>
                                                         <dxg:GridControl AutoPopulateColumns="False">
+                                                            <dxg:GridControl.View>
+                                                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"/>
+                                                            </dxg:GridControl.View>
                                                             <dxg:GridControl.Columns>
-                                                                <dxg:GridColumn FieldName="Description"/>
+                                                                <dxg:GridColumn x:Name="gridColumn" FieldName="Description" BestFitArea="Rows"/>
                                                             </dxg:GridControl.Columns>
                                                         </dxg:GridControl>
                                                     </dxg:DataControlDetailDescriptor.DataControl>
@@ -86,13 +96,14 @@
                             </dxg:GridControl.DetailDescriptor>
                             <dxg:GridControl.View>
                                 <dxg:TableView ShowGroupPanel="False"/>
-                            </dxg:GridControl.View>
+                           </dxg:GridControl.View>
                         </dxg:GridControl>
                     </dxg:DataControlDetailDescriptor.DataControl>
                 </dxg:DataControlDetailDescriptor>
             </dxg:GridControl.DetailDescriptor>
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="True" AllowEditing="False" ShowTotalSummary="True" />
+                <dxg:TableView AutoWidth="True" AllowEditing="False" AllowBestFit="True" BestFitMode="AllRows" ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" FadeSelectionOnLostFocus="True" NavigationStyle="None">
+                </dxg:TableView>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>
