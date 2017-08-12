@@ -133,6 +133,7 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MasterGridHelper.cs" />
     <Compile Include="Model\Application\InitialStateFirmware.cs" />
     <Compile Include="Model\Application\TestCollectionResultWithValveHardware.cs" />
     <Compile Include="Model\Application\TestErrorMessage.cs" />

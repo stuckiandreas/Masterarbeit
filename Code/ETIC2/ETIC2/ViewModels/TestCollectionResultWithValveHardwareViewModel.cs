@@ -203,5 +203,10 @@ namespace ETIC2.ViewModels
             get;
             private set;
         }
+
+        public override string ToString()
+        {
+            return string.Join(" ", this.UserName, this.ExecutionTime, this.TestResultViewModels);
+        }
     }
 }

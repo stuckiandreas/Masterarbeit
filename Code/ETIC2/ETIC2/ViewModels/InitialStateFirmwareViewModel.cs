@@ -75,5 +75,13 @@ namespace ETIC2.ViewModels
             get; 
             private set; 
         }
+
+        public string ListContent
+        {
+            get
+            {
+                return string.Join(" ", this.TestCollectionResultWithValveHardwareViewModels);
+            }
+        }
     }
 }

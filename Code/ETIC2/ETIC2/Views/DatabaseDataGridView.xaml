@@ -6,13 +6,16 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:global="clr-namespace:ETIC2"
              xmlns:local="clr-namespace:ETIC2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     
   <Grid>
-    <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" AutoGenerateColumns="None">
+    <dxg:GridControl x:Name="_DatabaseDataGridControl" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 
+                     AutoGenerateColumns="None" SubstituteFilter="_DatabaseDataGridControl_SubstituteFilter" FilterChanged="_DatabaseDataGridControl_FilterChanged">
             <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="ListContent" Visible="False"/>
                 <dxg:GridColumn FieldName="ValveFirmware" AllowEditing="False" BestFitArea="Rows"/>
                 <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" UnboundType="Decimal" AllowEditing="False" BestFitArea="Rows">
                     <dxg:GridColumn.EditSettings>
@@ -26,9 +29,15 @@
                 <dxg:GridColumn FieldName="TestCollection" AllowEditing="False" BestFitArea="Rows" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.DetailDescriptor>
-                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestCollectionResultWithValveHardwareViewModels">
+                <dxg:DataControlDetailDescriptor>
                     <dxg:DataControlDetailDescriptor.DataControl>
-                        <dxg:GridControl AutoPopulateColumns="True">
+                        <dxg:GridControl ItemsSource="{Binding Path=TestCollectionResultWithValveHardwareViewModels}" MaxHeight="300" AutoGenerateColumns="AddNew" ShowBorder="False"
+                                            Loaded="OnDetailGridLoaded" >
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"
+                                        SearchString="{Binding Path=(global:MasterGridHelper.SearchString), RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                                        ShowSearchPanelMode="Never" SearchPanelAllowFilter="True" SearchPanelHighlightResults="True" />
+                            </dxg:GridControl.View>
                             <dxg:GridControl.Columns>
                                 <dxg:GridColumn FieldName="ExecutionTime" BestFitArea="Rows"/>
                                 <dxg:GridColumn FieldName="UserName" BestFitArea="Rows"/>
@@ -61,14 +70,14 @@
                                         <dxg:GridControl AutoPopulateColumns="True">
                                             <dxg:GridControl.Columns>
                                                 <dxg:GridColumn FieldName="StartTime" UnboundType="Decimal" BestFitArea="Rows">
-                                                <dxg:GridColumn.EditSettings>
-                                                    <dxe:TextEditSettings DisplayFormat="G" />
-                                                </dxg:GridColumn.EditSettings>
+                                                    <dxg:GridColumn.EditSettings>
+                                                        <dxe:TextEditSettings DisplayFormat="G" />
+                                                    </dxg:GridColumn.EditSettings>
                                                 </dxg:GridColumn>
                                                 <dxg:GridColumn FieldName="EndTime" UnboundType="Decimal" BestFitArea="Rows">
-                                                <dxg:GridColumn.EditSettings>
-                                                    <dxe:TextEditSettings DisplayFormat="G" />
-                                                </dxg:GridColumn.EditSettings>
+                                                    <dxg:GridColumn.EditSettings>
+                                                        <dxe:TextEditSettings DisplayFormat="G" />
+                                                    </dxg:GridColumn.EditSettings>
                                                 </dxg:GridColumn>
                                                 <dxg:GridColumn FieldName="Result" BestFitArea="Rows"/>
                                                 <dxg:GridColumn FieldName="TestVersion" BestFitArea="Rows"/>
@@ -78,7 +87,7 @@
                                                     <dxg:DataControlDetailDescriptor.DataControl>
                                                         <dxg:GridControl AutoPopulateColumns="False">
                                                             <dxg:GridControl.View>
-                                                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"/>
+                                                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True" SearchString="{Binding Path=(global:MasterGridHelper.SearchString), RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
                                                             </dxg:GridControl.View>
                                                             <dxg:GridControl.Columns>
                                                                 <dxg:GridColumn x:Name="gridColumn" FieldName="Description" BestFitArea="Rows"/>
@@ -87,23 +96,18 @@
                                                     </dxg:DataControlDetailDescriptor.DataControl>
                                                 </dxg:DataControlDetailDescriptor>
                                             </dxg:GridControl.DetailDescriptor>
-                                            <dxg:GridControl.View>
-                                                <dxg:TableView ShowGroupPanel="False"/>
-                                            </dxg:GridControl.View>
                                         </dxg:GridControl>
                                     </dxg:DataControlDetailDescriptor.DataControl>
                                 </dxg:DataControlDetailDescriptor>
                             </dxg:GridControl.DetailDescriptor>
-                            <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False"/>
-                           </dxg:GridControl.View>
                         </dxg:GridControl>
                     </dxg:DataControlDetailDescriptor.DataControl>
                 </dxg:DataControlDetailDescriptor>
             </dxg:GridControl.DetailDescriptor>
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="True" AllowEditing="False" AllowBestFit="True" BestFitMode="AllRows" ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" FadeSelectionOnLostFocus="True" NavigationStyle="None">
-                </dxg:TableView>
+                <dxg:TableView AllowPerPixelScrolling="True" ShowSearchPanelMode="Always" 
+                               SearchPanelAllowFilter="True" SearchPanelHighlightResults="True" ShowSearchPanelFindButton="True" 
+                               global:MasterGridHelper.SearchString="{Binding SearchString, RelativeSource={RelativeSource Self}}" />
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>
