@@ -24,32 +24,6 @@ namespace ETIC2.Views
             InitializeComponent();
         }
 
-        private void OnDetailGridLoaded(object sender, RoutedEventArgs e)
-        {
-            var detailGrid = sender as GridControl;
-            var presenter = detailGrid.TemplatedParent as DetailRowContentPresenter;
-            var masterRowData = presenter.MasterRowData;
-            MasterGridHelper.SetDetailGrid(masterRowData.RowState, detailGrid);
-        }
-
-        private void _DatabaseDataGridControl_FilterChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void _DatabaseDataGridControl_SubstituteFilter(object sender, DevExpress.Data.SubstituteFilterEventArgs e)
-        {
-            var view = (sender as GridControl).View as TableView;
-            if (!string.IsNullOrEmpty(view.SearchString))
-            {
-                if (e.Filter is GroupOperator && (e.Filter as GroupOperator).OperatorType == GroupOperatorType.Or)
-                {
-                    var op = CriteriaOperator.Parse("Contains([ListContent], ?)", view.SearchString.ToLower());
-                    (e.Filter as GroupOperator).Operands.Add(op);
-                }
-            }
-        }
-
         /// <summary>
         /// This code has to be in code behind because it manages view information
         /// </summary>

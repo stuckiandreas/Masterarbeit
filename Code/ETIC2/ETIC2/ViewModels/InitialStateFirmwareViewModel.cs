@@ -10,13 +10,15 @@ namespace ETIC2.ViewModels
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using ETIC2.Model.Application;
+    using Events;
 
     /// <summary>
     /// First Level of the Master Detail View. Listet the initialStateFirmware entrys.
     /// </summary>
-    public class InitialStateFirmwareViewModel
+    public class InitialStateFirmwareViewModel : BasisViewModel
     {
-        public InitialStateFirmwareViewModel(InitialStateFirmware initialStateFirmware, List<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList)
+        public InitialStateFirmwareViewModel(ViewModelEvents viewModelEvents, InitialStateFirmware initialStateFirmware, ObservableCollection<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList)
+            : base(viewModelEvents)
         {
             this.ValveFirmware = initialStateFirmware.ValveFirmware;
             this.ValveFirmwareReleaseTime = initialStateFirmware.ValveFirmwareReleaseTime;
@@ -70,18 +72,10 @@ namespace ETIC2.ViewModels
             set;
         }
 
-        public List<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
+        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
         { 
             get; 
             private set; 
-        }
-
-        public string ListContent
-        {
-            get
-            {
-                return string.Join(" ", this.TestCollectionResultWithValveHardwareViewModels);
-            }
         }
     }
 }

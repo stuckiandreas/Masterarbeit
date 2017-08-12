@@ -7,15 +7,17 @@
 namespace ETIC2.ViewModels
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using ETIC2.Model.Application;
+    using Events;
 
     /// <summary>
     /// Third Level of the Master Detail View. Listet the ResultTest entrys.
     /// </summary>
-    public class TestResultViewModel
+    public class TestResultViewModel : BasisViewModel
     {
-        public TestResultViewModel(TestResult testResult, List<TestErrorMessageViewModel> testErrorMessageViewModelList)
+        public TestResultViewModel(ViewModelEvents viewModelEvents, TestResult testResult, ObservableCollection<TestErrorMessageViewModel> testErrorMessageViewModelList)
+            : base(viewModelEvents)
         {
             this.StartTime = testResult.StartTime;
             this.EndTime = testResult.EndTime;
@@ -48,15 +50,10 @@ namespace ETIC2.ViewModels
             set;
         }
 
-        public List<TestErrorMessageViewModel> TestErrorMessageViewModels
+        public ObservableCollection<TestErrorMessageViewModel> TestErrorMessageViewModels
         {
             get;
             private set;
-        }
-
-        public override string ToString()
-        {
-            return string.Join(" ", this.EndTime, this.TestErrorMessageViewModels);
         }
     }
 }

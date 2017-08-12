@@ -82,16 +82,8 @@ namespace ETIC2
         private void InitMainWindow()
         {
             this.etic2Model = new ETIC2Model();
-
-            string serverName = ETIC2.Properties.Settings.Default.ServerName;
-            string databaseName = ETIC2.Properties.Settings.Default.DatabaseName;
-
-            this.etic2Model.InitialStateFirmwareDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.etic2Model.TestResultDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.etic2Model.TestErrorMessageDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-
+            this.etic2Model.BuildDatabaseContext();
+            
             this.mainWindowViewModel = new MainWindowViewModel(this.viewModelEvents, this.etic2Model);
             this.mainWindow = new MainWindow();
             this.mainWindow.DataContext = this.mainWindowViewModel;

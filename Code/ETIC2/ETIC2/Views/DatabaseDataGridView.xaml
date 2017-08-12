@@ -4,18 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             xmlns:global="clr-namespace:ETIC2"
              xmlns:local="clr-namespace:ETIC2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-<<<<<<< HEAD
-    
-  <Grid>
-    <dxg:GridControl x:Name="_DatabaseDataGridControl" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 
-                     AutoGenerateColumns="None" SubstituteFilter="_DatabaseDataGridControl_SubstituteFilter" FilterChanged="_DatabaseDataGridControl_FilterChanged">
+
+    <Grid Background="LightGray"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
+            <Button Command="{Binding PrintCommand}" Content="Print" ToolTip="Print test results view" Height="20" Width="70"/>
+            <Button Command="{Binding ExportCommand}" Content="Export" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
+        </dx:UniformStackPanel>
+        <dxg:GridControl Grid.Row ="1" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 
+                         AutoGenerateColumns="None"
+                         Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus">
             <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="ListContent" Visible="False"/>
                 <dxg:GridColumn FieldName="ValveFirmware" AllowEditing="False" BestFitArea="Rows"/>
                 <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" UnboundType="Decimal" AllowEditing="False" BestFitArea="Rows">
                     <dxg:GridColumn.EditSettings>
@@ -27,45 +37,20 @@
                 <dxg:GridColumn FieldName="DriveParameterID" AllowEditing="False" BestFitArea="Rows" />
                 <dxg:GridColumn FieldName="ConfigurationParameterID" AllowEditing="False" BestFitArea="Rows" />
                 <dxg:GridColumn FieldName="TestCollection" AllowEditing="False" BestFitArea="Rows" />
-=======
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <dx:BackgroundPanel Grid.RowSpan="2"/>
-
-        <dxg:GridControl ItemsSource="{Binding InitialStateFirmwareViewModels}" Grid.Row="1" AutoPopulateColumns="True" Margin="103,0,-103,0">
-            <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="ValveFirmware"/>
-                <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" />
-                <dxg:GridColumn FieldName="MotionControllerFirmware" />
-                <dxg:GridColumn FieldName="InterfaceFirmware" />
-                <dxg:GridColumn FieldName="DriveParameterID" />
-                <dxg:GridColumn FieldName="ConfigurationParameterID" />
-                <dxg:GridColumn FieldName="TestCollection" />
->>>>>>> parent of f20a6f8... Datum wird vollständig im View angezeigt
             </dxg:GridControl.Columns>
             <dxg:GridControl.DetailDescriptor>
-                <dxg:DataControlDetailDescriptor>
+                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestCollectionResultWithValveHardwareViewModels">
                     <dxg:DataControlDetailDescriptor.DataControl>
-                        <dxg:GridControl ItemsSource="{Binding Path=TestCollectionResultWithValveHardwareViewModels}" MaxHeight="300" AutoGenerateColumns="AddNew" ShowBorder="False"
-                                            Loaded="OnDetailGridLoaded" >
-                            <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"
-                                        SearchString="{Binding Path=(global:MasterGridHelper.SearchString), RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                                        ShowSearchPanelMode="Never" SearchPanelAllowFilter="True" SearchPanelHighlightResults="True" />
-                            </dxg:GridControl.View>
+                        <dxg:GridControl AutoPopulateColumns="True">
                             <dxg:GridControl.Columns>
-                                <dxg:GridColumn FieldName="ExecutionTime"/>
-                                <dxg:GridColumn FieldName="UserName"/>
-                                <dxg:GridColumn FieldName="AbortType"/>
-                                <dxg:GridColumn FieldName="CountErrorTest"/>
-                                <dxg:GridColumn FieldName="ValveSerie"/>
-                                <dxg:GridColumn FieldName="InterfaceType"/>
-                                <dxg:GridColumn FieldName="ControllerType"/>
-                                <dxg:GridColumn FieldName="OptionType"/>
+                                <dxg:GridColumn FieldName="ExecutionTime" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="UserName" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="AbortType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="CountErrorTest" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="ValveSerie" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="InterfaceType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="ControllerType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="OptionType" BestFitArea="Rows"/>
                                 <dxg:GridColumn FieldName="ExternalIsolationValve" Visible="False" ShowInColumnChooser="True"/>
                                 <dxg:GridColumn FieldName="ControllerHardwareVersion" Visible="False" ShowInColumnChooser="True"/>
                                 <dxg:GridColumn FieldName="ControllerAssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
@@ -88,7 +73,6 @@
                                     <dxg:DataControlDetailDescriptor.DataControl>
                                         <dxg:GridControl AutoPopulateColumns="True">
                                             <dxg:GridControl.Columns>
-<<<<<<< HEAD
                                                 <dxg:GridColumn FieldName="StartTime" UnboundType="Decimal" BestFitArea="Rows">
                                                     <dxg:GridColumn.EditSettings>
                                                         <dxe:TextEditSettings DisplayFormat="G" />
@@ -101,52 +85,38 @@
                                                 </dxg:GridColumn>
                                                 <dxg:GridColumn FieldName="Result" BestFitArea="Rows"/>
                                                 <dxg:GridColumn FieldName="TestVersion" BestFitArea="Rows"/>
-=======
-                                                <dxg:GridColumn FieldName="StartTime"/>
-                                                <dxg:GridColumn FieldName="EndTime"/>
-                                                <dxg:GridColumn FieldName="Result"/>
-                                                <dxg:GridColumn FieldName="TestVersion"/>
->>>>>>> parent of f20a6f8... Datum wird vollständig im View angezeigt
                                             </dxg:GridControl.Columns>
                                             <dxg:GridControl.DetailDescriptor>
                                                 <dxg:DataControlDetailDescriptor ItemsSourcePath="TestErrorMessageViewModels">
                                                     <dxg:DataControlDetailDescriptor.DataControl>
                                                         <dxg:GridControl AutoPopulateColumns="False">
-<<<<<<< HEAD
                                                             <dxg:GridControl.View>
-                                                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True" SearchString="{Binding Path=(global:MasterGridHelper.SearchString), RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
+                                                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"/>
                                                             </dxg:GridControl.View>
-=======
->>>>>>> parent of f20a6f8... Datum wird vollständig im View angezeigt
                                                             <dxg:GridControl.Columns>
-                                                                <dxg:GridColumn FieldName="Description"/>
+                                                                <dxg:GridColumn x:Name="gridColumn" FieldName="Description" BestFitArea="Rows"/>
                                                             </dxg:GridControl.Columns>
                                                         </dxg:GridControl>
                                                     </dxg:DataControlDetailDescriptor.DataControl>
                                                 </dxg:DataControlDetailDescriptor>
                                             </dxg:GridControl.DetailDescriptor>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"/>
+                                            </dxg:GridControl.View>
                                         </dxg:GridControl>
                                     </dxg:DataControlDetailDescriptor.DataControl>
                                 </dxg:DataControlDetailDescriptor>
                             </dxg:GridControl.DetailDescriptor>
-<<<<<<< HEAD
-=======
                             <dxg:GridControl.View>
                                 <dxg:TableView ShowGroupPanel="False"/>
                             </dxg:GridControl.View>
->>>>>>> parent of f20a6f8... Datum wird vollständig im View angezeigt
                         </dxg:GridControl>
                     </dxg:DataControlDetailDescriptor.DataControl>
                 </dxg:DataControlDetailDescriptor>
             </dxg:GridControl.DetailDescriptor>
             <dxg:GridControl.View>
-<<<<<<< HEAD
-                <dxg:TableView AllowPerPixelScrolling="True" ShowSearchPanelMode="Always" 
-                               SearchPanelAllowFilter="True" SearchPanelHighlightResults="True" ShowSearchPanelFindButton="True" 
-                               global:MasterGridHelper.SearchString="{Binding SearchString, RelativeSource={RelativeSource Self}}" />
-=======
-                <dxg:TableView AutoWidth="True" AllowEditing="False" ShowTotalSummary="True" />
->>>>>>> parent of f20a6f8... Datum wird vollständig im View angezeigt
+                <dxg:TableView AutoWidth="True" AllowEditing="False" AllowBestFit="True" BestFitMode="AllRows" ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" FadeSelectionOnLostFocus="True" NavigationStyle="None">
+                </dxg:TableView>
             </dxg:GridControl.View>
         </dxg:GridControl>
     </Grid>

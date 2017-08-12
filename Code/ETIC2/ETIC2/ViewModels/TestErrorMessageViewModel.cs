@@ -7,10 +7,12 @@
 namespace ETIC2.ViewModels
 {
     using ETIC2.Model.Application;
+    using Events;
 
-    public class TestErrorMessageViewModel
+    public class TestErrorMessageViewModel : BasisViewModel
     {
-        public TestErrorMessageViewModel(TestErrorMessage testErrorMessage)
+        public TestErrorMessageViewModel(ViewModelEvents viewModelEvents, TestErrorMessage testErrorMessage)
+            : base(viewModelEvents)
         {
             this.Description = testErrorMessage.Description;
         }

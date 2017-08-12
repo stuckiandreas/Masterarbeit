@@ -10,13 +10,15 @@ namespace ETIC2.ViewModels
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using ETIC2.Model.Application;
+    using Events;
 
     /// <summary>
     /// Second Level of the Master Detail View. Listet the TestCollectionResultWithValveHardware entrys.
     /// </summary>
-    public class TestCollectionResultWithValveHardwareViewModel
+    public class TestCollectionResultWithValveHardwareViewModel : BasisViewModel
     {
-        public TestCollectionResultWithValveHardwareViewModel(TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, List<TestResultViewModel> testResultViewModelList)
+        public TestCollectionResultWithValveHardwareViewModel(ViewModelEvents viewModelEvents, TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, ObservableCollection<TestResultViewModel> testResultViewModelList)
+            : base(viewModelEvents)
         {
             this.ExecutionTime = testCollectionResultWithValveHardware.ExecutionTime;
             this.UserName = testCollectionResultWithValveHardware.UserName;
@@ -198,15 +200,10 @@ namespace ETIC2.ViewModels
             set;
         }
 
-        public List<TestResultViewModel> TestResultViewModels
+        public ObservableCollection<TestResultViewModel> TestResultViewModels
         {
             get;
             private set;
-        }
-
-        public override string ToString()
-        {
-            return string.Join(" ", this.UserName, this.ExecutionTime, this.TestResultViewModels);
         }
     }
 }

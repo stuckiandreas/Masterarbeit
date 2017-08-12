@@ -113,6 +113,7 @@ namespace ETIC2
         public override void SubscribeEvents()
         {
             base.SubscribeEvents();
+            this.workspaceViewModel.SubscribeEvents();
             this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
             this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
             this.etic2Model.TestResultDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
@@ -122,6 +123,7 @@ namespace ETIC2
         public override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
+            this.workspaceViewModel.UnsubscribeEvents();
             this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
             this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
             this.etic2Model.TestResultDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;

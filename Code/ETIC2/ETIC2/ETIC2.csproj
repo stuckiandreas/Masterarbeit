@@ -126,6 +126,7 @@
     <Compile Include="Events\EventArgs\Error\ErrorHandlerEventArgs.cs" />
     <Compile Include="Events\EventArgs\Error\ExpectedErrorHandlerEventArgs.cs" />
     <Compile Include="Events\EventArgs\Error\UnexpectedErrorHandlerEventArgs.cs" />
+    <Compile Include="Events\EventArgs\ETIC2View\RefreshEventArgs.cs" />
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackErrorEventArgs.cs" />
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackEventArgs.cs" />
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackInfoEventArgs.cs" />
@@ -133,7 +134,6 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="MasterGridHelper.cs" />
     <Compile Include="Model\Application\InitialStateFirmware.cs" />
     <Compile Include="Model\Application\TestCollectionResultWithValveHardware.cs" />
     <Compile Include="Model\Application\TestErrorMessage.cs" />
@@ -398,6 +398,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Events\EventArgs\Timer\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>

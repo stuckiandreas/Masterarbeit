@@ -6,45 +6,63 @@
 
 namespace ETIC2.ViewModels
 {
-    using System.Collections.Generic;
+    using System;
     using System.Collections.ObjectModel;
+    using System.Timers;
+    using System.Windows.Input;
+    using ActionCommands;
     using Events;
-   
+    using Events.EventArgs.Error;
+
     /// <summary>
     /// Contains data grid data items.
     /// </summary>
     public class DatabaseDataGridViewModel : BasisViewModel
     {
+        private const double Interval1Minute = 60 * 1000;
+
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>
-        private List<InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
+        private ObservableCollection<InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
 
         /// <summary>
         /// List of all test test collection result entries in the grid view.
         /// </summary>
-        private List<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModels;
+        private ObservableCollection<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModels;
 
         /// <summary>
         /// List of all test test result entries in the grid view.
         /// </summary>
-        private List<TestResultViewModel> testResultVieModels;
+        private ObservableCollection<TestResultViewModel> testResultVieModels;
 
         /// <summary>
         /// Events which are available in all view models.
         /// </summary>
         private ViewModelEvents viewModelEvents;
 
+        /// <summary>
+        /// All Minute a event is thrown
+        /// </summary>
+        public Timer CheckForTime = new Timer(Interval1Minute);
+
         public DatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
         {
+            this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
+
             this.viewModelEvents = viewModelEvents;
-            this.initialStateFirmwareViewModels = new List<InitialStateFirmwareViewModel>();
-            this.testCollectionResultWithValveHardwareViewModels = new List<TestCollectionResultWithValveHardwareViewModel>();
-            this.testResultVieModels = new List<TestResultViewModel>();
+            this.initialStateFirmwareViewModels = new ObservableCollection<InitialStateFirmwareViewModel>();
+            this.testCollectionResultWithValveHardwareViewModels = new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
+            this.testResultVieModels = new ObservableCollection<TestResultViewModel>();
         }
 
-        public List<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
+        /// <summary>
+        /// Event to update the DatabaseDataGriedView
+        /// </summary>
+        public event EventHandler<System.EventArgs> RefreshChangedEvent;
+
+        public ObservableCollection<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
         {
             get
             {
@@ -52,7 +70,7 @@ namespace ETIC2.ViewModels
             }
         }
 
-        public List<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
+        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
         {
             get
             {
@@ -60,12 +78,63 @@ namespace ETIC2.ViewModels
             }
         }
 
-        public List<TestResultViewModel> TestResultViewModels
+        public ObservableCollection<TestResultViewModel> TestResultViewModels
         {
             get
             {
                 return this.testResultVieModels;
             }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand PrintCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand ExportCommand
+        {
+            get;
+            private set;
+        }
+
+        public override void SubscribeEvents()
+        {
+            base.SubscribeEvents();
+        }
+
+        public override void UnsubscribeEvents()
+        {
+            base.UnsubscribeEvents();
+        }
+
+        private bool OnCanExecuteRefreshCommand(object parameter)
+        {
+            return true;
+        }
+
+        private void OnRefreshCommand(object parameter)
+        {
+            try
+            {
+                this.OnRefreshChangedEvent(this, new System.EventArgs());
+            }
+            catch (Exception ex)
+            {
+                this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+            }
+        }
+
+        private void OnRefreshChangedEvent(object sender, System.EventArgs refreshEventArgs)
+        {
+            if (this.RefreshChangedEvent != null)
+                this.RefreshChangedEvent(sender, refreshEventArgs);
         }
     }
 }
