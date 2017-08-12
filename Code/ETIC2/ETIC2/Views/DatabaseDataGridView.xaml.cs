@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DatabaseDataGridView.xaml.cs" company="VAT Vakuumventile AG">
+// <copyright file="DatabaseDataGridView.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,7 +10,6 @@ namespace ETIC2.Views
     using System.Windows;
     using System.Windows.Controls;
     using DevExpress.Xpf.Grid;
-    using DevExpress.Data.Filtering;
 
     /// <summary>
     /// Interaction logic for DatabaseDataGridView.xaml
