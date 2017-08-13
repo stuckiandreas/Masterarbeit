@@ -19,8 +19,6 @@ namespace ETIC2.ViewModels
     /// </summary>
     public class DatabaseDataGridViewModel : BasisViewModel
     {
-        private const double Interval1Minute = 60 * 1000;
-
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>
@@ -40,11 +38,6 @@ namespace ETIC2.ViewModels
         /// Events which are available in all view models.
         /// </summary>
         private ViewModelEvents viewModelEvents;
-
-        /// <summary>
-        /// All Minute a event is thrown
-        /// </summary>
-        public Timer CheckForTime = new Timer(Interval1Minute);
 
         public DatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
@@ -87,18 +80,6 @@ namespace ETIC2.ViewModels
         }
 
         public ICommand RefreshCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand PrintCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand ExportCommand
         {
             get;
             private set;

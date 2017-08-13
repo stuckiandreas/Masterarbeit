@@ -58,8 +58,6 @@ namespace ETIC2.ViewModels
             // Subscribe own model events
             this.databaseDataGridViewModel.SubscribeEvents();
             this.databaseDataGridViewModel.RefreshChangedEvent += this.DatabaseDataGridViewModel_RefreshChangedEvent;
-            this.databaseDataGridViewModel.CheckForTime.Elapsed += new ElapsedEventHandler(this.CheckForTime_Elapsed);
-            this.databaseDataGridViewModel.CheckForTime.Enabled = true;
 
             // Subscribe base class events
             base.SubscribeEvents();
@@ -81,21 +79,6 @@ namespace ETIC2.ViewModels
             base.Init();
 
             this.ReloadDataGrid();
-        }
-
-        private void CheckForTime_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            try
-            {
-                //update database -> event
-                Dispatcher.CurrentDispatcher.InvokeAsync(() => this.etic2Model.BuildDatabaseContext());
-
-                Dispatcher.CurrentDispatcher.InvokeAsync(() => this.ReloadDataGrid());
-            }
-            catch (Exception ex)
-            {
-                this.ViewModelEvents.OnHandleError(this, new ExpectedErrorHandlerEventArgs(ex.Message));
-            }
         }
 
         private void ViewModelEvents_ChangeDatabaseSettings(object sender, Events.EventArgs.DatabaseAccess.DatabaseAccessEventArgs e)
