@@ -6,6 +6,7 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
              xmlns:local="clr-namespace:ETIC2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -20,7 +21,8 @@
         <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
-            <Button Click="Export" Content="Export" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
+            <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
+            <Button Click="XML" Content="XML" ToolTip="Export test result view as a xml" DockPanel.Dock="Top" Height="20" Width="70"/>
         </dx:UniformStackPanel>
         <dxg:GridControl x:Name="grid"  Grid.Row ="1" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 
                          AutoGenerateColumns="None"

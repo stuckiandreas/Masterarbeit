@@ -8,7 +8,6 @@ namespace ETIC2.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Timers;
     using System.Windows.Input;
     using ActionCommands;
     using Events;
