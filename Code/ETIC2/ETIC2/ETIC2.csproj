@@ -147,11 +147,10 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Model\Application\InitialStateFirmware.cs" />
-    <Compile Include="Model\Application\TestCollectionResultWithValveHardware.cs" />
-    <Compile Include="Model\Application\TestErrorMessage.cs" />
-    <Compile Include="Model\Application\TestResult.cs" />
-    <Compile Include="Model\Converter.cs" />
+    <Compile Include="Model\Application\FirmwareTopLevel\InitialStateFirmware.cs" />
+    <Compile Include="Model\Application\FirmwareTopLevel\TestCollectionResultWithValveHardware.cs" />
+    <Compile Include="Model\Application\FirmwareTopLevel\TestErrorMessage.cs" />
+    <Compile Include="Model\Application\FirmwareTopLevel\TestResult.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
     <Compile Include="Model\DatabaseConnectionSettingsDatabaseAccessManager.cs" />
     <Compile Include="Model\EntityFramework\AbortType.cs">
@@ -285,31 +284,34 @@
     </Compile>
     <Compile Include="ViewModels\AboutDialogViewModels\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
-    <Compile Include="ViewModels\DatabaseDataGridViewModel.cs" />
+    <Compile Include="ViewModels\DatabaseDataGridViewModel2.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\ExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveExecuteDoubleDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveSettingsExecuteDialogViewModel.cs" />
-    <Compile Include="ViewModels\InitialStateFirmwareViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareDatabaseDataGridViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareTopLevelViewModels\InitialStateFirmwareViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\InputBaseViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
-    <Compile Include="ViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
-    <Compile Include="ViewModels\TestErrorMessageViewModel.cs" />
-    <Compile Include="ViewModels\TestResultViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">
       <DependentUpon>AboutDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DatabaseDataGridView.xaml.cs">
-      <DependentUpon>DatabaseDataGridView.xaml</DependentUpon>
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    <Compile Include="Views\DatabaseDataGridView2.xaml.cs">
+      <DependentUpon>DatabaseDataGridView2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecuteDialogViews\SaveExecuteDoubleDialogView.xaml.cs">
       <DependentUpon>SaveExecuteDoubleDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecuteDialogViews\SaveSettingsExecuteDialogView.xaml.cs">
       <DependentUpon>SaveSettingsExecuteDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirmwareDatabaseDataGridView.xaml.cs">
+      <DependentUpon>FirmwareDatabaseDataGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputViews\TextInputView.xaml.cs">
       <DependentUpon>TextInputView.xaml</DependentUpon>
@@ -348,7 +350,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DatabaseDataGridView.xaml">
+    <Page Include="Views\DatabaseDataGridView2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,6 +359,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ExecuteDialogViews\SaveSettingsExecuteDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirmwareDatabaseDataGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

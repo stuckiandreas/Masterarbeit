@@ -11,15 +11,16 @@
                     xmlns:inputViewModels="clr-namespace:ETIC2.ViewModels.InputViewModels"
                     xmlns:statusbarViewModels="clr-namespace:ETIC2.ViewModels.StatusbarViewModels"
                     xmlns:menuViewModels="clr-namespace:ETIC2.ViewModels.MenuViewModels"
-                    xmlns:aboutDialogViewModels="clr-namespace:ETIC2.ViewModels.AboutDialogViewModels">
+                    xmlns:aboutDialogViewModels="clr-namespace:ETIC2.ViewModels.AboutDialogViewModels"
+                    xmlns:firmwareTopLevelViewModels="clr-namespace:ETIC2.ViewModels.FirmwareTopLevelViewModels">
 
     <!--Main Views-->  
     <DataTemplate DataType="{x:Type viewModels:WorkspaceViewModel}">
         <views:WorkspaceView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewModels:DatabaseDataGridViewModel}">
-        <views:DatabaseDataGridView />
+    <DataTemplate DataType="{x:Type firmwareTopLevelViewModels:FirmwareDatabaseDataGridViewModel}">
+        <views:FirmwareDatabaseDataGridView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type menuViewModels:MenuViewModel}">

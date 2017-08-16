@@ -9,17 +9,17 @@ namespace ETIC2.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Timers;
     using System.Windows.Threading;
     using ETIC2.Model.Application;
     using Events;
     using Events.EventArgs.Error;
+    using ETIC2.ViewModels.FirmwareTopLevelViewModels;
 
     /// <summary>
     /// Mainly View Model. Interface to the model. Included the detailInformation and dataBaseDataGrid view. 
     /// Only references to the Model are allowed. References to Views are not allowed
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.BasisViewModel" />
+    /// <seealso cref="BasisViewModel" />
     public class WorkspaceViewModel : BasisViewModel
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace ETIC2.ViewModels
         /// <summary>
         /// Data grid with software information items
         /// </summary>
-        private readonly DatabaseDataGridViewModel databaseDataGridViewModel;
+        private readonly FirmwareDatabaseDataGridViewModel firmwareDatabaseDataGridViewModel;
         
         /// <summary>
         /// Reference to the model
@@ -42,22 +42,30 @@ namespace ETIC2.ViewModels
         {
             this.etic2Model = etic2Model;
             this.ViewModelEvents = viewModelEvents;
-            this.databaseDataGridViewModel = new DatabaseDataGridViewModel(viewModelEvents);
+            this.firmwareDatabaseDataGridViewModel = new FirmwareDatabaseDataGridViewModel(viewModelEvents);
+
+            SwitchView = 0;
         }
 
-        public DatabaseDataGridViewModel DatabaseDataGridViewModel
+        public int SwitchView
+        {
+            get;
+            set;
+        }
+
+        public FirmwareDatabaseDataGridViewModel FirmwareDatabaseDataGridViewModel
         {
             get
             {
-                return this.databaseDataGridViewModel;
+                return this.firmwareDatabaseDataGridViewModel;
             }
         }
 
         public override void SubscribeEvents()
         {
             // Subscribe own model events
-            this.databaseDataGridViewModel.SubscribeEvents();
-            this.databaseDataGridViewModel.RefreshChangedEvent += this.DatabaseDataGridViewModel_RefreshChangedEvent;
+            this.firmwareDatabaseDataGridViewModel.SubscribeEvents();
+            this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent += this.DatabaseDataGridViewModel_RefreshChangedEvent;
 
             // Subscribe base class events
             base.SubscribeEvents();
@@ -66,8 +74,8 @@ namespace ETIC2.ViewModels
         public override void UnsubscribeEvents()
         {
             // Unsubscribe own model events
-            this.databaseDataGridViewModel.UnsubscribeEvents();
-            this.databaseDataGridViewModel.RefreshChangedEvent -= this.DatabaseDataGridViewModel_RefreshChangedEvent;
+            this.firmwareDatabaseDataGridViewModel.UnsubscribeEvents();
+            this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.DatabaseDataGridViewModel_RefreshChangedEvent;
 
             // Unsubscribe base class events
             base.UnsubscribeEvents();
@@ -113,7 +121,7 @@ namespace ETIC2.ViewModels
         /// </summary>
         private void ReloadDataGrid()
         {
-            this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
+            this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
 
             List<InitialStateFirmware> initialStateFirmwareList = this.etic2Model.InitialStateFirmwareDatabaseAccessManager.GetApplicationInitialStateFirmwares();
             List<TestCollectionResultWithValveHardware> testCollectionResultWithValveHardwareListInitialStateFirmwareFilter;
@@ -154,7 +162,7 @@ namespace ETIC2.ViewModels
                     testCollectionResultWithValveHardwareViewModelList.Add(new TestCollectionResultWithValveHardwareViewModel(this.ViewModelEvents, testCollectionResultWithValveHardware, testResultViewModelList));
                 }
 
-                this.databaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultWithValveHardwareViewModelList));
+                this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultWithValveHardwareViewModelList));
             }
         }
     }

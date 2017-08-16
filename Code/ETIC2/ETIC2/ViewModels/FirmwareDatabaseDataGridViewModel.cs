@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DatabaseDataGridViewModel.cs" company="VAT Vakuumventile AG">
+// <copyright file="FirmwareDatabaseDataGridViewModel.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels
+namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
 {
     using System;
     using System.Collections.ObjectModel;
@@ -16,8 +16,9 @@ namespace ETIC2.ViewModels
     /// <summary>
     /// Contains data grid data items.
     /// </summary>
-    public class DatabaseDataGridViewModel : BasisViewModel
+    public class FirmwareDatabaseDataGridViewModel : BasisViewModel
     {
+
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>
@@ -26,7 +27,8 @@ namespace ETIC2.ViewModels
         /// <summary>
         /// List of all test test collection result entries in the grid view.
         /// </summary>
-        private ObservableCollection<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModels;
+        private ObservableCollection<TestCollectionResultWithValveHardwareViewModel>
+            testCollectionResultWithValveHardwareViewModels;
 
         /// <summary>
         /// List of all test test result entries in the grid view.
@@ -38,14 +40,15 @@ namespace ETIC2.ViewModels
         /// </summary>
         private ViewModelEvents viewModelEvents;
 
-        public DatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
+        public FirmwareDatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
         {
             this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
 
             this.viewModelEvents = viewModelEvents;
             this.initialStateFirmwareViewModels = new ObservableCollection<InitialStateFirmwareViewModel>();
-            this.testCollectionResultWithValveHardwareViewModels = new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
+            this.testCollectionResultWithValveHardwareViewModels =
+                new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
             this.testResultVieModels = new ObservableCollection<TestResultViewModel>();
         }
 
@@ -56,33 +59,21 @@ namespace ETIC2.ViewModels
 
         public ObservableCollection<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
         {
-            get
-            {
-                return this.initialStateFirmwareViewModels;
-            }
+            get { return this.initialStateFirmwareViewModels; }
         }
 
-        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
+        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel>
+            TestCollectionResultWithValveHardwareViewModels
         {
-            get
-            {
-                return this.testCollectionResultWithValveHardwareViewModels;
-            }
+            get { return this.testCollectionResultWithValveHardwareViewModels; }
         }
 
         public ObservableCollection<TestResultViewModel> TestResultViewModels
         {
-            get
-            {
-                return this.testResultVieModels;
-            }
+            get { return this.testResultVieModels; }
         }
 
-        public ICommand RefreshCommand
-        {
-            get;
-            private set;
-        }
+        public ICommand RefreshCommand { get; private set; }
 
         public override void SubscribeEvents()
         {

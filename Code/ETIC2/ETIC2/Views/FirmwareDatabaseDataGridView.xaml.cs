@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DatabaseDataGridView.xaml.cs" company="VAT Vakuumventile AG">
+// <copyright file="FirmwareDatabaseDataGridView.xaml.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -13,21 +13,19 @@ namespace ETIC2.Views
     using DevExpress.Xpf.Printing;
 
     /// <summary>
-    /// Interaction logic for DatabaseDataGridView.xaml
+    /// Interaction logic for FirmwareDatabaseDataGridView.xaml
     /// </summary>
-    public partial class DatabaseDataGridView : UserControl
+    public partial class FirmwareDatabaseDataGridView : UserControl
     {
         private string settingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings";
         private string dataGridControlSettingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings\\dataGirdControlSettings.xml";
         private string etic2Path = @"c:\\Test\ETIC2\Reports\";
         private string etic2PdfName = "TestResult.pdf";
-        private string etic2XmlName = "TestResult.xml";
 
-        public DatabaseDataGridView()
+        public FirmwareDatabaseDataGridView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
-
         /// <summary>
         /// This code has to be in code behind because it manages view information
         /// Shows print view to select the active printer (in landscape format)
@@ -50,28 +48,13 @@ namespace ETIC2.Views
         /// <param name="e">instance containing the event data</param>
         private void PDF(object sender, RoutedEventArgs e)
         {
-            if (Path.IsPathRooted(this.etic2Path))
+            if (System.IO.Path.IsPathRooted(this.etic2Path))
             {
                 string fullPdfPath = this.etic2Path + this.etic2PdfName;
                 var link = new PrintableControlLink(view);
                 link.Landscape = true;
                 link.CreateDocument(true);
                 link.ExportToPdf(fullPdfPath);
-            }
-        }
-
-        /// <summary>
-        /// This code has to be in code behind because it manages view information
-        /// Shows a xml version of the test results view (only the first level)
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">instance containing the event data</param>
-        private void XML(object sender, RoutedEventArgs e)
-        {
-            if (Path.IsPathRooted(this.etic2Path))
-            {
-                string fullCsvPath = this.etic2Path + this.etic2XmlName;
-                view.ExportToXls(fullCsvPath);
             }
         }
 

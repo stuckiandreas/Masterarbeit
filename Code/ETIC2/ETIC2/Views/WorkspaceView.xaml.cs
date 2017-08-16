@@ -15,7 +15,7 @@ namespace ETIC2.Views
     {
         public WorkspaceView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

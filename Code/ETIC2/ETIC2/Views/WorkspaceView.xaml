@@ -3,14 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ETIC2.Views"
+             xmlns:viewModels="clr-namespace:ETIC2.ViewModels"
+             xmlns:views="clr-namespace:ETIC2.Views"
+             xmlns:firmwareTopLevelViewModels="clr-namespace:ETIC2.ViewModels.FirmwareTopLevelViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="FirmwareFirstLevel" DataType="{x:Type firmwareTopLevelViewModels:FirmwareDatabaseDataGridViewModel}">
+            <views:FirmwareDatabaseDataGridView />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ErrorFirstLevel" DataType="{x:Type viewModels:DatabaseDataGridViewModel2}">
+            <views:DatabaseDataGridView2 />
+        </DataTemplate>
+    </UserControl.Resources>
     
     <Grid>
-        <DockPanel LastChildFill="True">
-            <ContentControl Content="{Binding DatabaseDataGridViewModel}"/>
-        </DockPanel>
+        <ContentControl Content="{Binding }">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{StaticResource FirmwareFirstLevel}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="1">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ErrorFirstLevel}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
     </Grid>
-    
 </UserControl>
