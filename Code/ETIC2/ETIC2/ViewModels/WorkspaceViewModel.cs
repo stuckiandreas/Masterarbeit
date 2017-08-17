@@ -10,12 +10,20 @@ namespace ETIC2.ViewModels
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Windows.Input;
     using System.Windows.Threading;
-    using ActionCommands;
     using ETIC2.Model.Application;
     using Events;
     using Events.EventArgs.Error;
+
+    /// <summary>
+    /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.
+    /// </summary>
+    public enum DatabseDataGridViewModel
+    {
+        Firmware,
+        Hardware,
+        Error
+    }
 
     /// <summary>
     /// Mainly View Model. Interface to the model. Included the detailInformation and dataBaseDataGrid view. 
@@ -44,6 +52,8 @@ namespace ETIC2.ViewModels
         /// </summary>
         private object selectedViewModel;
 
+        private string databaseDataGridSelectedItem;
+
         /// <summary>
         /// View model events with several handlers
         /// </summary>
@@ -55,20 +65,34 @@ namespace ETIC2.ViewModels
             this.etic2Model = etic2Model;
             this.ViewModelEvents = viewModelEvents;
             this.firmwareDatabaseDataGridViewModel = new FirmwareDatabaseDataGridViewModel(viewModelEvents);
-
             this.allDatabaseDataGridViewModels = new ObservableCollection<BasisViewModel>();
             this.allDatabaseDataGridViewModels.Add(new FirmwareDatabaseDataGridViewModel(viewModelEvents));
             this.allDatabaseDataGridViewModels.Add(new DatabaseDataGridViewModel2(viewModelEvents));
-            this.firmwareDatabaseDataGridViewModel 
+            this.firmwareDatabaseDataGridViewModel
                 = (FirmwareDatabaseDataGridViewModel)this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
-
-            this.FirmwareCommand = new BaseCommand(this.OpenFirmware);
-            this.DatabaseCommand = new BaseCommand(this.OpenDatabase);
+            DatabaseDataGridItems = new ObservableCollection<string>();
+            DatabaseDataGridItems.Add(DatabseDataGridViewModel.Firmware.ToString());
+            DatabaseDataGridItems.Add(DatabseDataGridViewModel.Hardware.ToString());
+            DatabaseDataGridItems.Add(DatabseDataGridViewModel.Error.ToString());
+            databaseDataGridSelectedItem = DatabseDataGridViewModel.Firmware.ToString();
+            SetActiveDatabaseDataGridViewModel();
         }
 
-        public ICommand FirmwareCommand { get; set; }
+        //public ICommand FirmwareCommand { get; set; }
 
-        public ICommand DatabaseCommand { get; set; }
+        //public ICommand DatabaseCommand { get; set; }
+
+        public ObservableCollection<string> DatabaseDataGridItems { get; }
+
+        public string DatabaseDataGridSelectedItem
+        {
+            get { return databaseDataGridSelectedItem; }
+            set
+            {
+                databaseDataGridSelectedItem = value;
+                SetActiveDatabaseDataGridViewModel();
+            }
+        }
 
         public object SelectedViewModel
         {
@@ -111,7 +135,7 @@ namespace ETIC2.ViewModels
             // Subscribe base class events
             base.SubscribeEvents();
         }
-  
+
         public override void UnsubscribeEvents()
         {
             // Unsubscribe own model events
@@ -177,7 +201,7 @@ namespace ETIC2.ViewModels
             //Level 1 InitialStateValve (includes TestCollectionResultWithValveHardware List)
             foreach (InitialStateFirmware initialStateFirmware in initialStateFirmwareList)
             {
-                testCollectionResultWithValveHardwareViewModelList = new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>(); 
+                testCollectionResultWithValveHardwareViewModelList = new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
                 testCollectionResultWithValveHardwareListInitialStateFirmwareFilter = this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.GetApplicationTestCollectionResultsWithValveHardwareWithInitialStateFirmwareFilter(initialStateFirmware.Id);
 
                 //Level 2 TestCollectionResultWithValveHardware (includes TestResult List)
@@ -205,6 +229,17 @@ namespace ETIC2.ViewModels
 
                 this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultWithValveHardwareViewModelList));
             }
+        }
+
+        /// <summary>
+        /// Sets the active DatabaseDataGridViewModel. Change only the reference of the view model.
+        /// </summary>
+        private void SetActiveDatabaseDataGridViewModel()
+        {
+            if (databaseDataGridSelectedItem == DatabseDataGridViewModel.Firmware.ToString())
+                this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
+            else if (databaseDataGridSelectedItem == DatabseDataGridViewModel.Hardware.ToString())
+                this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is DatabaseDataGridViewModel2).Single();
         }
     }
 }

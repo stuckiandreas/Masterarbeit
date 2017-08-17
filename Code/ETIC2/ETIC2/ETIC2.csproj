@@ -294,7 +294,6 @@
     <Compile Include="ViewModels\InputViewModels\InputBaseViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
-    <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
     <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
     <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestErrorMessageViewModel.cs" />
