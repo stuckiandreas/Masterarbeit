@@ -24,8 +24,9 @@ namespace ETIC2.Views
 
         public FirmwareDatabaseDataGridView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
+
         /// <summary>
         /// This code has to be in code behind because it manages view information
         /// Shows print view to select the active printer (in landscape format)

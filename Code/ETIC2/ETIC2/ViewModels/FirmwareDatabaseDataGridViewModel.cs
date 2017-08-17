@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
+namespace ETIC2.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
@@ -18,7 +18,6 @@ namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
     /// </summary>
     public class FirmwareDatabaseDataGridViewModel : BasisViewModel
     {
-
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>

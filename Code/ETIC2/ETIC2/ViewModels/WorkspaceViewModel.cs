@@ -9,11 +9,13 @@ namespace ETIC2.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Windows.Input;
     using System.Windows.Threading;
+    using ActionCommands;
     using ETIC2.Model.Application;
     using Events;
     using Events.EventArgs.Error;
-    using ETIC2.ViewModels.FirmwareTopLevelViewModels;
 
     /// <summary>
     /// Mainly View Model. Interface to the model. Included the detailInformation and dataBaseDataGrid view. 
@@ -23,19 +25,29 @@ namespace ETIC2.ViewModels
     public class WorkspaceViewModel : BasisViewModel
     {
         /// <summary>
-        /// View model events with several handlers
+        /// List with all databaseDataGridViewModels. Need to change the view.
         /// </summary>
-        public readonly ViewModelEvents ViewModelEvents;
-        
-        /// <summary>
-        /// Data grid with software information items
-        /// </summary>
-        private readonly FirmwareDatabaseDataGridViewModel firmwareDatabaseDataGridViewModel;
-        
+        private readonly ObservableCollection<BasisViewModel> allDatabaseDataGridViewModels;
+
         /// <summary>
         /// Reference to the model
         /// </summary>
         private readonly ETIC2Model etic2Model;
+
+        /// <summary>
+        /// Data grid with software information items
+        /// </summary>
+        private readonly FirmwareDatabaseDataGridViewModel firmwareDatabaseDataGridViewModel;
+
+        /// <summary>
+        /// Set the actual active view model
+        /// </summary>
+        private object selectedViewModel;
+
+        /// <summary>
+        /// View model events with several handlers
+        /// </summary>
+        public readonly ViewModelEvents ViewModelEvents;
 
         public WorkspaceViewModel(ViewModelEvents viewModelEvents, ETIC2Model etic2Model)
             : base(viewModelEvents)
@@ -44,13 +56,32 @@ namespace ETIC2.ViewModels
             this.ViewModelEvents = viewModelEvents;
             this.firmwareDatabaseDataGridViewModel = new FirmwareDatabaseDataGridViewModel(viewModelEvents);
 
-            SwitchView = 0;
+            this.allDatabaseDataGridViewModels = new ObservableCollection<BasisViewModel>();
+            this.allDatabaseDataGridViewModels.Add(new FirmwareDatabaseDataGridViewModel(viewModelEvents));
+            this.allDatabaseDataGridViewModels.Add(new DatabaseDataGridViewModel2(viewModelEvents));
+            this.firmwareDatabaseDataGridViewModel 
+                = (FirmwareDatabaseDataGridViewModel)this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
+
+            this.FirmwareCommand = new BaseCommand(this.OpenFirmware);
+            this.DatabaseCommand = new BaseCommand(this.OpenDatabase);
         }
 
-        public int SwitchView
+        public ICommand FirmwareCommand { get; set; }
+
+        public ICommand DatabaseCommand { get; set; }
+
+        public object SelectedViewModel
         {
-            get;
-            set;
+            get
+            {
+                return this.selectedViewModel;
+            }
+
+            set
+            {
+                this.selectedViewModel = value;
+                this.OnPropertyChanged("SelectedViewModel");
+            }
         }
 
         public FirmwareDatabaseDataGridViewModel FirmwareDatabaseDataGridViewModel
@@ -59,6 +90,16 @@ namespace ETIC2.ViewModels
             {
                 return this.firmwareDatabaseDataGridViewModel;
             }
+        }
+
+        private void OpenFirmware(object obj)
+        {
+            this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
+        }
+
+        private void OpenDatabase(object obj)
+        {
+            this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is DatabaseDataGridViewModel2).Single();
         }
 
         public override void SubscribeEvents()

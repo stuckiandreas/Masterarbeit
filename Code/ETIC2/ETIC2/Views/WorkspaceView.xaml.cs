@@ -7,6 +7,7 @@
 namespace ETIC2.Views
 {
     using System.Windows.Controls;
+    using ViewModels;
 
     /// <summary>
     /// Interaction logic for WorkspaceView.xaml

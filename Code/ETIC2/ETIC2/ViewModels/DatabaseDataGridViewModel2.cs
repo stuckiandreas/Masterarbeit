@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ETIC2.ActionCommands;
-using ETIC2.Events;
-using ETIC2.Events.EventArgs.Error;
-using DevExpress.Mvvm;
-using System.Windows.Input;
+﻿//-----------------------------------------------------------------------
+// <copyright file="DatabaseDataGridViewModel2.cs" company="VAT Vakuumventile AG">
+//     Copyright (c) 2017 . All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace ETIC2.ViewModels
 {
-    class DatabaseDataGridViewModel2
+    using ETIC2.Events;
+
+    public class DatabaseDataGridViewModel2 : BasisViewModel
     {
+        private ViewModelEvents viewModelEvents;
 
-        public DatabaseDataGridViewModel2()
+        public DatabaseDataGridViewModel2(ViewModelEvents viewModelEvents)
+            : base(viewModelEvents)
         {
-
         }
     }
 }
+
+
+
+
+
 
