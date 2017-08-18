@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.Model.Application.FirmwareTopLevel
+namespace ETIC2.Model.Application.ErrorTopLevel
 {
     /// <summary>
     /// Seperate Entity Framework Datatype from Application. Without references
@@ -12,6 +12,8 @@ namespace ETIC2.Model.Application.FirmwareTopLevel
     public class TestErrorMessage
     {
         public string Description;
+
+        public int TestResultId;
 
         public TestErrorMessage()
         {

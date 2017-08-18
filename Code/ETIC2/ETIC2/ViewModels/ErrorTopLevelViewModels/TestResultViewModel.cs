@@ -4,26 +4,24 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
+namespace ETIC2.ViewModels.ErrorTopLevelViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application.FirmwareTopLevel;
     using Events;
 
     /// <summary>
-    /// Third Level of the Firmware Master Detail View. Shows the ResultTest entrys.
+    /// Second Level of the Error Master Detail View. Shows the TestResult entrys.
     /// </summary>
     public class TestResultViewModel : BasisViewModel
     {
-        public TestResultViewModel(ViewModelEvents viewModelEvents, TestResult testResult, ObservableCollection<FirmwareTopLevelViewModels.TestErrorMessageViewModel> testErrorMessageViewModelList)
+        public TestResultViewModel(ViewModelEvents viewModelEvents, Model.Application.ErrorTopLevel.TestResult testResult, ObservableCollection<FirmwareWithTestHardwareViewModel> firmwareWithTestHardwareViewModelList)
             : base(viewModelEvents)
         {
             this.StartTime = testResult.StartTime;
             this.EndTime = testResult.EndTime;
-            this.Result = testResult.Result;
             this.TestVersion = testResult.TestVersion;
-            this.TestErrorMessageViewModels = testErrorMessageViewModelList;
+            this.FirmwareWithTestHardwareViewModels = firmwareWithTestHardwareViewModelList;
         }
 
         public DateTime StartTime
@@ -38,19 +36,13 @@ namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
             set;
         }
 
-        public string Result
-        {
-            get;
-            set;
-        }
-
         public short TestVersion
         {
             get;
             set;
         }
 
-        public ObservableCollection<FirmwareTopLevelViewModels.TestErrorMessageViewModel> TestErrorMessageViewModels
+        public ObservableCollection<FirmwareWithTestHardwareViewModel> FirmwareWithTestHardwareViewModels
         {
             get;
             private set;

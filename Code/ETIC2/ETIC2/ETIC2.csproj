@@ -147,6 +147,9 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Model\Application\ErrorTopLevel\FirmwareWithTestHardware.cs" />
+    <Compile Include="Model\Application\ErrorTopLevel\TestErrorMessage.cs" />
+    <Compile Include="Model\Application\ErrorTopLevel\TestResult.cs" />
     <Compile Include="Model\Application\FirmwareTopLevel\InitialStateFirmware.cs" />
     <Compile Include="Model\Application\FirmwareTopLevel\TestCollectionResultWithValveHardware.cs" />
     <Compile Include="Model\Application\FirmwareTopLevel\TestErrorMessage.cs" />
@@ -285,6 +288,10 @@
     <Compile Include="ViewModels\AboutDialogViewModels\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
     <Compile Include="ViewModels\DatabaseDataGridViewModel2.cs" />
+    <Compile Include="ViewModels\ErrorDatabaseDataGridViewModel.cs" />
+    <Compile Include="ViewModels\ErrorTopLevelViewModels\FirmwareWithTestHardwareViewModel.cs" />
+    <Compile Include="ViewModels\ErrorTopLevelViewModels\TestErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\ErrorTopLevelViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\ExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveExecuteDoubleDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveSettingsExecuteDialogViewModel.cs" />
@@ -419,6 +426,8 @@
   <ItemGroup>
     <Folder Include="Events\EventArgs\Timer\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Model\Application\HardwareTopLevel\" />
+    <Folder Include="ViewModels\HardwareTopLevelViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />

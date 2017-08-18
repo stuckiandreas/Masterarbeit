@@ -32,6 +32,37 @@ namespace ETIC2.Model
         }
 
         /// <summary>
+        /// Gets the InitialStateFirmwareId with TestCollectionResultId. 
+        /// </summary>
+        /// <returns>
+        /// InitialStateFirmwareId
+        /// </returns>
+        public int GetEntityFrameworkInitialStateFirmwareIdWithTestCollectionResultId(int testCollectionResultId)
+        {
+            return (int)databaseContext.TestCollectionResult.Where(x => x.Id == testCollectionResultId).FirstOrDefault().InitialStateFirmware_Id;
+        }
+
+        /// <summary>
+        /// Gets a List with all InitialStateFirmware Entries. Included with SoftwareVersionsId and TestCollectionId. With ID's -> EntityFramework Type InitialStateFirmware
+        /// </summary>
+        /// <returns>List with all InitialStateFirmware Entries</returns>
+        public EntityFramework.InitialStateFirmware GetEntityFrameworkInitialStateFirmware(int initialStateFirmwareId)
+        {
+            return databaseContext.InitialStateFirmware.Where(x => x.Id == initialStateFirmwareId).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the TestCollectionResult Entry with their id. 
+        /// </summary>
+        /// <returns>
+        /// TestCollectionResult Entry
+        /// </returns>
+        public EntityFramework.TestCollectionResult GetEntityFrameworkTestCollectionResult(int testCollectionResultId)
+        {
+            return databaseContext.TestCollectionResult.Where(x => x.Id == testCollectionResultId).FirstOrDefault();
+        }
+
+        /// <summary>
         /// Gets a List with all TestCollectionResult Entries which has the InitialSateFirmware value. Included with Id for hardware definitions.
         /// </summary>
         /// <param name="initialStateFirmwareId">The initial state firmware identifier.</param>
@@ -49,15 +80,15 @@ namespace ETIC2.Model
         /// <returns>
         /// List with all TestCollectionResult Entries
         /// </returns>
-        public List<Application.TestCollectionResultWithValveHardware> GetApplicationTestCollectionResultsWithValveHardware()
+        public List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware> GetApplicationTestCollectionResultsWithValveHardware()
         {
             List<EntityFramework.TestCollectionResult> testCollectionResultDatabaseList = this.GetEntityFrameworkTestCollectionResults();
-            List<Application.TestCollectionResultWithValveHardware> testCollectionResultList = new List<Application.TestCollectionResultWithValveHardware>();
-            Application.TestCollectionResultWithValveHardware emptyTestCollectionResult;
+            List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware> testCollectionResultList = new List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware>();
+            Application.FirmwareTopLevel.TestCollectionResultWithValveHardware emptyTestCollectionResult;
 
             foreach (var testCollectionResultDatabase in testCollectionResultDatabaseList)
             {
-                emptyTestCollectionResult = new Application.TestCollectionResultWithValveHardware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int), ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string) };
+                emptyTestCollectionResult = new Application.FirmwareTopLevel.TestCollectionResultWithValveHardware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int), ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string) };
                 emptyTestCollectionResult.ExecutionTime = testCollectionResultDatabase.ExecutionDateTime;
                 emptyTestCollectionResult.UserName = testCollectionResultDatabase.UserName;
                 emptyTestCollectionResult.AbortType = this.GetAbortName((int)testCollectionResultDatabase.AbortType_Id);
@@ -97,15 +128,15 @@ namespace ETIC2.Model
         /// <returns>
         /// List with all TestCollectionResult Entries
         /// </returns>
-        public List<Application.TestCollectionResultWithValveHardware> GetApplicationTestCollectionResultsWithValveHardwareWithInitialStateFirmwareFilter(int initialStateFirmwareId)
+        public List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware> GetApplicationTestCollectionResultsWithValveHardwareWithInitialStateFirmwareFilter(int initialStateFirmwareId)
         {
             List<EntityFramework.TestCollectionResult> testCollectionResultDatabaseList = this.GetEntityFrameworkTestCollectionResultsWithInitialStateFirmwareFilter(initialStateFirmwareId);
-            List<Application.TestCollectionResultWithValveHardware> testCollectionResultList = new List<Application.TestCollectionResultWithValveHardware>();
-            Application.TestCollectionResultWithValveHardware emptyTestCollectionResult;
+            List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware> testCollectionResultList = new List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware>();
+            Application.FirmwareTopLevel.TestCollectionResultWithValveHardware emptyTestCollectionResult;
 
             foreach (var testCollectionResultDatabase in testCollectionResultDatabaseList)
             {
-                emptyTestCollectionResult = new Application.TestCollectionResultWithValveHardware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int), ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string) };
+                emptyTestCollectionResult = new Application.FirmwareTopLevel.TestCollectionResultWithValveHardware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int), ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string) };
                 emptyTestCollectionResult.Id = testCollectionResultDatabase.Id;
                 emptyTestCollectionResult.ExecutionTime = testCollectionResultDatabase.ExecutionDateTime;
                 emptyTestCollectionResult.UserName = testCollectionResultDatabase.UserName;
@@ -137,6 +168,52 @@ namespace ETIC2.Model
             }
 
             return testCollectionResultList;
+        }
+
+        public List<Application.ErrorTopLevel.FirmwareWithTestHardware> GetApplicationFirmwareWithTestHardwareWithTestCollectionResultFilter(int testCollectionResultId)
+        {
+            EntityFramework.TestCollectionResult testCollectionResultDatabase = this.GetEntityFrameworkTestCollectionResult(testCollectionResultId);
+            int initialStateFirmwareId = this.GetEntityFrameworkInitialStateFirmwareIdWithTestCollectionResultId(testCollectionResultId);
+            EntityFramework.InitialStateFirmware initialStateFirmwareDatabase = this.GetEntityFrameworkInitialStateFirmware(initialStateFirmwareId);
+
+
+            //List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware> testCollectionResultList = new List<Application.FirmwareTopLevel.TestCollectionResultWithValveHardware>();
+            //Application.FirmwareTopLevel.TestCollectionResultWithValveHardware emptyTestCollectionResult;
+
+            //foreach (var testCollectionResultDatabase in testCollectionResultDatabaseList)
+            //{
+            //    emptyTestCollectionResult = new Application.FirmwareTopLevel.TestCollectionResultWithValveHardware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int), ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string) };
+            //    emptyTestCollectionResult.Id = testCollectionResultDatabase.Id;
+            //    emptyTestCollectionResult.ExecutionTime = testCollectionResultDatabase.ExecutionDateTime;
+            //    emptyTestCollectionResult.UserName = testCollectionResultDatabase.UserName;
+            //    emptyTestCollectionResult.AbortType = this.GetAbortName((int)testCollectionResultDatabase.AbortType_Id);
+            //    emptyTestCollectionResult.CountErrorTest = testCollectionResultDatabase.CountErrorTest;
+            //    emptyTestCollectionResult.ValveSerie = this.GetValveSerieEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.InterfaceType = this.GetInterfaceTypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.ControllerType = this.GetControllerTypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.OptionType = this.GetOptionTypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.ExternalIsolationValve = this.GetExternalIsolationValve((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.ControllerHardwareVersion = this.GetControllerHardwareVersionEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.InterfaceHardwareVersion = this.GetInterfaceHardwareVersionEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.ControllerAssemblyVariant = this.GetControllerAssemblyVariantEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.InterfaceAssemblyVariant = this.GetInterfaceAssemblyVariantEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module1Type = this.GetModule1TypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module1HardwareVersion = this.GetModule1HardwareVersionEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module1AssemblyVariant = this.GetModule1AssemblyVariantEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module2Type = this.GetModule2TypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module2HardwareVersion = this.GetModule2HardwareVersionEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module2AssemblyVariant = this.GetModule2AssemblyVariantEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module3Type = this.GetModule3TypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module3HardwareVersion = this.GetModule3HardwareVersionEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module3AssemblyVariant = this.GetModule3AssemblyVariantEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module4Type = this.GetModule4TypeEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module4HardwareVersion = this.GetModule4HardwareVersionEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+            //    emptyTestCollectionResult.Module4AssemblyVariant = this.GetModule4AssemblyVariantEnum((int)testCollectionResultDatabase.ValveHardware_Id);
+
+            //    testCollectionResultList.Add(emptyTestCollectionResult);
+            //}
+
+            //return testCollectionResultList;
         }
 
         public string GetAbortName(int abortTypeId)

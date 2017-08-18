@@ -4,16 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels
+namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application;
+    using ETIC2.Model.Application.FirmwareTopLevel;
     using Events;
 
     /// <summary>
-    /// First Level of the Master Detail View. Listet the initialStateFirmware entrys.
+    /// First Level of the Firmware Master Detail View. Shows the initialStateFirmware entrys.
     /// </summary>
     public class InitialStateFirmwareViewModel : BasisViewModel
     {

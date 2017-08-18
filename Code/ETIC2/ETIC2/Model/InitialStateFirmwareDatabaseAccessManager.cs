@@ -33,15 +33,15 @@ namespace ETIC2.Model
         /// Gets a List with all InitailStateFirmware Entries. Without any ID's -> Application Type InitialStateValve
         /// </summary>
         /// <returns>List with all InitailStateFirmware Entries</returns>
-        public List<Application.InitialStateFirmware> GetApplicationInitialStateFirmwares()
+        public List<Application.FirmwareTopLevel.InitialStateFirmware> GetApplicationInitialStateFirmwares()
         {
             List<EntityFramework.InitialStateFirmware> initialStateFirmwareDatabaseList = this.GetEntityFrameworkInitialStateFirmwares();
-            List<Application.InitialStateFirmware> initialStateFirmwareList = new List<Application.InitialStateFirmware>();
-            Application.InitialStateFirmware emptyInitialStateFirmware;
+            List<Application.FirmwareTopLevel.InitialStateFirmware> initialStateFirmwareList = new List<Application.FirmwareTopLevel.InitialStateFirmware>();
+            Application.FirmwareTopLevel.InitialStateFirmware emptyInitialStateFirmware;
 
             foreach (var initialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
             {
-                emptyInitialStateFirmware = new Application.InitialStateFirmware() { Id = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
+                emptyInitialStateFirmware = new Application.FirmwareTopLevel.InitialStateFirmware() { Id = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
                 emptyInitialStateFirmware.Id = initialStateFirmwareDatabase.Id;
                 emptyInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
                 emptyInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;

@@ -4,16 +4,15 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels
+namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application;
+    using ETIC2.Model.Application.FirmwareTopLevel;
     using Events;
 
     /// <summary>
-    /// Second Level of the Master Detail View. Listet the TestCollectionResultWithValveHardware entrys.
+    /// Second Level of the Firmware Master Detail View. Shows the TestCollectionResultWithValveHardware entrys.
     /// </summary>
     public class TestCollectionResultWithValveHardwareViewModel : BasisViewModel
     {

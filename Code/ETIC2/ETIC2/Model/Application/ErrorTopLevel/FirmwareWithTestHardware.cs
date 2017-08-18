@@ -1,30 +1,34 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestCollectionResultWithValveHardware.cs" company="VAT Vakuumventile AG">
+// <copyright file="FirmwareWithTestHardware.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.Model.Application.FirmwareTopLevel
+namespace ETIC2.Model.Application.ErrorTopLevel
 {
     using System;
 
     /// <summary>
     /// Seperate Entity Framework Datatype from Application. Without references
     /// </summary>
-    public class TestCollectionResultWithValveHardware
+    public class FirmwareWithTestHardware
     {
-        //TestCollectionResult
-        public int Id;
+        //Firmware
+        public string ValveFirmware;
 
-        public DateTime ExecutionTime;
+        public DateTime ValveFirmwareReleaseTime;
 
-        public string UserName;
+        public string MotionControllerFirmware;
 
-        public string AbortType;
+        public string InterfaceFirmware;
 
-        public short CountErrorTest;
+        public string DriveParameterID;
 
-        //Valve Hardware
+        public string ConfigurationParameterID;
+
+        public string TestCollection;
+
+        //Hardware
         public string ValveSerie;
 
         public string InterfaceType;
@@ -67,7 +71,7 @@ namespace ETIC2.Model.Application.FirmwareTopLevel
 
         public string Module4AssemblyVariant;
 
-        public TestCollectionResultWithValveHardware()
+        public FirmwareWithTestHardware()
         {
         }
     }

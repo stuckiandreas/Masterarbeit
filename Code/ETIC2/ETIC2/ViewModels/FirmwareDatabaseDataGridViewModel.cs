@@ -14,25 +14,25 @@ namespace ETIC2.ViewModels
     using Events.EventArgs.Error;
 
     /// <summary>
-    /// Contains data grid data items.
+    /// Contains the firmware data grid data items.
     /// </summary>
     public class FirmwareDatabaseDataGridViewModel : BasisViewModel
     {
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>
-        private ObservableCollection<InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
+        private ObservableCollection<FirmwareTopLevelViewModels.InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
 
         /// <summary>
-        /// List of all test test collection result entries in the grid view.
+        /// List of all test collection result entries in the grid view.
         /// </summary>
-        private ObservableCollection<TestCollectionResultWithValveHardwareViewModel>
+        private ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>
             testCollectionResultWithValveHardwareViewModels;
 
         /// <summary>
-        /// List of all test test result entries in the grid view.
+        /// List of all test result entries in the grid view.
         /// </summary>
-        private ObservableCollection<TestResultViewModel> testResultVieModels;
+        private ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel> testResultVieModels;
 
         /// <summary>
         /// Events which are available in all view models.
@@ -45,29 +45,29 @@ namespace ETIC2.ViewModels
             this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
 
             this.viewModelEvents = viewModelEvents;
-            this.initialStateFirmwareViewModels = new ObservableCollection<InitialStateFirmwareViewModel>();
+            this.initialStateFirmwareViewModels = new ObservableCollection<FirmwareTopLevelViewModels.InitialStateFirmwareViewModel>();
             this.testCollectionResultWithValveHardwareViewModels =
-                new ObservableCollection<TestCollectionResultWithValveHardwareViewModel>();
-            this.testResultVieModels = new ObservableCollection<TestResultViewModel>();
+                new ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>();
+            this.testResultVieModels = new ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel>();
         }
 
         /// <summary>
-        /// Event to update the DatabaseDataGriedView
+        /// Event to update the Firmware DatabaseDataGriedView
         /// </summary>
         public event EventHandler<System.EventArgs> RefreshChangedEvent;
 
-        public ObservableCollection<InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
+        public ObservableCollection<FirmwareTopLevelViewModels.InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
         {
             get { return this.initialStateFirmwareViewModels; }
         }
 
-        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel>
+        public ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>
             TestCollectionResultWithValveHardwareViewModels
         {
             get { return this.testCollectionResultWithValveHardwareViewModels; }
         }
 
-        public ObservableCollection<TestResultViewModel> TestResultViewModels
+        public ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel> TestResultViewModels
         {
             get { return this.testResultVieModels; }
         }
