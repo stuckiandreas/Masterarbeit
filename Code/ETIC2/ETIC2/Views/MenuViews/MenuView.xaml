@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ETIC2.Views.MenuViews"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <Menu DockPanel.Dock="Top" Height="25">
         <MenuItem Header="Program">
             <MenuItem Header="Settings" HorizontalAlignment="Left" Width="180" Command="{Binding SettingsCommand}"/>

@@ -52,6 +52,9 @@ namespace ETIC2.ViewModels
         /// </summary>
         private object selectedViewModel;
 
+        /// <summary>
+        /// Active DatabaseDataGridViewModel
+        /// </summary>
         private string databaseDataGridSelectedItem;
 
         /// <summary>
@@ -65,32 +68,38 @@ namespace ETIC2.ViewModels
             this.etic2Model = etic2Model;
             this.ViewModelEvents = viewModelEvents;
             this.firmwareDatabaseDataGridViewModel = new FirmwareDatabaseDataGridViewModel(viewModelEvents);
+
+            //Initialize a list with all DatabaseDataGridViewModels 
             this.allDatabaseDataGridViewModels = new ObservableCollection<BasisViewModel>();
             this.allDatabaseDataGridViewModels.Add(new FirmwareDatabaseDataGridViewModel(viewModelEvents));
             this.allDatabaseDataGridViewModels.Add(new DatabaseDataGridViewModel2(viewModelEvents));
+
+            //Set Reference of the view model in the list (if not, the data will not set)
             this.firmwareDatabaseDataGridViewModel
                 = (FirmwareDatabaseDataGridViewModel)this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
-            DatabaseDataGridItems = new ObservableCollection<string>();
-            DatabaseDataGridItems.Add(DatabseDataGridViewModel.Firmware.ToString());
-            DatabaseDataGridItems.Add(DatabseDataGridViewModel.Hardware.ToString());
-            DatabaseDataGridItems.Add(DatabseDataGridViewModel.Error.ToString());
-            databaseDataGridSelectedItem = DatabseDataGridViewModel.Firmware.ToString();
-            SetActiveDatabaseDataGridViewModel();
+
+            //Fill ComboBox List entries for diffrent DatabaseDataGridViews
+            this.DatabaseDataGridItems = new ObservableCollection<string>();
+            this.DatabaseDataGridItems.Add(DatabseDataGridViewModel.Firmware.ToString());
+            this.DatabaseDataGridItems.Add(DatabseDataGridViewModel.Hardware.ToString());
+            this.DatabaseDataGridItems.Add(DatabseDataGridViewModel.Error.ToString());
+            this.databaseDataGridSelectedItem = DatabseDataGridViewModel.Firmware.ToString();
+            this.SetActiveDatabaseDataGridViewModel();
         }
-
-        //public ICommand FirmwareCommand { get; set; }
-
-        //public ICommand DatabaseCommand { get; set; }
 
         public ObservableCollection<string> DatabaseDataGridItems { get; }
 
         public string DatabaseDataGridSelectedItem
         {
-            get { return databaseDataGridSelectedItem; }
+            get
+            {
+                return this.databaseDataGridSelectedItem;
+            }
+
             set
             {
-                databaseDataGridSelectedItem = value;
-                SetActiveDatabaseDataGridViewModel();
+                this.databaseDataGridSelectedItem = value;
+                this.SetActiveDatabaseDataGridViewModel();
             }
         }
 
@@ -114,16 +123,6 @@ namespace ETIC2.ViewModels
             {
                 return this.firmwareDatabaseDataGridViewModel;
             }
-        }
-
-        private void OpenFirmware(object obj)
-        {
-            this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
-        }
-
-        private void OpenDatabase(object obj)
-        {
-            this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is DatabaseDataGridViewModel2).Single();
         }
 
         public override void SubscribeEvents()
@@ -182,9 +181,18 @@ namespace ETIC2.ViewModels
         }
 
         /// <summary>
-        /// Write database information in the DatabaseDataGridView
+        /// Write database information in the DatabaseDataGridView. Depends which View is selected.
         /// </summary>
         private void ReloadDataGrid()
+        {
+            if (this.databaseDataGridSelectedItem == DatabseDataGridViewModel.Firmware.ToString())
+                this.LoadFirmwareDatabaseDataGrid();
+        }
+
+        /// <summary>
+        /// Write only the data for the FirmwareDatabaseDataGridViewModel
+        /// </summary>
+        private void LoadFirmwareDatabaseDataGrid()
         {
             this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
 
@@ -236,9 +244,9 @@ namespace ETIC2.ViewModels
         /// </summary>
         private void SetActiveDatabaseDataGridViewModel()
         {
-            if (databaseDataGridSelectedItem == DatabseDataGridViewModel.Firmware.ToString())
+            if (this.databaseDataGridSelectedItem == DatabseDataGridViewModel.Firmware.ToString())
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
-            else if (databaseDataGridSelectedItem == DatabseDataGridViewModel.Hardware.ToString())
+            else if (this.databaseDataGridSelectedItem == DatabseDataGridViewModel.Hardware.ToString())
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is DatabaseDataGridViewModel2).Single();
         }
     }

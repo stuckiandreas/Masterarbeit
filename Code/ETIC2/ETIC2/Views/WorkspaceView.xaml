@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" Background="LightGray">
         <StackPanel x:Name="navigation" DockPanel.Dock="Top">
             <ComboBox Width="100" ToolTip="Top level of test result database" ItemsSource="{Binding DatabaseDataGridItems}" SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
         </StackPanel>

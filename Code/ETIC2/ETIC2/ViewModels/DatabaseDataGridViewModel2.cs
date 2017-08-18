@@ -18,9 +18,3 @@ namespace ETIC2.ViewModels
         }
     }
 }
-
-
-
-
-
-

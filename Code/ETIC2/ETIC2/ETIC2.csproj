@@ -129,7 +129,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActionCommands\ActionCommand.cs" />
-    <Compile Include="ActionCommands\BaseCommand.cs" />
     <Compile Include="DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
