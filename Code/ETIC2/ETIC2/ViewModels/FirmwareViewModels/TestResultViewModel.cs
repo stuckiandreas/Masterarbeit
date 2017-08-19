@@ -4,11 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
+namespace ETIC2.ViewModels.FirmwareViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application.FirmwareTopLevel;
+    using ETIC2.Model.Application.FirmwareView;
     using Events;
 
     /// <summary>
@@ -16,14 +16,27 @@ namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
     /// </summary>
     public class TestResultViewModel : BasisViewModel
     {
-        public TestResultViewModel(ViewModelEvents viewModelEvents, TestResult testResult, ObservableCollection<FirmwareTopLevelViewModels.TestErrorMessageViewModel> testErrorMessageViewModelList)
+        public TestResultViewModel(ViewModelEvents viewModelEvents, TestResult testResult, ObservableCollection<FirmwareViewModels.TestErrorMessageViewModel> testErrorMessageViewModelList)
             : base(viewModelEvents)
         {
+            this.TestName = testResult.TestName;
+            this.TestVersion = testResult.TestVersion;
             this.StartTime = testResult.StartTime;
             this.EndTime = testResult.EndTime;
             this.Result = testResult.Result;
-            this.TestVersion = testResult.TestVersion;
             this.TestErrorMessageViewModels = testErrorMessageViewModelList;
+        }
+
+        public string TestName
+        {
+            get;
+            set;
+        }
+
+        public short TestVersion
+        {
+            get;
+            set;
         }
 
         public DateTime StartTime
@@ -44,13 +57,7 @@ namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
             set;
         }
 
-        public short TestVersion
-        {
-            get;
-            set;
-        }
-
-        public ObservableCollection<FirmwareTopLevelViewModels.TestErrorMessageViewModel> TestErrorMessageViewModels
+        public ObservableCollection<FirmwareViewModels.TestErrorMessageViewModel> TestErrorMessageViewModels
         {
             get;
             private set;

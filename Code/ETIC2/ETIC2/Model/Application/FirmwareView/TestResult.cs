@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.Model.Application.ErrorTopLevel
+namespace ETIC2.Model.Application.FirmwareView
 {
     using System;
 
@@ -13,13 +13,17 @@ namespace ETIC2.Model.Application.ErrorTopLevel
     /// </summary>
     public class TestResult
     {
+        public int Id;
+
+        public string TestName;
+
+        public short TestVersion;
+
         public DateTime StartTime;
 
         public DateTime EndTime;
 
-        public short TestVersion;
-
-        public int TestCollectionResultId;
+        public string Result;
 
         public TestResult()
         {

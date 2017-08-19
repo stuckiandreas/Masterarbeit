@@ -4,9 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
+namespace ETIC2.ViewModels.FirmwareViewModels
 {
-    using ETIC2.Model.Application.FirmwareTopLevel;
+    using ETIC2.Model.Application.FirmwareView;
     using Events;
 
     /// <summary>

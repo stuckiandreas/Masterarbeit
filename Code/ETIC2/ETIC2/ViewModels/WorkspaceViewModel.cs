@@ -14,9 +14,10 @@ namespace ETIC2.ViewModels
     using ETIC2.Model.Application;
     using Events;
     using Events.EventArgs.Error;
-    using Model.Application.FirmwareTopLevel;
-    using Model.Application.ErrorTopLevel;
+    using Model.Application.FirmwareView;
+    using Model.Application.ErrorView;
     using ErrorTopLevelViewModels;
+    
     /// <summary>
     /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.
     /// </summary>
@@ -235,43 +236,43 @@ namespace ETIC2.ViewModels
 
             List<InitialStateFirmware> initialStateFirmwareList = this.etic2Model.InitialStateFirmwareDatabaseAccessManager.GetApplicationInitialStateFirmwares();
             List<TestCollectionResultWithValveHardware> testCollectionResultWithValveHardwareListInitialStateFirmwareFilter;
-            ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList;
-            List<Model.Application.FirmwareTopLevel.TestResult> testResultListTestCollectionResultWithValveHardwareFilter;
-            List<Model.Application.FirmwareTopLevel.TestResult> testResultList = this.etic2Model.TestResultDatabaseAccessManager.GetApplicationTestResults();
-            ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel> testResultViewModelList;
-            List<Model.Application.FirmwareTopLevel.TestErrorMessage> testErrorMessageListTestResultFilter;
-            ObservableCollection<FirmwareTopLevelViewModels.TestErrorMessageViewModel> testErrorMessageViewModelList;
+            ObservableCollection<FirmwareViewModels.TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList;
+            List<TestResult> testResultListTestCollectionResultWithValveHardwareFilter;
+            List<TestResult> testResultList = this.etic2Model.TestResultDatabaseAccessManager.GetApplicationTestResults();
+            ObservableCollection<FirmwareViewModels.TestResultViewModel> testResultViewModelList;
+            List<Model.Application.FirmwareView.TestErrorMessage> testErrorMessageListTestResultFilter;
+            ObservableCollection<FirmwareViewModels.TestErrorMessageViewModel> testErrorMessageViewModelList;
 
             //Level 1 InitialStateValve (includes TestCollectionResultWithValveHardware List)
             foreach (InitialStateFirmware initialStateFirmware in initialStateFirmwareList)
             {
-                testCollectionResultWithValveHardwareViewModelList = new ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>();
+                testCollectionResultWithValveHardwareViewModelList = new ObservableCollection<FirmwareViewModels.TestCollectionResultWithValveHardwareViewModel>();
                 testCollectionResultWithValveHardwareListInitialStateFirmwareFilter = this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.GetApplicationTestCollectionResultsWithValveHardwareWithInitialStateFirmwareFilter(initialStateFirmware.Id);
 
                 //Level 2 TestCollectionResultWithValveHardware (includes TestResult List)
                 foreach (TestCollectionResultWithValveHardware testCollectionResultWithValveHardware in testCollectionResultWithValveHardwareListInitialStateFirmwareFilter)
                 {
-                    testResultViewModelList = new ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel>();
+                    testResultViewModelList = new ObservableCollection<FirmwareViewModels.TestResultViewModel>();
                     testResultListTestCollectionResultWithValveHardwareFilter = this.etic2Model.TestResultDatabaseAccessManager.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultWithValveHardware.Id);
 
                     //Level 3 TestResult (includes TestErrorMessage List)
-                    foreach (Model.Application.FirmwareTopLevel.TestResult testResult in testResultListTestCollectionResultWithValveHardwareFilter)
+                    foreach (TestResult testResult in testResultListTestCollectionResultWithValveHardwareFilter)
                     {
-                        testErrorMessageViewModelList = new ObservableCollection<FirmwareTopLevelViewModels.TestErrorMessageViewModel>();
+                        testErrorMessageViewModelList = new ObservableCollection<FirmwareViewModels.TestErrorMessageViewModel>();
                         testErrorMessageListTestResultFilter = this.etic2Model.TestErrorMessageDatabaseAccessManager.GetApplicationTestErrorMessagesWithTestResultFilter(testResult.Id);
 
                         //Level 4 TestErrorMessage
-                        foreach (Model.Application.FirmwareTopLevel.TestErrorMessage testErrorMessage in testErrorMessageListTestResultFilter)
-                            testErrorMessageViewModelList.Add(new FirmwareTopLevelViewModels.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessage));
+                        foreach (Model.Application.FirmwareView.TestErrorMessage testErrorMessage in testErrorMessageListTestResultFilter)
+                            testErrorMessageViewModelList.Add(new FirmwareViewModels.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessage));
 
-                        testResultViewModelList.Add(new FirmwareTopLevelViewModels.TestResultViewModel(this.ViewModelEvents, testResult, testErrorMessageViewModelList));
+                        testResultViewModelList.Add(new FirmwareViewModels.TestResultViewModel(this.ViewModelEvents, testResult, testErrorMessageViewModelList));
                     }
 
                     testResultList = this.etic2Model.TestResultDatabaseAccessManager.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultWithValveHardware.Id);
-                    testCollectionResultWithValveHardwareViewModelList.Add(new FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel(this.ViewModelEvents, testCollectionResultWithValveHardware, testResultViewModelList));
+                    testCollectionResultWithValveHardwareViewModelList.Add(new FirmwareViewModels.TestCollectionResultWithValveHardwareViewModel(this.ViewModelEvents, testCollectionResultWithValveHardware, testResultViewModelList));
                 }
 
-                this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new FirmwareTopLevelViewModels.InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultWithValveHardwareViewModelList));
+                this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new FirmwareViewModels.InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultWithValveHardwareViewModelList));
             }
         }
 
@@ -280,27 +281,7 @@ namespace ETIC2.ViewModels
         /// </summary>
         private void LoadErrorDatabaseDataGrid()
         {
-            this.errorDatabaseDataGridViewModel.TestErrorMessageViewModels.Clear();
 
-            List<Model.Application.ErrorTopLevel.TestErrorMessage> testErrorMessageList = this.etic2Model.TestErrorMessageDatabaseAccessManager.GetApplicationTestErrorMessages();
-            List<Model.Application.ErrorTopLevel.TestResult> testResultListTestErrorMessageFilter;
-            ObservableCollection<TestResultViewModel> testResultViewModelList;
-            List<FirmwareWithTestHardware> firmwareWithTestHardwareListTestResultFilter;
-            ObservableCollection<FirmwareWithTestHardwareViewModel> firmwareWithTestHardwareViewModelList;
-
-            //Level 1 TestErrorMessage (includes TestResult List)
-            foreach (Model.Application.ErrorTopLevel.TestErrorMessage testErrorMessage in testErrorMessageList)
-            {
-                testResultViewModelList = new ObservableCollection<TestResultViewModel>();
-                testResultListTestErrorMessageFilter = this.etic2Model.TestResultDatabaseAccessManager.GetApplicationTestResultsWithTestResultFilter(testErrorMessage.TestResultId);
-
-                //Level 2 TestResult (included FirmwareWithTestHardware List)
-                foreach (Model.Application.ErrorTopLevel.TestResult testResult in testResultListTestErrorMessageFilter)
-                {
-                    firmwareWithTestHardwareViewModelList = new ObservableCollection<FirmwareWithTestHardwareViewModel>();
-                    firmwareWithTestHardwareListTestResultFilter = this.etic2Model.InitialStateFirmwareDatabaseAccessManager
-                }
-            }
         }
 
         /// <summary>

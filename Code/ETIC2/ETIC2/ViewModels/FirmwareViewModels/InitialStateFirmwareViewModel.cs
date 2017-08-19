@@ -4,12 +4,12 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
+namespace ETIC2.ViewModels.FirmwareViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application.FirmwareTopLevel;
+    using ETIC2.Model.Application.FirmwareView;
     using Events;
 
     /// <summary>

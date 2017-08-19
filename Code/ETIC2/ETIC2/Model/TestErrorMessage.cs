@@ -12,9 +12,9 @@ namespace ETIC2.Model
     /// <summary>
     /// Gets the Information from the TestErrorMessage table
     /// </summary>
-    public class TestErrorMessageDatabaseAccessManager : DatabaseAccessManager
+    public class TestErrorMessage : DatabaseAccessManager
     {
-        public TestErrorMessageDatabaseAccessManager()
+        public TestErrorMessage()
         {
         }
 
@@ -43,18 +43,15 @@ namespace ETIC2.Model
         /// </summary>
         /// <param name="testResultId">The test result identifier.</param>
         /// <returns>List with all TestErrorMessage Entries</returns>
-        public List<Application.ErrorTopLevel.TestErrorMessage> GetApplicationTestErrorMessages()
+        public List<Application.ErrorView.TestErrorMessage> GetApplicationTestErrorMessages()
         {
             List<EntityFramework.TestErrorMessage> testErrorMessageDatabaseList = this.GetEntityFrameworkTestErrorMessages();
-            List<Application.ErrorTopLevel.TestErrorMessage> testErrorMessageList = new List<Application.ErrorTopLevel.TestErrorMessage>();
-            Application.ErrorTopLevel.TestErrorMessage emptyTestErrorMessage;
+            List<Application.ErrorView.TestErrorMessage> testErrorMessageList = new List<Application.ErrorView.TestErrorMessage>();
+            Application.ErrorView.TestErrorMessage emptyTestErrorMessage;
 
             foreach (var testErrorMessageDatabase in testErrorMessageDatabaseList)
             {
-                emptyTestErrorMessage = new Application.ErrorTopLevel.TestErrorMessage() { Description = default(string) };
-                emptyTestErrorMessage.Description = testErrorMessageDatabase.Description;
 
-                testErrorMessageList.Add(emptyTestErrorMessage);
             }
 
             return testErrorMessageList;
@@ -65,15 +62,15 @@ namespace ETIC2.Model
         /// </summary>
         /// <param name="testResultId">The test result identifier.</param>
         /// <returns>List with all TestErrorMessage Entries</returns>
-        public List<Application.FirmwareTopLevel.TestErrorMessage> GetApplicationTestErrorMessagesWithTestResultFilter(int testResultId)
+        public List<Application.FirmwareView.TestErrorMessage> GetApplicationTestErrorMessagesWithTestResultFilter(int testResultId)
         {
             List<EntityFramework.TestErrorMessage> testErrorMessageDatabaseList = this.GetEntityFrameworkTestErrorMessagesWithTestResultFilter(testResultId);
-            List<Application.FirmwareTopLevel.TestErrorMessage> testErrorMessageList = new List<Application.FirmwareTopLevel.TestErrorMessage>();
-            Application.FirmwareTopLevel.TestErrorMessage emptyTestErrorMessage;
+            List<Application.FirmwareView.TestErrorMessage> testErrorMessageList = new List<Application.FirmwareView.TestErrorMessage>();
+            Application.FirmwareView.TestErrorMessage emptyTestErrorMessage;
 
             foreach (var testErrorMessageDatabase in testErrorMessageDatabaseList)
             {
-                emptyTestErrorMessage = new Application.FirmwareTopLevel.TestErrorMessage() { Description = default(string) };
+                emptyTestErrorMessage = new Application.FirmwareView.TestErrorMessage() { Description = default(string) };
                 emptyTestErrorMessage.Description = testErrorMessageDatabase.Description;
 
                 testErrorMessageList.Add(emptyTestErrorMessage);

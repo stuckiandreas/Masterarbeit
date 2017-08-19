@@ -10,7 +10,7 @@
 
     <DockPanel LastChildFill="True" Background="LightGray">
         <StackPanel x:Name="navigation" DockPanel.Dock="Top">
-            <ComboBox Width="100" ToolTip="Top level of test result database" ItemsSource="{Binding DatabaseDataGridItems}" SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
+            <ComboBox Width="100" ToolTip="Diffrent database views" ItemsSource="{Binding DatabaseDataGridItems}" SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
         </StackPanel>
         <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
     </DockPanel>

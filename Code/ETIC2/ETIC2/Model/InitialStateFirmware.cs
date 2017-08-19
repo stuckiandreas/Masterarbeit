@@ -14,9 +14,9 @@ namespace ETIC2.Model
     /// Gets the Information from the InitialStateFirmware table
     /// Neccesary to define a initial state firmware because the TTIC2 application needs this information to update valve hardware before the test collection starts
     /// </summary>
-    public class InitialStateFirmwareDatabaseAccessManager : DatabaseAccessManager
+    public class InitialStateFirmware : DatabaseAccessManager
     {
-        public InitialStateFirmwareDatabaseAccessManager()
+        public InitialStateFirmware()
         {
         }
 
@@ -33,15 +33,15 @@ namespace ETIC2.Model
         /// Gets a List with all InitailStateFirmware Entries. Without any ID's -> Application Type InitialStateValve
         /// </summary>
         /// <returns>List with all InitailStateFirmware Entries</returns>
-        public List<Application.FirmwareTopLevel.InitialStateFirmware> GetApplicationInitialStateFirmwares()
+        public List<Application.FirmwareView.InitialStateFirmware> GetApplicationInitialStateFirmwares()
         {
             List<EntityFramework.InitialStateFirmware> initialStateFirmwareDatabaseList = this.GetEntityFrameworkInitialStateFirmwares();
-            List<Application.FirmwareTopLevel.InitialStateFirmware> initialStateFirmwareList = new List<Application.FirmwareTopLevel.InitialStateFirmware>();
-            Application.FirmwareTopLevel.InitialStateFirmware emptyInitialStateFirmware;
+            List<Application.FirmwareView.InitialStateFirmware> initialStateFirmwareList = new List<Application.FirmwareView.InitialStateFirmware>();
+            Application.FirmwareView.InitialStateFirmware emptyInitialStateFirmware;
 
             foreach (var initialStateFirmwareDatabase in initialStateFirmwareDatabaseList)
             {
-                emptyInitialStateFirmware = new Application.FirmwareTopLevel.InitialStateFirmware() { Id = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
+                emptyInitialStateFirmware = new Application.FirmwareView.InitialStateFirmware() { Id = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
                 emptyInitialStateFirmware.Id = initialStateFirmwareDatabase.Id;
                 emptyInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmwareDatabase.SoftwareVersions_Id_Firmware);
                 emptyInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmwareDatabase.ValveFirmwareReleaseTime;

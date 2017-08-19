@@ -21,18 +21,18 @@ namespace ETIC2.ViewModels
         /// <summary>
         /// List of all test initial state firmware entries in the grid view.
         /// </summary>
-        private ObservableCollection<FirmwareTopLevelViewModels.InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
+        private ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
 
         /// <summary>
         /// List of all test collection result entries in the grid view.
         /// </summary>
-        private ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>
+        private ObservableCollection<FirmwareViewModels.TestCollectionResultWithValveHardwareViewModel>
             testCollectionResultWithValveHardwareViewModels;
 
         /// <summary>
         /// List of all test result entries in the grid view.
         /// </summary>
-        private ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel> testResultVieModels;
+        private ObservableCollection<FirmwareViewModels.TestResultViewModel> testResultVieModels;
 
         /// <summary>
         /// Events which are available in all view models.
@@ -45,10 +45,10 @@ namespace ETIC2.ViewModels
             this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
 
             this.viewModelEvents = viewModelEvents;
-            this.initialStateFirmwareViewModels = new ObservableCollection<FirmwareTopLevelViewModels.InitialStateFirmwareViewModel>();
+            this.initialStateFirmwareViewModels = new ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel>();
             this.testCollectionResultWithValveHardwareViewModels =
-                new ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>();
-            this.testResultVieModels = new ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel>();
+                new ObservableCollection<FirmwareViewModels.TestCollectionResultWithValveHardwareViewModel>();
+            this.testResultVieModels = new ObservableCollection<FirmwareViewModels.TestResultViewModel>();
         }
 
         /// <summary>
@@ -56,18 +56,18 @@ namespace ETIC2.ViewModels
         /// </summary>
         public event EventHandler<System.EventArgs> RefreshChangedEvent;
 
-        public ObservableCollection<FirmwareTopLevelViewModels.InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
+        public ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
         {
             get { return this.initialStateFirmwareViewModels; }
         }
 
-        public ObservableCollection<FirmwareTopLevelViewModels.TestCollectionResultWithValveHardwareViewModel>
+        public ObservableCollection<FirmwareViewModels.TestCollectionResultWithValveHardwareViewModel>
             TestCollectionResultWithValveHardwareViewModels
         {
             get { return this.testCollectionResultWithValveHardwareViewModels; }
         }
 
-        public ObservableCollection<FirmwareTopLevelViewModels.TestResultViewModel> TestResultViewModels
+        public ObservableCollection<FirmwareViewModels.TestResultViewModel> TestResultViewModels
         {
             get { return this.testResultVieModels; }
         }

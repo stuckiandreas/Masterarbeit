@@ -12,22 +12,22 @@ namespace ETIC2.Model.Application
     {
         public ETIC2Model()
         {
-            this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettingsDatabaseAccessManager();
-            this.InitialStateFirmwareDatabaseAccessManager = new InitialStateFirmwareDatabaseAccessManager();
-            this.TestCollectionResultWithHardwareDatabaseAccessManager = new TestCollectionResultWithHardwareDatabaseAccessManager();
-            this.TestResultDatabaseAccessManager = new TestResultDatabaseAccessManager();
-            this.TestErrorMessageDatabaseAccessManager = new TestErrorMessageDatabaseAccessManager();
+            this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettings();
+            this.InitialStateFirmwareDatabaseAccessManager = new InitialStateFirmware();
+            this.TestCollectionResultWithHardwareDatabaseAccessManager = new TestCollectionResultWithHardware();
+            this.TestResultDatabaseAccessManager = new TestResult();
+            this.TestErrorMessageDatabaseAccessManager = new TestErrorMessage();
         }
 
-        public DatabaseConnectionSettingsDatabaseAccessManager DatabaseConnectionSettingsDatabaseAccessManager { get; }
+        public DatabaseConnectionSettings DatabaseConnectionSettingsDatabaseAccessManager { get; }
 
-        public InitialStateFirmwareDatabaseAccessManager InitialStateFirmwareDatabaseAccessManager { get; }
+        public InitialStateFirmware InitialStateFirmwareDatabaseAccessManager { get; }
 
-        public TestCollectionResultWithHardwareDatabaseAccessManager TestCollectionResultWithHardwareDatabaseAccessManager { get; }
+        public TestCollectionResultWithHardware TestCollectionResultWithHardwareDatabaseAccessManager { get; }
 
-        public TestResultDatabaseAccessManager TestResultDatabaseAccessManager { get; }
+        public TestResult TestResultDatabaseAccessManager { get; }
 
-        public TestErrorMessageDatabaseAccessManager TestErrorMessageDatabaseAccessManager { get; }
+        public TestErrorMessage TestErrorMessageDatabaseAccessManager { get; }
 
         /// <summary>
         /// Builds the database context. Neccesary to update the view with actual data from the database.

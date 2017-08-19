@@ -147,15 +147,13 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="Model\Application\ErrorTopLevel\FirmwareWithTestHardware.cs" />
-    <Compile Include="Model\Application\ErrorTopLevel\TestErrorMessage.cs" />
-    <Compile Include="Model\Application\ErrorTopLevel\TestResult.cs" />
-    <Compile Include="Model\Application\FirmwareTopLevel\InitialStateFirmware.cs" />
-    <Compile Include="Model\Application\FirmwareTopLevel\TestCollectionResultWithValveHardware.cs" />
-    <Compile Include="Model\Application\FirmwareTopLevel\TestErrorMessage.cs" />
-    <Compile Include="Model\Application\FirmwareTopLevel\TestResult.cs" />
+    <Compile Include="Model\Application\ErrorView\TestErrorMessage.cs" />
+    <Compile Include="Model\Application\FirmwareView\InitialStateFirmware.cs" />
+    <Compile Include="Model\Application\FirmwareView\TestCollectionResultWithValveHardware.cs" />
+    <Compile Include="Model\Application\FirmwareView\TestErrorMessage.cs" />
+    <Compile Include="Model\Application\FirmwareView\TestResult.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
-    <Compile Include="Model\DatabaseConnectionSettingsDatabaseAccessManager.cs" />
+    <Compile Include="Model\DatabaseConnectionSettings.cs" />
     <Compile Include="Model\EntityFramework\AbortType.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -279,9 +277,9 @@
     <Compile Include="Model\EntityFramework\ValveSerie.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Model\InitialStateFirmwareDatabaseAccessManager.cs" />
-    <Compile Include="Model\TestCollectionResultWithHardwareDatabaseAccessManager.cs" />
-    <Compile Include="Model\TestErrorMessageDatabaseAccessManager.cs" />
+    <Compile Include="Model\InitialStateFirmware.cs" />
+    <Compile Include="Model\TestCollectionResultWithHardware.cs" />
+    <Compile Include="Model\TestErrorMessage.cs" />
     <Compile Include="Settings.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -289,21 +287,19 @@
     <Compile Include="ViewModels\BasisViewModel.cs" />
     <Compile Include="ViewModels\DatabaseDataGridViewModel2.cs" />
     <Compile Include="ViewModels\ErrorDatabaseDataGridViewModel.cs" />
-    <Compile Include="ViewModels\ErrorTopLevelViewModels\FirmwareWithTestHardwareViewModel.cs" />
-    <Compile Include="ViewModels\ErrorTopLevelViewModels\TestErrorMessageViewModel.cs" />
-    <Compile Include="ViewModels\ErrorTopLevelViewModels\TestResultViewModel.cs" />
+    <Compile Include="ViewModels\ErrorViewModels\TestErrorMessageViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\ExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveExecuteDoubleDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveSettingsExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\FirmwareDatabaseDataGridViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareTopLevelViewModels\InitialStateFirmwareViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareViewModels\InitialStateFirmwareViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\InputBaseViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestErrorMessageViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareTopLevelViewModels\TestResultViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareViewModels\TestErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">
       <DependentUpon>AboutDialogView.xaml</DependentUpon>
@@ -392,7 +388,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\ETIC2Model.cs" />
-    <Compile Include="Model\TestResultDatabaseAccessManager.cs" />
+    <Compile Include="Model\TestResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -426,8 +422,8 @@
   <ItemGroup>
     <Folder Include="Events\EventArgs\Timer\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Model\Application\HardwareTopLevel\" />
-    <Folder Include="ViewModels\HardwareTopLevelViewModels\" />
+    <Folder Include="Model\Application\HardwareView\" />
+    <Folder Include="ViewModels\HardwareViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />

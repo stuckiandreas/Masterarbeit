@@ -14,14 +14,14 @@ namespace ETIC2.Model
     /// Class is used to ask and set the database version.
     /// </summary>
     /// <seealso cref="DatabaseAccessManager" />
-    public class DatabaseConnectionSettingsDatabaseAccessManager : DatabaseAccessManager
+    public class DatabaseConnectionSettings : DatabaseAccessManager
     {
         /// <summary>
         /// Database version string. Signal word in config data.
         /// </summary>
         public string DatabaseVersionString = "database version";
 
-        public DatabaseConnectionSettingsDatabaseAccessManager()
+        public DatabaseConnectionSettings()
         {
         }
 

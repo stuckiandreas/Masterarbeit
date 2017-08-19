@@ -24,11 +24,6 @@ namespace ETIC2.ViewModels
         private ObservableCollection<ErrorTopLevelViewModels.TestErrorMessageViewModel> testErrorMessageViewModels;
 
         /// <summary>
-        /// List of all test result entries in the grid view.
-        /// </summary>
-        private ObservableCollection<ErrorTopLevelViewModels.TestResultViewModel> testResultViewModels;
-
-        /// <summary>
         /// Events which are available in all view models.
         /// </summary>
         private ViewModelEvents viewModelEvents;
@@ -40,7 +35,6 @@ namespace ETIC2.ViewModels
 
             this.viewModelEvents = viewModelEvents;
             this.testErrorMessageViewModels = new ObservableCollection<ErrorTopLevelViewModels.TestErrorMessageViewModel>();
-            this.testResultViewModels = new ObservableCollection<ErrorTopLevelViewModels.TestResultViewModel>();
         }
 
         /// <summary>
@@ -51,11 +45,6 @@ namespace ETIC2.ViewModels
         public ObservableCollection<ErrorTopLevelViewModels.TestErrorMessageViewModel> TestErrorMessageViewModels
         {
             get { return this.testErrorMessageViewModels; }
-        }
-
-        public ObservableCollection<ErrorTopLevelViewModels.TestResultViewModel> TestResultViewModels
-        {
-            get { return this.testResultViewModels; }
         }
 
         public ICommand RefreshCommand { get; private set; }

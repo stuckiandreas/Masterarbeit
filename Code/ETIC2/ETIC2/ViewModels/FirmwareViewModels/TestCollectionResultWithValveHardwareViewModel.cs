@@ -4,11 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
+namespace ETIC2.ViewModels.FirmwareViewModels
 {
     using System;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application.FirmwareTopLevel;
+    using ETIC2.Model.Application.FirmwareView;
     using Events;
 
     /// <summary>
@@ -16,7 +16,7 @@ namespace ETIC2.ViewModels.FirmwareTopLevelViewModels
     /// </summary>
     public class TestCollectionResultWithValveHardwareViewModel : BasisViewModel
     {
-        public TestCollectionResultWithValveHardwareViewModel(ViewModelEvents viewModelEvents, TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, ObservableCollection<TestResultViewModel> testResultViewModelList)
+        public TestCollectionResultWithValveHardwareViewModel(ViewModelEvents viewModelEvents, Model.Application.FirmwareView.TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, ObservableCollection<TestResultViewModel> testResultViewModelList)
             : base(viewModelEvents)
         {
             this.ExecutionTime = testCollectionResultWithValveHardware.ExecutionTime;

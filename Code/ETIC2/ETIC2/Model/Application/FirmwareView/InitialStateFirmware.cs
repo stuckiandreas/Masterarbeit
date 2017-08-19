@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.Model.Application.FirmwareTopLevel
+namespace ETIC2.Model.Application.FirmwareView
 {
     using System;
 

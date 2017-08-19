@@ -72,6 +72,8 @@
                                     <dxg:DataControlDetailDescriptor.DataControl>
                                         <dxg:GridControl AutoPopulateColumns="True">
                                             <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="TestName" BestFitArea="Rows"/>
+                                                <dxg:GridColumn FieldName="TestVersion" BestFitArea="Rows"/>
                                                 <dxg:GridColumn FieldName="StartTime" UnboundType="Decimal" BestFitArea="Rows">
                                                     <dxg:GridColumn.EditSettings>
                                                         <dxe:TextEditSettings DisplayFormat="G" />
@@ -83,7 +85,6 @@
                                                     </dxg:GridColumn.EditSettings>
                                                 </dxg:GridColumn>
                                                 <dxg:GridColumn FieldName="Result" BestFitArea="Rows"/>
-                                                <dxg:GridColumn FieldName="TestVersion" BestFitArea="Rows"/>
                                             </dxg:GridControl.Columns>
                                             <dxg:GridControl.DetailDescriptor>
                                                 <dxg:DataControlDetailDescriptor ItemsSourcePath="TestErrorMessageViewModels">
