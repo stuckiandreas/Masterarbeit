@@ -10,13 +10,14 @@ namespace ETIC2.ViewModels.FirmwareViewModels
     using System.Collections.ObjectModel;
     using ETIC2.Model.Application.FirmwareView;
     using Events;
+    using General;
 
     /// <summary>
     /// Second Level of the Firmware Master Detail View. Shows the TestCollectionResultWithValveHardware entrys.
     /// </summary>
-    public class TestCollectionResultWithValveHardwareViewModel : BasisViewModel
+    public class TestCollectionResultAndValveHardwareViewModel : BasisViewModel
     {
-        public TestCollectionResultWithValveHardwareViewModel(ViewModelEvents viewModelEvents, Model.Application.FirmwareView.TestCollectionResultWithValveHardware testCollectionResultWithValveHardware, ObservableCollection<TestResultViewModel> testResultViewModelList)
+        public TestCollectionResultAndValveHardwareViewModel(ViewModelEvents viewModelEvents, TestCollectionResultAndValveHardware testCollectionResultWithValveHardware, ObservableCollection<TestResultViewModel> testResultViewModelList)
             : base(viewModelEvents)
         {
             this.ExecutionTime = testCollectionResultWithValveHardware.ExecutionTime;

@@ -47,16 +47,16 @@ namespace ETIC2.ViewModels.ExecuteDialogViewModels
         /// </summary>
         public override void Execute()
         {
-            this.etic2Model.InitialStateFirmwareDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
-            this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
-            this.etic2Model.TestResultDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
-            this.etic2Model.TestErrorMessageDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.etic2Model.InitialStateFirmware.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.etic2Model.TestCollectionResult.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.etic2Model.TestResult.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.etic2Model.TestErrorMessage.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
 
             Properties.Settings.Default.DatabaseName = TextInputViewModel1.TextInput;
             Properties.Settings.Default.ServerName = TextInputViewModel2.TextInput;
             Properties.Settings.Default.Save();
 
-            if (this.etic2Model.InitialStateFirmwareDatabaseAccessManager.IsDatabaseAvailable())
+            if (this.etic2Model.InitialStateFirmware.IsDatabaseAvailable())
                 this.viewModelEvents.OnChangeDatabaseSettings(this, new DatabaseAccessEventArgs(Properties.Settings.Default.DatabaseName, DatabaseAvailability.Available));
         }
     }

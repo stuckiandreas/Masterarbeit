@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DatabaseConnectionSettingsDatabaseAccessManager.cs" company="VAT Vakuumventile AG">
+// <copyright file="DatabaseConnectionSettings.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------

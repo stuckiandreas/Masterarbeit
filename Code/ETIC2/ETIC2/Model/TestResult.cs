@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestResultDatabaseAccessManager.cs" company="VAT Vakuumventile AG">
+// <copyright file="TestResult.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -43,15 +43,15 @@ namespace ETIC2.Model
         /// Gets a List with all TestResult Entries. Withoud Id for Result and TestVersion definitions -> Application Type
         /// </summary>
         /// <returns>List with all TestResult Entries</returns>
-        public List<Application.FirmwareView.TestResult> GetApplicationTestResults()
+        public List<Application.General.TestResult> GetApplicationTestResults()
         {
             List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResults();
-            List<Application.FirmwareView.TestResult> testResultList = new List<Application.FirmwareView.TestResult>();
-            Application.FirmwareView.TestResult emptyTestResult;
+            List<Application.General.TestResult> testResultList = new List<Application.General.TestResult>();
+            Application.General.TestResult emptyTestResult;
 
             foreach (var testResultDatabase in testResultDatabaseList)
             {
-                emptyTestResult = new Application.FirmwareView.TestResult() { Id = default(int), StartTime = default(DateTime), EndTime = default(DateTime), Result = default(string), TestVersion = default(short) };
+                emptyTestResult = new Application.General.TestResult() { Id = default(int), StartTime = default(DateTime), EndTime = default(DateTime), Result = default(string), TestVersion = default(short) };
                 emptyTestResult.Id = testResultDatabase.Id;
                 emptyTestResult.StartTime = testResultDatabase.StartTime;
                 emptyTestResult.EndTime = testResultDatabase.EndTime;
@@ -69,15 +69,15 @@ namespace ETIC2.Model
         /// </summary>
         /// <param name="testCollectionResultId">The test collection result identifier.</param>
         /// <returns>List with all TestResult Entries</returns>
-        public List<Application.FirmwareView.TestResult> GetApplicationTestResultsWithTestCollectionResultFilter(int testCollectionResultId)
+        public List<Application.General.TestResult> GetApplicationTestResultsWithTestCollectionResultFilter(int testCollectionResultId)
         {
             List<EntityFramework.TestResult> testResultDatabaseList = this.GetEntityFrameworkTestResultsWithTestCollectionResultFilter(testCollectionResultId);
-            List<Application.FirmwareView.TestResult> testResultList = new List<Application.FirmwareView.TestResult>();
-            Application.FirmwareView.TestResult emptyTestResult;
+            List<Application.General.TestResult> testResultList = new List<Application.General.TestResult>();
+            Application.General.TestResult emptyTestResult;
 
             foreach (var testResultDatabase in testResultDatabaseList)
             {
-                emptyTestResult = new Application.FirmwareView.TestResult() { Id = default(int), TestName = default(string), TestVersion = default(short), StartTime = default(DateTime), EndTime = default(DateTime), Result = default(string) };
+                emptyTestResult = new Application.General.TestResult() { Id = default(int), TestName = default(string), TestVersion = default(short), StartTime = default(DateTime), EndTime = default(DateTime), Result = default(string) };
                 emptyTestResult.Id = testResultDatabase.Id;
                 emptyTestResult.StartTime = testResultDatabase.StartTime;
                 emptyTestResult.EndTime = testResultDatabase.EndTime;
@@ -94,17 +94,6 @@ namespace ETIC2.Model
         private string GetResultName(int resultTypeId)
         {
             return databaseContext.ResultType.Where(x => x.Id == resultTypeId).FirstOrDefault().Name;
-        }
-
-        private short GetTestVersion(int testVersionId)
-        {
-            return databaseContext.TestVersion.Where(x => x.Id == testVersionId).FirstOrDefault().Number;
-        }
-
-        private string GetTestName(int testVersionId)
-        {
-            int testInformationId = (int)databaseContext.TestVersion.Where(x => x.Id == testVersionId).FirstOrDefault().TestInformation_Id;
-            return databaseContext.TestInformation.Where(x => x.Id == testInformationId).FirstOrDefault().Name;
         }
     }
 }

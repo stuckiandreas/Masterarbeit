@@ -149,9 +149,11 @@
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\Application\ErrorView\TestErrorMessage.cs" />
     <Compile Include="Model\Application\FirmwareView\InitialStateFirmware.cs" />
-    <Compile Include="Model\Application\FirmwareView\TestCollectionResultWithValveHardware.cs" />
-    <Compile Include="Model\Application\FirmwareView\TestErrorMessage.cs" />
-    <Compile Include="Model\Application\FirmwareView\TestResult.cs" />
+    <Compile Include="Model\Application\FirmwareView\TestCollectionResultAndValveHardware.cs" />
+    <Compile Include="Model\Application\General\TestErrorMessage.cs" />
+    <Compile Include="Model\Application\General\TestResult.cs" />
+    <Compile Include="Model\Application\HardwareView\TestCollectionResultAndInitialStateFirmware.cs" />
+    <Compile Include="Model\Application\HardwareView\ValveHardware.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
     <Compile Include="Model\DatabaseConnectionSettings.cs" />
     <Compile Include="Model\EntityFramework\AbortType.cs">
@@ -278,14 +280,15 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Model\InitialStateFirmware.cs" />
-    <Compile Include="Model\TestCollectionResultWithHardware.cs" />
+    <Compile Include="Model\TestCollectionResult.cs" />
     <Compile Include="Model\TestErrorMessage.cs" />
+    <Compile Include="Model\ValveHardware.cs" />
     <Compile Include="Settings.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="ViewModels\AboutDialogViewModels\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
-    <Compile Include="ViewModels\DatabaseDataGridViewModel2.cs" />
+    <Compile Include="ViewModels\HardwareDatabaseDataGridViewModel.cs" />
     <Compile Include="ViewModels\ErrorDatabaseDataGridViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModels\TestErrorMessageViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\ExecuteDialogViewModel.cs" />
@@ -293,19 +296,21 @@
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveSettingsExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\FirmwareDatabaseDataGridViewModel.cs" />
     <Compile Include="ViewModels\FirmwareViewModels\InitialStateFirmwareViewModel.cs" />
+    <Compile Include="ViewModels\HardwareViewModels\TestCollectionResultAndInitialStateFirmwareViewModel.cs" />
+    <Compile Include="ViewModels\HardwareViewModels\ValveHardwareViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\InputBaseViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareViewModels\TestCollectionResultWithValveHardwareViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareViewModels\TestErrorMessageViewModel.cs" />
-    <Compile Include="ViewModels\FirmwareViewModels\TestResultViewModel.cs" />
+    <Compile Include="ViewModels\FirmwareViewModels\TestCollectionResultAndValveHardwareViewModel.cs" />
+    <Compile Include="ViewModels\GeneralViewModels\TestErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\GeneralViewModels\TestResultViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">
       <DependentUpon>AboutDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DatabaseDataGridView2.xaml.cs">
-      <DependentUpon>DatabaseDataGridView2.xaml</DependentUpon>
+    <Compile Include="Views\ErrorDatabaseDataGridView.xaml.cs">
+      <DependentUpon>ErrorDatabaseDataGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecuteDialogViews\SaveExecuteDoubleDialogView.xaml.cs">
       <DependentUpon>SaveExecuteDoubleDialogView.xaml</DependentUpon>
@@ -315,6 +320,9 @@
     </Compile>
     <Compile Include="Views\FirmwareDatabaseDataGridView.xaml.cs">
       <DependentUpon>FirmwareDatabaseDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HardwareDatabaseDataGridView.xaml.cs">
+      <DependentUpon>HardwareDatabaseDataGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputViews\TextInputView.xaml.cs">
       <DependentUpon>TextInputView.xaml</DependentUpon>
@@ -353,7 +361,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DatabaseDataGridView2.xaml">
+    <Page Include="Views\ErrorDatabaseDataGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +374,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FirmwareDatabaseDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HardwareDatabaseDataGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -422,8 +434,6 @@
   <ItemGroup>
     <Folder Include="Events\EventArgs\Timer\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Model\Application\HardwareView\" />
-    <Folder Include="ViewModels\HardwareViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />

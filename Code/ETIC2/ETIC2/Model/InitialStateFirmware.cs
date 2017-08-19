@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="InitialStateFirmwareDatabaseAccessManager.cs" company="VAT Vakuumventile AG">
+// <copyright file="InitialStateFirmware.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -55,46 +55,6 @@ namespace ETIC2.Model
             }
 
             return initialStateFirmwareList;
-        }
-
-        /// <summary>
-        /// Gets the name of the test collection with the test collection id entry.
-        /// </summary>
-        /// <param name="testCollectionId">The test collection identifier.</param>
-        /// <returns>name of the test collection</returns>
-        public string GetTestCollectionName(int testCollectionId)
-        {
-            return databaseContext.TestCollection.Where(x => x.Id == testCollectionId).FirstOrDefault().Name;
-        }
-
-        /// <summary>
-        /// Gets the name of the software versions with the software versions id entry.
-        /// </summary>
-        /// <param name="softwareVersionsId">The software versions identifier.</param>
-        /// <returns>name of the software versions</returns>
-        public string GetSoftwareVersionsName(int softwareVersionsId)
-        {
-            return databaseContext.SoftwareVersions.Where(x => x.Id == softwareVersionsId).FirstOrDefault().Software;
-        }
-
-        /// <summary>
-        /// Gets the drive parameter string id with the drive parameter id entry.
-        /// </summary>
-        /// <param name="driveParameterId">The drive parameter identifier.</param>
-        /// <returns>drive parameter string id</returns>
-        public string GetDriveParameterID(int driveParameterId)
-        {
-            return databaseContext.DriveParameterFile.Where(x => x.Id == driveParameterId).FirstOrDefault().Name;
-        }
-
-        /// <summary>
-        /// Gets the configuration parameter string id with the drive parameter id entry.
-        /// </summary>
-        /// <param name="configurationParameterId">The configuration parameter identifier.</param>
-        /// <returns>configuration parameter string id</returns>
-        public string GetConfigurationParameterID(int configurationParameterId)
-        {
-            return databaseContext.ConfigurationParameterFile.Where(x => x.Id == configurationParameterId).FirstOrDefault().Name;
         }
     }
 }

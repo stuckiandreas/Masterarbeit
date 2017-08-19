@@ -95,9 +95,9 @@ namespace ETIC2
         /// </summary>
         private void Init()
         {
-            if (!this.etic2Model.InitialStateFirmwareDatabaseAccessManager.IsDatabaseAvailable())
+            if (!this.etic2Model.InitialStateFirmware.IsDatabaseAvailable())
             {
-                string errorText = "Database is not available! \nDatabaseName: " + this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseName;
+                string errorText = "Database is not available! \nDatabaseName: " + this.etic2Model.InitialStateFirmware.DatabaseName;
                 this.viewModelEvents.OnHandleError(this, new ExpectedErrorHandlerEventArgs(errorText));
             }
             else
@@ -189,9 +189,9 @@ namespace ETIC2
         private void CheckDatabaseVersion()
         {
             //no database version saved in database
-            int databaseVersionInDatabase = this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.GetDatabaseVersion();
+            int databaseVersionInDatabase = this.etic2Model.DatabaseConnectionSettings.GetDatabaseVersion();
             if (databaseVersionInDatabase == 0)
-                this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.AddConfigData(this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.DatabaseVersionString, ETIC2.Properties.Settings.Default.DatabaseVersion);
+                this.etic2Model.DatabaseConnectionSettings.AddConfigData(this.etic2Model.DatabaseConnectionSettings.DatabaseVersionString, ETIC2.Properties.Settings.Default.DatabaseVersion);
 
             //check if frontend version is actually -> frontend version must the same version number or higher than the database version
             if (ETIC2.Properties.Settings.Default.ETIC2Version - databaseVersionInDatabase < 0)

@@ -12,22 +12,25 @@ namespace ETIC2.Model.Application
     {
         public ETIC2Model()
         {
-            this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettings();
-            this.InitialStateFirmwareDatabaseAccessManager = new InitialStateFirmware();
-            this.TestCollectionResultWithHardwareDatabaseAccessManager = new TestCollectionResultWithHardware();
-            this.TestResultDatabaseAccessManager = new TestResult();
-            this.TestErrorMessageDatabaseAccessManager = new TestErrorMessage();
+            this.DatabaseConnectionSettings = new DatabaseConnectionSettings();
+            this.InitialStateFirmware = new InitialStateFirmware();
+            this.TestCollectionResult = new TestCollectionResult();
+            this.TestResult = new TestResult();
+            this.TestErrorMessage = new TestErrorMessage();
+            this.ValveHardware = new ValveHardware();
         }
 
-        public DatabaseConnectionSettings DatabaseConnectionSettingsDatabaseAccessManager { get; }
+        public DatabaseConnectionSettings DatabaseConnectionSettings { get; }
 
-        public InitialStateFirmware InitialStateFirmwareDatabaseAccessManager { get; }
+        public InitialStateFirmware InitialStateFirmware { get; }
 
-        public TestCollectionResultWithHardware TestCollectionResultWithHardwareDatabaseAccessManager { get; }
+        public TestCollectionResult TestCollectionResult { get; }
 
-        public TestResult TestResultDatabaseAccessManager { get; }
+        public TestResult TestResult{ get; }
 
-        public TestErrorMessage TestErrorMessageDatabaseAccessManager { get; }
+        public TestErrorMessage TestErrorMessage { get; }
+
+        public ValveHardware ValveHardware { get; }
 
         /// <summary>
         /// Builds the database context. Neccesary to update the view with actual data from the database.
@@ -37,11 +40,12 @@ namespace ETIC2.Model.Application
             string serverName = ETIC2.Properties.Settings.Default.ServerName;
             string databaseName = ETIC2.Properties.Settings.Default.DatabaseName;
 
-            this.InitialStateFirmwareDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.TestCollectionResultWithHardwareDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.TestResultDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.TestErrorMessageDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.DatabaseConnectionSettingsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
+            this.InitialStateFirmware.BuildDatabaseContext(databaseName, serverName);
+            this.TestCollectionResult.BuildDatabaseContext(databaseName, serverName);
+            this.TestResult.BuildDatabaseContext(databaseName, serverName);
+            this.TestErrorMessage.BuildDatabaseContext(databaseName, serverName);
+            this.ValveHardware.BuildDatabaseContext(databaseName, serverName);
+            this.DatabaseConnectionSettings.BuildDatabaseContext(databaseName, serverName);
         }
     }
 }

@@ -4,11 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.ViewModels.FirmwareViewModels
+namespace ETIC2.ViewModels.General
 {
     using System;
     using System.Collections.ObjectModel;
-    using ETIC2.Model.Application.FirmwareView;
+    using ETIC2.Model.Application.General;
     using Events;
 
     /// <summary>
@@ -16,7 +16,7 @@ namespace ETIC2.ViewModels.FirmwareViewModels
     /// </summary>
     public class TestResultViewModel : BasisViewModel
     {
-        public TestResultViewModel(ViewModelEvents viewModelEvents, TestResult testResult, ObservableCollection<FirmwareViewModels.TestErrorMessageViewModel> testErrorMessageViewModelList)
+        public TestResultViewModel(ViewModelEvents viewModelEvents, TestResult testResult, ObservableCollection<TestErrorMessageViewModel> testErrorMessageViewModelList)
             : base(viewModelEvents)
         {
             this.TestName = testResult.TestName;
@@ -57,7 +57,7 @@ namespace ETIC2.ViewModels.FirmwareViewModels
             set;
         }
 
-        public ObservableCollection<FirmwareViewModels.TestErrorMessageViewModel> TestErrorMessageViewModels
+        public ObservableCollection<TestErrorMessageViewModel> TestErrorMessageViewModels
         {
             get;
             private set;

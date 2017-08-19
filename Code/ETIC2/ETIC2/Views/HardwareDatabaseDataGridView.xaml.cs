@@ -13,18 +13,18 @@ namespace ETIC2.Views
     using DevExpress.Xpf.Printing;
 
     /// <summary>
-    /// Interaction logic for FirmwareDatabaseDataGridView.xaml
+    /// Interaction logic for HardwareDatabaseDataGridView.xaml
     /// </summary>
-    public partial class FirmwareDatabaseDataGridView : UserControl
+    public partial class HardwareDatabaseDataGridView : UserControl
     {
         private string settingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings";
-        private string dataGridControlSettingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings\\firmwareDataGirdControlSettings.xml";
+        private string dataGridControlSettingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings\\hardwareDataGirdControlSettings.xml";
         private string etic2Path = @"c:\\Test\ETIC2\Reports\";
-        private string etic2PdfName = "FirmwareTestResult.pdf";
+        private string etic2PdfName = "HardwareTestResult.pdf";
 
-        public FirmwareDatabaseDataGridView()
+        public HardwareDatabaseDataGridView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace ETIC2.Views
         /// <param name="e">instance containing the event data</param>
         private void Print(object sender, RoutedEventArgs e)
         {
-            var link = new PrintableControlLink(FirmwareView);
+            var link = new PrintableControlLink(HardwareView);
             link.Landscape = true;
             link.CreateDocument(true);
             link.Print();
@@ -52,7 +52,7 @@ namespace ETIC2.Views
             if (System.IO.Path.IsPathRooted(this.etic2Path))
             {
                 string fullPdfPath = this.etic2Path + this.etic2PdfName;
-                var link = new PrintableControlLink(FirmwareView);
+                var link = new PrintableControlLink(HardwareView);
                 link.Landscape = true;
                 link.CreateDocument(true);
                 link.ExportToPdf(fullPdfPath);

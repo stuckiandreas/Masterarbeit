@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="FirmwareDatabaseDataGridViewModel.cs" company="VAT Vakuumventile AG">
+// <copyright file="HardwareDatabaseDataGridViewModel.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,25 +10,25 @@ namespace ETIC2.ViewModels
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using ActionCommands;
-    using Events;
+    using ETIC2.Events;
     using Events.EventArgs.Error;
     using General;
 
     /// <summary>
-    /// Contains the firmware data grid data items.
+    /// Contains the hardware data grid data items.
     /// </summary>
-    public class FirmwareDatabaseDataGridViewModel : BasisViewModel
+    public class HardwareDatabaseDataGridViewModel : BasisViewModel
     {
         /// <summary>
-        /// List of all initial state firmware entries in the grid view.
+        /// List of all valve hardware entries in the grid view.
         /// </summary>
-        private ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel> initialStateFirmwareViewModels;
+        private ObservableCollection<HardwareViewModels.ValveHardwareViewModel> valveHardwareViewModels;
 
         /// <summary>
-        /// List of all test collection result and valve hardware entries in the grid view.
+        /// List of all test collection result and initial state firmware entries in the grid view.
         /// </summary>
-        private ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel>
-            testCollectionResultAndValveHardwareViewModels;
+        private ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel>
+            testCollectionResultAndInitialStateFirmwareViewModels;
 
         /// <summary>
         /// List of all test result entries in the grid view.
@@ -40,15 +40,15 @@ namespace ETIC2.ViewModels
         /// </summary>
         private ViewModelEvents viewModelEvents;
 
-        public FirmwareDatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
+        public HardwareDatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
         {
             this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
 
             this.viewModelEvents = viewModelEvents;
-            this.initialStateFirmwareViewModels = new ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel>();
-            this.testCollectionResultAndValveHardwareViewModels =
-                new ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel>();
+            this.valveHardwareViewModels = new ObservableCollection<HardwareViewModels.ValveHardwareViewModel>();
+            this.testCollectionResultAndInitialStateFirmwareViewModels =
+                new ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel>();
             this.testResultVieModels = new ObservableCollection<TestResultViewModel>();
         }
 
@@ -57,18 +57,18 @@ namespace ETIC2.ViewModels
         /// </summary>
         public event EventHandler<System.EventArgs> RefreshChangedEvent;
 
-        public ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel> InitialStateFirmwareViewModels
+        public ObservableCollection<HardwareViewModels.ValveHardwareViewModel> ValveHardwareViewModels
         {
-            get { return this.initialStateFirmwareViewModels; }
+            get { return this.valveHardwareViewModels; }
         }
 
-        public ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel>
-            TestCollectionResultAndValveHardwareViewModels
+        public ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel>
+            TestCollectionResultAndInitialStateFirmwareViewModels
         {
-            get { return this.testCollectionResultAndValveHardwareViewModels; }
+            get { return this.testCollectionResultAndInitialStateFirmwareViewModels; }
         }
 
-        public ObservableCollection<General.TestResultViewModel> TestResultViewModels
+        public ObservableCollection<TestResultViewModel> TestResultViewModels
         {
             get { return this.testResultVieModels; }
         }

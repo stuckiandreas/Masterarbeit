@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.Model.Application.FirmwareView
+namespace ETIC2.Model.Application.General
 {
     /// <summary>
     /// Seperate Entity Framework Datatype from Application. Without references

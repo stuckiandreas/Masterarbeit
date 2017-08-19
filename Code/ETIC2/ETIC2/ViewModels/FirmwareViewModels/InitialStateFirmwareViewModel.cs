@@ -7,7 +7,6 @@
 namespace ETIC2.ViewModels.FirmwareViewModels
 {
     using System;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using ETIC2.Model.Application.FirmwareView;
     using Events;
@@ -17,7 +16,7 @@ namespace ETIC2.ViewModels.FirmwareViewModels
     /// </summary>
     public class InitialStateFirmwareViewModel : BasisViewModel
     {
-        public InitialStateFirmwareViewModel(ViewModelEvents viewModelEvents, InitialStateFirmware initialStateFirmware, ObservableCollection<TestCollectionResultWithValveHardwareViewModel> testCollectionResultWithValveHardwareViewModelList)
+        public InitialStateFirmwareViewModel(ViewModelEvents viewModelEvents, InitialStateFirmware initialStateFirmware, ObservableCollection<TestCollectionResultAndValveHardwareViewModel> testCollectionResultAndValveHardwareViewModelList)
             : base(viewModelEvents)
         {
             this.ValveFirmware = initialStateFirmware.ValveFirmware;
@@ -27,7 +26,7 @@ namespace ETIC2.ViewModels.FirmwareViewModels
             this.DriveParameterID = initialStateFirmware.DriveParameterID;
             this.ConfigurationParameterID = initialStateFirmware.ConfigurationParameterID;
             this.TestCollection = initialStateFirmware.TestCollection;
-            this.TestCollectionResultWithValveHardwareViewModels = testCollectionResultWithValveHardwareViewModelList;
+            this.TestCollectionResultAndValveHardwareViewModels = testCollectionResultAndValveHardwareViewModelList;
         }
 
         public string ValveFirmware
@@ -72,7 +71,7 @@ namespace ETIC2.ViewModels.FirmwareViewModels
             set;
         }
 
-        public ObservableCollection<TestCollectionResultWithValveHardwareViewModel> TestCollectionResultWithValveHardwareViewModels
+        public ObservableCollection<TestCollectionResultAndValveHardwareViewModel> TestCollectionResultAndValveHardwareViewModels
         { 
             get; 
             private set; 

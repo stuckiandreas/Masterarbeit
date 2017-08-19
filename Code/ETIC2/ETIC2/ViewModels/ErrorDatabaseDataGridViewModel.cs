@@ -6,12 +6,12 @@
 
 namespace ETIC2.ViewModels
 {
-    using ActionCommands;
-    using Events;
-    using Events.EventArgs.Error;
     using System;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
+    using ActionCommands;
+    using Events;
+    using Events.EventArgs.Error;
 
     /// <summary>
     /// Contains the error data grid data items.

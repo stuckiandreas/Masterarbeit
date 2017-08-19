@@ -22,8 +22,12 @@
         <views:FirmwareDatabaseDataGridView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewModels:DatabaseDataGridViewModel2}">
-        <views:DatabaseDataGridView2 />
+    <DataTemplate DataType="{x:Type viewModels:HardwareDatabaseDataGridViewModel}">
+        <views:HardwareDatabaseDataGridView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:ErrorDatabaseDataGridViewModel}">
+        <views:ErrorDatabaseDataGridView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type menuViewModels:MenuViewModel}">

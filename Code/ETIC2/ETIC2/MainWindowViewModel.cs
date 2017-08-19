@@ -114,20 +114,20 @@ namespace ETIC2
         {
             base.SubscribeEvents();
             this.workspaceViewModel.SubscribeEvents();
-            this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.etic2Model.TestResultDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.InitialStateFirmware.DatabaseAccessEvent += this.SoftwareVersions_DatabaseAccessEvent;
+            this.etic2Model.TestCollectionResult.DatabaseAccessEvent += this.SoftwareVersions_DatabaseAccessEvent;
+            this.etic2Model.TestResult.DatabaseAccessEvent += this.SoftwareVersions_DatabaseAccessEvent;
+            this.etic2Model.DatabaseConnectionSettings.DatabaseAccessEvent += this.SoftwareVersions_DatabaseAccessEvent;
         }
 
         public override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
             this.workspaceViewModel.UnsubscribeEvents();
-            this.etic2Model.InitialStateFirmwareDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.etic2Model.TestCollectionResultWithHardwareDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.etic2Model.TestResultDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.etic2Model.DatabaseConnectionSettingsDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.etic2Model.InitialStateFirmware.DatabaseAccessEvent -= this.SoftwareVersions_DatabaseAccessEvent;
+            this.etic2Model.TestCollectionResult.DatabaseAccessEvent -= this.SoftwareVersions_DatabaseAccessEvent;
+            this.etic2Model.TestResult.DatabaseAccessEvent -= this.SoftwareVersions_DatabaseAccessEvent;
+            this.etic2Model.DatabaseConnectionSettings.DatabaseAccessEvent -= this.SoftwareVersions_DatabaseAccessEvent;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace ETIC2
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="DatabaseAccessEventArgs"/> instance containing the event data.</param>
-        private void SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent(object sender, DatabaseAccessEventArgs e)
+        private void SoftwareVersions_DatabaseAccessEvent(object sender, DatabaseAccessEventArgs e)
         {
             try
             {
