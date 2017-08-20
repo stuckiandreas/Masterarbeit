@@ -146,6 +146,7 @@
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackQuestionEventArgs.cs" />
     <Compile Include="Events\EventArgs\UserFeedback\UserFeedbackUnexpectedErrorEventArgs.cs" />
     <Compile Include="Events\ViewModelEvents.cs" />
+    <Compile Include="HelpFunctions\Helpers.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\Application\ErrorView\TestErrorMessage.cs" />
     <Compile Include="Model\Application\FirmwareView\InitialStateFirmware.cs" />

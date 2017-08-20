@@ -11,7 +11,7 @@ namespace ETIC2.Views
     using System.Windows.Controls;
     using DevExpress.Xpf.Grid;
     using DevExpress.Xpf.Printing;
-
+    using HelpFunctions;
     /// <summary>
     /// Interaction logic for HardwareDatabaseDataGridView.xaml
     /// </summary>
@@ -51,26 +51,21 @@ namespace ETIC2.Views
         {
             if (System.IO.Path.IsPathRooted(this.etic2Path))
             {
+                string fullPdfPath = this.etic2Path + this.etic2PdfName;
                 try
                 {
-                    //check if File is already in use
-                    string fullPdfPath = this.etic2Path + this.etic2PdfName;
-                    using (FileStream fileStream = File.Open(fullPdfPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                    {
-                        if (fileStream != null)
-                        {
-                            fileStream.Close();
-                            var link = new PrintableControlLink(HardwareView);
-                            link.Landscape = true;
-                            link.CreateDocument(true);
-                            link.ExportToPdf(fullPdfPath);
-                        }
-                    }
+                    var link = new PrintableControlLink(HardwareView);
+                    link.Landscape = true;
+                    link.CreateDocument(true);
+                    link.ExportToPdf(fullPdfPath);
                 }
                 catch(IOException ex)
                 {
+                    //check if File is already in use
+                    bool fileInUse = Helpers.IsFileInUse(fullPdfPath)
                     // inform user, that the file is not possible to open
-                   
+                    if (fileInUse == true)
+                        MessageBox("File is already in use", "error export pdf", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
