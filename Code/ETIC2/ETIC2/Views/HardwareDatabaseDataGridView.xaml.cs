@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="FirmwareDatabaseDataGridView.xaml.cs" company="VAT Vakuumventile AG">
+// <copyright file="HardwareDatabaseDataGridView.xaml.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,6 +12,7 @@ namespace ETIC2.Views
     using DevExpress.Xpf.Grid;
     using DevExpress.Xpf.Printing;
     using HelpFunctions;
+
     /// <summary>
     /// Interaction logic for HardwareDatabaseDataGridView.xaml
     /// </summary>
@@ -24,7 +25,7 @@ namespace ETIC2.Views
 
         public HardwareDatabaseDataGridView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -35,10 +36,17 @@ namespace ETIC2.Views
         /// <param name="e">instance containing the event data</param>
         private void Print(object sender, RoutedEventArgs e)
         {
-            var link = new PrintableControlLink(HardwareView);
-            link.Landscape = true;
-            link.CreateDocument(true);
-            link.Print();
+            try
+            {
+                var link = new PrintableControlLink(HardwareView);
+                link.Landscape = true;
+                link.CreateDocument(true);
+                link.Print();
+            }
+            catch
+            {
+                MessageBox.Show("hardware view", "error print", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
@@ -59,13 +67,14 @@ namespace ETIC2.Views
                     link.CreateDocument(true);
                     link.ExportToPdf(fullPdfPath);
                 }
-                catch(IOException ex)
+                catch
                 {
                     //check if File is already in use
-                    bool fileInUse = Helpers.IsFileInUse(fullPdfPath)
+                    bool fileInUse = Helpers.IsFileInUse(fullPdfPath);
+
                     // inform user, that the file is not possible to open
                     if (fileInUse == true)
-                        MessageBox("File is already in use", "error export pdf", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("File is already in use", "error export hardware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

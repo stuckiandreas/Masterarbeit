@@ -15,8 +15,8 @@ namespace ETIC2.ViewModels
     using Events;
     using Events.EventArgs.Error;
     using Model.Application.FirmwareView;
+    using Model.Application.General;
     using Model.Application.HardwareView;
-    using Model.Application.General; 
     
     /// <summary>
     /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.

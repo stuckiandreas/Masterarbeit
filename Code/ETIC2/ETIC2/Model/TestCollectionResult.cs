@@ -35,7 +35,7 @@ namespace ETIC2.Model
         /// <summary>
         /// Gets a List with all TestCollectionResult Entries which has the ValveHardware value. Included with Id for firmware definitions.
         /// </summary>
-        /// <param name="initialStateFirmwareId">The initial state firmware identifier.</param>
+        /// <param name="valveHardwareId">valve hardware identifier.</param>
         /// <returns>
         /// List with all TestCollectionResult Entries
         /// </returns>
@@ -59,10 +59,13 @@ namespace ETIC2.Model
 
             foreach (var testCollectionResultDatabase in testCollectionResultDatabaseList)
             {
-                emptyTestCollectionResultAndValveHardware = new Application.FirmwareView.TestCollectionResultAndValveHardware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int),
+                emptyTestCollectionResultAndValveHardware = new Application.FirmwareView.TestCollectionResultAndValveHardware()
+                {
+                    Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int),
                     ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string),
                     InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string),
-                    Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string) };
+                    Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string)
+                };
 
                 emptyTestCollectionResultAndValveHardware.Id = testCollectionResultDatabase.Id;
                 emptyTestCollectionResultAndValveHardware.ExecutionTime = testCollectionResultDatabase.ExecutionDateTime;
@@ -100,7 +103,7 @@ namespace ETIC2.Model
         /// <summary>
         /// Gets a List with all TestCollectionResult and InitialStateFirmware Entries which has the ValveHardwareId value. Without the Id from database Application Type.
         /// </summary>
-        /// <param name="initialStateFirmwareId">The initial state firmware identifier.</param>
+        /// <param name="valveHardwareId">valve hardware identifier.</param>
         /// <returns>
         /// List with all TestCollectionResult Entries
         /// </returns>
@@ -113,15 +116,20 @@ namespace ETIC2.Model
 
             foreach (var testCollectionResultDatabase in testCollectionResultDatabaseList)
             {
-                emptyTestCollectionResultAndInitialStateFirmware = new Application.HardwareView.TestCollectionResultAndInitialStateFirmware() { Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int),
-                    ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string) };
+                emptyTestCollectionResultAndInitialStateFirmware = new Application.HardwareView.TestCollectionResultAndInitialStateFirmware()
+                {
+                    Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string),
+                    CountErrorTest = default(int), ValveFirmware = default(string), ValveFirmwareReleaseTime = default(DateTime),
+                    MotionControllerFirmware = default(string), InterfaceFirmware = default(string), DriveParameterID = default(string),
+                    ConfigurationParameterID = default(string), TestCollection = default(string)
+                };
 
                 emptyTestCollectionResultAndInitialStateFirmware.Id = testCollectionResultDatabase.Id;
                 emptyTestCollectionResultAndInitialStateFirmware.ExecutionTime = testCollectionResultDatabase.ExecutionDateTime;
                 emptyTestCollectionResultAndInitialStateFirmware.UserName = testCollectionResultDatabase.UserName;
                 emptyTestCollectionResultAndInitialStateFirmware.AbortType = this.GetAbortName((int)testCollectionResultDatabase.AbortType_Id);
                 emptyTestCollectionResultAndInitialStateFirmware.CountErrorTest = testCollectionResultDatabase.CountErrorTest;
-                initialStateFirmware = GetEntityFrameworkInitialStateFirmware((int)testCollectionResultDatabase.InitialStateFirmware_Id);
+                initialStateFirmware = this.GetEntityFrameworkInitialStateFirmware((int)testCollectionResultDatabase.InitialStateFirmware_Id);
                 emptyTestCollectionResultAndInitialStateFirmware.ValveFirmware = this.GetSoftwareVersionsName((int)initialStateFirmware.SoftwareVersions_Id_Firmware);
                 emptyTestCollectionResultAndInitialStateFirmware.ValveFirmwareReleaseTime = initialStateFirmware.ValveFirmwareReleaseTime;
                 emptyTestCollectionResultAndInitialStateFirmware.MotionControllerFirmware = this.GetSoftwareVersionsName((int)initialStateFirmware.SoftwareVersions_Id_MotionController);

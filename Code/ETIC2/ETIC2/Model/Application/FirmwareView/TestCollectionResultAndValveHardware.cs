@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="TestCollectionResultWithValveHardware.cs" company="VAT Vakuumventile AG">
+// <copyright file="TestCollectionResultAndValveHardware.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------

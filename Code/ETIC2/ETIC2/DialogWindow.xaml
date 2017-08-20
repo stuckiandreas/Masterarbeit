@@ -17,5 +17,4 @@
     </Window.Resources>
 
     <ContentControl Content="{Binding ViewModel}"/>
-    
 </Window>

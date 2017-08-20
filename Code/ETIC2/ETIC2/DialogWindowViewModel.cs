@@ -11,7 +11,8 @@ namespace ETIC2
 
     /// <summary>
     /// View model for the dialog view. It used for user inputs.
-    /// Further settings window and about information are display with the dialog window. The title, height and width are individual definable.
+    /// Further settings window and about information are display with the dialog window. 
+    /// The title, height and width are individual definable.
     /// </summary>
     public class DialogWindowViewModel : BasisViewModel
     {

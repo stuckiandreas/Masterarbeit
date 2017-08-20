@@ -33,6 +33,7 @@ namespace ETIC2.ViewModels.HardwareViewModels
             this.TestCollection = testCollectionResultAndInitialStateFirmware.TestCollection;
             this.TestResultViewModels = testResultViewModelList;
         }
+
         //Test Collection Result
         public DateTime ExecutionTime
         {

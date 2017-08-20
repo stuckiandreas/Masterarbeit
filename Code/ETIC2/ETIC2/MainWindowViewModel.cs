@@ -43,7 +43,7 @@ namespace ETIC2
         private MenuViewModel menuViewModel;
 
         /// <summary>
-        /// Reference of the workspace view model. Interface to the model. Included the detailInformation and dataBaseDataGrid view.
+        /// Reference of the workspace view model. Interface to the model. Included the dataBaseDataGrid with the diffrent views. 
         /// </summary>
         private WorkspaceViewModel workspaceViewModel;
 

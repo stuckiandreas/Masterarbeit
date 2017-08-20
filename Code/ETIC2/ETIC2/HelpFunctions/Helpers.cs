@@ -20,17 +20,25 @@ namespace ETIC2.HelpFunctions
         /// <returns>
         ///   <c>true</c> if [is file in use] [the specified file path]; otherwise, <c>false</c>.
         /// </returns>
-        static bool IsFileInUse(string filePath)
+        internal static bool IsFileInUse(string filePath)
         {
-            using (FileStream fileStream = File.Open(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+            try
             {
-                if (fileStream != null)
+                using (FileStream fileStream = File.Open(filePath, FileMode.Open))
                 {
-                    fileStream.Close();
-                    return false;
+                    if (fileStream != null)
+                    {
+                        fileStream.Close();
+                        return false;
+                    }
                 }
             }
-            return true;
+            catch (IOException)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

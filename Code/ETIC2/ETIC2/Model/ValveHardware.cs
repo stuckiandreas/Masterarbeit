@@ -22,7 +22,7 @@ namespace ETIC2.Model
         /// <summary>
         /// Gets the entity framework valve hardwares.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List with all ValveHardware Entries</returns>
         public List<EntityFramework.ValveHardware> GetEntityFrameworkValveHardwares()
         {
             return databaseContext.ValveHardware.ToList();
@@ -31,7 +31,7 @@ namespace ETIC2.Model
         /// <summary>
         /// Gets a List with all ValveHardware Entries. Without any ID's -> Application Type ValveHardware
         /// </summary>
-        /// <returns>List with all InitailStateFirmware Entries</returns>
+        /// <returns>List with all ValveHardware Entries</returns>
         public List<Application.HardwareView.ValveHardware> GetApplicationValveHardwares()
         {
             List<EntityFramework.ValveHardware> valveHardwareList = this.GetEntityFrameworkValveHardwares();
@@ -40,15 +40,18 @@ namespace ETIC2.Model
 
             foreach (var valveHardware in valveHardwareList)
             {
-                emptyValveHardware = new Application.HardwareView.ValveHardware() { Id = default(int), 
-                    ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string),
-                    ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string),
-                    ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string),
-                    Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string),
-                    Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string),
-                    Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string),
-                    Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string)
+                emptyValveHardware = new Application.HardwareView.ValveHardware()
+                {
+                    Id = default(int), ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string),
+                    OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string),
+                    InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string),
+                    InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string),
+                    Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string),
+                    Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string),
+                    Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string),
+                    Module4AssemblyVariant = default(string)
                 };
+
                 emptyValveHardware.Id = (int)valveHardware.Id;
                 emptyValveHardware.ValveSerie = this.GetValveSerieEnum((int)valveHardware.Id);
                 emptyValveHardware.InterfaceType = this.GetInterfaceTypeEnum((int)valveHardware.Id);

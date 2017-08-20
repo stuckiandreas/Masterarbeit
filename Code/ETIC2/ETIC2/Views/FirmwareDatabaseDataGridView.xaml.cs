@@ -11,6 +11,7 @@ namespace ETIC2.Views
     using System.Windows.Controls;
     using DevExpress.Xpf.Grid;
     using DevExpress.Xpf.Printing;
+    using HelpFunctions;
 
     /// <summary>
     /// Interaction logic for FirmwareDatabaseDataGridView.xaml
@@ -35,10 +36,17 @@ namespace ETIC2.Views
         /// <param name="e">instance containing the event data</param>
         private void Print(object sender, RoutedEventArgs e)
         {
-            var link = new PrintableControlLink(FirmwareView);
-            link.Landscape = true;
-            link.CreateDocument(true);
-            link.Print();
+            try
+            {
+                var link = new PrintableControlLink(FirmwareView);
+                link.Landscape = true;
+                link.CreateDocument(true);
+                link.Print();
+            }
+            catch
+            {
+                MessageBox.Show("firmware view", "error print", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
@@ -52,10 +60,22 @@ namespace ETIC2.Views
             if (System.IO.Path.IsPathRooted(this.etic2Path))
             {
                 string fullPdfPath = this.etic2Path + this.etic2PdfName;
-                var link = new PrintableControlLink(FirmwareView);
-                link.Landscape = true;
-                link.CreateDocument(true);
-                link.ExportToPdf(fullPdfPath);
+                try
+                {
+                    var link = new PrintableControlLink(FirmwareView);
+                    link.Landscape = true;
+                    link.CreateDocument(true);
+                    link.ExportToPdf(fullPdfPath);
+                }
+                catch
+                {
+                    //check if File is already in use
+                    bool fileInUse = Helpers.IsFileInUse(fullPdfPath);
+
+                    // inform user, that the file is not possible to open
+                    if (fileInUse == true)
+                        MessageBox.Show("File is already in use", "error export firmware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 

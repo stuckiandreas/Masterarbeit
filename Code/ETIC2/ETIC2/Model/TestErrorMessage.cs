@@ -62,16 +62,21 @@ namespace ETIC2.Model
                 //Get InitialStateFirmware
                 initialStateFirmware = this.GetEntityFrameworkInitialStateFirmware((int)testCollectionResult.InitialStateFirmware_Id);
 
-                emptyTestErrorMessage = new Application.ErrorView.TestErrorMessage() { Description = default(string), TestName = default(string) ,
-                    TestVersion = default(short) , StartTime = default(DateTime), EndTime = default(DateTime), ValveFirmware = default(string),
-                    ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string), InterfaceFirmware = default(string),
-                    DriveParameterID = default(string), ConfigurationParameterID = default(string), TestCollection = default(string), ValveSerie = default(string),
-                    InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool),
-                    ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string),
-                    InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string),
-                    Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string),
-                    Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string),
-                    Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string)};
+                emptyTestErrorMessage = new Application.ErrorView.TestErrorMessage()
+                {
+                    Description = default(string), TestName = default(string), TestVersion = default(short),
+                    StartTime = default(DateTime), EndTime = default(DateTime), ValveFirmware = default(string),
+                    ValveFirmwareReleaseTime = default(DateTime), MotionControllerFirmware = default(string),
+                    InterfaceFirmware = default(string), DriveParameterID = default(string), ConfigurationParameterID = default(string),
+                    TestCollection = default(string), ValveSerie = default(string), InterfaceType = default(string),
+                    ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool),
+                    ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string),
+                    ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string), Module1Type = default(string),
+                    Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string),
+                    Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string), Module3Type = default(string),
+                    Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string),
+                    Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string)
+                };
 
                 emptyTestErrorMessage.Description = testErrorMessageDatabase.Description;
                 emptyTestErrorMessage.TestVersion = this.GetTestVersion((int)testResult.TestVersion_Id);

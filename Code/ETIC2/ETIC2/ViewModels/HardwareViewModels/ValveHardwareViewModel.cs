@@ -6,9 +6,9 @@
 
 namespace ETIC2.ViewModels.HardwareViewModels
 {
+    using System.Collections.ObjectModel;
     using Events;
     using Model.Application.HardwareView;
-    using System.Collections.ObjectModel;
     
     /// <summary>
     /// First Level of the Hardware Master Detail View. Shows the ValveHardware entrys.

@@ -26,7 +26,7 @@ namespace ETIC2.Model.Application
 
         public TestCollectionResult TestCollectionResult { get; }
 
-        public TestResult TestResult{ get; }
+        public TestResult TestResult { get; }
 
         public TestErrorMessage TestErrorMessage { get; }
 
