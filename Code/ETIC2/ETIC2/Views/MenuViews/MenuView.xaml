@@ -17,5 +17,4 @@
             <MenuItem Header="About" HorizontalAlignment="Left" Command="{Binding AboutCommand}"/>
         </MenuItem>
     </Menu>
-    
 </UserControl>

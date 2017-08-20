@@ -17,13 +17,14 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
+        
         <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
             <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
         </dx:UniformStackPanel>
-
-            <dxg:GridControl Grid.Row="1" MaxWidth="4000" MaxHeight="4000" Background="LightGray"
+        
+        <dxg:GridControl Grid.Row="1" MaxWidth="4000" MaxHeight="4000" Background="LightGray"
                          ItemsSource="{Binding TestErrorMessageViewModels}"
                          SelectionMode="Row"
                          Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus"

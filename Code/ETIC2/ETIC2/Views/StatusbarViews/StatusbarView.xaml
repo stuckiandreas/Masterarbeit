@@ -6,11 +6,10 @@
              xmlns:local="clr-namespace:ETIC2.Views.StatusbarViews"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <StatusBar DockPanel.Dock="Bottom" Height="30" >
         <StatusBarItem>
             <Label Content="{Binding Path=Status}" />
         </StatusBarItem>
     </StatusBar>
-    
 </UserControl>

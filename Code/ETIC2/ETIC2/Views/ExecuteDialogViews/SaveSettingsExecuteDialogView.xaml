@@ -6,15 +6,15 @@
              xmlns:local="clr-namespace:ETIC2.Views.ExecuteDialogViews"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <StackPanel Orientation="Vertical">
         <ContentControl Content="{Binding ServerNameTextInputViewModel}"/>
         <ContentControl Content="{Binding DatabaseNameTextInputViewModel}"/>
-        <Button Content="{Binding ButtonText}" IsDefault="True" Command="{Binding ExecuteCommand}" HorizontalAlignment="Right" Height="20" Width="40">
+        <Button Content="{Binding ButtonText}" IsDefault="True" Command="{Binding ExecuteCommand}" 
+                HorizontalAlignment="Right" Height="20" Width="40">
             <Button.InputBindings>
                 <KeyBinding Command="{Binding ExecuteCommand}" Key="Enter"/>
             </Button.InputBindings>
         </Button>
     </StackPanel>
-    
 </UserControl>

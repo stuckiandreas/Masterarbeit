@@ -17,11 +17,13 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
+        
         <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
             <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
         </dx:UniformStackPanel>
+        
         <dxg:GridControl x:Name="grid"  Grid.Row ="1" ItemsSource="{Binding ValveHardwareViewModels}" AutoPopulateColumns="True" 
                          AutoGenerateColumns="None" Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus">
             <dxg:GridControl.Columns>
@@ -116,7 +118,8 @@
             </dxg:GridControl.DetailDescriptor>
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="True" AllowEditing="False" AllowBestFit="True" BestFitMode="AllRows" 
-                               ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" FadeSelectionOnLostFocus="True" NavigationStyle="None" x:Name="HardwareView">
+                               ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" 
+                               FadeSelectionOnLostFocus="True" NavigationStyle="None" x:Name="HardwareView">
                 </dxg:TableView>
             </dxg:GridControl.View>
         </dxg:GridControl>

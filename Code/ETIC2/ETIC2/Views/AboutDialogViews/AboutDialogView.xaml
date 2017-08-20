@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ETIC2.Views.AboutDialogViews"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />

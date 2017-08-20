@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="SaveExecuteDoubleDialogViewModel.cs" company="VAT Vakuumventile AG">
-//     Copyright (c) 201^7 . All rights reserved.
+//     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 

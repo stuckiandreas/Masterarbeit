@@ -12,7 +12,7 @@ namespace ETIC2.ViewModels.General
     using Events;
 
     /// <summary>
-    /// Third Level of the Firmware Master Detail View. Shows the ResultTest entrys.
+    /// Third Level of the Firmware and Hardware Master Detail View. Shows the ResultTest entrys.
     /// </summary>
     public class TestResultViewModel : BasisViewModel
     {

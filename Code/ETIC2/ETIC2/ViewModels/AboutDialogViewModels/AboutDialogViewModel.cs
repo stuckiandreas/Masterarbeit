@@ -4,19 +4,19 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-
 namespace ETIC2.ViewModels.AboutDialogViewModels
 {
     using System;
     using System.Reflection;
     using System.Windows;
     using System.Windows.Input;
-    using ETIC2.Events;
+    using Events;
     using Events.EventArgs.Error;
     using Model.Application;
 
     /// <summary>
-    /// Window which enabled to edit the database connection. Also open a exel list for edit the improvements list. Also a view with the application version and option to close the apllication.
+    /// Window which enabled to edit the database connection. Also open a exel list for edit the improvements list. 
+    /// Also a view with the application version and option to close the apllication.
     /// </summary>
     /// <seealso cref="ETIC2.ViewModels.BasisViewModel" />
     public class AboutDialogViewModel : BasisViewModel
@@ -32,7 +32,8 @@ namespace ETIC2.ViewModels.AboutDialogViewModels
             this.viewModelEvents = viewModelEvents;
 
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
-            AssemblyCompanyAttribute company = (AssemblyCompanyAttribute)executingAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false)[0];
+            AssemblyCompanyAttribute company = 
+                (AssemblyCompanyAttribute)executingAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false)[0];
             this.ETIC2Version = this.TranslateVersionNumberToString(Properties.Settings.Default.ETIC2Version);
             this.DatabaseVersion = this.TranslateVersionNumberToString(etic2Model.DatabaseConnectionSettings.GetDatabaseVersion());
 

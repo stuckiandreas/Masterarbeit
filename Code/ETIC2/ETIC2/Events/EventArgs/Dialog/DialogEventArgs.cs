@@ -9,7 +9,7 @@ namespace ETIC2.Events.EventArgs.Dialog
     using ETIC2.ViewModels;
 
     /// <summary>
-    /// Event argument for the dialog window. The dialog window has a defined title. Is using from the user to add or delete an item. 
+    /// Event argument for the dialog window. The dialog window has a defined title. 
     /// </summary>
     /// <seealso cref="System.EventArgs" />
     public class DialogEventArgs : System.EventArgs

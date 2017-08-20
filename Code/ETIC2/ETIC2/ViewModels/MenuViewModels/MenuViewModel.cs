@@ -19,7 +19,8 @@ namespace ETIC2.ViewModels.MenuViewModels
     using Model.Application;
 
     /// <summary>
-    /// Menu view model is shown at the top of the version management program. At the moment the menu bar has the option of the about dialog which shows the actual version.
+    /// Menu view model is shown at the top of the etic2 program. 
+    /// At the moment the menu bar has the option of the about dialog which shows the actual version of the application and database.
     /// Further to set the connection settings for the database. Also to close the application over the menu view.
     /// </summary>
     /// <seealso cref="ETIC2.ViewModels.BasisViewModel" />

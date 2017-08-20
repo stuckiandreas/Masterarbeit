@@ -51,11 +51,27 @@ namespace ETIC2.Views
         {
             if (System.IO.Path.IsPathRooted(this.etic2Path))
             {
-                string fullPdfPath = this.etic2Path + this.etic2PdfName;
-                var link = new PrintableControlLink(HardwareView);
-                link.Landscape = true;
-                link.CreateDocument(true);
-                link.ExportToPdf(fullPdfPath);
+                try
+                {
+                    //check if File is already in use
+                    string fullPdfPath = this.etic2Path + this.etic2PdfName;
+                    using (FileStream fileStream = File.Open(fullPdfPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        if (fileStream != null)
+                        {
+                            fileStream.Close();
+                            var link = new PrintableControlLink(HardwareView);
+                            link.Landscape = true;
+                            link.CreateDocument(true);
+                            link.ExportToPdf(fullPdfPath);
+                        }
+                    }
+                }
+                catch(IOException ex)
+                {
+                    // inform user, that the file is not possible to open
+                   
+                }
             }
         }
 

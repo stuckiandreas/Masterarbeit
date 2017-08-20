@@ -16,7 +16,7 @@ namespace ETIC2.ViewModels.ExecuteDialogViewModels
     using Events.EventArgs.Error;
 
     /// <summary>
-    /// ViewModel to execute an Dialog. The view included an Button. This class is basis of the Save and DeleteExecuteDialogViewModel.
+    /// ViewModel to execute an Dialog. The view included an Button.
     /// The execute method is async. For this reason the GUI is not frozen. The user will be informed by a wait cursor.
     /// </summary>
     /// <seealso cref="VersionManagement.ViewModels.BasisViewModel" />

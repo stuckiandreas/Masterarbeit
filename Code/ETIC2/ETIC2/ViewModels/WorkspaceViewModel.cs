@@ -14,12 +14,13 @@ namespace ETIC2.ViewModels
     using ETIC2.Model.Application;
     using Events;
     using Events.EventArgs.Error;
-    using Model.Application.ErrorView;
     using Model.Application.FirmwareView;
     using Model.Application.HardwareView;
-    using Model.Application.General;    /// <summary>
-                                        /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.
-                                        /// </summary>
+    using Model.Application.General; 
+    
+    /// <summary>
+    /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.
+    /// </summary>
     public enum DatabseDataGridViewModel
     {
         Firmware,
@@ -28,7 +29,7 @@ namespace ETIC2.ViewModels
     }
 
     /// <summary>
-    /// Mainly View Model. Interface to the model. Included the detailInformation and dataBaseDataGrid view. 
+    /// Mainly View Model. Interface to the model. Included the dataBaseDataGrid with the diffrent views (Firmware, Hardware + Error). 
     /// Only references to the Model are allowed. References to Views are not allowed
     /// </summary>
     /// <seealso cref="BasisViewModel" />
@@ -175,6 +176,7 @@ namespace ETIC2.ViewModels
             // Unsubscribe own model events
             this.firmwareDatabaseDataGridViewModel.UnsubscribeEvents();
             this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.DatabaseDataGridViewModel_RefreshChangedEvent;
+            this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent -= this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
 
             // Unsubscribe base class events
@@ -186,7 +188,7 @@ namespace ETIC2.ViewModels
             // Init base class
             base.Init();
 
-            this.LoadDataGrid();
+            this.RefreshDataGrid();
         }
 
         private void ViewModelEvents_ChangeDatabaseSettings(object sender, Events.EventArgs.DatabaseAccess.DatabaseAccessEventArgs e)
@@ -208,7 +210,7 @@ namespace ETIC2.ViewModels
                 //update database -> event
                 this.etic2Model.BuildDatabaseContext();
 
-                this.LoadFirmwareDatabaseDataGrid();
+                this.RefreshDataGrid();
             }
             catch (Exception ex)
             {
@@ -223,7 +225,7 @@ namespace ETIC2.ViewModels
                 //update database -> event
                 this.etic2Model.BuildDatabaseContext();
 
-                this.LoadHardwareDatabaseDataGrid();
+                this.RefreshDataGrid();
             }
             catch (Exception ex)
             {
@@ -238,7 +240,7 @@ namespace ETIC2.ViewModels
                 //update database -> event
                 this.etic2Model.BuildDatabaseContext();
 
-                this.LoadErrorDatabaseDataGrid();
+                this.RefreshDataGrid();
             }
             catch (Exception ex)
             {
@@ -247,9 +249,9 @@ namespace ETIC2.ViewModels
         }
 
         /// <summary>
-        /// Load all DataGrid with data
+        /// Refresh all DataGrid with actual data (Firmware, Hardware + Error View)
         /// </summary>
-        private void LoadDataGrid()
+        private void RefreshDataGrid()
         {
             this.LoadFirmwareDatabaseDataGrid();
             this.LoadHardwareDatabaseDataGrid();
@@ -263,9 +265,11 @@ namespace ETIC2.ViewModels
         {
             this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Clear();
 
-            List<InitialStateFirmware> initialStateFirmwareList = this.etic2Model.InitialStateFirmware.GetApplicationInitialStateFirmwares();
+            List<InitialStateFirmware> initialStateFirmwareList = 
+                this.etic2Model.InitialStateFirmware.GetApplicationInitialStateFirmwares();
             List<TestCollectionResultAndValveHardware> testCollectionResultAndValveHardwareListInitialStateFirmwareFilter;
-            ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel> testCollectionResultAndValveHardwareViewModelList;
+            ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel> 
+                testCollectionResultAndValveHardwareViewModelList;
             List<Model.Application.General.TestResult> testResultListTestCollectionResultAndValveHardwareFilter;
             List<Model.Application.General.TestResult> testResultList = this.etic2Model.TestResult.GetApplicationTestResults();
             ObservableCollection<General.TestResultViewModel> testResultViewModelList;
@@ -275,33 +279,41 @@ namespace ETIC2.ViewModels
             //Level 1 InitialStateValve (includes TestCollectionResultAndValveHardware List)
             foreach (InitialStateFirmware initialStateFirmware in initialStateFirmwareList)
             {
-                testCollectionResultAndValveHardwareViewModelList = new ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel>();
-                testCollectionResultAndValveHardwareListInitialStateFirmwareFilter = this.etic2Model.TestCollectionResult.GetApplicationTestCollectionResultsAndValveHardwareWithInitialStateFirmwareFilter(initialStateFirmware.Id);
+                testCollectionResultAndValveHardwareViewModelList = 
+                    new ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel>();
+                testCollectionResultAndValveHardwareListInitialStateFirmwareFilter = 
+                    this.etic2Model.TestCollectionResult.GetApplicationTestCollectionResultsAndValveHardwareWithInitialStateFirmwareFilter(initialStateFirmware.Id);
 
                 //Level 2 TestCollectionResultAndValveHardware (includes TestResult List)
                 foreach (TestCollectionResultAndValveHardware testCollectionResultWithValveHardware in testCollectionResultAndValveHardwareListInitialStateFirmwareFilter)
                 {
                     testResultViewModelList = new ObservableCollection<General.TestResultViewModel>();
-                    testResultListTestCollectionResultAndValveHardwareFilter = this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultWithValveHardware.Id);
+                    testResultListTestCollectionResultAndValveHardwareFilter = 
+                        this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultWithValveHardware.Id);
 
                     //Level 3 TestResult (includes TestErrorMessage List)
                     foreach (Model.Application.General.TestResult testResult in testResultListTestCollectionResultAndValveHardwareFilter)
                     {
                         testErrorMessageViewModelList = new ObservableCollection<General.TestErrorMessageViewModel>();
-                        testErrorMessageListTestResultFilter = this.etic2Model.TestErrorMessage.GetApplicationTestErrorMessagesWithTestResultFilter(testResult.Id);
+                        testErrorMessageListTestResultFilter = 
+                            this.etic2Model.TestErrorMessage.GetApplicationTestErrorMessagesWithTestResultFilter(testResult.Id);
 
                         //Level 4 TestErrorMessage
                         foreach (Model.Application.General.TestErrorMessage testErrorMessage in testErrorMessageListTestResultFilter)
                             testErrorMessageViewModelList.Add(new General.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessage));
 
-                        testResultViewModelList.Add(new General.TestResultViewModel(this.ViewModelEvents, testResult, testErrorMessageViewModelList));
+                        testResultViewModelList.Add(
+                            new General.TestResultViewModel(this.ViewModelEvents, testResult, testErrorMessageViewModelList));
                     }
 
-                    testResultList = this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultWithValveHardware.Id);
-                    testCollectionResultAndValveHardwareViewModelList.Add(new FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel(this.ViewModelEvents, testCollectionResultWithValveHardware, testResultViewModelList));
+                    testResultList = 
+                        this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultWithValveHardware.Id);
+                    testCollectionResultAndValveHardwareViewModelList.Add(
+                        new FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel(this.ViewModelEvents, testCollectionResultWithValveHardware, testResultViewModelList));
                 }
 
-                this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Add(new FirmwareViewModels.InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultAndValveHardwareViewModelList));
+                this.firmwareDatabaseDataGridViewModel.InitialStateFirmwareViewModels.Add(
+                    new FirmwareViewModels.InitialStateFirmwareViewModel(this.ViewModelEvents, initialStateFirmware, testCollectionResultAndValveHardwareViewModelList));
             }
         }
 
@@ -314,7 +326,8 @@ namespace ETIC2.ViewModels
 
             List<ValveHardware> valveHardwareList = this.etic2Model.ValveHardware.GetApplicationValveHardwares();
             List<TestCollectionResultAndInitialStateFirmware> testCollectionResultAndInitialStateFirmwareListValveHardwareFilter;
-            ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel> testCollectionResultAndInitialStateFirmwareViewModelList;
+            ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel> 
+                testCollectionResultAndInitialStateFirmwareViewModelList;
             List<TestResult> testResultListTestCollectionResultWithValveHardwareFilter;
             List<TestResult> testResultList = this.etic2Model.TestResult.GetApplicationTestResults();
             ObservableCollection<General.TestResultViewModel> testResultViewModelList;
@@ -324,33 +337,41 @@ namespace ETIC2.ViewModels
             //Level 1 ValveHardware (includes TestCollectionResultAndInitialStateFirmware List)
             foreach (ValveHardware valveHardware in valveHardwareList)
             {
-                testCollectionResultAndInitialStateFirmwareViewModelList = new ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel>();
-                testCollectionResultAndInitialStateFirmwareListValveHardwareFilter = this.etic2Model.TestCollectionResult.GetApplicationTestCollectionResultsAndInitialStateFirmwareWithValveHardwareFilter(valveHardware.Id);
+                testCollectionResultAndInitialStateFirmwareViewModelList = 
+                    new ObservableCollection<HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel>();
+                testCollectionResultAndInitialStateFirmwareListValveHardwareFilter = 
+                    this.etic2Model.TestCollectionResult.GetApplicationTestCollectionResultsAndInitialStateFirmwareWithValveHardwareFilter(valveHardware.Id);
 
                 //Level 2 TestCollectionResultAndInitialStateFirmware (includes TestResult List)
                 foreach (TestCollectionResultAndInitialStateFirmware testCollectionResultAndInitialStateFirmware in testCollectionResultAndInitialStateFirmwareListValveHardwareFilter)
                 {
                     testResultViewModelList = new ObservableCollection<General.TestResultViewModel>();
-                    testResultListTestCollectionResultWithValveHardwareFilter = this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultAndInitialStateFirmware.Id);
+                    testResultListTestCollectionResultWithValveHardwareFilter = 
+                        this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultAndInitialStateFirmware.Id);
 
                     //Level 3 TestResult (includes TestErrorMessage List)
                     foreach (TestResult testResult in testResultListTestCollectionResultWithValveHardwareFilter)
                     {
                         testErrorMessageViewModelList = new ObservableCollection<General.TestErrorMessageViewModel>();
-                        testErrorMessageListTestResultFilter = this.etic2Model.TestErrorMessage.GetApplicationTestErrorMessagesWithTestResultFilter(testResult.Id);
+                        testErrorMessageListTestResultFilter = 
+                            this.etic2Model.TestErrorMessage.GetApplicationTestErrorMessagesWithTestResultFilter(testResult.Id);
 
                         //Level 4 TestErrorMessage
                         foreach (Model.Application.General.TestErrorMessage testErrorMessage in testErrorMessageListTestResultFilter)
                             testErrorMessageViewModelList.Add(new General.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessage));
 
-                        testResultViewModelList.Add(new General.TestResultViewModel(this.ViewModelEvents, testResult, testErrorMessageViewModelList));
+                        testResultViewModelList.Add(
+                            new General.TestResultViewModel(this.ViewModelEvents, testResult, testErrorMessageViewModelList));
                     }
 
-                    testResultList = this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultAndInitialStateFirmware.Id);
-                    testCollectionResultAndInitialStateFirmwareViewModelList.Add(new HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel(this.ViewModelEvents, testCollectionResultAndInitialStateFirmware, testResultViewModelList));
+                    testResultList = 
+                        this.etic2Model.TestResult.GetApplicationTestResultsWithTestCollectionResultFilter(testCollectionResultAndInitialStateFirmware.Id);
+                    testCollectionResultAndInitialStateFirmwareViewModelList.Add(
+                        new HardwareViewModels.TestCollectionResultAndInitialStateFirmwareViewModel(this.ViewModelEvents, testCollectionResultAndInitialStateFirmware, testResultViewModelList));
                 }
 
-                this.hardwareDatabaseDataGridViewModel.ValveHardwareViewModels.Add(new HardwareViewModels.ValveHardwareViewModel(this.ViewModelEvents, valveHardware, testCollectionResultAndInitialStateFirmwareViewModelList));
+                this.hardwareDatabaseDataGridViewModel.ValveHardwareViewModels.Add(
+                    new HardwareViewModels.ValveHardwareViewModel(this.ViewModelEvents, valveHardware, testCollectionResultAndInitialStateFirmwareViewModelList));
             }
         }
 
@@ -365,7 +386,8 @@ namespace ETIC2.ViewModels
                 this.etic2Model.TestErrorMessage.GetApplicationTestErrorMessages();
 
             foreach (Model.Application.ErrorView.TestErrorMessage testErrorMessageItem in testErrorMessageItems)
-                this.errorDatabaseDataGridViewModel.TestErrorMessageViewModels.Add(new ErrorTopLevelViewModels.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessageItem));
+                this.errorDatabaseDataGridViewModel.TestErrorMessageViewModels.Add(
+                    new ErrorTopLevelViewModels.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessageItem));
         }
 
         /// <summary>

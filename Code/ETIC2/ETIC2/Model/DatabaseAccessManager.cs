@@ -7,7 +7,6 @@
 namespace ETIC2.Model
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.SqlClient;
     using System.Linq;
     using EntityFramework;
@@ -105,11 +104,6 @@ namespace ETIC2.Model
         }
 
         //Test Collection Result
-        public List<EntityFramework.TestCollectionResult> GetEntityFrameworkTestCollectionResults()
-        {
-            return databaseContext.TestCollectionResult.ToList();
-        }
-
         public EntityFramework.TestCollectionResult GetEntityFrameworkTestCollectionResult(int testCollectionResultId)
         {
             return databaseContext.TestCollectionResult.Where(x => x.Id == testCollectionResultId).FirstOrDefault();
@@ -133,7 +127,6 @@ namespace ETIC2.Model
         }
 
         //Valve Hardware
-
         public string GetValveSerieEnum(int valveHardwareId)
         {
             int valveSerieId = (int)databaseContext.ValveHardware.Where(x => x.Id == valveHardwareId).FirstOrDefault().ValveSerie_Id;

@@ -10,7 +10,7 @@ namespace ETIC2.ViewModels.General
     using Events;
 
     /// <summary>
-    /// Forth Level of the Firmware Master Detail View. Shows the TestErrorMessage entrys.
+    /// Forth Level of the Firmware and Hardware Master Detail View. Shows the TestErrorMessage entrys.
     /// </summary>
     public class TestErrorMessageViewModel : BasisViewModel
     {

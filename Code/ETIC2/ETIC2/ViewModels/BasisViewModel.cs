@@ -18,7 +18,7 @@ namespace ETIC2.ViewModels
     /// - Logger,
     /// - Events helper class including events that are used in several view models (e.g. ErrorHandler, UserFeedbackHandler)
     /// - PropertyChanged realization,
-    /// - Virtual methods for SubscribeEvents, UnsubscribeEvents and <Init/>
+    /// - Virtual methods for SubscribeEvents, UnsubscribeEvents and Init>
     /// </summary>
     public abstract class BasisViewModel : INotifyPropertyChanged
     {
