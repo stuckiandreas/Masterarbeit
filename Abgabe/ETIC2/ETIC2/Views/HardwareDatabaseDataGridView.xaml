@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="ETIC2.Views.HardwareDatabaseDataGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ETIC2.Views"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid Background="LightGray"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        
+        <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
+            <Button Click="Print" Content="Print" Height="20" Width="70"/>
+            <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
+        </dx:UniformStackPanel>
+        
+        <dxg:GridControl x:Name="grid"  Grid.Row ="1" ItemsSource="{Binding ValveHardwareViewModels}" AutoPopulateColumns="True" 
+                         AutoGenerateColumns="None" Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="ValveSerie" BestFitArea="Rows"/>
+                <dxg:GridColumn FieldName="InterfaceType" BestFitArea="Rows"/>
+                <dxg:GridColumn FieldName="ControllerType" BestFitArea="Rows"/>
+                <dxg:GridColumn FieldName="OptionType" BestFitArea="Rows"/>
+                <dxg:GridColumn FieldName="ExternalIsolationValve" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="ControllerHardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="ControllerAssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="InterfaceAssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module1Type" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module1HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module1AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module2Type" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module2HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module2AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module3Type" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module3HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module3AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module4Type" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module4HardwareVersion" Visible="False" ShowInColumnChooser="True"/>
+                <dxg:GridColumn FieldName="Module4AssemblyVariant" Visible="False" ShowInColumnChooser="True"/>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.DetailDescriptor>
+                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestCollectionResultAndInitialStateFirmwareViewModels">
+                    <dxg:DataControlDetailDescriptor.DataControl>
+                        <dxg:GridControl AutoPopulateColumns="True">
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="ExecutionTime" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="UserName" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="AbortType" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="CountErrorTest" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="ValveFirmware" AllowEditing="False" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="ValveFirmwareReleaseTime" UnboundType="Decimal" AllowEditing="False" BestFitArea="Rows">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="G" />
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn FieldName="MotionControllerFirmware" AllowEditing="False" BestFitArea="Rows"/>
+                                <dxg:GridColumn FieldName="InterfaceFirmware" AllowEditing="False" BestFitArea="Rows" />
+                                <dxg:GridColumn FieldName="DriveParameterID" AllowEditing="False" BestFitArea="Rows" />
+                                <dxg:GridColumn FieldName="ConfigurationParameterID" AllowEditing="False" BestFitArea="Rows" />
+                                <dxg:GridColumn FieldName="TestCollection" AllowEditing="False" BestFitArea="Rows" />
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.DetailDescriptor>
+                                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestResultViewModels">
+                                    <dxg:DataControlDetailDescriptor.DataControl>
+                                        <dxg:GridControl AutoPopulateColumns="True">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn FieldName="TestName" BestFitArea="Rows"/>
+                                                <dxg:GridColumn FieldName="TestVersion" BestFitArea="Rows"/>
+                                                <dxg:GridColumn FieldName="StartTime" UnboundType="Decimal" BestFitArea="Rows">
+                                                    <dxg:GridColumn.EditSettings>
+                                                        <dxe:TextEditSettings DisplayFormat="G" />
+                                                    </dxg:GridColumn.EditSettings>
+                                                </dxg:GridColumn>
+                                                <dxg:GridColumn FieldName="EndTime" UnboundType="Decimal" BestFitArea="Rows">
+                                                    <dxg:GridColumn.EditSettings>
+                                                        <dxe:TextEditSettings DisplayFormat="G" />
+                                                    </dxg:GridColumn.EditSettings>
+                                                </dxg:GridColumn>
+                                                <dxg:GridColumn FieldName="Result" BestFitArea="Rows"/>
+                                            </dxg:GridControl.Columns>
+                                            <dxg:GridControl.DetailDescriptor>
+                                                <dxg:DataControlDetailDescriptor ItemsSourcePath="TestErrorMessageViewModels">
+                                                    <dxg:DataControlDetailDescriptor.DataControl>
+                                                        <dxg:GridControl AutoPopulateColumns="False">
+                                                            <dxg:GridControl.View>
+                                                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"/>
+                                                            </dxg:GridControl.View>
+                                                            <dxg:GridControl.Columns>
+                                                                <dxg:GridColumn x:Name="gridColumn" FieldName="Description" BestFitArea="Rows"/>
+                                                            </dxg:GridControl.Columns>
+                                                        </dxg:GridControl>
+                                                    </dxg:DataControlDetailDescriptor.DataControl>
+                                                </dxg:DataControlDetailDescriptor>
+                                            </dxg:GridControl.DetailDescriptor>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </dxg:DataControlDetailDescriptor.DataControl>
+                                </dxg:DataControlDetailDescriptor>
+                            </dxg:GridControl.DetailDescriptor>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </dxg:DataControlDetailDescriptor.DataControl>
+                </dxg:DataControlDetailDescriptor>
+            </dxg:GridControl.DetailDescriptor>
+            <dxg:GridControl.View>
+                <dxg:TableView AutoWidth="True" AllowEditing="False" AllowBestFit="True" BestFitMode="AllRows" 
+                               ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" 
+                               FadeSelectionOnLostFocus="True" NavigationStyle="None" x:Name="HardwareView">
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</UserControl>
