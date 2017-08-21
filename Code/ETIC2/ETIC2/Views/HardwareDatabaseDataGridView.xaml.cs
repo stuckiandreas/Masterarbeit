@@ -57,25 +57,33 @@ namespace ETIC2.Views
         /// <param name="e">instance containing the event data</param>
         private void PDF(object sender, RoutedEventArgs e)
         {
-            if (System.IO.Path.IsPathRooted(this.etic2Path))
+            //file not exist -> create directory
+            if (!File.Exists(this.etic2Path))
             {
-                string fullPdfPath = this.etic2Path + this.etic2PdfName;
-                try
+                System.IO.Directory.CreateDirectory(this.etic2Path);
+                if (File.Exists(this.etic2Path))
                 {
-                    var link = new PrintableControlLink(HardwareView);
-                    link.Landscape = true;
-                    link.CreateDocument(true);
-                    link.ExportToPdf(fullPdfPath);
+                    MessageBox.Show("Directory not exist", "error export hardware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-                catch
-                {
-                    //check if File is already in use
-                    bool fileInUse = Helpers.IsFileInUse(fullPdfPath);
+            }
+            string fullPdfPath = this.etic2Path + this.etic2PdfName;
+            try
+            {
+                var link = new PrintableControlLink(HardwareView);
+                link.Landscape = true;
+                link.CreateDocument(true);
+                link.ExportToPdf(fullPdfPath);
+            }
+            catch
+            {
+                //check if File is already in use
+                bool fileInUse = Helpers.IsFileInUse(fullPdfPath);
 
-                    // inform user, that the file is not possible to open
-                    if (fileInUse == true)
-                        MessageBox.Show("File is already in use", "error export hardware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                // inform user, that the file is not possible to open
+                if (fileInUse == true)
+                    MessageBox.Show("File is already in use", "error export hardware pdf", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
             }
         }
 

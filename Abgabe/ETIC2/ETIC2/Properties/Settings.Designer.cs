@@ -61,7 +61,7 @@ namespace ETIC2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CHVW0115\\SOFTWARE_DATABAS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DESKTOP-N4UJ39P\\ANDREAS_DATABASE")]
         public string ServerName {
             get {
                 return ((string)(this["ServerName"]));

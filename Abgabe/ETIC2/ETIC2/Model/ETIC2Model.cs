@@ -37,8 +37,8 @@ namespace ETIC2.Model.Application
         /// </summary>
         public void BuildDatabaseContext()
         {
-            string serverName = ETIC2.Properties.Settings.Default.ServerName;
-            string databaseName = ETIC2.Properties.Settings.Default.DatabaseName;
+            string serverName = Properties.Settings.Default.ServerName;
+            string databaseName = Properties.Settings.Default.DatabaseName;
 
             this.InitialStateFirmware.BuildDatabaseContext(databaseName, serverName);
             this.TestCollectionResult.BuildDatabaseContext(databaseName, serverName);

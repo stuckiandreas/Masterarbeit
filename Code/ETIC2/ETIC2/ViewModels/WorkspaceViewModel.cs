@@ -11,7 +11,7 @@ namespace ETIC2.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Threading;
-    using ETIC2.Model.Application;
+    using Model.Application;
     using Events;
     using Events.EventArgs.Error;
     using Model.Application.FirmwareView;
@@ -207,9 +207,6 @@ namespace ETIC2.ViewModels
         {
             try
             {
-                //update database -> event
-                this.etic2Model.BuildDatabaseContext();
-
                 this.RefreshDataGrid();
             }
             catch (Exception ex)
@@ -222,9 +219,6 @@ namespace ETIC2.ViewModels
         {
             try
             {
-                //update database -> event
-                this.etic2Model.BuildDatabaseContext();
-
                 this.RefreshDataGrid();
             }
             catch (Exception ex)
@@ -237,9 +231,6 @@ namespace ETIC2.ViewModels
         {
             try
             {
-                //update database -> event
-                this.etic2Model.BuildDatabaseContext();
-
                 this.RefreshDataGrid();
             }
             catch (Exception ex)
@@ -270,10 +261,10 @@ namespace ETIC2.ViewModels
             List<TestCollectionResultAndValveHardware> testCollectionResultAndValveHardwareListInitialStateFirmwareFilter;
             ObservableCollection<FirmwareViewModels.TestCollectionResultAndValveHardwareViewModel> 
                 testCollectionResultAndValveHardwareViewModelList;
-            List<Model.Application.General.TestResult> testResultListTestCollectionResultAndValveHardwareFilter;
-            List<Model.Application.General.TestResult> testResultList = this.etic2Model.TestResult.GetApplicationTestResults();
+            List<TestResult> testResultListTestCollectionResultAndValveHardwareFilter;
+            List<TestResult> testResultList = this.etic2Model.TestResult.GetApplicationTestResults();
             ObservableCollection<General.TestResultViewModel> testResultViewModelList;
-            List<Model.Application.General.TestErrorMessage> testErrorMessageListTestResultFilter;
+            List<TestErrorMessage> testErrorMessageListTestResultFilter;
             ObservableCollection<General.TestErrorMessageViewModel> testErrorMessageViewModelList;
 
             //Level 1 InitialStateValve (includes TestCollectionResultAndValveHardware List)
@@ -331,7 +322,7 @@ namespace ETIC2.ViewModels
             List<TestResult> testResultListTestCollectionResultWithValveHardwareFilter;
             List<TestResult> testResultList = this.etic2Model.TestResult.GetApplicationTestResults();
             ObservableCollection<General.TestResultViewModel> testResultViewModelList;
-            List<Model.Application.General.TestErrorMessage> testErrorMessageListTestResultFilter;
+            List<TestErrorMessage> testErrorMessageListTestResultFilter;
             ObservableCollection<General.TestErrorMessageViewModel> testErrorMessageViewModelList;
 
             //Level 1 ValveHardware (includes TestCollectionResultAndInitialStateFirmware List)
@@ -357,7 +348,7 @@ namespace ETIC2.ViewModels
                             this.etic2Model.TestErrorMessage.GetApplicationTestErrorMessagesWithTestResultFilter(testResult.Id);
 
                         //Level 4 TestErrorMessage
-                        foreach (Model.Application.General.TestErrorMessage testErrorMessage in testErrorMessageListTestResultFilter)
+                        foreach (TestErrorMessage testErrorMessage in testErrorMessageListTestResultFilter)
                             testErrorMessageViewModelList.Add(new General.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessage));
 
                         testResultViewModelList.Add(

@@ -139,6 +139,8 @@ namespace ETIC2.ViewModels.MenuViewModels
         {
             try
             {
+                //Close database connection
+
                 App.Current.Shutdown();
             }
             catch (Exception ex)
