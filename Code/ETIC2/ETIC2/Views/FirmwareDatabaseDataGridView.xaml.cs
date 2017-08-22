@@ -20,7 +20,7 @@ namespace ETIC2.Views
     {
         private string settingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings";
         private string dataGridControlSettingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings\\firmwareDataGirdControlSettings.xml";
-        private string etic2Path = @"c:\\Test\ETIC2\Reports\";
+        private string etic2Path = @"c:\\ETIC2\Reports\";
         private string etic2PdfName = "FirmwareTestResult.pdf";
 
         public FirmwareDatabaseDataGridView()
@@ -67,6 +67,7 @@ namespace ETIC2.Views
                     return;
                 }
             }
+
             string fullPdfPath = this.etic2Path + this.etic2PdfName;
             try
             {
@@ -82,8 +83,7 @@ namespace ETIC2.Views
 
                 // inform user, that the file is not possible to open
                 if (fileInUse == true)
-                    MessageBox.Show("File is already in use", "error export firmware pdf", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                    MessageBox.Show("File is already in use", "error export firmware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
             }            
         }
 

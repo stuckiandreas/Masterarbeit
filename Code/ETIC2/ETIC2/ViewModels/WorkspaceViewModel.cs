@@ -11,9 +11,9 @@ namespace ETIC2.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Threading;
-    using Model.Application;
     using Events;
     using Events.EventArgs.Error;
+    using Model.Application;
     using Model.Application.FirmwareView;
     using Model.Application.General;
     using Model.Application.HardwareView;
@@ -163,7 +163,7 @@ namespace ETIC2.ViewModels
         {
             // Subscribe own model events
             this.firmwareDatabaseDataGridViewModel.SubscribeEvents();
-            this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent += this.DatabaseDataGridViewModel_RefreshChangedEvent;
+            this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent += this.FirmwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent += this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent += this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
 
@@ -175,7 +175,7 @@ namespace ETIC2.ViewModels
         {
             // Unsubscribe own model events
             this.firmwareDatabaseDataGridViewModel.UnsubscribeEvents();
-            this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.DatabaseDataGridViewModel_RefreshChangedEvent;
+            this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.FirmwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent -= this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
 
@@ -203,10 +203,11 @@ namespace ETIC2.ViewModels
             }
         }
 
-        private void DatabaseDataGridViewModel_RefreshChangedEvent(object sender, System.EventArgs e)
+        private void FirmwareDatabaseDataGridViewModel_RefreshChangedEvent(object sender, System.EventArgs e)
         {
             try
             {
+                this.RefreshDatabaseContext();
                 this.RefreshDataGrid();
             }
             catch (Exception ex)
@@ -219,6 +220,7 @@ namespace ETIC2.ViewModels
         {
             try
             {
+                this.RefreshDatabaseContext();
                 this.RefreshDataGrid();
             }
             catch (Exception ex)
@@ -231,6 +233,7 @@ namespace ETIC2.ViewModels
         {
             try
             {
+                this.RefreshDatabaseContext();
                 this.RefreshDataGrid();
             }
             catch (Exception ex)
@@ -247,6 +250,17 @@ namespace ETIC2.ViewModels
             this.LoadFirmwareDatabaseDataGrid();
             this.LoadHardwareDatabaseDataGrid();
             this.LoadErrorDatabaseDataGrid();
+        }
+
+        /// <summary>
+        /// Refreshes the database context. If not, the database not recordgnized when data entries has changed
+        /// </summary>
+        private void RefreshDatabaseContext()
+        {
+            this.etic2Model.InitialStateFirmware.BuildDatabaseContext(Properties.Settings.Default.DatabaseName, Properties.Settings.Default.ServerName);
+            this.etic2Model.TestCollectionResult.BuildDatabaseContext(Properties.Settings.Default.DatabaseName, Properties.Settings.Default.ServerName);
+            this.etic2Model.TestResult.BuildDatabaseContext(Properties.Settings.Default.DatabaseName, Properties.Settings.Default.ServerName);
+            this.etic2Model.TestErrorMessage.BuildDatabaseContext(Properties.Settings.Default.DatabaseName, Properties.Settings.Default.ServerName);
         }
 
         /// <summary>
