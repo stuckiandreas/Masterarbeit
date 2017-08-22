@@ -472,7 +472,7 @@ CREATE TABLE Buglist(
 	Priority_Id int references Priority(Id),
 	DateFound DATETIME NOT NULL,
 	DateFixed DATETIME);
-
+	
 USE [SoftwareVersionsDatabase]
 GO
 SET IDENTITY_INSERT [dbo].[SoftwareVersions] ON 
@@ -1228,6 +1228,10 @@ INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [Abo
 INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (7, CAST(N'2017-08-19 11:09:50.000' AS DateTime), N'STUA', 0, 0, 0, 0)
 INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (8, CAST(N'2017-08-19 14:14:01.000' AS DateTime), N'STUA', 1, 0, 0, 6)
 INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (9, CAST(N'2017-08-21 14:27:54.000' AS DateTime), N'STUA', 1, 0, 1, 7)
+INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (10, CAST(N'2017-08-22 07:01:09.000' AS DateTime), N'STUA', 2, 1, 1, 7)
+INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (11, CAST(N'2017-08-22 07:14:40.000' AS DateTime), N'STUA', 2, 1, 1, 7)
+INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (12, CAST(N'2017-08-22 07:49:20.000' AS DateTime), N'STUA', 2, 1, 1, 7)
+INSERT [dbo].[TestCollectionResult] ([Id], [ExecutionDateTime], [UserName], [AbortType_Id], [CountErrorTest], [ValveHardware_Id], [InitialStateFirmware_Id]) VALUES (13, CAST(N'2017-08-22 08:15:42.000' AS DateTime), N'STUA', 2, 1, 1, 7)
 SET IDENTITY_INSERT [dbo].[TestCollectionResult] OFF
 INSERT [dbo].[TestVersion2Module2AssemblyVariant] ([TestVersion_Id], [Module2AssemblyVariant_Id]) VALUES (0, 0)
 INSERT [dbo].[TestVersion2Module2AssemblyVariant] ([TestVersion_Id], [Module2AssemblyVariant_Id]) VALUES (1, 0)
@@ -2542,6 +2546,14 @@ INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestC
 INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (59, CAST(N'2017-08-19 17:35:10.000' AS DateTime), CAST(N'2017-08-19 18:46:59.000' AS DateTime), 1, 8, 41)
 INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (60, CAST(N'2017-08-21 14:27:54.000' AS DateTime), CAST(N'2017-08-21 14:29:19.000' AS DateTime), 0, 9, 78)
 INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (61, CAST(N'2017-08-21 14:29:19.000' AS DateTime), CAST(N'2017-08-21 14:29:33.000' AS DateTime), 1, 9, 0)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (62, CAST(N'2017-08-22 07:01:10.000' AS DateTime), CAST(N'2017-08-22 07:01:44.000' AS DateTime), 0, 10, 0)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (63, CAST(N'2017-08-22 07:01:44.000' AS DateTime), CAST(N'2017-08-22 07:04:04.000' AS DateTime), 2, 10, 32)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (64, CAST(N'2017-08-22 07:14:40.000' AS DateTime), CAST(N'2017-08-22 07:15:14.000' AS DateTime), 0, 11, 0)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (65, CAST(N'2017-08-22 07:15:15.000' AS DateTime), CAST(N'2017-08-22 07:16:23.000' AS DateTime), 2, 11, 32)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (66, CAST(N'2017-08-22 07:49:20.000' AS DateTime), CAST(N'2017-08-22 07:49:55.000' AS DateTime), 0, 12, 0)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (67, CAST(N'2017-08-22 07:49:55.000' AS DateTime), CAST(N'2017-08-22 07:52:15.000' AS DateTime), 2, 12, 32)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (68, CAST(N'2017-08-22 08:15:42.000' AS DateTime), CAST(N'2017-08-22 08:16:17.000' AS DateTime), 0, 13, 0)
+INSERT [dbo].[TestResult] ([Id], [StartTime], [EndTime], [ResultType_Id], [TestCollectionResult_Id], [TestVersion_Id]) VALUES (69, CAST(N'2017-08-22 08:16:17.000' AS DateTime), CAST(N'2017-08-22 08:17:29.000' AS DateTime), 2, 13, 32)
 SET IDENTITY_INSERT [dbo].[TestResult] OFF
 INSERT [dbo].[TestVersion2Module1Type] ([TestVersion_Id], [Module1Type_Id]) VALUES (0, 0)
 INSERT [dbo].[TestVersion2Module1Type] ([TestVersion_Id], [Module1Type_Id]) VALUES (1, 0)
@@ -3303,6 +3315,21 @@ INSERT [dbo].[TestVersion2Module1AssemblyVariant] ([TestVersion_Id], [Module1Ass
 INSERT [dbo].[TestVersion2Module1AssemblyVariant] ([TestVersion_Id], [Module1AssemblyVariant_Id]) VALUES (92, 0)
 INSERT [dbo].[TestVersion2Module1AssemblyVariant] ([TestVersion_Id], [Module1AssemblyVariant_Id]) VALUES (93, 0)
 INSERT [dbo].[TestVersion2Module1AssemblyVariant] ([TestVersion_Id], [Module1AssemblyVariant_Id]) VALUES (94, 0)
+SET IDENTITY_INSERT [dbo].[TestErrorMessage] ON 
+
+INSERT [dbo].[TestErrorMessage] ([Id], [Description], [TestResult_Id]) VALUES (0, N'Fail: Target Position konnte nicht erreicht werden, Actual Position: 34.200001, Target Position: 100.000000
+', 63)
+INSERT [dbo].[TestErrorMessage] ([Id], [Description], [TestResult_Id]) VALUES (1, N'Fail: Zeit abgelaufen um eine Verbindung mit dem Ventil aufzubauen, Command: p:0B0F02000000, Receive: , Result Communication: 1
+', 65)
+INSERT [dbo].[TestErrorMessage] ([Id], [Description], [TestResult_Id]) VALUES (2, N'Fail: Controller Mode nach Homing stimmt nicht überein, Erwartet Nr: 2, Erhalten: Nr. 1, im HomingStartOption Nr.0 ,Anzahl Neustarts während dem Test: 2
+', 65)
+INSERT [dbo].[TestErrorMessage] ([Id], [Description], [TestResult_Id]) VALUES (3, N'Fail: Target Position konnte nicht erreicht werden, Actual Position: 42.099998, Target Position: 100.000000
+', 67)
+INSERT [dbo].[TestErrorMessage] ([Id], [Description], [TestResult_Id]) VALUES (4, N'Fail: Zeit abgelaufen um eine Verbindung mit dem Ventil aufzubauen, Command: p:0B0F02000000, Receive: , Result Communication: 1
+', 69)
+INSERT [dbo].[TestErrorMessage] ([Id], [Description], [TestResult_Id]) VALUES (5, N'Fail: Controller Mode nach Homing stimmt nicht überein, Erwartet Nr: 2, Erhalten: Nr. 1, im HomingStartOption Nr.0 ,Anzahl Neustarts während dem Test: 2
+', 69)
+SET IDENTITY_INSERT [dbo].[TestErrorMessage] OFF
 SET IDENTITY_INSERT [dbo].[Authors] ON 
 
 INSERT [dbo].[Authors] ([Id], [Author]) VALUES (0, N'')
@@ -3458,5 +3485,3 @@ SET IDENTITY_INSERT [dbo].[PropertyTypes] ON
 
 INSERT [dbo].[PropertyTypes] ([Id], [PropertyType], [PropertyDescription]) VALUES (6, N'', N'')
 SET IDENTITY_INSERT [dbo].[PropertyTypes] OFF
-
-	

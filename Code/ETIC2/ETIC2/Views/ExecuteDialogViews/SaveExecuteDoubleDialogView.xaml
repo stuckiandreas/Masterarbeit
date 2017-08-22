@@ -12,7 +12,7 @@
         <ContentControl Content="{Binding TextInputViewModel2}"/>
 
         <Button Content="{Binding ButtonText}" IsDefault="True" Command="{Binding ExecuteCommand}" 
-                HorizontalAlignment="Right" Height="20" Width="40">
+                HorizontalAlignment="Right" Height="20" Width="50">
             <Button.InputBindings>
                 <KeyBinding Command="{Binding ExecuteCommand}" Key="Enter"/>
             </Button.InputBindings>

@@ -51,6 +51,8 @@ namespace ETIC2.ViewModels.ExecuteDialogViewModels
             this.etic2Model.TestCollectionResult.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
             this.etic2Model.TestResult.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
             this.etic2Model.TestErrorMessage.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.etic2Model.ValveHardware.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.etic2Model.DatabaseConnectionSettings.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
 
             Properties.Settings.Default.DatabaseName = TextInputViewModel1.TextInput;
             Properties.Settings.Default.ServerName = TextInputViewModel2.TextInput;
