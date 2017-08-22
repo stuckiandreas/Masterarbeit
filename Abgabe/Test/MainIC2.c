@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 {
 	//lest die Globale Opton Varible aus
 	TestEnvironment_ReadOptionString();
-++
++++
 	//schreibt alle Testinformations Umgebungsvariablen
 	if(strlen(TestOptionsString) != 0 && TestOptionsString[INFO_OPTION_INDEX] == '1')
 	{
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 		SharedVariable_EndNetworkvariableTTIC2TestVersion();
 		return 0;
 	}
---	
+---	
 	//Berechnung des Zeitoffsets
 	HelpFunctions_SetTimeOffset();
 	//ruft die Oberfläche des Tests auf

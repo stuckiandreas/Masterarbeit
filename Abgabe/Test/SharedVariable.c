@@ -285,7 +285,7 @@ void SharedVariable_WriteTTIC2TestVersionValue(SINT16 TestVersion)
 
 
 
-++
++++
 /*Test Hardware*/
 //******************************************************************************************************************************
 //  Procedure
@@ -978,4 +978,4 @@ void SharedVariable_WriteTestModule4Value(SINT16 Module4)
 	CNVCreateScalarDataValue(&data, CNVInt16, Module4);
 	CNVWrite (wTestModule4Value, data, RETURNVALUE_LENGTH);
 }
---
+---

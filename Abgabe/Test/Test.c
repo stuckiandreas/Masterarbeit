@@ -53,20 +53,20 @@ static void Test(void);
 //******************************************************************************************************************************
 // Global Variables
 //******************************************************************************************************************************
-++
++++
 SINT16 TestVersion 													= 1;
 char TestName[TEST_NAME_LENGTH] 						= "AccessMode";
 //Format YYYYMMDD
 char CreationTest[CREATION_TEST_LENGTH] 		= "20170510";
 char CreationAuthor[CREATION_AUTHOR_LENGTH]	= "Stucki Andreas";
---
+---
 
 char Command [COMMAND_LENGTH], PathNameUsbLogFile[MAX_PATHNAME_LEN], PathNameLogFile[MAX_PATHNAME_LEN];
 BOOL8 IsErrorLastControlMode = FALSE;
 UINT8 Error = 0, ExitTestActive = 0;
 UINT64 StartUpCount;
 FILE *LogFile_Test;
-++
++++
 //******************************************************************************************************************************
 //  Procedure
 //******************************************************************************************************************************
@@ -143,7 +143,7 @@ void Test_WriteInfoTestInSharedVariable(void)
 	
 	SharedVariable_EndNetworkvariableTestHardware();
 }
---
+---
 //******************************************************************************************************************************
 //  Procedure
 //******************************************************************************************************************************
