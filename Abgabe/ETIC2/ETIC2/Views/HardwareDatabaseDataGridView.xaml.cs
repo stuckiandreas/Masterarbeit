@@ -57,7 +57,7 @@ namespace ETIC2.Views
         /// <param name="e">instance containing the event data</param>
         private void PDF(object sender, RoutedEventArgs e)
         {
-            //file not exist -> create directory
+            //path not exist -> create directory
             if (!Directory.Exists(this.etic2Path))
             {
                 System.IO.Directory.CreateDirectory(this.etic2Path);
