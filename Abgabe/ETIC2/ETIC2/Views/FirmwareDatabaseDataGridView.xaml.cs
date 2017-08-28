@@ -18,9 +18,9 @@ namespace ETIC2.Views
     /// </summary>
     public partial class FirmwareDatabaseDataGridView : UserControl
     {
-        private string settingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings";
-        private string dataGridControlSettingsETIC2Path = @"C:\\Program Files (x86)\\VAT\\ETIC2\\Settings\\firmwareDataGirdControlSettings.xml";
-        private string etic2Path = @"c:\\ETIC2\Reports\";
+        private string settingsETIC2Path = @"C:\ETIC2\Settings";
+        private string dataGridControlSettingsETIC2Path = @"C:\ETIC2\Settings\firmwareDataGirdControlSettings.xml";
+        private string etic2Path = @"c:\ETIC2\Reports\";
         private string etic2PdfName = "FirmwareTestResult.pdf";
 
         public FirmwareDatabaseDataGridView()
@@ -58,10 +58,10 @@ namespace ETIC2.Views
         private void PDF(object sender, RoutedEventArgs e)
         {
             //file not exist -> create directory
-            if (!File.Exists(this.etic2Path))
+            if (!Directory.Exists(this.etic2Path))
             {
                 System.IO.Directory.CreateDirectory(this.etic2Path);
-                if (File.Exists(this.etic2Path))
+                if (!Directory.Exists(this.etic2Path))
                 {
                     MessageBox.Show("Directory not exist", "error export firmware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -106,8 +106,12 @@ namespace ETIC2.Views
         private void GridControl_LostFocus(object sender, RoutedEventArgs e)
         {
             //first to check if the path exist -> create if not
-            if (!System.IO.File.Exists(this.settingsETIC2Path)) System.IO.Directory.CreateDirectory(this.settingsETIC2Path);
-
+            if (!Directory.Exists(this.settingsETIC2Path)) System.IO.Directory.CreateDirectory(this.settingsETIC2Path);
+            if (!Directory.Exists(this.settingsETIC2Path))
+            {
+                MessageBox.Show("Directory not exist", "error save grid control settings", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             ((GridControl)sender).SaveLayoutToXml(this.dataGridControlSettingsETIC2Path);
         }
     }
