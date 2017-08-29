@@ -347,13 +347,13 @@ CREATE TABLE TestCollection(
 /*TABLE for saving test results*/
 CREATE TABLE InitialStateFirmware(
 	Id int IDENTITY(0,1) PRIMARY KEY,
-	SoftwareVersions_Id_Firmware int references SoftwareVersions(Id),							
+	SoftwareVersions_Id_Firmware int references SoftwareVersions(Id) NOT NULL,							
 	ValveFirmwareReleaseTime DATETIME NOT NULL,					
-	SoftwareVersions_Id_MotionController int references SoftwareVersions(Id),			
-	SoftwareVersions_Id_Interface int references SoftwareVersions(Id),			
-	DriveParameterFile_ID int references DriveParameterFile(Id),						
-	ConfigurationParameterFile_ID int references ConfigurationParameterFile(Id),
-	TestCollection_Id int references TestCollection(Id));
+	SoftwareVersions_Id_MotionController int references SoftwareVersions(Id) NOT NULL,			
+	SoftwareVersions_Id_Interface int references SoftwareVersions(Id) NOT NULL,			
+	DriveParameterFile_ID int references DriveParameterFile(Id) NOT NULL,						
+	ConfigurationParameterFile_ID int references ConfigurationParameterFile(Id) NOT NULL,
+	TestCollection_Id int references TestCollection(Id) NOT NULL);
 	
 /*TABLE for saving valve option types (multiple options with one value)*/
 CREATE TABLE OptionType(
