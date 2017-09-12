@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="VersionManagement.Views.InputViews.DefinedSelectionDoubleListInputView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VersionManagement.Views.InputViews"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <Grid>
+        <StackPanel>
+            <DockPanel LastChildFill="True">
+                <dxe:ComboBoxEdit Grid.Column ="0" SelectedItem="{Binding SelectedItemFilter}" ItemsSource="{Binding ItemListFilter}" DisplayMember="SelectedItem" Height="25" Width="150" ToolTip="{Binding ToolTip}" IsTextEditable="False" AllowSpinOnMouseWheel="False"/>
+                <dxe:ComboBoxEdit Grid.Column ="1" SelectedItem="{Binding SelectedItemDetail}" ItemsSource="{Binding ItemListDetail}" Height="25" IsTextEditable="False" AllowSpinOnMouseWheel="False"/>
+            </DockPanel>
+        </StackPanel>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Select Software" Command="{Binding SelectSoftwareCommand}"/>
+                <ContextMenu.Style>
+                    <Style TargetType="{x:Type ContextMenu}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsContextMenuVisible}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsContextMenuVisible}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContextMenu.Style>
+            </ContextMenu>
+        </Grid.ContextMenu>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="VersionManagement.Views.InputViews.DefinedSelectionListAndTooltipView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VersionManagement.Views.InputViews"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <StackPanel>
+            <DockPanel LastChildFill="True">
+                
+                <!--Data Trigger-->
+                <!--<CheckBox Width="20" Height="25">
+                    <CheckBox.Style>
+                        <Style TargetType="CheckBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsDeleteItemButtonPressed}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsDeleteItemButtonPressed}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </CheckBox.Style>
+                </CheckBox>-->
+                
+                <dxe:ComboBoxEdit Grid.Column ="0" DisplayMember="SelectedItem" SelectedItem="{Binding SelectedItemFilter}" ItemsSource="{Binding ItemListFilter}" Height="25" MinWidth="150" ToolTip="{Binding Path = SelectedItem.Description, RelativeSource={RelativeSource Self}}" IsTextEditable="False" AutoComplete="False" AllowSpinOnMouseWheel="False">
+                </dxe:ComboBoxEdit>
+            </DockPanel>    
+        </StackPanel>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Add Type" Command="{Binding AddCommand}"/>
+                <MenuItem Header="Edit Type" Command="{Binding EditCommand}"/>
+                <MenuItem Header="Delete Type" Command="{Binding DeleteCommand}"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+    </Grid>
+</UserControl>
+
