@@ -48,10 +48,12 @@
         <ContentControl Content ="{Binding DocumentsDefinedList}"  Grid.Column ="2" Grid.Row="2" Grid.RowSpan="2"/>
 
         <dx:UniformStackPanel Grid.Column ="3" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Command="{Binding SaveCommand}" Content="Save" Height="20" Width="45"/>
-            <Button Command="{Binding AddCommand}" Content="New" ToolTip="Rev" Height="20" Width="45"/>
-            <Button Command="{Binding DeleteCommand}" Content="Delete" DockPanel.Dock="Top" Height="20" Width="45"/>
+            <Button Command="{Binding SaveCommand}" Content="Save" Height="20" Width="60"/>
+            <Button Command="{Binding NewVerCommand}" Content="New Ver" ToolTip="Ver" Height="20" Width="60"/>
+            <Button Command="{Binding NewRevCommand}" Content="New Rev" ToolTip="Rev" Height="20" Width="60"/>
+            <Button Command="{Binding DeleteCommand}" Content="Delete" Height="20" Width="60"/>
         </dx:UniformStackPanel>
+
     </Grid>
 
 </UserControl>

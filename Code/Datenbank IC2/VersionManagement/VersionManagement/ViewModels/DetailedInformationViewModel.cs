@@ -93,9 +93,11 @@ namespace VersionManagement.ViewModels
             : base(viewModelEvents)
         {
             // Create all commands
-            this.AddCommand = new ActionCommand(this.OnAddCommand, this.OnCanExecuteAddCommand);
+            this.NewVerCommand = new ActionCommand(this.OnNewVerCommand, this.OnCanExecuteNewVerCommand);
+            this.NewRevCommand = new ActionCommand(this.OnNewRevCommand, this.OnCanExecuteNewRevCommand);
             this.SaveCommand = new ActionCommand(this.OnSaveCommand, this.OnCanExecuteSaveCommand);
             this.DeleteCommand = new ActionCommand(this.OnDeleteCommand, this.OnCanExecuteDeleteCommand);
+            this.PrintCommand = new ActionCommand(this.OnPrintCommand);
 
             this.viewModelEvents = viewModelEvents;
             this.versionManagementModel = versionManagementModel;
@@ -113,6 +115,11 @@ namespace VersionManagement.ViewModels
         /// The user defined here a supported motion controller or interface software to the main software which is defined under software name.
         /// </summary>
         public event EventHandler<SelectedItemEventArgs> SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent;
+
+        /// <summary>
+        /// Use to print the database in the code behind
+        /// </summary>
+        public event EventHandler<System.EventArgs> PrintChangedEvent;
 
         public TextInputViewModel Software
         {
@@ -282,7 +289,13 @@ namespace VersionManagement.ViewModels
             }
         }
 
-        public ICommand AddCommand
+        public ICommand NewVerCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand NewRevCommand
         {
             get;
             private set;
@@ -295,6 +308,12 @@ namespace VersionManagement.ViewModels
         }
 
         public ICommand DeleteCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand PrintCommand
         {
             get;
             private set;
@@ -745,15 +764,11 @@ namespace VersionManagement.ViewModels
             return Convert.ToInt32(pssNumberString);
         }
 
-        /// <summary>
-        /// Called when the add button is push on the main window.
-        /// </summary>
-        /// <param name="parameter">The parameter.</param>
-        private void OnAddCommand(object parameter)
+        private void OnNewVerCommand(object parameter)
         {
             try
             {
-                this.OnItemChangedEvent(this, new AddNewItemEventArgs());
+                this.OnItemChangedEvent(this, new AddNewItemEventArgs(NewItemType.Version));
             }
             catch (Exception ex)
             {
@@ -762,19 +777,37 @@ namespace VersionManagement.ViewModels
         }
 
         /// <summary>
-        /// Decided if the new button is visible. If the item identification is set to -1, then its clear that the button is push before without save.
+        /// Decided if the new button is visible. If the item identification is set to -1, then its clear that the button is push before saving the selected software item.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         /// <returns>result if add command is executable</returns>
-        private bool OnCanExecuteAddCommand(object parameter)
+        private bool OnCanExecuteNewVerCommand(object parameter)
         {
             return !this.IsNewItemSet;
         }
 
+        private void OnNewRevCommand(object parameter)
+        {
+            try
+            {
+                this.OnItemChangedEvent(this, new AddNewItemEventArgs(NewItemType.Revision));
+            }
+            catch (Exception ex)
+            {
+                this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+            }
+        }
+
         /// <summary>
-        /// Called when the add button is push on the main window.
+        /// Decided if the new button is visible. If the item identification is set to -1, then its clear that the button is push before saving the selected software item.
         /// </summary>
         /// <param name="parameter">The parameter.</param>
+        /// <returns>result if add command is executable</returns>
+        private bool OnCanExecuteNewRevCommand(object parameter)
+        {
+            return !this.IsNewItemSet;
+        }
+
         private void OnSaveCommand(object parameter)
         {
             try
@@ -787,15 +820,23 @@ namespace VersionManagement.ViewModels
             }
         }
 
-        /// <summary>
-        /// Called when the delete button is push on the main window.].
-        /// </summary>
-        /// <param name="parameter">The parameter.</param>
         private void OnDeleteCommand(object parameter)
         {
             try
             {
                 this.OnItemChangedEvent(this, new DeleteItemEventArgs(this.GetDatabaseItemViewModel()));
+            }
+            catch (Exception ex)
+            {
+                this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+            }
+        }
+
+        private void OnPrintCommand(object parameter)
+        {
+            try
+            {
+                this.OnPrintChangedEvent(this, new System.EventArgs());
             }
             catch (Exception ex)
             {
@@ -820,6 +861,12 @@ namespace VersionManagement.ViewModels
         {
             if (this.ItemChangedEvent != null)
                 this.ItemChangedEvent(sender, addNewItemEventArgs);
+        }
+
+        private void OnPrintChangedEvent(object sender, System.EventArgs printEventArgs)
+        {
+            if (this.PrintChangedEvent != null)
+                this.PrintChangedEvent(sender, printEventArgs);
         }
 
         private void SoftwaresDefinedList_SelectedItemEvent(object sender, Events.EventArgs.SelectedItem.SelectedItemEventArgs e)
