@@ -8,9 +8,11 @@ namespace VersionManagement.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
+    using ActionCommands;
     using Events;
-    using VersionManagement.Events.EventArgs.Error;
-
+    using System.Windows.Input;
+    using Events.EventArgs.Error;    
+    
     /// <summary>
     /// Contains data grid data items.
     /// </summary>
@@ -38,6 +40,8 @@ namespace VersionManagement.ViewModels
         public DatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
         {
+            this.RefreshCommand = new ActionCommand(this.OnRefreshCommand);
+
             this.viewModelEvents = viewModelEvents;
             this.databaseItemViewModels = new ObservableCollection<DatabaseItemViewModel>();
         }
@@ -46,6 +50,11 @@ namespace VersionManagement.ViewModels
         /// Occurs when the selected item has changed.
         /// </summary>
         public event EventHandler SelectedItemChanged;
+
+        /// <summary>
+        /// Event to update the DatabaseDataGriedView
+        /// </summary>
+        public event EventHandler<System.EventArgs> RefreshDataGridChangedEvent;
 
         /// <summary>
         /// Gets or sets the selected database item view model. View in the detailInformationViewModel
@@ -80,6 +89,26 @@ namespace VersionManagement.ViewModels
             {
                 return this.databaseItemViewModels;
             }
+        }
+
+        public ICommand RefreshCommand { get; private set; }
+
+        private void OnRefreshCommand(object parameter)
+        {
+            try
+            {
+                this.OnRefreshDataGridChangedEvent(this, new System.EventArgs());
+            }
+            catch (Exception ex)
+            {
+                this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+            }
+        }
+
+        private void OnRefreshDataGridChangedEvent(object sender, EventArgs refreshEventArgs)
+        {
+            if (this.RefreshDataGridChangedEvent != null)
+                this.RefreshDataGridChangedEvent(sender, refreshEventArgs);
         }
 
         /// <summary>

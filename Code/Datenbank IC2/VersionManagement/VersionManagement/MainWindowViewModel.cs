@@ -119,7 +119,7 @@ namespace VersionManagement
             base.SubscribeEvents();
             this.workspaceViewModel.SubscribeEvents();
             this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.versionManagementModel.SelectionItemDatabaseManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.versionManagementModel.SelectionItemDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
         }
 
         public override void UnsubscribeEvents()
@@ -127,7 +127,7 @@ namespace VersionManagement
             base.UnsubscribeEvents();
             this.workspaceViewModel.UnsubscribeEvents();
             this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.versionManagementModel.SelectionItemDatabaseManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.versionManagementModel.SelectionItemDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
         }
 
         /// <summary>

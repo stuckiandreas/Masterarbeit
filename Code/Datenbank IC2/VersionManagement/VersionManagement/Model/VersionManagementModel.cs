@@ -6,8 +6,6 @@
 
 namespace VersionManagement.Model
 {
-    using Database;
-
     /// <summary>
     /// Model which handles the save option of a software item in the database.
     /// Also the request from the GUI to show the software item which are saved in the database.
@@ -20,32 +18,27 @@ namespace VersionManagement.Model
         public VersionManagementModel()
         {
             this.SoftwareVersionsDatabaseAccessManager = new SoftwareVersionsDatabaseAccessManager();
-            this.SelectionItemDatabaseManager = new SelectionItemDatabaseAccessManager();
+            this.SelectionItemDatabaseAccessManager = new SelectionItemDatabaseAccessManager();
             this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettingsDatabaseAccessManager();
         }
 
-        /// <summary>
-        /// Gets the software versions database access manager.
-        /// </summary>
-        /// <value>
-        /// The software versions database access manager.
-        /// </value>
         public SoftwareVersionsDatabaseAccessManager SoftwareVersionsDatabaseAccessManager { get; }
 
-        /// <summary>
-        /// Gets the selection item database manager.
-        /// </summary>
-        /// <value>
-        /// The selection item database manager.
-        /// </value>
-        public SelectionItemDatabaseAccessManager SelectionItemDatabaseManager { get; }
+        public SelectionItemDatabaseAccessManager SelectionItemDatabaseAccessManager { get; }
        
-        /// <summary>
-        /// Gets the database connection settings database access manager.
-        /// </summary>
-        /// <value>
-        /// The database connection settings database access manager.
-        /// </value>
         public DatabaseConnectionSettingsDatabaseAccessManager DatabaseConnectionSettingsDatabaseAccessManager { get; }
+
+        /// <summary>
+        /// Builds the database context. Neccesary to update the view with actual data from the database.
+        /// </summary>
+        public void BuildDatabaseContext()
+        {
+            string serverName = Properties.Settings.Default.ServerName;
+            string databaseName = Properties.Settings.Default.DatabaseName;
+
+            this.SoftwareVersionsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
+            this.SelectionItemDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
+            this.DatabaseConnectionSettingsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
+        }
     }
 }

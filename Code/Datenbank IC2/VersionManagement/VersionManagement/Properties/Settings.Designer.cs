@@ -25,7 +25,7 @@ namespace VersionManagement.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("104")]
+        [global::System.Configuration.DefaultSettingValueAttribute("105")]
         public int FirmwareDatabaseVersion {
             get {
                 return ((int)(this["FirmwareDatabaseVersion"]));

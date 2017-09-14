@@ -22,8 +22,9 @@ namespace VersionManagement.Views
         /// </summary>
         private string settingsFirmwareDatabasePath = @"C:\\Program Files (x86)\\VAT\\Firmware Database\\Settings";
         private string dataGridControlSettingsFirmwareDatabasePath = @"C:\\Program Files (x86)\\VAT\\Firmware Database\\Settings\\dataGirdControlSettings.xml";
-        private string FirmwareDatabasePath = @"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\\Reports\";
-        private string FirmwareDatabasePdfName = "FirmwareDatabase.pdf";
+        private string firmwareDatabasePath = @"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\\Reports\";
+        private string firmwareDatabasePdfName = "FirmwareDatabase.pdf";
+        private string firmwareDatabaseCsvName = "FirmwareDatabase.csv";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DatabaseDataGridView"/> class.
@@ -80,24 +81,24 @@ namespace VersionManagement.Views
 
         /// <summary>
         /// This code has to be in code behind because it manages view information
-        /// Shows a pdf version of the test results view (in landscape format)
+        /// Shows a pdf version of the firmware database (in landscape format)
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">instance containing the event data</param>
         private void PDF(object sender, RoutedEventArgs e)
         {
             //path not exist -> create directory
-            if (!Directory.Exists(this.FirmwareDatabasePath))
+            if (!Directory.Exists(this.firmwareDatabasePath))
             {
-                System.IO.Directory.CreateDirectory(this.FirmwareDatabasePath);
-                if (!Directory.Exists(this.FirmwareDatabasePath))
+                System.IO.Directory.CreateDirectory(this.firmwareDatabasePath);
+                if (!Directory.Exists(this.firmwareDatabasePath))
                 {
                     MessageBox.Show("Directory not exist", "error export firmware datatbase pdf", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }
 
-            string fullPdfPath = this.FirmwareDatabasePath + this.FirmwareDatabasePdfName;
+            string fullPdfPath = this.firmwareDatabasePath + this.firmwareDatabasePdfName;
             try
             {
                 var link = new PrintableControlLink(FirmwareDatabase);
@@ -113,6 +114,44 @@ namespace VersionManagement.Views
                 // inform user, that the file is not possible to open
                 if (fileInUse == true)
                     MessageBox.Show("File is already in use", "error export firmware pdf", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        /// <summary>
+        /// This code has to be in code behind because it manages view information
+        /// Shows a csv version of the firmware database view (in landscape format)
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">instance containing the event data</param>
+        private void CSV(object sender, RoutedEventArgs e)
+        {
+            //path not exist -> create directory
+            if (!Directory.Exists(this.firmwareDatabasePath))
+            {
+                System.IO.Directory.CreateDirectory(this.firmwareDatabasePath);
+                if (!Directory.Exists(this.firmwareDatabasePath))
+                {
+                    MessageBox.Show("Directory not exist", "error export firmware datatbase csv", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
+            string fullPdfPath = this.firmwareDatabasePath + this.firmwareDatabaseCsvName;
+            try
+            {
+                var link = new PrintableControlLink(FirmwareDatabase);
+                link.Landscape = true;
+                link.CreateDocument(true);
+                link.ExportToCsv(fullPdfPath);
+            }
+            catch
+            {
+                //check if File is already in use
+                bool fileInUse = HelpFunctions.Helpers.IsFileInUse(fullPdfPath);
+
+                // inform user, that the file is not possible to open
+                if (fileInUse == true)
+                    MessageBox.Show("File is already in use", "error export firmware csv", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -99,7 +99,7 @@ namespace VersionManagement
             string serverName = VersionManagement.Properties.Settings.Default.ServerName;
             string databaseName = VersionManagement.Properties.Settings.Default.DatabaseName;
 
-            this.model.SelectionItemDatabaseManager.BuildDatabaseContext(databaseName, serverName);
+            this.model.SelectionItemDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
             this.model.SoftwareVersionsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
             this.model.DatabaseConnectionSettingsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
 

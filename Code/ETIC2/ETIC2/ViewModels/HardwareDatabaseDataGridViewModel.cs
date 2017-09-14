@@ -43,7 +43,7 @@ namespace ETIC2.ViewModels
         public HardwareDatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
         {
-            this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
+            this.RefreshCommand = new ActionCommand(this.OnRefreshCommand);
 
             this.viewModelEvents = viewModelEvents;
             this.valveHardwareViewModels = new ObservableCollection<HardwareViewModels.ValveHardwareViewModel>();
@@ -83,11 +83,6 @@ namespace ETIC2.ViewModels
         public override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
-        }
-
-        private bool OnCanExecuteRefreshCommand(object parameter)
-        {
-            return true;
         }
 
         private void OnRefreshCommand(object parameter)

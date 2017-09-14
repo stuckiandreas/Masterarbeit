@@ -43,7 +43,7 @@ namespace ETIC2.ViewModels
         public FirmwareDatabaseDataGridViewModel(ViewModelEvents viewModelEvents)
             : base(viewModelEvents)
         {
-            this.RefreshCommand = new ActionCommand(this.OnRefreshCommand, this.OnCanExecuteRefreshCommand);
+            this.RefreshCommand = new ActionCommand(this.OnRefreshCommand);
 
             this.viewModelEvents = viewModelEvents;
             this.initialStateFirmwareViewModels = new ObservableCollection<FirmwareViewModels.InitialStateFirmwareViewModel>();
@@ -83,11 +83,6 @@ namespace ETIC2.ViewModels
         public override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
-        }
-
-        private bool OnCanExecuteRefreshCommand(object parameter)
-        {
-            return true;
         }
 
         private void OnRefreshCommand(object parameter)

@@ -78,7 +78,7 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
 
         public override void Execute()
         {
-            this.versionManagementModel.SelectionItemDatabaseManager.AddPropertyType(this.TextInputViewModel1.TextInput, this.TextInputViewModel2.TextInput);
+            this.versionManagementModel.SelectionItemDatabaseAccessManager.AddPropertyType(this.TextInputViewModel1.TextInput, this.TextInputViewModel2.TextInput);
         }
     }
 }

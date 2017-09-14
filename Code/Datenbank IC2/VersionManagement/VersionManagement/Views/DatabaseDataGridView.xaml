@@ -17,6 +17,7 @@
         <dx:UniformStackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" Height="20" Width="60"/>
             <Button Click="Print" Content="Print" Height="20" Width="60"/>
+            <Button Click="CSV" Content="CSV" Height="20" Width="60"/>
             <Button Click="PDF" Content="PDF" Height="20" Width="60"/>
         </dx:UniformStackPanel>
 

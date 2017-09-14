@@ -371,25 +371,25 @@ namespace VersionManagement.ViewModels.InputViewModels
                 switch (this.selectionItemType)
                 {
                     case SelectionItemType.Author:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetAuthors().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Author }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetAuthors().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Author }).ToList();
                         break;
                     case SelectionItemType.Base:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetBaseSoftwares().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.BaseSoftware }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.BaseSoftware }).ToList();
                         break;
                     case SelectionItemType.System:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetSystems().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.System }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.System }).ToList();
                         break;
                     case SelectionItemType.Customer:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetCustomers().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Customer }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetCustomers().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Customer }).ToList();
                         break;
                     case SelectionItemType.DocumentType:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetDocumentTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.DocumentType }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetDocumentTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.DocumentType }).ToList();
                         break;
                     case SelectionItemType.Properties:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetPropertyTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.PropertyType, Description = x.PropertyDescription }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetPropertyTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.PropertyType, Description = x.PropertyDescription }).ToList();
                         break;
                     case SelectionItemType.Softwares:
-                        result = this.versionManagementModel.SelectionItemDatabaseManager.GetSystems().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.System }).ToList();
+                        result = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.System }).ToList();
                         break;
                     default:
                         throw new NotImplementedException("Unknown SelectionItemType; " + this.selectionItemType);

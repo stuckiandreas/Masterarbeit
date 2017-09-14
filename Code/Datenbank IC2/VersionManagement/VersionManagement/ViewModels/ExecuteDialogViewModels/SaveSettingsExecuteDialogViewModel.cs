@@ -47,7 +47,7 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
         public override void Execute()
         {
             this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
-            this.versionManagementModel.SelectionItemDatabaseManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.versionManagementModel.SelectionItemDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
 
             Properties.Settings.Default.DatabaseName = TextInputViewModel1.TextInput;
             Properties.Settings.Default.ServerName = TextInputViewModel2.TextInput;

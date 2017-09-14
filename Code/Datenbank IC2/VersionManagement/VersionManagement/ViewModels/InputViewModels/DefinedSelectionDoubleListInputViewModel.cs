@@ -138,7 +138,7 @@ namespace VersionManagement.ViewModels.InputViewModels
             List<string> systemSoftwareList = new List<string>();
             try
             {
-                List<Systems> systemList = this.versionManagementModel.SelectionItemDatabaseManager.GetSystems();
+                List<Systems> systemList = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems();
 
                 //possible that the SelectedItemFilter is not selected at this time
                 if (this.SelectedItemFilter != null)

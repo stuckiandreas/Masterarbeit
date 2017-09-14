@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FirmwareDatabaseVersion" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">104</Value>
+      <Value Profile="(Default)">105</Value>
     </Setting>
     <Setting Name="DatabaseName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SoftwareVersionsDatabase</Value>
