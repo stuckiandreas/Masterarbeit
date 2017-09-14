@@ -12,16 +12,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <dxg:GridControl MaxWidth="4000" MaxHeight="4000"
-                     ItemsSource="{Binding DatabaseItemViewModels}"
-                     SelectedItem="{Binding SelectedDatabaseItemViewModel}"
-                     SelectionMode="Row"
-                     dx:ThemeManager.Theme="Office2007Black" Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus"
-                     EnableSmartColumnsGeneration="True">
+    <DockPanel LastChildFill="True" Background="LightGray">
+        
+    <dx:UniformStackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right" MaxHeight="20">
+            <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="50"/>
+            <Button Content="Print" Height="20" Width="50"/>
+            <Button Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="50"/>
+        </dx:UniformStackPanel>
+
+        <dxg:GridControl MaxWidth="4000" MaxHeight="4000"
+                         ItemsSource="{Binding DatabaseItemViewModels}"
+                         SelectedItem="{Binding SelectedDatabaseItemViewModel}"
+                         SelectionMode="Row"
+                         dx:ThemeManager.Theme="Office2007Black" Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus"
+                         EnableSmartColumnsGeneration="True">
         <dxg:GridControl.View>
             <dxg:TableView x:Name="TableView" FocusedRow="{Binding SelectedDatabaseItemViewModel, Mode=TwoWay}" ScrollingMode="Smart" AllowEditing="False"
-                           NavigationStyle="Row" ShowGroupPanel="False" AllowColumnFiltering="False" AllowScrollToFocusedRow="True"                            
-                           ShowTotalSummary="True" AutoWidth="True" ShowAutoFilterRow="True"/>
+                               NavigationStyle="Row" ShowGroupPanel="False" AllowColumnFiltering="False" AllowScrollToFocusedRow="True"                            
+                               ShowTotalSummary="True" AutoWidth="True" ShowAutoFilterRow="True"/>
         </dxg:GridControl.View>
         <dxg:GridControl.Columns>
             <dxg:GridColumn Header="Software" Binding="{Binding Software}"/>
@@ -37,6 +45,6 @@
             <dxg:GridColumn Header="Softwares" Binding="{Binding SoftwaresGridDescription}" Visible="False"/>
             <dxg:GridColumn Header="Documents" Binding="{Binding DocumentsGridDescription}" Visible="False"/>
         </dxg:GridControl.Columns>
-    </dxg:GridControl>
-
+        </dxg:GridControl>
+    </DockPanel>
 </UserControl>

@@ -9,22 +9,16 @@
              xmlns:local="clr-namespace:ETIC2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
-    <Grid Background="LightGray"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="10*"/>
-        </Grid.RowDefinitions>
-        
-        <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+
+    <DockPanel LastChildFill="True" Background="LightGray">
+
+        <dx:UniformStackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
             <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
         </dx:UniformStackPanel>
         
-        <dxg:GridControl Grid.Row="1" MaxWidth="4000" MaxHeight="4000" Background="LightGray"
+        <dxg:GridControl MaxWidth="4000" MaxHeight="4000" Background="LightGray"
                          ItemsSource="{Binding TestErrorMessageViewModels}"
                          SelectionMode="Row"
                          Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus"
@@ -73,5 +67,5 @@
                 <dxg:GridColumn Header="Module4 Assembly Variant" Binding="{Binding Module4AssemblyVariant}" Visible="False" ShowInColumnChooser="True"/>
             </dxg:GridControl.Columns>
         </dxg:GridControl>
-    </Grid>
+    </DockPanel>
 </UserControl>

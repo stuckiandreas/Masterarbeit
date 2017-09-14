@@ -9,22 +9,16 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <DockPanel LastChildFill="True" Background="LightGray">
 
-    <Grid Background="LightGray"
-          HorizontalAlignment="Stretch"
-          VerticalAlignment="Top">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="10*"/>
-        </Grid.RowDefinitions>
-        
-        <dx:UniformStackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+        <dx:UniformStackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
             <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
         </dx:UniformStackPanel>
         
-        <dxg:GridControl x:Name="grid"  Grid.Row ="1" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 
+        <dxg:GridControl x:Name="grid" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 
                          AutoGenerateColumns="None" Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus">
             <dxg:GridControl.Columns>
                 <dxg:GridColumn FieldName="ValveFirmware" AllowEditing="False" BestFitArea="Rows"/>
@@ -119,9 +113,9 @@
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="True" AllowEditing="False" AllowBestFit="True" BestFitMode="AllRows" 
                                ShowAutoFilterRow="True" ShowSearchPanelMode="Always" AllowPrintEmptyDetails="False" 
-                               FadeSelectionOnLostFocus="True" NavigationStyle="None" x:Name="FirmwareView">
+                               FadeSelectionOnLostFocus="False" NavigationStyle="None" x:Name="FirmwareView">
                 </dxg:TableView>
             </dxg:GridControl.View>
         </dxg:GridControl>
-    </Grid>
+    </DockPanel>
 </UserControl>

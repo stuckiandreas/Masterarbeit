@@ -13,6 +13,6 @@
             <ComboBox Width="100" ToolTip="Diffrent database views" ItemsSource="{Binding DatabaseDataGridItems}" 
                       SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
         </StackPanel>
-        <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
+        <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}"/>
     </DockPanel>
 </UserControl>

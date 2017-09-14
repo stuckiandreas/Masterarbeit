@@ -12,7 +12,7 @@
       <Value Profile="(Default)">101</Value>
     </Setting>
     <Setting Name="ServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">chva0012</Value>
+      <Value Profile="(Default)">CHVW0115\SOFTWARE_DATABAS</Value>
     </Setting>
   </Settings>
 </SettingsFile>
