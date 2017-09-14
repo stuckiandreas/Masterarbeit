@@ -240,20 +240,34 @@ namespace VersionManagement.ViewModels
             }
         }
 
-        private void AddItem()
+        private void AddItem(AddNewItemEventArgs addNewItemEventArgs)
         {
             //Add new SoftwareItem with identification number -1 to indicate temporary value
             //Add the Software and Properties from the selected Software Item, only if an Software Item exist in the DataGrid
             if (this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel != null)
             {
-                //New Software Name add 1 to the last number, if the last char is a number
-                this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel()
+                if (addNewItemEventArgs.NewItemType == NewItemType.Version)
                 {
-                    ItemIdentification = -1,
-                    Software = this.NewSoftwareRevision(DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software),
-                    BaseSoftware = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software,
-                    Properties = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Properties,
-                });
+                    //New Software Name add 1 to the last number, if the last char is a number
+                    this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel()
+                    {
+                        ItemIdentification = -1,
+                        Software = this.NewSoftwareVersion(DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software),
+                        BaseSoftware = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software,
+                        Properties = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Properties,
+                    });
+                }
+                else if (addNewItemEventArgs.NewItemType == NewItemType.Revision)
+                {
+                    //New Software Name add 1 to the last number, if the last char is a number
+                    this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel()
+                    {
+                        ItemIdentification = -1,
+                        Software = this.NewSoftwareRevision(DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software),
+                        BaseSoftware = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software,
+                        Properties = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Properties,
+                    });
+                }
             }
             else
             {
@@ -347,7 +361,7 @@ namespace VersionManagement.ViewModels
 
                 //Add new Item to the collection
                 if (e is AddNewItemEventArgs)
-                    this.AddItem();
+                    this.AddItem((AddNewItemEventArgs)e);
 
                 //Save existing item
                 if (e is SaveItemEventArgs)
@@ -401,7 +415,7 @@ namespace VersionManagement.ViewModels
         }
 
         /// <summary>
-        /// Increment the software version. If its not possible, he sets the software version to the selection item.
+        /// Increment the software version. If its not possible, it set the old software version. (F01.0C.00.xy)
         /// </summary>
         /// <param name="oldSoftwareName">old software name</param>
         /// <returns>string of the software revision</returns>
@@ -427,6 +441,8 @@ namespace VersionManagement.ViewModels
                 {
                     string numericString = (numericValue + 1).ToString();
                     string numericStringWithZeroChars = null;
+
+                    //fill revision string with 0 (example 01)
                     for (int i = 0; i < (subSoftwareVersion.Length - numericString.Length); i++)
                     {
                         numericStringWithZeroChars = numericStringWithZeroChars + '0';
@@ -434,6 +450,66 @@ namespace VersionManagement.ViewModels
 
                     numericStringWithZeroChars = numericStringWithZeroChars + numericString;
                     string newSoftwareVersion = DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software.Substring(0, DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software.Length - countNumbersofSubVersion) + numericStringWithZeroChars;
+                    return newSoftwareVersion;
+                }
+            }
+
+            return oldSoftwareName;
+        }
+
+        /// <summary>
+        /// Increment the software version. If its not possible, it set the old software version. (F01.0C.xy.00)
+        /// </summary>
+        /// <param name="oldSoftwareName">old software name</param>
+        /// <returns>string of the software revision</returns>
+        private string NewSoftwareVersion(string oldSoftwareName)
+        {
+            bool findDotChar = false;
+            int countNumbersofSubVersion = 0, findDotCharCount = 0, indexStartSubVersion = 0;
+            for (int i = oldSoftwareName.Length - 1; i > 0; i--)
+            {
+                if (oldSoftwareName[i] == '.')
+                {
+                    findDotCharCount++;
+                    if (findDotCharCount == 2)
+                    {
+                        findDotChar = true;
+                        break;
+                    }
+                    else
+                    {
+                        countNumbersofSubVersion++;
+                        indexStartSubVersion = countNumbersofSubVersion;
+                    }
+                }
+                else countNumbersofSubVersion++;
+            }
+
+            if (findDotChar)
+            {
+                string subSoftwareVersion = DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software.Substring(DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software.Length - countNumbersofSubVersion, countNumbersofSubVersion - indexStartSubVersion);
+                int numericValue;
+                if (int.TryParse(subSoftwareVersion, out numericValue))
+                {
+                    string numericString = (numericValue + 1).ToString();
+                    string numericStringWithZeroChars = null;
+                    string nummericStringZeroRevision = null;
+                    
+                    //fill version string with 0 (example 01)
+                    for (int i = 0; i < (subSoftwareVersion.Length - numericString.Length); i++)
+                    {
+                        numericStringWithZeroChars = numericStringWithZeroChars + '0';
+                    }
+
+                    //fill revision (example .00)
+                    for (int i = 0; i < indexStartSubVersion; i++)
+                    {
+                        if (i == 0) nummericStringZeroRevision = nummericStringZeroRevision + ".";
+                        else nummericStringZeroRevision = nummericStringZeroRevision + '0';
+                    }
+
+                    numericStringWithZeroChars = numericStringWithZeroChars + numericString;
+                    string newSoftwareVersion = DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software.Substring(0, DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software.Length - countNumbersofSubVersion) + numericStringWithZeroChars + nummericStringZeroRevision;
                     return newSoftwareVersion;
                 }
             }

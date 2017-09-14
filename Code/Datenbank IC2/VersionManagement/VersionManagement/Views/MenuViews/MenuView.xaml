@@ -11,6 +11,7 @@
         <MenuItem Header="Program">
             <MenuItem Header="Settings" HorizontalAlignment="Left" Width="180" Command="{Binding SettingsCommand}"/>
             <MenuItem Header="Improvements" HorizontalAlignment="Left" Width="180" Command="{Binding ImprovementsCommand}"/>
+            <MenuItem Header="Release Note" HorizontalAlignment="Left" Width="180" Command="{Binding ReleaseNoteCommand}"/>
             <MenuItem Header="Exit" HorizontalAlignment="Left" Width="180" Command="{Binding ExitCommand}"/>
         </MenuItem>
         <MenuItem Header="Help">

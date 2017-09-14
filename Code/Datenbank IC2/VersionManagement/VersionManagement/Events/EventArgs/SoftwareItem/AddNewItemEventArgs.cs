@@ -6,14 +6,23 @@
 
 namespace VersionManagement.Events.EventArgs.SoftwareItem
 {
+    public enum NewItemType
+    {
+        Version,
+        Revision
+    }
+
     /// <summary>
     /// Event after the user push the new button
     /// </summary>
     /// <seealso cref="VersionManagement.Events.EventArgs.SoftwareItem.ItemEventArgs" />
     public class AddNewItemEventArgs : ItemEventArgs
     {
-        public AddNewItemEventArgs()
+        public NewItemType NewItemType;
+
+        public AddNewItemEventArgs(NewItemType newItemType)
         {
+            this.NewItemType = newItemType;
         }
     }
 }

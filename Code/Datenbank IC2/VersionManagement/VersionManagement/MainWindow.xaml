@@ -20,7 +20,7 @@
 
     <Grid>
         <!--<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">-->
-            <DockPanel LastChildFill="True">
+            <DockPanel LastChildFill="True" Background="LightGray">
                 <ContentControl Content="{Binding MenuViewModel}" DockPanel.Dock="Top"/>
                 <ContentControl Content="{Binding StatusbarViewModel}" DockPanel.Dock="Bottom"/>
                 <ContentControl Content="{Binding WorkspaceViewModel}" IsEnabled="{Binding IsWorkspaceEnabled}"/>

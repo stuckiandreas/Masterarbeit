@@ -45,6 +45,7 @@ namespace VersionManagement.ViewModels.MenuViewModels
             this.ExitCommand = new ActionCommand(this.OnExitCommand);
             this.SettingsCommand = new ActionCommand(this.OnSettingsCommand);
             this.ImprovementsCommand = new ActionCommand(this.OnImprovementsCommand);
+            this.ReleaseNoteCommand = new ActionCommand(this.OnReleaseNoteCommand);
         }
 
         public ICommand AboutCommand
@@ -66,6 +67,12 @@ namespace VersionManagement.ViewModels.MenuViewModels
         }
 
         public ICommand ImprovementsCommand
+        {
+            get;
+            private set;
+        }
+
+        public ICommand ReleaseNoteCommand
         {
             get;
             private set;
@@ -112,6 +119,31 @@ namespace VersionManagement.ViewModels.MenuViewModels
                 {
                     //file doesn't exist
                     this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("improvements list file doesn't exist"));
+                }
+            }
+            catch (Exception ex)
+            {
+                this.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+            }
+        }
+
+        /// <summary>
+        /// OnReleaseNoteCommand open the word document with the release notes
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        private void OnReleaseNoteCommand(object parameter)
+        {
+            try
+            {
+                FileInfo fi = new FileInfo(@"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\Dokumente\Release Note.docx");
+                if (fi.Exists)
+                {
+                    System.Diagnostics.Process.Start(@"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\Dokumente\Release Note.docx");
+                }
+                else
+                {
+                    //file doesn't exist
+                    this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("release note document doesn't exist"));
                 }
             }
             catch (Exception ex)
