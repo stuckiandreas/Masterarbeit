@@ -12,6 +12,9 @@ namespace VersionManagement.Model.Database
         public SoftwareVersions()
         {
             Documents = new HashSet<Documents>();
+            InitialStateFirmware = new HashSet<InitialStateFirmware>();
+            InitialStateFirmware1 = new HashSet<InitialStateFirmware>();
+            InitialStateFirmware2 = new HashSet<InitialStateFirmware>();
             Properties = new HashSet<Properties>();
             Softwares = new HashSet<Softwares>();
         }
@@ -53,6 +56,15 @@ namespace VersionManagement.Model.Database
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Documents> Documents { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InitialStateFirmware> InitialStateFirmware { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InitialStateFirmware> InitialStateFirmware1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InitialStateFirmware> InitialStateFirmware2 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Properties> Properties { get; set; }

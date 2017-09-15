@@ -18,6 +18,7 @@ namespace VersionManagement.Model.Database
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<Documents> Documents { get; set; }
         public virtual DbSet<DocumentTypes> DocumentTypes { get; set; }
+        public virtual DbSet<InitialStateFirmware> InitialStateFirmware { get; set; }
         public virtual DbSet<Properties> Properties { get; set; }
         public virtual DbSet<PropertyTypes> PropertyTypes { get; set; }
         public virtual DbSet<Softwares> Softwares { get; set; }
@@ -111,6 +112,24 @@ namespace VersionManagement.Model.Database
             modelBuilder.Entity<SoftwareVersions>()
                 .Property(e => e.AdditionalInformation)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<SoftwareVersions>()
+                .HasMany(e => e.InitialStateFirmware)
+                .WithRequired(e => e.SoftwareVersions)
+                .HasForeignKey(e => e.SoftwareVersions_Id_Firmware)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SoftwareVersions>()
+                .HasMany(e => e.InitialStateFirmware1)
+                .WithRequired(e => e.SoftwareVersions1)
+                .HasForeignKey(e => e.SoftwareVersions_Id_MotionController)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SoftwareVersions>()
+                .HasMany(e => e.InitialStateFirmware2)
+                .WithRequired(e => e.SoftwareVersions2)
+                .HasForeignKey(e => e.SoftwareVersions_Id_Interface)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Systems>()
                 .Property(e => e.System)
