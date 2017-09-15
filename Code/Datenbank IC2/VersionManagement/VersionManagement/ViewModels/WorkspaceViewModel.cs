@@ -41,6 +41,11 @@ namespace VersionManagement.ViewModels
         private readonly VersionManagementModel versionManagementModel;
 
         /// <summary>
+        /// Before a item is saving in the database, the database will update. In this time the selection item is changing (need this information to prevent a warning)
+        /// </summary>
+        private bool isReloadDataGrid = false;
+
+        /// <summary>
         /// View model events with several handlers
         /// </summary>
         public readonly ViewModelEvents ViewModelEvents;
@@ -75,7 +80,7 @@ namespace VersionManagement.ViewModels
             // Subscribe own model events
             this.detailedInformationViewModel.SubscribeEvents();
             this.databaseDataGridViewModel.SelectedItemChanged += this.DatabaseDataGridViewModel_SelectedItemChanged;
-            this.databaseDataGridViewModel.RefreshDataGridChangedEvent += DatabaseDataGridViewModel_RefreshDataGridChangedEvent;
+            this.databaseDataGridViewModel.RefreshDataGridChangedEvent += this.DatabaseDataGridViewModel_RefreshDataGridChangedEvent;
             this.detailedInformationViewModel.ItemChangedEvent += this.DetailedInformationViewModel_ItemChangedEvent;
             this.detailedInformationViewModel.SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent += this.DetailedInformationViewModel_SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent;
             this.ViewModelEvents.ChangeDatabaseSettings += this.ViewModelEvents_ChangeDatabaseSettings;
@@ -90,7 +95,7 @@ namespace VersionManagement.ViewModels
             // Unsubscribe own model events
             this.detailedInformationViewModel.ItemChangedEvent -= this.DetailedInformationViewModel_ItemChangedEvent;
             this.databaseDataGridViewModel.SelectedItemChanged -= this.DatabaseDataGridViewModel_SelectedItemChanged;
-            this.databaseDataGridViewModel.RefreshDataGridChangedEvent -= DatabaseDataGridViewModel_RefreshDataGridChangedEvent;
+            this.databaseDataGridViewModel.RefreshDataGridChangedEvent -= this.DatabaseDataGridViewModel_RefreshDataGridChangedEvent;
             this.detailedInformationViewModel.SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent -= this.DetailedInformationViewModel_SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent;
             this.databaseDataGridViewModel.SelectedItemChanged -= this.DatabaseDataGridViewModel_SelectedItemChanged;
             this.detailedInformationViewModel.UnsubscribeEvents();
@@ -144,6 +149,9 @@ namespace VersionManagement.ViewModels
 
         private void SaveItem(DatabaseItemViewModel databaseItemViewModel)
         {
+            //update database view first
+            this.ReloadDataGrid();
+
             //check if the user select a system item
             if (string.IsNullOrEmpty(databaseItemViewModel.System))
             {
@@ -210,6 +218,9 @@ namespace VersionManagement.ViewModels
 
         private void DeleteItem(DatabaseItemViewModel databaseItemViewModel)
         {
+            //update database view first (possible that the software item dosnt exist anymore)
+            this.ReloadDataGrid();
+
             //Request the user if he want to delete permanently
             UserFeedbackQuestionEventArgs deleteItemFinal = new UserFeedbackQuestionEventArgs(
                 string.Format("Do you really want to delete {0} ?", databaseItemViewModel.Software));
@@ -217,28 +228,31 @@ namespace VersionManagement.ViewModels
 
             if (deleteItemFinal.Result == MessageBoxResult.Yes)
             {
-                int deleteItemIdentificationNumber =
-                    this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.ItemIdentification;
+                //check if firmware is in test result (if yes -> not allowed to remove the firmware)
+                if (this.CheckIfSoftwareIsInTestResult(databaseItemViewModel) == false)
+                {
+                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DeleteSoftwareVersion(
+                        databaseItemViewModel.Software);
 
-                this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DeleteSoftwareVersion(
-                    databaseItemViewModel.Software);
+                    //Set first database item as selected item in the datagrid
+                    this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel =
+                        this.DatabaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
 
-                //Set first database item as selected item in the datagrid
-                this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel =
-                    this.DatabaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
+                    //Delete the software in the base selection item
+                    if (this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares()
+                        .Any(x => x.BaseSoftware == databaseItemViewModel.Software.ToString()))
+                        this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteBaseSoftware(databaseItemViewModel.Software);
 
-                //Delete the software in the base selection item
-                if (this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares()
-                    .Any(x => x.BaseSoftware == databaseItemViewModel.Software.ToString()))
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteBaseSoftware(databaseItemViewModel.Software);
+                    //Delete the software in the systemsoftware selection item
+                    if (this.IsSoftwareInSystemsTable(databaseItemViewModel.System, databaseItemViewModel.Software))
+                        this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteSystemSoftware(databaseItemViewModel.System, databaseItemViewModel.Software);
 
-                //Delete the software in the systemsoftware selection item
-                if (this.IsSoftwareInSystemsTable(databaseItemViewModel.System, databaseItemViewModel.Software))
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteSystemSoftware(databaseItemViewModel.System, databaseItemViewModel.Software);
+                    this.ReloadDataGrid();
 
-                this.ReloadDataGrid();
-
-                this.databaseDataGridViewModel.SelectedDatabaseItemViewModel = this.databaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
+                    this.databaseDataGridViewModel.SelectedDatabaseItemViewModel = this.databaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
+                }
+                else
+                    this.ViewModelEvents.OnUserFeedback(this, new UserFeedbackInfoEventArgs(string.Format("{0} does already exist in test result table and can not removed from software version table!", databaseItemViewModel.Software)));
             }
         }
 
@@ -282,6 +296,8 @@ namespace VersionManagement.ViewModels
 
         private void ReloadDataGrid()
         {
+            this.isReloadDataGrid = true;
+
             //Refreshes the database context. If not, the database not recordgnized when data entries has changed
             this.versionManagementModel.BuildDatabaseContext();
 
@@ -299,6 +315,8 @@ namespace VersionManagement.ViewModels
             List<Systems> systems = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems();
             List<DocumentTypes> documentTypes = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetDocumentTypes();
             List<PropertyTypes> propertyTypes = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetPropertyTypes();
+
+            this.isReloadDataGrid = false;
         }
 
         private bool IsSoftwareInSystemsTable(string system, string software)
@@ -338,8 +356,8 @@ namespace VersionManagement.ViewModels
         {
             try
             {
-                //only to change the selelected item, if the user want it explicit
-                if (this.detailedInformationViewModel.IsNewItemSet)
+                //only to change the selelected item, if the user want it explicit (when user edit a new software item)
+                if (this.detailedInformationViewModel.IsNewItemSet && this.isReloadDataGrid == false)
                 {
                     UserFeedbackQuestionEventArgs changeWithoutSaving = new UserFeedbackQuestionEventArgs("Are you sure to change the software without saving?");
                     this.ViewModelEvents.OnUserFeedback(this, changeWithoutSaving);
@@ -429,6 +447,16 @@ namespace VersionManagement.ViewModels
             {
                 this.ViewModelEvents.OnHandleError(this, new ExpectedErrorHandlerEventArgs(ex.Message));
             }
+        }
+
+        /// <summary>
+        /// Checks if software is in test result. If yes, the software item is not allowed to remove from the database.
+        /// </summary>
+        /// <param name="databaseItemViewModel">The database item view model.</param>
+        /// <returns>result if the software item exist in the test result table</returns>
+        private bool CheckIfSoftwareIsInTestResult(DatabaseItemViewModel databaseItemViewModel)
+        {
+            return false;
         }
 
         /// <summary>

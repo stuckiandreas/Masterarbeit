@@ -8,9 +8,9 @@ namespace VersionManagement.ViewModels
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using ActionCommands;
     using Events;
-    using System.Windows.Input;
     using Events.EventArgs.Error;    
     
     /// <summary>
