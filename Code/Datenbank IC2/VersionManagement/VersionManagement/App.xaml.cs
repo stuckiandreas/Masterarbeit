@@ -99,9 +99,9 @@ namespace VersionManagement
             string serverName = VersionManagement.Properties.Settings.Default.ServerName;
             string databaseName = VersionManagement.Properties.Settings.Default.DatabaseName;
 
-            this.model.SelectionItemDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.model.SoftwareVersionsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.model.DatabaseConnectionSettingsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
+            this.model.SelectionItem.BuildDatabaseContext(databaseName, serverName);
+            this.model.SoftwareVersionsItem.BuildDatabaseContext(databaseName, serverName);
+            this.model.DatabaseConnectionSettings.BuildDatabaseContext(databaseName, serverName);
 
             this.mainWindowViewModel = new MainWindowViewModel(this.viewModelEvents, this.model);
             this.mainWindow = new MainWindow();
@@ -114,9 +114,9 @@ namespace VersionManagement
         /// </summary>
         private void Init()
         {
-            if (!this.model.SoftwareVersionsDatabaseAccessManager.IsDatabaseAvailable())
+            if (!this.model.SoftwareVersionsItem.IsDatabaseAvailable())
             {
-                string errorText = "Database is not available! \nDatabaseName: " + this.model.SoftwareVersionsDatabaseAccessManager.DatabaseName;
+                string errorText = "Database is not available! \nDatabaseName: " + this.model.SoftwareVersionsItem.DatabaseName;
                 this.viewModelEvents.OnHandleError(this, new ExpectedErrorHandlerEventArgs(errorText));
             }
             else
@@ -239,15 +239,22 @@ namespace VersionManagement
         private void CheckDatabaseVersion()
         {
             //no database version saved in database
-            int databaseVersionInDatabase = this.model.DatabaseConnectionSettingsDatabaseAccessManager.GetDatabaseVersion();
+            int databaseVersionInDatabase = this.model.DatabaseConnectionSettings.GetDatabaseVersion();
             if (databaseVersionInDatabase == 0)
-                this.model.DatabaseConnectionSettingsDatabaseAccessManager.AddConfigData(this.model.DatabaseConnectionSettingsDatabaseAccessManager.DatabaseVersionString, VersionManagement.Properties.Settings.Default.DatabaseVersion);
+                this.model.DatabaseConnectionSettings.AddConfigData(this.model.DatabaseConnectionSettings.DatabaseVersionString, VersionManagement.Properties.Settings.Default.DatabaseVersion);
 
             //check if frontend version is actually -> frontend version must the same version number or higher than the database version
             if (VersionManagement.Properties.Settings.Default.FirmwareDatabaseVersion - databaseVersionInDatabase < 0)
             {
-                this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("Update the Firmware Database programm. Please contact Andreas Stucki (STUA)"));
-                Environment.Exit(0);
+                this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("Update Firmware Database programm. Please contact Andreas Stucki (STUA)"));
+                try
+                {
+                    App.Current.Shutdown();
+                }
+                catch (Exception ex)
+                {
+                    this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DatabaseConnectionSettingsDatabaseAccessManager.cs" company="VAT Vakuumventile AG">
+// <copyright file="DatabaseConnectionSettings.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,14 +10,14 @@ namespace VersionManagement.Model
     using System.Linq;
     using VersionManagement.Model.Database;
 
-    public class DatabaseConnectionSettingsDatabaseAccessManager : DatabaseAccessManager
+    public class DatabaseConnectionSettings : DatabaseAccessManager
     {
         /// <summary>
         /// The database version string
         /// </summary>
         public string DatabaseVersionString = "database version";
 
-        public DatabaseConnectionSettingsDatabaseAccessManager()
+        public DatabaseConnectionSettings()
         {
         }
 

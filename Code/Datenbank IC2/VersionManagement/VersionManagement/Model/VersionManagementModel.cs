@@ -17,16 +17,19 @@ namespace VersionManagement.Model
         /// </summary>
         public VersionManagementModel()
         {
-            this.SoftwareVersionsDatabaseAccessManager = new SoftwareVersionsDatabaseAccessManager();
-            this.SelectionItemDatabaseAccessManager = new SelectionItemDatabaseAccessManager();
-            this.DatabaseConnectionSettingsDatabaseAccessManager = new DatabaseConnectionSettingsDatabaseAccessManager();
+            this.SoftwareVersionsItem = new SoftwareVersionsItem();
+            this.SelectionItem = new SelectionItem();
+            this.DatabaseConnectionSettings = new DatabaseConnectionSettings();
+            this.TestResult = new TestResult();
         }
 
-        public SoftwareVersionsDatabaseAccessManager SoftwareVersionsDatabaseAccessManager { get; }
+        public SoftwareVersionsItem SoftwareVersionsItem { get; }
 
-        public SelectionItemDatabaseAccessManager SelectionItemDatabaseAccessManager { get; }
+        public SelectionItem SelectionItem { get; }
        
-        public DatabaseConnectionSettingsDatabaseAccessManager DatabaseConnectionSettingsDatabaseAccessManager { get; }
+        public DatabaseConnectionSettings DatabaseConnectionSettings { get; }
+
+        public TestResult TestResult { get; }
 
         /// <summary>
         /// Builds the database context. Neccesary to update the view with actual data from the database.
@@ -36,9 +39,10 @@ namespace VersionManagement.Model
             string serverName = Properties.Settings.Default.ServerName;
             string databaseName = Properties.Settings.Default.DatabaseName;
 
-            this.SoftwareVersionsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.SelectionItemDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
-            this.DatabaseConnectionSettingsDatabaseAccessManager.BuildDatabaseContext(databaseName, serverName);
+            this.SoftwareVersionsItem.BuildDatabaseContext(databaseName, serverName);
+            this.SelectionItem.BuildDatabaseContext(databaseName, serverName);
+            this.TestResult.BuildDatabaseContext(databaseName, serverName);
+            this.DatabaseConnectionSettings.BuildDatabaseContext(databaseName, serverName);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
         /// </summary>
         public override void Execute()
         {
-            if (this.versionManagementModel.SelectionItemDatabaseAccessManager.DeletePropertType(TextInputViewModelSelectedItem.TextInput, this.TextInputViewModelDescription.TextInput) == false)
+            if (this.versionManagementModel.SelectionItem.DeletePropertType(TextInputViewModelSelectedItem.TextInput, this.TextInputViewModelDescription.TextInput) == false)
                 this.ResultDeleteOperation = "Not possible. First all Properties Items with this PropertyType and Description has to delete.";
         }
     }

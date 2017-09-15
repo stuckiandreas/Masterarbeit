@@ -212,24 +212,55 @@
     <Compile Include="LogFile.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
-    <Compile Include="Model\DatabaseConnectionSettingsDatabaseAccessManager.cs" />
-    <Compile Include="Model\Database\Authors.cs" />
-    <Compile Include="Model\Database\BaseSoftwares.cs" />
-    <Compile Include="Model\Database\ConfigData.cs" />
-    <Compile Include="Model\Database\Customers.cs" />
-    <Compile Include="Model\Database\Documents.cs" />
-    <Compile Include="Model\Database\DocumentTypes.cs" />
-    <Compile Include="Model\Database\InitialStateFirmware.cs" />
-    <Compile Include="Model\Database\Properties.cs" />
-    <Compile Include="Model\Database\PropertyTypes.cs" />
-    <Compile Include="Model\Database\Softwares.cs" />
-    <Compile Include="Model\Database\SoftwareVersions.cs" />
-    <Compile Include="Model\Database\SoftwareVersionsDatabaseContext.cs" />
-    <Compile Include="Model\Database\Systems.cs" />
-    <Compile Include="Model\Database\SystemSoftwares.cs" />
-    <Compile Include="Model\Database\Users.cs" />
-    <Compile Include="Model\SelectionItemDatabaseAccessManager.cs" />
-    <Compile Include="Model\SoftwareVersionsDatabaseAccessManager.cs" />
+    <Compile Include="Model\DatabaseConnectionSettings.cs" />
+    <Compile Include="Model\Database\Authors.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\BaseSoftwares.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\ConfigData.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\Customers.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\Documents.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\DocumentTypes.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\InitialStateFirmware.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\Properties.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\PropertyTypes.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\Softwares.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\SoftwareVersions.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\SoftwareVersionsDatabaseContext.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\Systems.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\SystemSoftwares.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\Database\Users.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Model\SelectionItem.cs" />
+    <Compile Include="Model\SoftwareVersionsItem.cs" />
+    <Compile Include="Model\TestResult.cs" />
     <Compile Include="Settings.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>

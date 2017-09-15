@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="SelectionItemDatabaseAccessManager.cs" company="VAT Vakuumventile AG">
+// <copyright file="SelectionItem.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -13,9 +13,9 @@ namespace VersionManagement.Model
     /// <summary>
     /// Get, add or delete selection item in the database
     /// </summary>
-    public class SelectionItemDatabaseAccessManager : DatabaseAccessManager
+    public class SelectionItem : DatabaseAccessManager
     {
-        public SelectionItemDatabaseAccessManager()
+        public SelectionItem()
         {
         }
 

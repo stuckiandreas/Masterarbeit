@@ -74,19 +74,19 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
             switch (this.selectionItemType)
             {
                 case SelectionItemType.Author:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.AddAuthor(this.textInputViewModel.TextInput);
+                    this.versionManagementModel.SelectionItem.AddAuthor(this.textInputViewModel.TextInput);
                     break;
                 case SelectionItemType.Customer:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.AddCustomer(this.textInputViewModel.TextInput);
+                    this.versionManagementModel.SelectionItem.AddCustomer(this.textInputViewModel.TextInput);
                     break;
                 case SelectionItemType.Softwares:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.AddSystem(this.textInputViewModel.TextInput);
+                    this.versionManagementModel.SelectionItem.AddSystem(this.textInputViewModel.TextInput);
                     break;
                 case SelectionItemType.System:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.AddSystem(this.textInputViewModel.TextInput);
+                    this.versionManagementModel.SelectionItem.AddSystem(this.textInputViewModel.TextInput);
                     break;
                 case SelectionItemType.DocumentType:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.AddDocumentType(this.textInputViewModel.TextInput);
+                    this.versionManagementModel.SelectionItem.AddDocumentType(this.textInputViewModel.TextInput);
                     break;
                 default:
                     throw new NotImplementedException("Save Execute Function, Unknown SelectionItemType: " + this.selectionItemType);

@@ -118,16 +118,16 @@ namespace VersionManagement
         {
             base.SubscribeEvents();
             this.workspaceViewModel.SubscribeEvents();
-            this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.versionManagementModel.SelectionItemDatabaseAccessManager.DatabaseAccessEvent += this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.versionManagementModel.SoftwareVersionsItem.DatabaseAccessEvent += this.SoftwareVersionsItem_DatabaseAccessEvent;
+            this.versionManagementModel.SelectionItem.DatabaseAccessEvent += this.SoftwareVersionsItem_DatabaseAccessEvent;
         }
 
         public override void UnsubscribeEvents()
         {
             base.UnsubscribeEvents();
             this.workspaceViewModel.UnsubscribeEvents();
-            this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
-            this.versionManagementModel.SelectionItemDatabaseAccessManager.DatabaseAccessEvent -= this.SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent;
+            this.versionManagementModel.SoftwareVersionsItem.DatabaseAccessEvent -= this.SoftwareVersionsItem_DatabaseAccessEvent;
+            this.versionManagementModel.SelectionItem.DatabaseAccessEvent -= this.SoftwareVersionsItem_DatabaseAccessEvent;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace VersionManagement
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="DatabaseAccessEventArgs"/> instance containing the event data.</param>
-        private void SoftwareVersionsDatabaseAccessManager_DatabaseAccessEvent(object sender, DatabaseAccessEventArgs e)
+        private void SoftwareVersionsItem_DatabaseAccessEvent(object sender, DatabaseAccessEventArgs e)
         {
             try
             {

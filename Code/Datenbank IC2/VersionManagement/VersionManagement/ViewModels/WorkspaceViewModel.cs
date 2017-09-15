@@ -111,33 +111,33 @@ namespace VersionManagement.ViewModels
             //Add an empty entrys if no empty entry exists in database yet. This is needed to allow the user to leave the selection empty.
             //Add an empty entry if no empty entry exist in database yet. So its possible to delete an item in a list.
             //Otherwise the user must create an own empty entry.
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetAuthors()
+            if (!this.versionManagementModel.SelectionItem.GetAuthors()
                  .Any(x => string.IsNullOrEmpty(x.Author)))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddAuthor(string.Empty);
+                this.versionManagementModel.SelectionItem.AddAuthor(string.Empty);
 
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetCustomers()
+            if (!this.versionManagementModel.SelectionItem.GetCustomers()
                  .Any(x => string.IsNullOrEmpty(x.Customer)))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddCustomer(string.Empty);
+                this.versionManagementModel.SelectionItem.AddCustomer(string.Empty);
 
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares()
+            if (!this.versionManagementModel.SelectionItem.GetBaseSoftwares()
                  .Any(x => string.IsNullOrEmpty(x.BaseSoftware)))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddBaseSoftware(string.Empty);
+                this.versionManagementModel.SelectionItem.AddBaseSoftware(string.Empty);
 
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares()
+            if (!this.versionManagementModel.SelectionItem.GetBaseSoftwares()
                  .Any(x => x.BaseSoftware == "trunk"))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddBaseSoftware("trunk");
+                this.versionManagementModel.SelectionItem.AddBaseSoftware("trunk");
 
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetDocumentTypes()
+            if (!this.versionManagementModel.SelectionItem.GetDocumentTypes()
                  .Any(x => string.IsNullOrEmpty(x.DocumentType)))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddDocumentType(string.Empty);
+                this.versionManagementModel.SelectionItem.AddDocumentType(string.Empty);
 
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetPropertyTypes()
+            if (!this.versionManagementModel.SelectionItem.GetPropertyTypes()
                  .Any(x => string.IsNullOrEmpty(x.PropertyType)))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddPropertyType(string.Empty, string.Empty);
+                this.versionManagementModel.SelectionItem.AddPropertyType(string.Empty, string.Empty);
 
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems()
+            if (!this.versionManagementModel.SelectionItem.GetSystems()
                  .Any(x => string.IsNullOrEmpty(x.System)))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddSystem(string.Empty);
+                this.versionManagementModel.SelectionItem.AddSystem(string.Empty);
 
             this.ReloadDataGrid();
 
@@ -160,13 +160,13 @@ namespace VersionManagement.ViewModels
             }
 
             //Add software to the base selection item, if the entry not exist
-            if (!this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares()
+            if (!this.versionManagementModel.SelectionItem.GetBaseSoftwares()
                 .Any(x => x.BaseSoftware == databaseItemViewModel.Software))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddBaseSoftware(databaseItemViewModel.Software);
+                this.versionManagementModel.SelectionItem.AddBaseSoftware(databaseItemViewModel.Software);
 
             //Add software to the systemSoftware table if in entry not exist
             if (!this.IsSoftwareInSystemsTable(databaseItemViewModel.System, databaseItemViewModel.Software))
-                this.versionManagementModel.SelectionItemDatabaseAccessManager.AddSystemSoftware(databaseItemViewModel.System, databaseItemViewModel.Software);
+                this.versionManagementModel.SelectionItem.AddSystemSoftware(databaseItemViewModel.System, databaseItemViewModel.Software);
 
             //Create new item if software item has identification number -1
             if (this.detailedInformationViewModel.IsNewItemSet)
@@ -174,23 +174,23 @@ namespace VersionManagement.ViewModels
                 SoftwareVersions item = this.detailedInformationViewModel.GetSoftwareItem();
 
                 //check if the software already exist in the database
-                List<SoftwareVersions> items = this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.GetSoftwareVersions();
+                List<SoftwareVersions> items = this.versionManagementModel.SoftwareVersionsItem.GetSoftwareVersions();
                 if (items.Any(x => x.Software == databaseItemViewModel.Software))
                 {
                     this.ViewModelEvents.OnUserFeedback(this, new UserFeedbackInfoEventArgs(string.Format("{0} does already exist in database and can not be saved again!", databaseItemViewModel.Software)));
                     return;
                 }
 
-                this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.AddSoftwareVersion(item);
+                this.versionManagementModel.SoftwareVersionsItem.AddSoftwareVersion(item);
 
-                SoftwareVersions softwareItem = this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.GetItemFromDatabase(item.Software);
+                SoftwareVersions softwareItem = this.versionManagementModel.SoftwareVersionsItem.GetItemFromDatabase(item.Software);
 
                 if (softwareItem != null)
                     this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel(softwareItem));
             }
             else
             {
-                this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdateItemInDatabase(new SoftwareVersions()
+                this.versionManagementModel.SoftwareVersionsItem.UpdateItemInDatabase(new SoftwareVersions()
                 {
                     Id = databaseItemViewModel.ItemIdentification,
                     Software = databaseItemViewModel.Software,
@@ -213,12 +213,12 @@ namespace VersionManagement.ViewModels
                 x => x.Software == databaseItemViewModel.Software).FirstOrDefault();
 
             //clear selection item list which no link ID exist anymore
-            this.versionManagementModel.SelectionItemDatabaseAccessManager.ClearSelectionItemListEntrysWithoutSoftwareVersionsLink();
+            this.versionManagementModel.SelectionItem.ClearSelectionItemListEntrysWithoutSoftwareVersionsLink();
         }
 
         private void DeleteItem(DatabaseItemViewModel databaseItemViewModel)
         {
-            //update database view first (possible that the software item dosnt exist anymore)
+            //update database view first (possible that the software item dosn't exist anymore)
             this.ReloadDataGrid();
 
             //Request the user if he want to delete permanently
@@ -231,7 +231,7 @@ namespace VersionManagement.ViewModels
                 //check if firmware is in test result (if yes -> not allowed to remove the firmware)
                 if (this.CheckIfSoftwareIsInTestResult(databaseItemViewModel) == false)
                 {
-                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.DeleteSoftwareVersion(
+                    this.versionManagementModel.SoftwareVersionsItem.DeleteSoftwareVersion(
                         databaseItemViewModel.Software);
 
                     //Set first database item as selected item in the datagrid
@@ -239,20 +239,20 @@ namespace VersionManagement.ViewModels
                         this.DatabaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
 
                     //Delete the software in the base selection item
-                    if (this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares()
+                    if (this.versionManagementModel.SelectionItem.GetBaseSoftwares()
                         .Any(x => x.BaseSoftware == databaseItemViewModel.Software.ToString()))
-                        this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteBaseSoftware(databaseItemViewModel.Software);
+                        this.versionManagementModel.SelectionItem.DeleteBaseSoftware(databaseItemViewModel.Software);
 
                     //Delete the software in the systemsoftware selection item
                     if (this.IsSoftwareInSystemsTable(databaseItemViewModel.System, databaseItemViewModel.Software))
-                        this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteSystemSoftware(databaseItemViewModel.System, databaseItemViewModel.Software);
+                        this.versionManagementModel.SelectionItem.DeleteSystemSoftware(databaseItemViewModel.System, databaseItemViewModel.Software);
 
                     this.ReloadDataGrid();
 
                     this.databaseDataGridViewModel.SelectedDatabaseItemViewModel = this.databaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
                 }
                 else
-                    this.ViewModelEvents.OnUserFeedback(this, new UserFeedbackInfoEventArgs(string.Format("{0} does already exist in test result table and can not removed from software version table!", databaseItemViewModel.Software)));
+                    this.ViewModelEvents.OnUserFeedback(this, new UserFeedbackInfoEventArgs(string.Format("{0} does already exist in test result table!", databaseItemViewModel.Software)));
             }
         }
 
@@ -303,25 +303,25 @@ namespace VersionManagement.ViewModels
 
             this.databaseDataGridViewModel.DatabaseItemViewModels.Clear();
 
-            List<SoftwareVersions> items = this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.GetSoftwareVersions();
+            List<SoftwareVersions> items = this.versionManagementModel.SoftwareVersionsItem.GetSoftwareVersions();
 
             foreach (SoftwareVersions item in items)
                 this.databaseDataGridViewModel.DatabaseItemViewModels.Add(new DatabaseItemViewModel(item));
 
             //add SelectionItem in WorkspaceViewModel
-            List<Authors> authors = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetAuthors();
-            List<BaseSoftwares> bases = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetBaseSoftwares();
-            List<Customers> customers = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetCustomers();
-            List<Systems> systems = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems();
-            List<DocumentTypes> documentTypes = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetDocumentTypes();
-            List<PropertyTypes> propertyTypes = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetPropertyTypes();
+            List<Authors> authors = this.versionManagementModel.SelectionItem.GetAuthors();
+            List<BaseSoftwares> bases = this.versionManagementModel.SelectionItem.GetBaseSoftwares();
+            List<Customers> customers = this.versionManagementModel.SelectionItem.GetCustomers();
+            List<Systems> systems = this.versionManagementModel.SelectionItem.GetSystems();
+            List<DocumentTypes> documentTypes = this.versionManagementModel.SelectionItem.GetDocumentTypes();
+            List<PropertyTypes> propertyTypes = this.versionManagementModel.SelectionItem.GetPropertyTypes();
 
             this.isReloadDataGrid = false;
         }
 
         private bool IsSoftwareInSystemsTable(string system, string software)
         {
-            List<Systems> systemList = this.versionManagementModel.SelectionItemDatabaseAccessManager.GetSystems();
+            List<Systems> systemList = this.versionManagementModel.SelectionItem.GetSystems();
 
             foreach (var systemItem in systemList)
             {
@@ -456,7 +456,21 @@ namespace VersionManagement.ViewModels
         /// <returns>result if the software item exist in the test result table</returns>
         private bool CheckIfSoftwareIsInTestResult(DatabaseItemViewModel databaseItemViewModel)
         {
-            return false;
+            SoftwareVersions softwareVersions = this.versionManagementModel.SoftwareVersionsItem.GetItemFromDatabase(databaseItemViewModel.Software);
+
+            //first to seperate by system
+            switch (databaseItemViewModel.System)
+            {
+                case "IC2":
+                    return this.versionManagementModel.TestResult.IfValveFirmwwareIsUsedInTestResult(softwareVersions);
+                case "Motion Controller":
+                    return this.versionManagementModel.TestResult.IfMotionControllerFirmwwareIsUsedInTestResult(softwareVersions);
+                case "netXECAT":
+                case "netXDeviceNet":
+                    return this.versionManagementModel.TestResult.IfInterfaceFirmwwareIsUsedInTestResult(softwareVersions);
+                default:
+                    return false;
+            }
         }
 
         /// <summary>

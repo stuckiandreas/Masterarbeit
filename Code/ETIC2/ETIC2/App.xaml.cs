@@ -196,8 +196,15 @@ namespace ETIC2
             //check if frontend version is actually -> frontend version must the same version number or higher than the database version
             if (ETIC2.Properties.Settings.Default.ETIC2Version - databaseVersionInDatabase < 0)
             {
-                this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("Update the Firmware Database programm. Please contact Andreas Stucki (STUA)"));
-                Environment.Exit(0);
+                this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("Update ETIC2 programm. Please contact Andreas Stucki (STUA)"));
+                try
+                {
+                    App.Current.Shutdown();
+                }
+                catch (Exception ex)
+                {
+                    this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
+                }
             }
         }
     }

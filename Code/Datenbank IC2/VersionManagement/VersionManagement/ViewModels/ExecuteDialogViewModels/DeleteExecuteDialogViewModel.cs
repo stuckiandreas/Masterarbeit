@@ -80,24 +80,24 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
             switch (this.selectionItemType)
             {
                 case SelectionItemType.Author:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteAuthor(this.textInputViewModelSelectedItem.TextInput);
+                    this.versionManagementModel.SelectionItem.DeleteAuthor(this.textInputViewModelSelectedItem.TextInput);
                     break;
                 case SelectionItemType.Customer:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteCustomer(this.textInputViewModelSelectedItem.TextInput);
+                    this.versionManagementModel.SelectionItem.DeleteCustomer(this.textInputViewModelSelectedItem.TextInput);
                     break;
                 case SelectionItemType.System:
-                    if (this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteSystem(this.textInputViewModelSelectedItem.TextInput) == false)
+                    if (this.versionManagementModel.SelectionItem.DeleteSystem(this.textInputViewModelSelectedItem.TextInput) == false)
                         this.resultDeleteOperation = "Not possible. First all Software Items with this System has to delete.";
                     break;
                 case SelectionItemType.DocumentType:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteDocumentType(this.textInputViewModelSelectedItem.TextInput);
+                    this.versionManagementModel.SelectionItem.DeleteDocumentType(this.textInputViewModelSelectedItem.TextInput);
                     break;
                 case SelectionItemType.Softwares:
-                    if (this.versionManagementModel.SelectionItemDatabaseAccessManager.DeleteSystem(this.textInputViewModelSelectedItem.TextInput) == false)
+                    if (this.versionManagementModel.SelectionItem.DeleteSystem(this.textInputViewModelSelectedItem.TextInput) == false)
                         this.resultDeleteOperation = "Not possible. First all Software Items with this System has to delete.";
                     break;
                 case SelectionItemType.Properties:
-                    if (this.versionManagementModel.SelectionItemDatabaseAccessManager.DeletePropertType(this.textInputViewModelSelectedItem.TextInput, this.textInputViewModelSelectedItem.ToolTip) == false)
+                    if (this.versionManagementModel.SelectionItem.DeletePropertType(this.textInputViewModelSelectedItem.TextInput, this.textInputViewModelSelectedItem.ToolTip) == false)
                         this.resultDeleteOperation = "Not possible. First all Properties Items with this PropertyType and Description has to delete."; 
                     break;
                 default:

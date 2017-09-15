@@ -72,8 +72,8 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
         /// </summary>
         public override void Execute()
         {
-            this.versionManagementModel.SelectionItemDatabaseAccessManager.EditProperty(this.TextInputViewModel1.TextInput, this.textInput1, this.TextInputViewModel2.TextInput, this.textInput2);
-            this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdatePropertyTypeInDatabase(this.TextInputViewModel1.TextInput, this.textInput1, this.TextInputViewModel2.TextInput, this.textInput2);
+            this.versionManagementModel.SelectionItem.EditProperty(this.TextInputViewModel1.TextInput, this.textInput1, this.TextInputViewModel2.TextInput, this.textInput2);
+            this.versionManagementModel.SoftwareVersionsItem.UpdatePropertyTypeInDatabase(this.TextInputViewModel1.TextInput, this.textInput1, this.TextInputViewModel2.TextInput, this.textInput2);
         }
     }  
 }

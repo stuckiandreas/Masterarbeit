@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="SoftwareVersionsDatabaseAccessManager.cs" company="VAT Vakuumventile AG">
+// <copyright file="SoftwareVersionsItem.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -13,9 +13,9 @@ namespace VersionManagement.Model
     /// <summary>
     /// Get, set or delete the software item in the database.
     /// </summary>
-    public class SoftwareVersionsDatabaseAccessManager : DatabaseAccessManager
+    public class SoftwareVersionsItem : DatabaseAccessManager
     {
-        public SoftwareVersionsDatabaseAccessManager()
+        public SoftwareVersionsItem()
         {
         }
 

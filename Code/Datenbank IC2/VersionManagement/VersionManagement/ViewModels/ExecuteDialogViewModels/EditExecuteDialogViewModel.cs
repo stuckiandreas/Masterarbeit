@@ -77,28 +77,28 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
                 //Attention save the edit selection item as well in the SoftwareVersionDatabase
                 //Set the selectionItem with the edit selectionItem value, Remark: the selectem Item set after the database Commands
                 case SelectionItemType.Author:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.EditAuthor(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
-                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdateAuthorInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SelectionItem.EditAuthor(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SoftwareVersionsItem.UpdateAuthorInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
                     this.SelectedItem = this.textInputViewModelSelectedItem.TextInput;
                     break;
                 case SelectionItemType.Customer:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.EditCustomer(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
-                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdateCustomerInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SelectionItem.EditCustomer(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SoftwareVersionsItem.UpdateCustomerInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
                     this.SelectedItem = this.textInputViewModelSelectedItem.TextInput;
                     break;
                 case SelectionItemType.Softwares:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.EditSystem(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
-                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdateSystemInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SelectionItem.EditSystem(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SoftwareVersionsItem.UpdateSystemInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
                     this.SelectedItem = this.textInputViewModelSelectedItem.TextInput;
                     break;
                 case SelectionItemType.System:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.EditSystem(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
-                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdateSystemInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SelectionItem.EditSystem(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SoftwareVersionsItem.UpdateSystemInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
                     this.SelectedItem = this.textInputViewModelSelectedItem.TextInput;
                     break;
                 case SelectionItemType.DocumentType:
-                    this.versionManagementModel.SelectionItemDatabaseAccessManager.EditDocumentType(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
-                    this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.UpdateDocumentTypeInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SelectionItem.EditDocumentType(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
+                    this.versionManagementModel.SoftwareVersionsItem.UpdateDocumentTypeInDatabase(this.textInputViewModelSelectedItem.TextInput, this.SelectedItem);
                     this.SelectedItem = this.textInputViewModelSelectedItem.TextInput;
                     break;
                 default:

@@ -36,7 +36,7 @@ namespace VersionManagement.ViewModels.AboutDialogViewModels
             Assembly executingAssembly = Assembly.GetExecutingAssembly();
             AssemblyCompanyAttribute company = (AssemblyCompanyAttribute)executingAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false)[0];
             this.FirmwareDatabaseVersion = this.TranslateVersionNumberToString(Properties.Settings.Default.FirmwareDatabaseVersion);
-            this.DatabaseVersion = this.TranslateVersionNumberToString(versionManagementModel.DatabaseConnectionSettingsDatabaseAccessManager.GetDatabaseVersion());
+            this.DatabaseVersion = this.TranslateVersionNumberToString(versionManagementModel.DatabaseConnectionSettings.GetDatabaseVersion());
 
             this.Product = "Firmware Database";
             this.Company = company.Company;

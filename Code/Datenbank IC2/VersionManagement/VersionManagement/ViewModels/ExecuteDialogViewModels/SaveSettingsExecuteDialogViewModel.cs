@@ -46,14 +46,14 @@ namespace VersionManagement.ViewModels.ExecuteDialogViewModels
         /// </summary>
         public override void Execute()
         {
-            this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
-            this.versionManagementModel.SelectionItemDatabaseAccessManager.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.versionManagementModel.SoftwareVersionsItem.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
+            this.versionManagementModel.SelectionItem.BuildDatabaseContext(TextInputViewModel1.TextInput, TextInputViewModel2.TextInput);
 
             Properties.Settings.Default.DatabaseName = TextInputViewModel1.TextInput;
             Properties.Settings.Default.ServerName = TextInputViewModel2.TextInput;
             Properties.Settings.Default.Save();
 
-            if (this.versionManagementModel.SoftwareVersionsDatabaseAccessManager.IsDatabaseAvailable())
+            if (this.versionManagementModel.SoftwareVersionsItem.IsDatabaseAvailable())
                 this.viewModelEvents.OnChangeDatabaseSettings(this, new DatabaseAccessEventArgs(Properties.Settings.Default.DatabaseName, DatabaseAvailability.Available));
         }
     }
