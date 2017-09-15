@@ -61,7 +61,7 @@ namespace VersionManagement.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("CHVW0115\\SOFTWARE_DATABAS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("chva0012")]
         public string ServerName {
             get {
                 return ((string)(this["ServerName"]));

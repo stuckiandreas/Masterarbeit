@@ -16,9 +16,12 @@ namespace VersionManagement
         /// </summary>
         public static void Delete()
         {
+            string logFileFirmwareDatabasePath = @"C:\\Program Files (x86)\\VAT\\Firmware Database\\Settings\\ReportFile.txt";
+
             try
             {
-                File.Delete(@"C:\\Programme (x86)\\VAT\\Firmware Database\\Settings\\ReportFile.txt");
+                if (System.IO.File.Exists(logFileFirmwareDatabasePath))
+                    File.Delete(logFileFirmwareDatabasePath);
             }
             catch
             {
@@ -35,7 +38,7 @@ namespace VersionManagement
             string logFileFirmwareDatabasePath = @"C:\\Program Files (x86)\\VAT\\Firmware Database\\Settings\\ReportFile.txt";
 
             //first to check if the path exist -> create if not
-            if (!System.IO.File.Exists(settingsFirmwareDatabasePath))
+            if (!Directory.Exists(settingsFirmwareDatabasePath))
                 System.IO.Directory.CreateDirectory(settingsFirmwareDatabasePath);           
             TextWriter tw = File.AppendText(logFileFirmwareDatabasePath);
 
