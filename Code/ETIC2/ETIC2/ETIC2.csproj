@@ -148,6 +148,7 @@
     <Compile Include="Events\ViewModelEvents.cs" />
     <Compile Include="HelpFunctions\Helpers.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Model\Application\BuglistView\Buglist.cs" />
     <Compile Include="Model\Application\ErrorView\TestErrorMessage.cs" />
     <Compile Include="Model\Application\FirmwareView\InitialStateFirmware.cs" />
     <Compile Include="Model\Application\FirmwareView\TestCollectionResultAndValveHardware.cs" />

@@ -113,6 +113,7 @@ namespace ETIC2.Views
                 MessageBox.Show("Directory not exist", "error save grid control settings", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
             ((GridControl)sender).SaveLayoutToXml(this.dataGridControlSettingsETIC2Path);
         }
     }

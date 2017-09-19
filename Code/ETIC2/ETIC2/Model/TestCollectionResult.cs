@@ -62,9 +62,11 @@ namespace ETIC2.Model
                 emptyTestCollectionResultAndValveHardware = new Application.FirmwareView.TestCollectionResultAndValveHardware()
                 {
                     Id = default(int), ExecutionTime = default(DateTime), UserName = default(string), AbortType = default(string), CountErrorTest = default(int),
-                    ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool), ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string),
-                    InterfaceAssemblyVariant = default(string), Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string), Module2AssemblyVariant = default(string),
-                    Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string), Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string)
+                    ValveSerie = default(string), InterfaceType = default(string), ControllerType = default(string), OptionType = default(string), ExternalIsolationValve = default(bool),
+                    ControllerHardwareVersion = default(string), InterfaceHardwareVersion = default(string), ControllerAssemblyVariant = default(string), InterfaceAssemblyVariant = default(string),
+                    Module1Type = default(string), Module1HardwareVersion = default(string), Module1AssemblyVariant = default(string), Module2Type = default(string), Module2HardwareVersion = default(string),
+                    Module2AssemblyVariant = default(string), Module3Type = default(string), Module3HardwareVersion = default(string), Module3AssemblyVariant = default(string),
+                    Module4Type = default(string), Module4HardwareVersion = default(string), Module4AssemblyVariant = default(string)
                 };
 
                 emptyTestCollectionResultAndValveHardware.Id = testCollectionResultDatabase.Id;
