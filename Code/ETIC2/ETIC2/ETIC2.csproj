@@ -82,7 +82,9 @@
       <HintPath>..\..\..\..\Program Files (x86)\DevExpress 16.2\Components\Bin\Framework\DevExpress.Pdf.v16.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpf.Core.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Core.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Grid.v16.2.Core, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.LayoutControl.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -149,6 +151,12 @@
     <Compile Include="HelpFunctions\Helpers.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\Application\BuglistView\Buglist.cs" />
+    <Compile Include="Model\Application\BuglistView\ControllerType.cs" />
+    <Compile Include="Model\Application\BuglistView\FailureType.cs" />
+    <Compile Include="Model\Application\BuglistView\HardwareIdentificationLevel1.cs" />
+    <Compile Include="Model\Application\BuglistView\HardwareIdentificationLevel2.cs" />
+    <Compile Include="Model\Application\BuglistView\Priority.cs" />
+    <Compile Include="Model\Application\BuglistView\StatusType.cs" />
     <Compile Include="Model\Application\ErrorView\TestErrorMessage.cs" />
     <Compile Include="Model\Application\FirmwareView\InitialStateFirmware.cs" />
     <Compile Include="Model\Application\FirmwareView\TestCollectionResultAndValveHardware.cs" />
@@ -156,6 +164,8 @@
     <Compile Include="Model\Application\General\TestResult.cs" />
     <Compile Include="Model\Application\HardwareView\TestCollectionResultAndInitialStateFirmware.cs" />
     <Compile Include="Model\Application\HardwareView\ValveHardware.cs" />
+    <Compile Include="Model\BuglistItem.cs" />
+    <Compile Include="Model\BuglistSelectedItem.cs" />
     <Compile Include="Model\DatabaseAccessManager.cs" />
     <Compile Include="Model\DatabaseConnectionSettings.cs" />
     <Compile Include="Model\EntityFramework\AbortType.cs">
@@ -290,6 +300,12 @@
     </Compile>
     <Compile Include="ViewModels\AboutDialogViewModels\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
+    <Compile Include="ViewModels\BuglistViewModel.cs" />
+    <Compile Include="ViewModels\BuglistViewModels\DatabaseDataGridViewModel.cs" />
+    <Compile Include="ViewModels\BuglistViewModels\DatabaseItemViewModel.cs" />
+    <Compile Include="ViewModels\BuglistViewModels\DetailedInformationViewModel.cs" />
+    <Compile Include="ViewModels\ExecuteDialogViewModels\EditExecuteDialogViewModel.cs" />
+    <Compile Include="ViewModels\ExecuteDialogViewModels\SaveExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\HardwareDatabaseDataGridViewModel.cs" />
     <Compile Include="ViewModels\ErrorDatabaseDataGridViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModels\TestErrorMessageViewModel.cs" />
@@ -300,7 +316,12 @@
     <Compile Include="ViewModels\FirmwareViewModels\InitialStateFirmwareViewModel.cs" />
     <Compile Include="ViewModels\HardwareViewModels\TestCollectionResultAndInitialStateFirmwareViewModel.cs" />
     <Compile Include="ViewModels\HardwareViewModels\ValveHardwareViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModels\DateTimeInputViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModels\DefinedSelectionInputListViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModels\DefinedSelectionItemViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\InputBaseViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModels\SelectionItemType.cs" />
+    <Compile Include="ViewModels\InputViewModels\TextBoxInputViewModel.cs" />
     <Compile Include="ViewModels\InputViewModels\TextInputViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\StatusbarViewModels\StatusbarViewModel.cs" />
@@ -314,6 +335,12 @@
     <Compile Include="Views\ErrorDatabaseDataGridView.xaml.cs">
       <DependentUpon>ErrorDatabaseDataGridView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ExecuteDialogViews\EditExecuteDialogView.xaml.cs">
+      <DependentUpon>EditExecuteDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecuteDialogViews\SaveExecuteDialogView.xaml.cs">
+      <DependentUpon>SaveExecuteDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ExecuteDialogViews\SaveExecuteDoubleDialogView.xaml.cs">
       <DependentUpon>SaveExecuteDoubleDialogView.xaml</DependentUpon>
     </Compile>
@@ -325,6 +352,15 @@
     </Compile>
     <Compile Include="Views\HardwareDatabaseDataGridView.xaml.cs">
       <DependentUpon>HardwareDatabaseDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputViews\DateTimeInputView.xaml.cs">
+      <DependentUpon>DateTimeInputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputViews\DefinedSelectionInputListView.xaml.cs">
+      <DependentUpon>DefinedSelectionInputListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InputViews\TextBoxInputView.xaml.cs">
+      <DependentUpon>TextBoxInputView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputViews\TextInputView.xaml.cs">
       <DependentUpon>TextInputView.xaml</DependentUpon>
@@ -367,6 +403,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ExecuteDialogViews\EditExecuteDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExecuteDialogViews\SaveExecuteDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ExecuteDialogViews\SaveExecuteDoubleDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -380,6 +424,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HardwareDatabaseDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputViews\DateTimeInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputViews\DefinedSelectionInputListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InputViews\TextBoxInputView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

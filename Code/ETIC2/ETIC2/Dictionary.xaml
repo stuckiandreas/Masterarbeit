@@ -44,14 +44,34 @@
 
 
     <!--Execute Views-->
+    <DataTemplate DataType="{x:Type executeViewModels:SaveExecuteDialogViewModel}">
+        <executeViews:SaveExecuteDialogView />
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type executeViewModels:SaveExecuteDoubleDialogViewModel}">
         <executeViews:SaveExecuteDoubleDialogView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type executeViewModels:EditExecuteDialogViewModel}">
+        <executeViews:EditExecuteDialogView />
+    </DataTemplate>
+
 
     <!--Input Views-->
+    <DataTemplate DataType="{x:Type inputViewModels:TextBoxInputViewModel}">
+        <inputViews:TextBoxInputView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type inputViewModels:TextInputViewModel}">
         <inputViews:TextInputView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type inputViewModels:DateTimeInputViewModel}">
+        <inputViews:DateTimeInputView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type inputViewModels:DefinedSelectionListsInputViewModel}">
+        <inputViews:DefinedSelectionListsInputView />
     </DataTemplate>
 
 </ResourceDictionary>

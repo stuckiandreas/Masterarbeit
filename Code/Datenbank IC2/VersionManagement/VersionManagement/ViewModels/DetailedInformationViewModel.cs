@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="DetailedInformationViewModel.cs" company="VAT Vakuumventile AG">
-//     Copyright (c) 2015 . All rights reserved.
+//     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -97,7 +97,6 @@ namespace VersionManagement.ViewModels
             this.NewRevCommand = new ActionCommand(this.OnNewRevCommand, this.OnCanExecuteNewRevCommand);
             this.SaveCommand = new ActionCommand(this.OnSaveCommand, this.OnCanExecuteSaveCommand);
             this.DeleteCommand = new ActionCommand(this.OnDeleteCommand, this.OnCanExecuteDeleteCommand);
-            this.PrintCommand = new ActionCommand(this.OnPrintCommand);
 
             this.viewModelEvents = viewModelEvents;
             this.versionManagementModel = versionManagementModel;
@@ -115,11 +114,6 @@ namespace VersionManagement.ViewModels
         /// The user defined here a supported motion controller or interface software to the main software which is defined under software name.
         /// </summary>
         public event EventHandler<SelectedItemEventArgs> SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent;
-
-        /// <summary>
-        /// Use to print the database in the code behind
-        /// </summary>
-        public event EventHandler<System.EventArgs> PrintChangedEvent;
 
         public TextInputViewModel Software
         {
@@ -308,12 +302,6 @@ namespace VersionManagement.ViewModels
         }
 
         public ICommand DeleteCommand
-        {
-            get;
-            private set;
-        }
-
-        public ICommand PrintCommand
         {
             get;
             private set;
@@ -832,18 +820,6 @@ namespace VersionManagement.ViewModels
             }
         }
 
-        private void OnPrintCommand(object parameter)
-        {
-            try
-            {
-                this.OnPrintChangedEvent(this, new System.EventArgs());
-            }
-            catch (Exception ex)
-            {
-                this.viewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
-            }
-        }
-
         private bool OnCanExecuteDeleteCommand(object parameter)
         {
             try
@@ -861,12 +837,6 @@ namespace VersionManagement.ViewModels
         {
             if (this.ItemChangedEvent != null)
                 this.ItemChangedEvent(sender, addNewItemEventArgs);
-        }
-
-        private void OnPrintChangedEvent(object sender, System.EventArgs printEventArgs)
-        {
-            if (this.PrintChangedEvent != null)
-                this.PrintChangedEvent(sender, printEventArgs);
         }
 
         private void SoftwaresDefinedList_SelectedItemEvent(object sender, Events.EventArgs.SelectedItem.SelectedItemEventArgs e)

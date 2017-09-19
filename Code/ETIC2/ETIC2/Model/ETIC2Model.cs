@@ -18,6 +18,8 @@ namespace ETIC2.Model.Application
             this.TestResult = new TestResult();
             this.TestErrorMessage = new TestErrorMessage();
             this.ValveHardware = new ValveHardware();
+            this.BuglistItem = new BuglistItem();
+            this.BuglistSelectedItem = new BuglistSelectedItem();
         }
 
         public DatabaseConnectionSettings DatabaseConnectionSettings { get; }
@@ -32,6 +34,10 @@ namespace ETIC2.Model.Application
 
         public ValveHardware ValveHardware { get; }
 
+        public BuglistItem BuglistItem { get; }
+
+        public BuglistSelectedItem BuglistSelectedItem { get; }
+
         /// <summary>
         /// Builds the database context. Neccesary to update the view with actual data from the database.
         /// </summary>
@@ -45,6 +51,8 @@ namespace ETIC2.Model.Application
             this.TestResult.BuildDatabaseContext(databaseName, serverName);
             this.TestErrorMessage.BuildDatabaseContext(databaseName, serverName);
             this.ValveHardware.BuildDatabaseContext(databaseName, serverName);
+            this.BuglistItem.BuildDatabaseContext(databaseName, serverName);
+            this.BuglistSelectedItem.BuildDatabaseContext(databaseName, serverName);
             this.DatabaseConnectionSettings.BuildDatabaseContext(databaseName, serverName);
         }
     }

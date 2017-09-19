@@ -25,7 +25,8 @@ namespace ETIC2.ViewModels
     {
         Firmware,
         Hardware,
-        Error
+        Error,
+        Buglist
     }
 
     /// <summary>
@@ -87,6 +88,7 @@ namespace ETIC2.ViewModels
             this.allDatabaseDataGridViewModels.Add(new FirmwareDatabaseDataGridViewModel(viewModelEvents));
             this.allDatabaseDataGridViewModels.Add(new ErrorDatabaseDataGridViewModel(viewModelEvents));
             this.allDatabaseDataGridViewModels.Add(new HardwareDatabaseDataGridViewModel(viewModelEvents));
+            this.allDatabaseDataGridViewModels.Add(new BuglistViewModel(viewModelEvents));
 
             //Set Reference of the view model in the list (if not, the data will not set)
             this.firmwareDatabaseDataGridViewModel

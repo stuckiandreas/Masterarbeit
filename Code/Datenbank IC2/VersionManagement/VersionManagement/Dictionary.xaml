@@ -100,4 +100,5 @@
     <DataTemplate DataType="{x:Type inputViewModels:DefinedSelectionDoubleListInputViewModel}">
         <inputViews:DefinedSelectionDoubleListInputView />
     </DataTemplate>
+    
 </ResourceDictionary>

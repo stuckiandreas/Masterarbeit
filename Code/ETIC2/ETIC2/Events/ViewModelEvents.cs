@@ -45,6 +45,11 @@ namespace ETIC2.Events
         /// Occurs when the user want to change the database settings.
         /// </summary>
         public event EventHandler<DatabaseAccessEventArgs> ChangeDatabaseSettings;
+  
+        /// <summary>
+        /// Occurs when [delete selection items in list].
+        /// </summary>
+        public event EventHandler DeleteSelectionItemsInList;
 
         public void OnHandleError(object sender, ErrorHandlerEventArgs errorEventArgs)
         {
@@ -74,6 +79,12 @@ namespace ETIC2.Events
         {
             if (this.ChangeDatabaseSettings != null)
                 this.ChangeDatabaseSettings(sender, databaseAccessEventArgs);
+        }
+
+        public void OnDeleteSelectionItemsInList()
+        {
+            if (DeleteSelectionItemsInList != null)
+                DeleteSelectionItemsInList(this, null);
         }
     }
 }

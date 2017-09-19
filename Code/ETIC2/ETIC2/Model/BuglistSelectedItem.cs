@@ -157,47 +157,47 @@ namespace ETIC2.Model
             databaseContext.SaveChanges();
         }
 
-        public void EditFailureType(int failureTypeId, string failureTypeName)
+        public void EditFailureType(string failureTypeName, string oldFailureTypeName)
         {
-            EntityFramework.FailureType failureTypeToUpdate = databaseContext.FailureType.Where(x => x.Id == failureTypeId).FirstOrDefault();
+            EntityFramework.FailureType failureTypeToUpdate = databaseContext.FailureType.Where(x => x.Name == oldFailureTypeName).FirstOrDefault();
 
             if (failureTypeToUpdate != null) failureTypeToUpdate.Name = failureTypeName;
 
             databaseContext.SaveChanges();
         }
 
-        public void EditPriority(int priorityId, string priorityName)
+        public void EditPriority(string priorityName, string oldPriorityName)
         {
-            EntityFramework.Priority priorityToUpdate = databaseContext.Priority.Where(x => x.Id == priorityId).FirstOrDefault();
+            EntityFramework.Priority priorityToUpdate = databaseContext.Priority.Where(x => x.Name == oldPriorityName).FirstOrDefault();
 
             if (priorityToUpdate != null) priorityToUpdate.Name = priorityName;
 
             databaseContext.SaveChanges();
         }
 
-        public void EditStatusType(int statusTypeId, string statusTypeName)
+        public void EditStatusType(string statusTypeName, string oldStatusTypeName)
         {
-            EntityFramework.StatusType statusTypeToUpdate = databaseContext.StatusType.Where(x => x.Id == statusTypeId).FirstOrDefault();
+            EntityFramework.StatusType statusTypeToUpdate = databaseContext.StatusType.Where(x => x.Name == oldStatusTypeName).FirstOrDefault();
 
             if (statusTypeToUpdate != null) statusTypeToUpdate.Name = statusTypeName;
 
             databaseContext.SaveChanges();
         }
 
-        public void EditHardwareIdentificationLevelel1(int hardwareIdentificationLevel1Id, string hardwareIdentificationLevel1Name)
+        public void EditHardwareIdentificationLevelel1(string hardwareIdentificationLevel1Name, string oldHardwareIdentificationLevel1Name)
         {
             EntityFramework.HardwareIdentificationLevel1 hardwareIdentificationLevel1ToUpdate =
-                databaseContext.HardwareIdentificationLevel1.Where(x => x.Id == hardwareIdentificationLevel1Id).FirstOrDefault();
+                databaseContext.HardwareIdentificationLevel1.Where(x => x.Name == oldHardwareIdentificationLevel1Name).FirstOrDefault();
 
             if (hardwareIdentificationLevel1ToUpdate != null) hardwareIdentificationLevel1ToUpdate.Name = hardwareIdentificationLevel1Name;
 
             databaseContext.SaveChanges();
         }
 
-        public void EditHardwareIdentificationLevelel2(int hardwareIdentificationLevel2Id, string hardwareIdentificationLevel2Name)
+        public void EditHardwareIdentificationLevelel2(string hardwareIdentificationLevel2Name, string oldHardwareIdentificationLevel2Name)
         {
             EntityFramework.HardwareIdentificationLevel2 hardwareIdentificationLevel2ToUpdate =
-                databaseContext.HardwareIdentificationLevel2.Where(x => x.Id == hardwareIdentificationLevel2Id).FirstOrDefault();
+                databaseContext.HardwareIdentificationLevel2.Where(x => x.Name == oldHardwareIdentificationLevel2Name).FirstOrDefault();
 
             if (hardwareIdentificationLevel2ToUpdate != null) hardwareIdentificationLevel2ToUpdate.Name = hardwareIdentificationLevel2Name;
 

@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="DatabaseItemViewModel.cs" company="VAT Vakuumventile AG">
-//     Copyright (c) 2015 . All rights reserved.
+//     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
