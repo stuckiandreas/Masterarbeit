@@ -20,7 +20,7 @@ namespace ETIC2.ViewModels.InputViewModels
         /// </summary>
         private DateTime? dateTimeInput;
 
-        public DateTimeInputViewModel(ViewModelEvents viewModelEvents, string label, DateTime dateTimeInput)
+        public DateTimeInputViewModel(ViewModelEvents viewModelEvents, string label, DateTime? dateTimeInput)
             : base(viewModelEvents, label)
         {
             this.DateTimeInput = dateTimeInput;

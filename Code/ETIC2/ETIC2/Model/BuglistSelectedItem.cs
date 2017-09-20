@@ -204,9 +204,9 @@ namespace ETIC2.Model
             databaseContext.SaveChanges();
         }
 
-        public void DeleteFailureType(int failureTypeId)
+        public void DeleteFailureType(string failureTypeName)
         {
-            EntityFramework.FailureType failureType = databaseContext.FailureType.Where(x => x.Id == failureTypeId).FirstOrDefault();
+            EntityFramework.FailureType failureType = databaseContext.FailureType.Where(x => x.Name == failureTypeName).FirstOrDefault();
 
             if (failureType != null)
             {
@@ -215,9 +215,9 @@ namespace ETIC2.Model
             }
         }
 
-        public void DeletePriority(int priorityId)
+        public void DeletePriority(string priorityName)
         {
-            EntityFramework.Priority priority = databaseContext.Priority.Where(x => x.Id == priorityId).FirstOrDefault();
+            EntityFramework.Priority priority = databaseContext.Priority.Where(x => x.Name == priorityName).FirstOrDefault();
 
             if (priority != null)
             {
@@ -226,9 +226,9 @@ namespace ETIC2.Model
             }
         }
 
-        public void DeleteStatusType(int statusTypeId)
+        public void DeleteStatusType(string statusTypeName)
         {
-            EntityFramework.StatusType statusType = databaseContext.StatusType.Where(x => x.Id == statusTypeId).FirstOrDefault();
+            EntityFramework.StatusType statusType = databaseContext.StatusType.Where(x => x.Name == statusTypeName).FirstOrDefault();
 
             if (statusType != null)
             {
@@ -237,10 +237,10 @@ namespace ETIC2.Model
             }
         }
 
-        public void DeleteHardwareIdentificationLevel1(int hardwareIdentificationLevel1Id)
+        public void DeleteHardwareIdentificationLevel1(string hardwareIdentificationLevel1Name)
         {
             EntityFramework.HardwareIdentificationLevel1 hardwareIdentificationLevel1 = 
-                databaseContext.HardwareIdentificationLevel1.Where(x => x.Id == hardwareIdentificationLevel1Id).FirstOrDefault();
+                databaseContext.HardwareIdentificationLevel1.Where(x => x.Name == hardwareIdentificationLevel1Name).FirstOrDefault();
 
             if (hardwareIdentificationLevel1 != null)
             {
@@ -249,10 +249,10 @@ namespace ETIC2.Model
             }
         }
 
-        public void DeleteHardwareIdentificationLevel2(int hardwareIdentificationLevel2Id)
+        public void DeleteHardwareIdentificationLevel2(string hardwareIdentificationLevel2Name)
         {
             EntityFramework.HardwareIdentificationLevel2 hardwareIdentificationLevel2 =
-                databaseContext.HardwareIdentificationLevel2.Where(x => x.Id == hardwareIdentificationLevel2Id).FirstOrDefault();
+                databaseContext.HardwareIdentificationLevel2.Where(x => x.Name == hardwareIdentificationLevel2Name).FirstOrDefault();
 
             if (hardwareIdentificationLevel2 != null)
             {

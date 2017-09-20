@@ -4,15 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModels="clr-namespace:ETIC2.ViewModels"
-             xmlns:views="clr-namespace:ETIC2.Views"
+             xmlns:local="clr-namespace:ETIC2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
     <DockPanel LastChildFill="True" Background="LightGray">
         <StackPanel x:Name="navigation" DockPanel.Dock="Top">
-            <ComboBox Width="100" ToolTip="Diffrent database views" ItemsSource="{Binding DatabaseDataGridItems}" 
-                      SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
+            <ComboBox Width="100" ToolTip="Diffrent database views" ItemsSource="{Binding DatabaseDataGridItems}" SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
         </StackPanel>
+
+        <ContentControl Content="{Binding DetailedInformationViewModel}" MaxHeight="500">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DetailInformationViewVisibility}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding DetailInformationViewVisibility}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
         <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}"/>
     </DockPanel>
 </UserControl>
+
+    

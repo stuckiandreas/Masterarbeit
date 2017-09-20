@@ -6,14 +6,16 @@
                     xmlns:statusbarViews="clr-namespace:ETIC2.Views.StatusbarViews"
                     xmlns:menuViews="clr-namespace:ETIC2.Views.MenuViews"
                     xmlns:aboutDialogViews="clr-namespace:ETIC2.Views.AboutDialogViews"
+                    xmlns:buglistViews="clr-namespace:ETIC2.Views.BuglistViews"
                     xmlns:viewModels="clr-namespace:ETIC2.ViewModels"
                     xmlns:executeViewModels="clr-namespace:ETIC2.ViewModels.ExecuteDialogViewModels"
                     xmlns:inputViewModels="clr-namespace:ETIC2.ViewModels.InputViewModels"
                     xmlns:statusbarViewModels="clr-namespace:ETIC2.ViewModels.StatusbarViewModels"
                     xmlns:menuViewModels="clr-namespace:ETIC2.ViewModels.MenuViewModels"
-                    xmlns:aboutDialogViewModels="clr-namespace:ETIC2.ViewModels.AboutDialogViewModels">
+                    xmlns:aboutDialogViewModels="clr-namespace:ETIC2.ViewModels.AboutDialogViewModels"
+                    xmlns:buglistViewModels="clr-namespace:ETIC2.ViewModels.BuglistViewModels">
 
-    <!--Main Views-->  
+    <!--Main Views-->
     <DataTemplate DataType="{x:Type viewModels:WorkspaceViewModel}">
         <views:WorkspaceView />
     </DataTemplate>
@@ -28,6 +30,14 @@
 
     <DataTemplate DataType="{x:Type viewModels:ErrorDatabaseDataGridViewModel}">
         <views:ErrorDatabaseDataGridView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:BuglistDatabaseDataGridViewModel}">
+        <views:BuglistDatabaseDataGridView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:BuglistDetailInformationViewModel}">
+        <views:BuglistDetailInformationView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type menuViewModels:MenuViewModel}">
@@ -54,6 +64,10 @@
 
     <DataTemplate DataType="{x:Type executeViewModels:EditExecuteDialogViewModel}">
         <executeViews:EditExecuteDialogView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type executeViewModels:DeleteExecuteDialogViewModel}">
+        <executeViews:DeleteExecuteDialogView />
     </DataTemplate>
 
 

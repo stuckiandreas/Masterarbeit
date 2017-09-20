@@ -14,9 +14,10 @@ namespace ETIC2.ViewModels.InputViewModels
     using ETIC2.Events;
     using Events.EventArgs.Dialog;
     using Events.EventArgs.Error;
+    using Events.EventArgs.UserFeedback;
     using ExecuteDialogViewModels;
     using Model.Application;
-    
+
     /// <summary>
     /// View model in which a label and a defined text block can be defined.
     /// </summary>
@@ -272,45 +273,22 @@ namespace ETIC2.ViewModels.InputViewModels
         {
             try
             {
-                //Properties list has an type and a description entry
-                if (this.selectionItemType == SelectionItemType.Properties)
+                if (this.SelectedItemFilter != null)
                 {
-                    if (this.SelectedItemFilter != null)
-                    {
-                        DeleteExecuteDoubleDialogViewModel deleteExecuteDoubleDialogViewModel = new DeleteExecuteDoubleDialogViewModel(this.viewModelEvents, "Delete", this.versionManagementModel, this.selectionItemType, this.SelectedItemFilter.SelectedItem, this.SelectedItemFilter.Description);
-                        DialogEventArgs eventArgs = new DialogEventArgs(deleteExecuteDoubleDialogViewModel, "Delete", 120, 400);
-                        this.viewModelEvents.OnOpenDialog(this, eventArgs);
+                    DeleteExecuteDialogViewModel deletExecuteDialogViewModel = new DeleteExecuteDialogViewModel(this.viewModelEvents, "Delete", this.etic2Model, this.selectionItemType, this.SelectedItemFilter.SelectedItem);
+                    DialogEventArgs eventArgs = new DialogEventArgs(deletExecuteDialogViewModel, "Delete", 100, 300);
+                    this.viewModelEvents.OnOpenDialog(this, eventArgs);
 
-                        //inform the user, if the delete action was not sucessfull
-                        if (deleteExecuteDoubleDialogViewModel.ResultDeleteOperation != string.Empty)
-                            this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs(deleteExecuteDoubleDialogViewModel.ResultDeleteOperation));
+                    //inform the user, if the delete action was not sucessfull
+                    if (deletExecuteDialogViewModel.ResultDeleteOperation != string.Empty)
+                        this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs(deletExecuteDialogViewModel.ResultDeleteOperation));
 
-                        //empty item
-                        else
-                            this.SelectedItemFilter = null;
-                    }
+                    //empty item
                     else
-                        this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("No Item is select to delete"));
+                        this.SelectedItemFilter = null;
                 }
                 else
-                {
-                    if (this.SelectedItemFilter != null)
-                    {
-                        DeleteExecuteDialogViewModel deletExecuteDialogViewModel = new DeleteExecuteDialogViewModel(this.viewModelEvents, "Delete", this.versionManagementModel, this.selectionItemType, this.SelectedItemFilter.SelectedItem);
-                        DialogEventArgs eventArgs = new DialogEventArgs(deletExecuteDialogViewModel, "Delete", 100, 300);
-                        this.viewModelEvents.OnOpenDialog(this, eventArgs);
-
-                        //inform the user, if the delete action was not sucessfull
-                        if (deletExecuteDialogViewModel.ResultDeleteOperation != string.Empty)
-                            this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs(deletExecuteDialogViewModel.ResultDeleteOperation));
-
-                        //empty item
-                        else
-                            this.SelectedItemFilter = null;
-                    }
-                    else
-                        this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("No Item is select to delete"));
-                }
+                    this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("No Item is select to delete"));
             }
             catch (Exception ex)
             {
@@ -330,26 +308,23 @@ namespace ETIC2.ViewModels.InputViewModels
             {
                 switch (this.selectionItemType)
                 {
-                    case SelectionItemType.Author:
-                        result = this.versionManagementModel.SelectionItem.GetAuthors().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Author }).ToList();
+                    case SelectionItemType.FailureType:
+                        result = this.etic2Model.BuglistSelectedItem.GetFailureTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Name }).ToList();
                         break;
-                    case SelectionItemType.Base:
-                        result = this.versionManagementModel.SelectionItem.GetBaseSoftwares().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.BaseSoftware }).ToList();
+                    case SelectionItemType.StatusType:
+                        result = this.etic2Model.BuglistSelectedItem.GetStatusTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Name }).ToList();
                         break;
-                    case SelectionItemType.System:
-                        result = this.versionManagementModel.SelectionItem.GetSystems().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.System }).ToList();
+                    case SelectionItemType.Priority:
+                        result = this.etic2Model.BuglistSelectedItem.GetPriorities().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Name }).ToList();
                         break;
-                    case SelectionItemType.Customer:
-                        result = this.versionManagementModel.SelectionItem.GetCustomers().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Customer }).ToList();
+                    case SelectionItemType.ControllerType:
+                        result = this.etic2Model.BuglistSelectedItem.GetControllerTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Name }).ToList();
                         break;
-                    case SelectionItemType.DocumentType:
-                        result = this.versionManagementModel.SelectionItem.GetDocumentTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.DocumentType }).ToList();
+                    case SelectionItemType.HardwareIdentificationLevel1:
+                        result = this.etic2Model.BuglistSelectedItem.GetHardwareIdentificationLevels1().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Name }).ToList();
                         break;
-                    case SelectionItemType.Properties:
-                        result = this.versionManagementModel.SelectionItem.GetPropertyTypes().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.PropertyType, Description = x.PropertyDescription }).ToList();
-                        break;
-                    case SelectionItemType.Softwares:
-                        result = this.versionManagementModel.SelectionItem.GetSystems().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.System }).ToList();
+                    case SelectionItemType.HardwareIdentificationLevel2:
+                        result = this.etic2Model.BuglistSelectedItem.GetHardwareIdentificationLevels2().Select(x => new DefinedSelectionItemViewModel() { SelectedItem = x.Name }).ToList();
                         break;
                     default:
                         throw new NotImplementedException("Unknown SelectionItemType; " + this.selectionItemType);

@@ -45,7 +45,12 @@ namespace ETIC2.Events
         /// Occurs when the user want to change the database settings.
         /// </summary>
         public event EventHandler<DatabaseAccessEventArgs> ChangeDatabaseSettings;
-  
+
+        /// <summary>
+        /// Occurs when the user rename a selection item.
+        /// </summary>
+        public event EventHandler RenameSelectionItemInDatabase;
+
         /// <summary>
         /// Occurs when [delete selection items in list].
         /// </summary>
@@ -79,6 +84,12 @@ namespace ETIC2.Events
         {
             if (this.ChangeDatabaseSettings != null)
                 this.ChangeDatabaseSettings(sender, databaseAccessEventArgs);
+        }
+
+        public void OnRenameSelectionItemInDatabase()
+        {
+            if (RenameSelectionItemInDatabase != null)
+                RenameSelectionItemInDatabase(this, null);
         }
 
         public void OnDeleteSelectionItemsInList()

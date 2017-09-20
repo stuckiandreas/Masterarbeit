@@ -17,11 +17,11 @@ namespace ETIC2.ViewModels
     using Model.Application.FirmwareView;
     using Model.Application.General;
     using Model.Application.HardwareView;
-    
+    using Events.EventArgs.BuglistItem;
     /// <summary>
     /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.
     /// </summary>
-    public enum DatabseDataGridViewModel
+    public enum DatabaseDataGridViewModel
     {
         Firmware,
         Hardware,
@@ -62,6 +62,11 @@ namespace ETIC2.ViewModels
         private readonly ErrorDatabaseDataGridViewModel errorDatabaseDataGridViewModel;
 
         /// <summary>
+        /// Detail information view to edit and save buglist entries
+        /// </summary>
+        private readonly DetailedInformationViewModel detailedInformationViewModel;
+
+        /// <summary>
         /// Set the actual active view model
         /// </summary>
         private object selectedViewModel;
@@ -70,6 +75,11 @@ namespace ETIC2.ViewModels
         /// Active DatabaseDataGridViewModel
         /// </summary>
         private string databaseDataGridSelectedItem;
+
+        /// <summary>
+        /// Defined if the DetailView is active (only if buglist is selected)
+        /// </summary>
+        private bool detailInformationViewVisibility;
 
         /// <summary>
         /// View model events with several handlers
@@ -82,13 +92,14 @@ namespace ETIC2.ViewModels
             this.etic2Model = etic2Model;
             this.ViewModelEvents = viewModelEvents;
             this.firmwareDatabaseDataGridViewModel = new FirmwareDatabaseDataGridViewModel(viewModelEvents);
+            this.detailedInformationViewModel = new DetailedInformationViewModel(viewModelEvents, this.etic2Model);
 
             //Initialize a list with all DatabaseDataGridViewModels 
             this.allDatabaseDataGridViewModels = new ObservableCollection<BasisViewModel>();
             this.allDatabaseDataGridViewModels.Add(new FirmwareDatabaseDataGridViewModel(viewModelEvents));
             this.allDatabaseDataGridViewModels.Add(new ErrorDatabaseDataGridViewModel(viewModelEvents));
             this.allDatabaseDataGridViewModels.Add(new HardwareDatabaseDataGridViewModel(viewModelEvents));
-            this.allDatabaseDataGridViewModels.Add(new BuglistViewModel(viewModelEvents));
+            this.allDatabaseDataGridViewModels.Add(new BuglistDatabaseDataGridViewModel(viewModelEvents));
 
             //Set Reference of the view model in the list (if not, the data will not set)
             this.firmwareDatabaseDataGridViewModel
@@ -100,14 +111,23 @@ namespace ETIC2.ViewModels
 
             //Fill ComboBox List entries for diffrent DatabaseDataGridViews
             this.DatabaseDataGridItems = new ObservableCollection<string>();
-            this.DatabaseDataGridItems.Add(DatabseDataGridViewModel.Firmware.ToString());
-            this.DatabaseDataGridItems.Add(DatabseDataGridViewModel.Hardware.ToString());
-            this.DatabaseDataGridItems.Add(DatabseDataGridViewModel.Error.ToString());
-            this.databaseDataGridSelectedItem = DatabseDataGridViewModel.Firmware.ToString();
+            this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Firmware.ToString());
+            this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Hardware.ToString());
+            this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Error.ToString());
+            this.databaseDataGridSelectedItem = DatabaseDataGridViewModel.Firmware.ToString();
             this.SetActiveDatabaseDataGridViewModel();
+            this.detailInformationViewVisibility = false;
         }
 
         public ObservableCollection<string> DatabaseDataGridItems { get; }
+
+        public DetailedInformationViewModel DetailedInformationViewModel
+        {
+            get
+            {
+                return this.detailedInformationViewModel;
+            }
+        }
 
         public string DatabaseDataGridSelectedItem
         {
@@ -161,6 +181,20 @@ namespace ETIC2.ViewModels
             }
         }
 
+        public bool DetailInformationViewVisibility
+        {
+            get
+            {
+                return detailInformationViewVisibility;
+            }
+
+            set
+            {
+                this.detailInformationViewVisibility = value;
+                this.OnPropertyChanged("DetailInformationViewVisibility");
+            }
+        }
+
         public override void SubscribeEvents()
         {
             // Subscribe own model events
@@ -169,6 +203,7 @@ namespace ETIC2.ViewModels
             this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent += this.FirmwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent += this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent += this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
+            this.detailedInformationViewModel.ItemChangedEvent += DetailedInformationViewModel_ItemChangedEvent;
 
             // Subscribe base class events
             base.SubscribeEvents();
@@ -182,6 +217,7 @@ namespace ETIC2.ViewModels
             this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.FirmwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent -= this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
+            this.detailedInformationViewModel.ItemChangedEvent -= DetailedInformationViewModel_ItemChangedEvent;
 
             // Unsubscribe base class events
             base.UnsubscribeEvents();
@@ -189,10 +225,33 @@ namespace ETIC2.ViewModels
 
         public override void Init()
         {
-            // Init base class
-            base.Init();
+            //Add an empty entrys if no empty entry exists in database yet. This is needed to allow the user to leave the selection empty.
+            //Add an empty entry if no empty entry exist in database yet. So its possible to delete an item in a list.
+            //Otherwise the user must create an own empty entry.
+            if (!this.etic2Model.BuglistSelectedItem.GetFailureTypes()
+                 .Any(x => string.IsNullOrEmpty(x.Name)))
+                this.etic2Model.BuglistSelectedItem.AddFailureType(string.Empty);
+
+            if (!this.etic2Model.BuglistSelectedItem.GetStatusTypes()
+                 .Any(x => string.IsNullOrEmpty(x.Name)))
+                this.etic2Model.BuglistSelectedItem.AddStatusType(string.Empty);
+
+            if (!this.etic2Model.BuglistSelectedItem.GetHardwareIdentificationLevels1()
+                 .Any(x => string.IsNullOrEmpty(x.Name)))
+                this.etic2Model.BuglistSelectedItem.AddHardwareIdentificationLevel1(string.Empty);
+
+            if (!this.etic2Model.BuglistSelectedItem.GetHardwareIdentificationLevels2()
+                 .Any(x => string.IsNullOrEmpty(x.Name)))
+                this.etic2Model.BuglistSelectedItem.AddHardwareIdentificationLevel2(string.Empty);
+
+            if (!this.etic2Model.BuglistSelectedItem.GetPriorities()
+                 .Any(x => string.IsNullOrEmpty(x.Name)))
+                this.etic2Model.BuglistSelectedItem.AddStatusType(string.Empty);
 
             this.RefreshDataGrid();
+
+            // Init base class
+            base.Init();
         }
 
         private void ViewModelEvents_ChangeDatabaseSettings(object sender, Events.EventArgs.DatabaseAccess.DatabaseAccessEventArgs e)
@@ -243,6 +302,31 @@ namespace ETIC2.ViewModels
                 //Refreshes the database context. If not, the database not recordgnized when data entries has changed
                 this.etic2Model.BuildDatabaseContext();
                 this.RefreshDataGrid();
+            }
+            catch (Exception ex)
+            {
+                this.ViewModelEvents.OnHandleError(this, new ExpectedErrorHandlerEventArgs(ex.Message));
+            }
+        }
+
+        private void DetailedInformationViewModel_ItemChangedEvent(object sender, Events.EventArgs.BuglistItem.ItemEventArgs e)
+        {
+            try
+            {
+                if (!(sender is DetailedInformationViewModel))
+                    return;
+
+                //Add new Item to the collection
+                if (e is AddNewItemEventArgs)
+                    this.AddItem((AddNewItemEventArgs)e);
+
+                //Save existing item
+                if (e is SaveItemEventArgs)
+                    this.SaveItem(e.DatabaseItemViewModel);
+
+                //Delete existing item
+                if (e is DeleteItemEventArgs)
+                    this.DeleteItem(e.DatabaseItemViewModel);
             }
             catch (Exception ex)
             {
@@ -397,12 +481,26 @@ namespace ETIC2.ViewModels
         /// </summary>
         private void SetActiveDatabaseDataGridViewModel()
         {
-            if (this.databaseDataGridSelectedItem == DatabseDataGridViewModel.Firmware.ToString())
+            if (this.databaseDataGridSelectedItem == DatabaseDataGridViewModel.Firmware.ToString())
+            {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
-            else if (this.databaseDataGridSelectedItem == DatabseDataGridViewModel.Hardware.ToString())
+                this.detailInformationViewVisibility = false;
+            }
+            else if (this.databaseDataGridSelectedItem == DatabaseDataGridViewModel.Hardware.ToString())
+            {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is HardwareDatabaseDataGridViewModel).Single();
-            else
+                this.detailInformationViewVisibility = false;
+            }
+            else if (this.databaseDataGridSelectedItem == DatabaseDataGridViewModel.Error.ToString())
+            {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is ErrorDatabaseDataGridViewModel).Single();
+                this.detailInformationViewVisibility = false;
+            }
+            else
+            {
+                this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is BuglistDatabaseDataGridViewModel).Single();
+                this.detailInformationViewVisibility = true;
+            }    
         }
     }
 }

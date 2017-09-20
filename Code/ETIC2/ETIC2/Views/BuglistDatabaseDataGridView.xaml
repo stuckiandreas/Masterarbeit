@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="ETIC2.Views.BuglistViews.BuglistDatabaseDataGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:local="clr-namespace:ETIC2.Views.BuglistViews"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <DockPanel LastChildFill="True" Background="LightGray">
+
+        <dx:UniformStackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding RefreshCommand}" Content="Refresh" Height="20" Width="60"/>
+            <Button Click="Print" Content="Print" Height="20" Width="60"/>
+            <Button Click="CSV" Content="CSV" Height="20" Width="60"/>
+            <Button Click="PDF" Content="PDF" Height="20" Width="60"/>
+        </dx:UniformStackPanel>
+
+        <dxg:GridControl MaxWidth="4000" MaxHeight="4000"
+                         ItemsSource="{Binding DatabaseItemViewModels}"
+                         SelectedItem="{Binding SelectedDatabaseItemViewModel}"
+                         SelectionMode="Row"
+                         dx:ThemeManager.Theme="Office2007Black" Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus"
+                         EnableSmartColumnsGeneration="True">
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="Buglist" FocusedRow="{Binding SelectedDatabaseItemViewModel, Mode=TwoWay}" ScrollingMode="Smart" AllowEditing="False"
+                               NavigationStyle="Row" ShowGroupPanel="False" AllowColumnFiltering="False" AllowScrollToFocusedRow="True"                            
+                               ShowTotalSummary="False" AutoWidth="True" ShowAutoFilterRow="True"/>
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="Failure Type" Binding="{Binding FailureType}"/>
+                <dxg:GridColumn Header="StatusType" Binding="{Binding StatusType}"/>
+                <dxg:GridColumn Header="Priority" Binding="{Binding Priority}"/>
+                <dxg:GridColumn Header="Controller Type" Binding="{Binding ControllerType}"/>
+                <dxg:GridColumn Header="Hardware Identification Level 1" Binding="{Binding HardwareIdentificationLevel1}" Visible="False"/>
+                <dxg:GridColumn Header="Hardware Identification Level 2" Binding="{Binding HardwareIdentificationLevel2}" Visible="False"/>
+                <dxg:GridColumn Header="Date Found" Binding="{Binding DateFound, StringFormat=d}" Visible="False"/>
+                <dxg:GridColumn Header="Date Fixed" Binding="{Binding DateFixed, StringFormat=d}" Visible="False"/>
+                <dxg:GridColumn Header="Bug" Binding="{Binding Bug}"/>
+                <dxg:GridColumn Header="Comment" Binding="{Binding Comment}" Visible="False"/>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+    </DockPanel>
+    
+</UserControl>

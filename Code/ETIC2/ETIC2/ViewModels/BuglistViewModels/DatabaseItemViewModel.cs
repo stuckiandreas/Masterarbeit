@@ -14,8 +14,13 @@ namespace ETIC2.ViewModels.BuglistViewModels
     /// </summary>
     public class DatabaseItemViewModel
     {
+        public DatabaseItemViewModel()
+        {
+        }
+
         public DatabaseItemViewModel(Buglist buglistItem)
         {
+            this.ItemIdentification = buglistItem.Id;
             this.FailureType = buglistItem.FailureType;
             this.StatusType = buglistItem.StatusType;
             this.ControllerType = buglistItem.ControllerType;
@@ -26,6 +31,12 @@ namespace ETIC2.ViewModels.BuglistViewModels
             this.Priority = buglistItem.Priority;
             this.DateFound = buglistItem.DateFound;
             this.DateFixed = buglistItem.DateFixed;
+        }
+
+        public int ItemIdentification
+        {
+            get;
+            set;
         }
 
         public string FailureType
@@ -82,7 +93,7 @@ namespace ETIC2.ViewModels.BuglistViewModels
             set;
         }
 
-        public DateTime DateFixed
+        public DateTime? DateFixed
         {
             get;
             set;

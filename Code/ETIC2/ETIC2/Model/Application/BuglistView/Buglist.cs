@@ -33,7 +33,7 @@ namespace ETIC2.Model.Application.BuglistView
 
         public DateTime DateFound;
 
-        public DateTime DateFixed;
+        public DateTime? DateFixed;
 
         public Buglist()
         {

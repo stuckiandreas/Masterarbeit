@@ -135,6 +135,10 @@
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindowViewModel.cs" />
+    <Compile Include="Events\EventArgs\BuglistItem\AddNewItemEventArgs.cs" />
+    <Compile Include="Events\EventArgs\BuglistItem\DeleteItemEventArgs.cs" />
+    <Compile Include="Events\EventArgs\BuglistItem\ItemEventArgs.cs" />
+    <Compile Include="Events\EventArgs\BuglistItem\SaveItemEventArgs.cs" />
     <Compile Include="Events\EventArgs\Cursor\CursorLoadingEventArgs.cs" />
     <Compile Include="Events\EventArgs\DatabaseAccess\DatabaseAccessEventArgs.cs" />
     <Compile Include="Events\EventArgs\Dialog\DialogEventArgs.cs" />
@@ -300,10 +304,10 @@
     </Compile>
     <Compile Include="ViewModels\AboutDialogViewModels\AboutDialogViewModel.cs" />
     <Compile Include="ViewModels\BasisViewModel.cs" />
-    <Compile Include="ViewModels\BuglistViewModel.cs" />
-    <Compile Include="ViewModels\BuglistViewModels\DatabaseDataGridViewModel.cs" />
+    <Compile Include="ViewModels\BuglistDatabaseDataGridViewModel.cs" />
     <Compile Include="ViewModels\BuglistViewModels\DatabaseItemViewModel.cs" />
-    <Compile Include="ViewModels\BuglistViewModels\DetailedInformationViewModel.cs" />
+    <Compile Include="ViewModels\DetailedInformationViewModel.cs" />
+    <Compile Include="ViewModels\ExecuteDialogViewModels\DeleteExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\EditExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\ExecuteDialogViewModels\SaveExecuteDialogViewModel.cs" />
     <Compile Include="ViewModels\HardwareDatabaseDataGridViewModel.cs" />
@@ -332,8 +336,17 @@
     <Compile Include="Views\AboutDialogViews\AboutDialogView.xaml.cs">
       <DependentUpon>AboutDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BuglistDatabaseDataGridView.xaml.cs">
+      <DependentUpon>BuglistDatabaseDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailInformationView.xaml.cs">
+      <DependentUpon>DetailInformationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorDatabaseDataGridView.xaml.cs">
       <DependentUpon>ErrorDatabaseDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExecuteDialogViews\DeleteExecuteDialogView.xaml.cs">
+      <DependentUpon>DeleteExecuteDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExecuteDialogViews\EditExecuteDialogView.xaml.cs">
       <DependentUpon>EditExecuteDialogView.xaml</DependentUpon>
@@ -399,7 +412,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\BuglistDatabaseDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ErrorDatabaseDataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExecuteDialogViews\DeleteExecuteDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
