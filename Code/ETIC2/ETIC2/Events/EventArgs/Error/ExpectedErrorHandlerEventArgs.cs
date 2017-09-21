@@ -8,7 +8,7 @@ namespace ETIC2.Events.EventArgs.Error
     /// <summary>
     /// Describes and catch the expected error
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.Error.ErrorHandlerEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.Error.ErrorHandlerEventArgs" />
     public class ExpectedErrorHandlerEventArgs : ErrorHandlerEventArgs
     {
         private string errorText;

@@ -22,6 +22,35 @@ namespace ETIC2.Model
         }
 
         /// <summary>
+        /// Gets the application buglist item. (based on the bug and date found information)
+        /// </summary>
+        /// <param name="bug">The bug.</param>
+        /// <param name="dateFound">The date found.</param>
+        /// <returns>Buglist item which has the same Bug description and date found entry</returns>
+        public Application.BuglistView.Buglist GetApplicationBuglistItem(string bug, DateTime dateFound)
+        {
+            Application.BuglistView.Buglist emptyBuglist;
+            EntityFramework.Buglist buglistItemDatabase = databaseContext.Buglist.Where(x => x.Bug == bug && x.DateFound == dateFound).FirstOrDefault();
+
+            emptyBuglist = new Application.BuglistView.Buglist()
+            {
+                Id = default(int), FailureType = default(string), StatusType = default(string), ControllerType = default(string), HardwareIdentificationLevel1 = default(string),
+                HardwareIdentificationLevel2 = default(string), Bug = default(string), Comment = default(string), Priority = default(string), DateFound = default(DateTime), DateFixed = default(DateTime)
+            };
+            emptyBuglist.Id = buglistItemDatabase.Id;
+            emptyBuglist.FailureType = this.GetFailureType((int)buglistItemDatabase.FailureType_Id);
+            emptyBuglist.StatusType = this.GetStatusType((int)buglistItemDatabase.StatusType_Id);
+            emptyBuglist.ControllerType = this.GetControllerTypeEnum((int)buglistItemDatabase.ControllerType_Id);
+            emptyBuglist.HardwareIdentificationLevel1 = this.GetHardwareIdentificationLevel1((int)buglistItemDatabase.HardwareIdentificationLevel1_Id);
+            emptyBuglist.HardwareIdentificationLevel2 = this.GetHardwareIdentificationLevel1((int)buglistItemDatabase.HardwareIdentificationLevel2_Id);
+            emptyBuglist.Bug = buglistItemDatabase.Bug;
+            emptyBuglist.Comment = buglistItemDatabase.Comment;
+            emptyBuglist.Priority = this.GetPriority((int)buglistItemDatabase.Priority_Id);
+
+            return emptyBuglist;
+        }
+
+        /// <summary>
         /// Gets the buglist in application datatype (without any references).
         /// </summary>
         /// <returns>Buglist (Application Datatype)</returns>

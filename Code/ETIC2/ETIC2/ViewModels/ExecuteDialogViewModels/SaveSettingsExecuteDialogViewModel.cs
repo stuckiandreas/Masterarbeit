@@ -15,7 +15,7 @@ namespace ETIC2.ViewModels.ExecuteDialogViewModels
     /// View model which has two labels with inherent text input. One is for the server name and the other for database name.
     /// After the save button is push, the database try to connect with this specific information.
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.ExecuteDialogViewModels.ExecuteDialogViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.ExecuteDialogViewModels.ExecuteDialogViewModel" />
     public class SaveSettingsExecuteDialogViewModel : SaveExecuteDoubleDialogViewModel
     {
         /// <summary>

@@ -308,14 +308,6 @@ namespace VersionManagement.ViewModels
             foreach (SoftwareVersions item in items)
                 this.databaseDataGridViewModel.DatabaseItemViewModels.Add(new DatabaseItemViewModel(item));
 
-            //add SelectionItem in WorkspaceViewModel
-            List<Authors> authors = this.versionManagementModel.SelectionItem.GetAuthors();
-            List<BaseSoftwares> bases = this.versionManagementModel.SelectionItem.GetBaseSoftwares();
-            List<Customers> customers = this.versionManagementModel.SelectionItem.GetCustomers();
-            List<Systems> systems = this.versionManagementModel.SelectionItem.GetSystems();
-            List<DocumentTypes> documentTypes = this.versionManagementModel.SelectionItem.GetDocumentTypes();
-            List<PropertyTypes> propertyTypes = this.versionManagementModel.SelectionItem.GetPropertyTypes();
-
             this.isReloadDataGrid = false;
         }
 

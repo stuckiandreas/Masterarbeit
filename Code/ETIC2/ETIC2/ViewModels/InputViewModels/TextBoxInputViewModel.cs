@@ -12,7 +12,7 @@ namespace ETIC2.ViewModels.InputViewModels
     /// <summary>
     /// View model in which a label can defined and a textbox.
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.InputViewModels.InputBaseViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.InputViewModels.InputBaseViewModel" />
     public class TextBoxInputViewModel : InputBaseViewModel, IDataErrorInfo
     {
         /// <summary>

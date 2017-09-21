@@ -6,14 +6,12 @@
                     xmlns:statusbarViews="clr-namespace:ETIC2.Views.StatusbarViews"
                     xmlns:menuViews="clr-namespace:ETIC2.Views.MenuViews"
                     xmlns:aboutDialogViews="clr-namespace:ETIC2.Views.AboutDialogViews"
-                    xmlns:buglistViews="clr-namespace:ETIC2.Views.BuglistViews"
                     xmlns:viewModels="clr-namespace:ETIC2.ViewModels"
                     xmlns:executeViewModels="clr-namespace:ETIC2.ViewModels.ExecuteDialogViewModels"
                     xmlns:inputViewModels="clr-namespace:ETIC2.ViewModels.InputViewModels"
                     xmlns:statusbarViewModels="clr-namespace:ETIC2.ViewModels.StatusbarViewModels"
                     xmlns:menuViewModels="clr-namespace:ETIC2.ViewModels.MenuViewModels"
-                    xmlns:aboutDialogViewModels="clr-namespace:ETIC2.ViewModels.AboutDialogViewModels"
-                    xmlns:buglistViewModels="clr-namespace:ETIC2.ViewModels.BuglistViewModels">
+                    xmlns:aboutDialogViewModels="clr-namespace:ETIC2.ViewModels.AboutDialogViewModels">
 
     <!--Main Views-->
     <DataTemplate DataType="{x:Type viewModels:WorkspaceViewModel}">
@@ -36,8 +34,8 @@
         <views:BuglistDatabaseDataGridView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type viewModels:BuglistDetailInformationViewModel}">
-        <views:BuglistDetailInformationView />
+    <DataTemplate DataType="{x:Type viewModels:DetailedInformationViewModel}">
+        <views:DetailedInformationView />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type menuViewModels:MenuViewModel}">

@@ -12,7 +12,7 @@ namespace ETIC2.Events.EventArgs.UserFeedback
     /// <summary>
     /// User receives an unexpected error event.
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
     public class UserFeedbackUnexpectedErrorEventArgs : UserFeedbackEventArgs
     {
         public UserFeedbackUnexpectedErrorEventArgs(Exception exception)

@@ -11,7 +11,7 @@ namespace ETIC2.Events.EventArgs.UserFeedback
     /// <summary>
     /// Message if the user operated wrong
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
     public class UserFeedbackErrorEventArgs : UserFeedbackEventArgs
     {
         public UserFeedbackErrorEventArgs(string errorMessage)

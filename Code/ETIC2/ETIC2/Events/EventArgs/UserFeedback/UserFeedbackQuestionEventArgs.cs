@@ -11,7 +11,7 @@ namespace ETIC2.Events.EventArgs.UserFeedback
     /// <summary>
     /// Event arguments with a question message.
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
     public class UserFeedbackQuestionEventArgs : UserFeedbackEventArgs
     {
         public UserFeedbackQuestionEventArgs(string questionMessage)

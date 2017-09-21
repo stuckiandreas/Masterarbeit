@@ -12,7 +12,7 @@ namespace ETIC2.ViewModels.InputViewModels
     /// <summary>
     /// View model in which a label and a date input can be defined.
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.InputViewModels.InputBaseViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.InputViewModels.InputBaseViewModel" />
     public class DateTimeInputViewModel : InputBaseViewModel
     {
         /// <summary>

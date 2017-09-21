@@ -11,7 +11,7 @@ namespace ETIC2.Events.EventArgs.UserFeedback
     /// <summary>
     /// Event arguments for the user information. Including a information Messages. 
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.UserFeedback.UserFeedbackEventArgs" />
     public class UserFeedbackInfoEventArgs : UserFeedbackEventArgs
     {
         public UserFeedbackInfoEventArgs(string infoMessage)

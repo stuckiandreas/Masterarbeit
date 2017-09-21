@@ -11,7 +11,7 @@ namespace ETIC2.ViewModels.InputViewModels
     /// <summary>
     /// Base class for all input view models. In this class the label is set. Tooltip for the user to help for special function. 
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.BasisViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.BasisViewModel" />
     public abstract class InputBaseViewModel : BasisViewModel
     {
         /// <summary>

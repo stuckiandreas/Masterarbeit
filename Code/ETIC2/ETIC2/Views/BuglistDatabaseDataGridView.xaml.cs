@@ -4,7 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace ETIC2.Views.BuglistViews
+namespace ETIC2.Views
 {
     using System.IO;
     using System.Windows;

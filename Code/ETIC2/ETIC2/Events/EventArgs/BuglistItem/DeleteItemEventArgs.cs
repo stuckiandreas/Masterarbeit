@@ -11,7 +11,7 @@ namespace ETIC2.Events.EventArgs.BuglistItem
     /// <summary>
     /// Event after the user push the delete button
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.SoftwareItem.ItemEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.SoftwareItem.ItemEventArgs" />
     public class DeleteItemEventArgs : ItemEventArgs
     {
         public DeleteItemEventArgs(DatabaseItemViewModel databaseItemViewModel)

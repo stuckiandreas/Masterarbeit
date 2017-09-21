@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DetailInformationView.xaml.cs" company="VAT Vakuumventile AG">
+// <copyright file="DetailedInformationView.xaml.cs" company="VAT Vakuumventile AG">
 //     Copyright (c) 2017 . All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -9,11 +9,11 @@ namespace ETIC2.Views
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for DetailInformationView.xaml
+    /// Interaction logic for DetailedInformationView.xaml
     /// </summary>
-    public partial class DetailInformationView : UserControl
+    public partial class DetailedInformationView : UserControl
     {
-        public DetailInformationView()
+        public DetailedInformationView()
         {
             this.InitializeComponent();
         }

@@ -11,7 +11,7 @@ namespace ETIC2.Events.EventArgs.Error
     /// <summary>
     /// Describes and catch the unexpected error
     /// </summary>
-    /// <seealso cref="VersionManagement.Events.EventArgs.Error.ErrorHandlerEventArgs" />
+    /// <seealso cref="ETIC2.Events.EventArgs.Error.ErrorHandlerEventArgs" />
     public class UnexpectedErrorHandlerEventArgs : ErrorHandlerEventArgs
     {
         private Exception exception;

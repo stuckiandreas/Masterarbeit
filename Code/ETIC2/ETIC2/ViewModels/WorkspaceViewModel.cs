@@ -11,13 +11,18 @@ namespace ETIC2.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Threading;
+    using System.Windows;
+    using BuglistViewModels;
     using Events;
+    using Events.EventArgs.BuglistItem;
     using Events.EventArgs.Error;
+    using Events.EventArgs.UserFeedback;
     using Model.Application;
+    using Model.Application.BuglistView;
     using Model.Application.FirmwareView;
     using Model.Application.General;
     using Model.Application.HardwareView;
-    using Events.EventArgs.BuglistItem;
+    
     /// <summary>
     /// Define the diffrent DatabaseDataGridViewModel. Everyone shows a diffrent master detail structure.
     /// </summary>
@@ -62,6 +67,11 @@ namespace ETIC2.ViewModels
         private readonly ErrorDatabaseDataGridViewModel errorDatabaseDataGridViewModel;
 
         /// <summary>
+        /// Buglist DataGrid
+        /// </summary>
+        private readonly BuglistDatabaseDataGridViewModel buglistDatabaseDataGridViewModel;
+
+        /// <summary>
         /// Detail information view to edit and save buglist entries
         /// </summary>
         private readonly DetailedInformationViewModel detailedInformationViewModel;
@@ -80,6 +90,11 @@ namespace ETIC2.ViewModels
         /// Defined if the DetailView is active (only if buglist is selected)
         /// </summary>
         private bool detailInformationViewVisibility;
+
+        /// <summary>
+        /// Before a item is saving in the database, the database will update. In this time the selection item is changing (need this information to prevent a warning)
+        /// </summary>
+        private bool isReloadDataGrid = false;
 
         /// <summary>
         /// View model events with several handlers
@@ -108,12 +123,15 @@ namespace ETIC2.ViewModels
                 = (HardwareDatabaseDataGridViewModel)this.allDatabaseDataGridViewModels.Where(x => x is HardwareDatabaseDataGridViewModel).Single();
             this.errorDatabaseDataGridViewModel
                 = (ErrorDatabaseDataGridViewModel)this.allDatabaseDataGridViewModels.Where(x => x is ErrorDatabaseDataGridViewModel).Single();
+            this.buglistDatabaseDataGridViewModel
+                = (BuglistDatabaseDataGridViewModel)this.allDatabaseDataGridViewModels.Where(x => x is BuglistDatabaseDataGridViewModel).Single();
 
             //Fill ComboBox List entries for diffrent DatabaseDataGridViews
             this.DatabaseDataGridItems = new ObservableCollection<string>();
             this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Firmware.ToString());
             this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Hardware.ToString());
             this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Error.ToString());
+            this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Buglist.ToString());
             this.databaseDataGridSelectedItem = DatabaseDataGridViewModel.Firmware.ToString();
             this.SetActiveDatabaseDataGridViewModel();
             this.detailInformationViewVisibility = false;
@@ -181,11 +199,19 @@ namespace ETIC2.ViewModels
             }
         }
 
+        public BuglistDatabaseDataGridViewModel BuglistDatabaseDataGridViewModel
+        {
+            get
+            {
+                return this.buglistDatabaseDataGridViewModel;
+            }
+        }
+
         public bool DetailInformationViewVisibility
         {
             get
             {
-                return detailInformationViewVisibility;
+                return this.detailInformationViewVisibility;
             }
 
             set
@@ -203,7 +229,7 @@ namespace ETIC2.ViewModels
             this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent += this.FirmwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent += this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent += this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
-            this.detailedInformationViewModel.ItemChangedEvent += DetailedInformationViewModel_ItemChangedEvent;
+            this.detailedInformationViewModel.ItemChangedEvent += this.DetailedInformationViewModel_ItemChangedEvent;
 
             // Subscribe base class events
             base.SubscribeEvents();
@@ -217,7 +243,7 @@ namespace ETIC2.ViewModels
             this.firmwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.FirmwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent -= this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
-            this.detailedInformationViewModel.ItemChangedEvent -= DetailedInformationViewModel_ItemChangedEvent;
+            this.detailedInformationViewModel.ItemChangedEvent -= this.DetailedInformationViewModel_ItemChangedEvent;
 
             // Unsubscribe base class events
             base.UnsubscribeEvents();
@@ -342,6 +368,7 @@ namespace ETIC2.ViewModels
             this.LoadFirmwareDatabaseDataGrid();
             this.LoadHardwareDatabaseDataGrid();
             this.LoadErrorDatabaseDataGrid();
+            this.LoadBuglistDataGrid();
         }
 
         /// <summary>
@@ -474,6 +501,104 @@ namespace ETIC2.ViewModels
             foreach (Model.Application.ErrorView.TestErrorMessage testErrorMessageItem in testErrorMessageItems)
                 this.errorDatabaseDataGridViewModel.TestErrorMessageViewModels.Add(
                     new ErrorTopLevelViewModels.TestErrorMessageViewModel(this.ViewModelEvents, testErrorMessageItem));
+        }
+
+        private void LoadBuglistDataGrid()
+        {
+            this.isReloadDataGrid = true;
+
+            //Refreshes the database context. If not, the database not recordgnized when data entries has changed
+            this.etic2Model.BuildDatabaseContext();
+
+            this.buglistDatabaseDataGridViewModel.DatabaseItemViewModels.Clear();
+
+            List<Buglist> buglistItems = this.etic2Model.BuglistItem.GetApplicationBuglist();
+
+            foreach (Buglist buglistItem in buglistItems)
+                this.buglistDatabaseDataGridViewModel.DatabaseItemViewModels.Add(new DatabaseItemViewModel(buglistItem));
+
+            this.isReloadDataGrid = false;
+        }
+
+        private void SaveItem(DatabaseItemViewModel databaseItemViewModel)
+        {
+            //update database view first
+            this.LoadBuglistDataGrid();
+
+            //Create new item if software item has identification number -1
+            if (this.detailedInformationViewModel.IsNewItemSet)
+            {
+                Buglist buglistItem = this.detailedInformationViewModel.GetBuglistItem();
+
+                //check if the buglist item already exist in the database
+                List<Buglist> buglistItems = this.etic2Model.BuglistItem.GetApplicationBuglist();
+                if (buglistItems.Any(x => x.Bug == databaseItemViewModel.Bug && x.DateFound == databaseItemViewModel.DateFound))
+                {
+                    this.ViewModelEvents.OnUserFeedback(this, new UserFeedbackInfoEventArgs(string.Format("{0} does already exist in database and can not be saved again!", databaseItemViewModel.Bug)));
+                    return;
+                }
+
+                this.etic2Model.BuglistItem.AddBuglistItem(buglistItem);
+
+                if (buglistItem != null)
+                    this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel(buglistItem));
+            }
+            else
+            {
+                this.etic2Model.BuglistItem.UpdateBuglistItemInDatabase(new Buglist()
+                {
+                    Id = databaseItemViewModel.ItemIdentification,
+                    FailureType = databaseItemViewModel.FailureType,
+                    StatusType = databaseItemViewModel.StatusType,
+                    ControllerType = databaseItemViewModel.ControllerType,
+                    HardwareIdentificationLevel1 = databaseItemViewModel.HardwareIdentificationLevel1,
+                    HardwareIdentificationLevel2 = databaseItemViewModel.HardwareIdentificationLevel2,
+                    Bug = databaseItemViewModel.Bug,
+                    Comment = databaseItemViewModel.Comment,
+                    Priority = databaseItemViewModel.Priority,
+                    DateFound = databaseItemViewModel.DateFound,
+                    DateFixed = databaseItemViewModel.DateFixed
+                });
+            }
+
+            this.LoadBuglistDataGrid();
+            this.buglistDatabaseDataGridViewModel.SelectedDatabaseItemViewModel = this.buglistDatabaseDataGridViewModel.DatabaseItemViewModels.Where(
+                x => x.Bug == databaseItemViewModel.Bug && x.DateFound == databaseItemViewModel.DateFound).FirstOrDefault();
+        }
+
+        private void DeleteItem(DatabaseItemViewModel databaseItemViewModel)
+        {
+            //update database view first (possible that the buglist item dosn't exist anymore)
+            this.LoadBuglistDataGrid();
+
+            //Request the user if he want to delete permanently
+            UserFeedbackQuestionEventArgs deleteItemFinal = new UserFeedbackQuestionEventArgs(
+                string.Format("Do you really want to delete {0} ?", databaseItemViewModel.Bug));
+            this.ViewModelEvents.OnUserFeedback(this, deleteItemFinal);
+
+            if (deleteItemFinal.Result == MessageBoxResult.Yes)
+            {
+                this.etic2Model.BuglistItem.DeleteBuglistItem(
+                    databaseItemViewModel.ItemIdentification);
+
+                //Set first database item as selected item in the datagrid
+                this.BuglistDatabaseDataGridViewModel.SelectedDatabaseItemViewModel =
+                    this.BuglistDatabaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
+
+                this.LoadBuglistDataGrid();
+
+                this.buglistDatabaseDataGridViewModel.SelectedDatabaseItemViewModel = this.buglistDatabaseDataGridViewModel.DatabaseItemViewModels.FirstOrDefault();
+            }
+        }
+
+        private void AddItem(AddNewItemEventArgs addNewItemEventArgs)
+        {
+            //Add new Buglist Item with identification number -1 to indicate temporary value
+
+            this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel()
+            {
+                ItemIdentification = -1
+            });
         }
 
         /// <summary>

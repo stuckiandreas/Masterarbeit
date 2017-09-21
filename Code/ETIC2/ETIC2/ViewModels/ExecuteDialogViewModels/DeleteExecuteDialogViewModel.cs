@@ -15,7 +15,7 @@ namespace ETIC2.ViewModels.ExecuteDialogViewModels
     /// Dialog view model with the user can delete a selection item in the database. 
     /// The delete view model has a label and a text input. The text input shows the element which will be deleted.
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.ExecuteDialogViewModels.ExecuteDialogViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.ExecuteDialogViewModels.ExecuteDialogViewModel" />
     public class DeleteExecuteDialogViewModel : ExecuteDialogViewModel
     {
         private ViewModelEvents viewModelEvents;

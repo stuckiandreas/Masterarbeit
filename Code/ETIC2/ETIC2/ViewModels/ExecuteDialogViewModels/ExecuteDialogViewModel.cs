@@ -19,7 +19,7 @@ namespace ETIC2.ViewModels.ExecuteDialogViewModels
     /// ViewModel to execute an Dialog. The view included an Button.
     /// The execute method is async. For this reason the GUI is not frozen. The user will be informed by a wait cursor.
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.BasisViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.BasisViewModel" />
     public abstract class ExecuteDialogViewModel : BasisViewModel
     {
         /// <summary>

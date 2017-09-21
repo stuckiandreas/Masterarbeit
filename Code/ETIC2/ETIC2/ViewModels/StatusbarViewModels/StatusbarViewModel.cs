@@ -11,7 +11,7 @@ namespace ETIC2.ViewModels.StatusbarViewModels
     /// <summary>
     /// Status view model is shown at the bottom of the etic2 application. It shows the actually status of the database connection.
     /// </summary>
-    /// <seealso cref="VersionManagement.ViewModels.BasisViewModel" />
+    /// <seealso cref="ETIC2.ViewModels.BasisViewModel" />
     public class StatusbarViewModel : BasisViewModel
     {
         /// <summary>

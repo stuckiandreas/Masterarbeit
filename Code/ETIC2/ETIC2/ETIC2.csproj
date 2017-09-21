@@ -339,8 +339,8 @@
     <Compile Include="Views\BuglistDatabaseDataGridView.xaml.cs">
       <DependentUpon>BuglistDatabaseDataGridView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailInformationView.xaml.cs">
-      <DependentUpon>DetailInformationView.xaml</DependentUpon>
+    <Compile Include="Views\DetailedInformationView.xaml.cs">
+      <DependentUpon>DetailedInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorDatabaseDataGridView.xaml.cs">
       <DependentUpon>ErrorDatabaseDataGridView.xaml</DependentUpon>
@@ -416,7 +416,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DetailInformationView.xaml">
+    <Page Include="Views\DetailedInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
