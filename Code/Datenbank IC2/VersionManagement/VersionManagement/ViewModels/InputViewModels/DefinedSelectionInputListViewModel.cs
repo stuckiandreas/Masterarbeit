@@ -324,10 +324,13 @@ namespace VersionManagement.ViewModels.InputViewModels
                         //inform the user, if the delete action was not sucessfull
                         if (deleteExecuteDoubleDialogViewModel.ResultDeleteOperation != string.Empty)
                             this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs(deleteExecuteDoubleDialogViewModel.ResultDeleteOperation));
-                        
-                        //empty item
+
+                        //empty item + update item list
                         else
+                        {
                             this.SelectedItemFilter = null;
+                            this.ItemListFilter = this.GetItemList();
+                        }       
                     }
                     else
                         this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("No Item is select to delete"));
@@ -344,13 +347,16 @@ namespace VersionManagement.ViewModels.InputViewModels
                         if (deletExecuteDialogViewModel.ResultDeleteOperation != string.Empty)
                             this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs(deletExecuteDialogViewModel.ResultDeleteOperation));
                         
-                        //empty item
+                        //empty item + update item list
                         else
+                        {
                             this.SelectedItemFilter = null;
+                            this.ItemListFilter = this.GetItemList();
+                        }      
                     }
                     else
                         this.viewModelEvents.OnUserFeedback(this, new UserFeedbackErrorEventArgs("No Item is select to delete"));
-                }      
+                }
             }
             catch (Exception ex)
             {

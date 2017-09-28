@@ -80,38 +80,74 @@ namespace VersionManagement.Model
 
         public void AddAuthor(string author)
         {
-            databaseContext.Authors.Add(new Authors { Author = author });
-            databaseContext.SaveChanges();
+            //check if entry not exist
+            Authors authorItem = databaseContext.Authors.Where(x => x.Author == author).FirstOrDefault();
+
+            if (authorItem == null)
+            {
+                databaseContext.Authors.Add(new Authors { Author = author });
+                databaseContext.SaveChanges();
+            }
         }
 
         public void AddBaseSoftware(string baseSoftware)
         {
-            databaseContext.BaseSoftwares.Add(new BaseSoftwares { BaseSoftware = baseSoftware });
-            databaseContext.SaveChanges();
+            //check if entry not exist
+            BaseSoftwares baseSoftwareItem = databaseContext.BaseSoftwares.Where(x => x.BaseSoftware == baseSoftware).FirstOrDefault();
+
+            if (baseSoftwareItem == null)
+            {
+                databaseContext.BaseSoftwares.Add(new BaseSoftwares { BaseSoftware = baseSoftware });
+                databaseContext.SaveChanges();
+            }
         }
 
         public void AddCustomer(string customer)
         {
-            databaseContext.Customers.Add(new Customers { Customer = customer });
-            databaseContext.SaveChanges();
+            //check if entry not exist
+            Customers customerItem = databaseContext.Customers.Where(x => x.Customer == customer).FirstOrDefault();
+
+            if (customerItem == null)
+            {
+                databaseContext.Customers.Add(new Customers { Customer = customer });
+                databaseContext.SaveChanges();
+            }
         }
 
         public void AddSystem(string system)
         {
-            databaseContext.Systems.Add(new Systems { System = system });
-            databaseContext.SaveChanges();
+            //check if entry not exist
+            Systems systemItem = databaseContext.Systems.Where(x => x.System == system).FirstOrDefault();
+
+            if (systemItem == null)
+            {
+                databaseContext.Systems.Add(new Systems { System = system });
+                databaseContext.SaveChanges();
+            }
         }
 
         public void AddDocumentType(string document)
         {
-            databaseContext.DocumentTypes.Add(new DocumentTypes { DocumentType = document });
-            databaseContext.SaveChanges();
+            //check if entry not exist
+            DocumentTypes documentTypeItem = databaseContext.DocumentTypes.Where(x => x.DocumentType == document).FirstOrDefault();
+
+            if (documentTypeItem == null)
+            {
+                databaseContext.DocumentTypes.Add(new DocumentTypes { DocumentType = document });
+                databaseContext.SaveChanges();
+            }
         }
 
         public void AddPropertyType(string propertyType, string propertyDescription)
         {
-            databaseContext.PropertyTypes.Add(new PropertyTypes { PropertyType = propertyType, PropertyDescription = propertyDescription });
-            databaseContext.SaveChanges();
+            //check if entry not exist
+            PropertyTypes propertyTypeItem = databaseContext.PropertyTypes.Where(x => x.PropertyType == propertyType && x.PropertyDescription == propertyDescription).FirstOrDefault();
+
+            if (propertyTypeItem == null)
+            {
+                databaseContext.PropertyTypes.Add(new PropertyTypes { PropertyType = propertyType, PropertyDescription = propertyDescription });
+                databaseContext.SaveChanges();
+            }
         }
 
         public void AddSystemSoftware(string system, string software)
@@ -149,7 +185,7 @@ namespace VersionManagement.Model
 
         public void EditAuthor(string author, string oldAuthor)
         {
-            Authors item = databaseContext.Authors.Where(x => x.Author == oldAuthor).First();
+            Authors item = databaseContext.Authors.Where(x => x.Author == oldAuthor).FirstOrDefault();
 
             if (item != null)
             {
@@ -162,7 +198,7 @@ namespace VersionManagement.Model
 
         public void EditCustomer(string customer, string oldCustomer)
         {
-            Customers item = databaseContext.Customers.Where(x => x.Customer == oldCustomer).First();
+            Customers item = databaseContext.Customers.Where(x => x.Customer == oldCustomer).FirstOrDefault();
 
             if (item != null) 
             {
@@ -175,7 +211,7 @@ namespace VersionManagement.Model
 
         public void EditSystem(string system, string oldSystem)
         {
-            Systems item = databaseContext.Systems.Where(x => x.System == oldSystem).First();
+            Systems item = databaseContext.Systems.Where(x => x.System == oldSystem).FirstOrDefault();
 
             if (item != null)
             {
@@ -188,7 +224,7 @@ namespace VersionManagement.Model
 
         public void EditDocumentType(string documentType, string oldDocumentType)
         {
-            DocumentTypes item = databaseContext.DocumentTypes.Where(x => x.DocumentType == oldDocumentType).First();
+            DocumentTypes item = databaseContext.DocumentTypes.Where(x => x.DocumentType == oldDocumentType).FirstOrDefault();
 
             if (item != null)
             {
@@ -201,7 +237,7 @@ namespace VersionManagement.Model
 
         public void EditProperty(string propertyType, string oldPropertyType, string propertyDescription, string oldPropertyDescription)
         {
-            PropertyTypes item = databaseContext.PropertyTypes.Where(x => x.PropertyType == oldPropertyType).Where(x => x.PropertyDescription == oldPropertyDescription).First();
+            PropertyTypes item = databaseContext.PropertyTypes.Where(x => x.PropertyType == oldPropertyType).Where(x => x.PropertyDescription == oldPropertyDescription).FirstOrDefault();
 
             if (item != null)
             {

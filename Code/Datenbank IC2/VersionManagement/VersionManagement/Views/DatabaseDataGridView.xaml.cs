@@ -20,9 +20,9 @@ namespace VersionManagement.Views
         /// <summary>
         /// The settings firmware database path
         /// </summary>
-        private string settingsFirmwareDatabasePath = @"C:\\Program Files (x86)\\VAT\\Firmware Database\\Settings";
-        private string dataGridControlSettingsFirmwareDatabasePath = @"C:\\Program Files (x86)\\VAT\\Firmware Database\\Settings\\dataGirdControlSettings.xml";
-        private string firmwareDatabasePath = @"\\Hq.vat\chvat\metpd\Development\Software\Firmware Database\\Reports\";
+        private string settingsFirmwareDatabasePath = @"C:\Program Files (x86)\VAT\Firmware Database\Settings";
+        private string dataGridControlSettingsFirmwareDatabasePath = @"C:\Program Files (x86)\VAT\Firmware Database\Settings\dataGirdControlSettings.xml";
+        private string firmwareDatabasePath = @"C:\Program Files (x86)\VAT\Firmware Database\Reports\";
         private string firmwareDatabasePdfName = "FirmwareDatabase.pdf";
         private string firmwareDatabaseCsvName = "FirmwareDatabase.csv";
 
@@ -105,6 +105,9 @@ namespace VersionManagement.Views
                 link.Landscape = true;
                 link.CreateDocument(true);
                 link.ExportToPdf(fullPdfPath);
+
+                //open file after create
+                System.Diagnostics.Process.Start(fullPdfPath);
             }
             catch
             {
@@ -136,18 +139,21 @@ namespace VersionManagement.Views
                 }
             }
 
-            string fullPdfPath = this.firmwareDatabasePath + this.firmwareDatabaseCsvName;
+            string fullCsvPath = this.firmwareDatabasePath + this.firmwareDatabaseCsvName;
             try
             {
                 var link = new PrintableControlLink(FirmwareDatabase);
                 link.Landscape = true;
                 link.CreateDocument(true);
-                link.ExportToCsv(fullPdfPath);
+                link.ExportToCsv(fullCsvPath);
+
+                //open file after create
+                System.Diagnostics.Process.Start(fullCsvPath);
             }
             catch
             {
                 //check if File is already in use
-                bool fileInUse = HelpFunctions.Helpers.IsFileInUse(fullPdfPath);
+                bool fileInUse = HelpFunctions.Helpers.IsFileInUse(fullCsvPath);
 
                 // inform user, that the file is not possible to open
                 if (fileInUse == true)

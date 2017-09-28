@@ -115,12 +115,17 @@ namespace VersionManagement.ViewModels
         {
             get
             {
+                int iteration = 0;
                 string output  = string.Empty;
 
                 if (this.Properties != null)
                 {
                     foreach (var property in this.Properties)
-                        output = output + property.PropertyType + "/ ";
+                    {
+                        if (iteration == 0) output = property.PropertyType;
+                        else output = output + " / " + property.PropertyType;
+                        iteration++;
+                    }
                 }
 
                 return output;
@@ -137,11 +142,16 @@ namespace VersionManagement.ViewModels
         {
             get
             {
+                int iteration = 0;
                 string output = string.Empty;
                 if (this.Softwares != null)
                 {
                     foreach (var software in this.Softwares)
-                        output = output + software.System + ": " + software.Software + "/ ";
+                    {
+                        if (iteration == 0) output = software.System + ": " + software.Software;
+                        else output = output + " / " + software.System + ": " + software.Software;
+                        iteration++;
+                    }
                 }
 
                 return output;
@@ -164,11 +174,16 @@ namespace VersionManagement.ViewModels
         {
             get
             {
+                int iteration = 0;
                 string output = string.Empty;
                 if (this.Documents != null)
                 {
                     foreach (var document in this.Documents)
-                        output = output + document.DocumentType + ": " + document.Document + "/ ";
+                    {
+                        if (iteration == 0) output = document.DocumentType + ": " + document.Document;
+                        else output = output + " / " + document.DocumentType + ": " + document.Document;
+                        iteration++;
+                    }
                 }
 
                 return output;

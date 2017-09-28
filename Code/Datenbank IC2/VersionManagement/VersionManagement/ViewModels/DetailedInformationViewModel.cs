@@ -28,7 +28,7 @@ namespace VersionManagement.ViewModels
     {
         //Input labels        
 
-        private const string SoftwareLabel = "Software: ";
+        private const string SoftwareLabel = "Firmware: ";
 
         private const string BaseSoftwareLabel = "Base: ";
 
@@ -46,7 +46,7 @@ namespace VersionManagement.ViewModels
 
         private const string PrivateInfosBugsLabel = "Findings: ";
 
-        private const string SoftwaresLabel = "Softwares: ";
+        private const string SoftwaresLabel = "Correspond Firmware: ";
 
         private const string DocumentsLabel = "Documents: ";
 

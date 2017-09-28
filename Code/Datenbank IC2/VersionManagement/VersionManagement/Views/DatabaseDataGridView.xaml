@@ -17,8 +17,8 @@
         <dx:UniformStackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" Height="20" Width="60"/>
             <Button Click="Print" Content="Print" Height="20" Width="60"/>
-            <Button Click="CSV" Content="CSV" Height="20" Width="60"/>
-            <Button Click="PDF" Content="PDF" Height="20" Width="60"/>
+            <Button Click="CSV" Content="CSV" ToolTip="C:\Program Files (x86)\VAT\Firmware Database\Reports\FirmwareDatabase.csv" Height="20" Width="60"/>
+            <Button Click="PDF" Content="PDF" ToolTip="C:\Program Files (x86)\VAT\Firmware Database\Reports\FirmwareDatabase.pdf" Height="20" Width="60"/>
         </dx:UniformStackPanel>
 
         <dxg:GridControl MaxWidth="4000" MaxHeight="4000"
@@ -33,7 +33,7 @@
                                ShowTotalSummary="False" AutoWidth="True" ShowAutoFilterRow="True"/>
         </dxg:GridControl.View>
         <dxg:GridControl.Columns>
-            <dxg:GridColumn Header="Software" Binding="{Binding Software}"/>
+            <dxg:GridColumn Header="Firmware" Binding="{Binding Software}"/>
             <dxg:GridColumn Header="Basis" Binding="{Binding BaseSoftware}"/>
             <dxg:GridColumn Header="System" Binding="{Binding System}"/>
             <dxg:GridColumn Header="Customer" Binding="{Binding Customer}"/>
@@ -43,7 +43,7 @@
             <dxg:GridColumn Header="Description" Binding="{Binding Description}" Visible="False"/>
             <dxg:GridColumn Header="Private Infos/Bugs" Binding="{Binding PrivateInfosBugs}" Visible="False"/>
             <dxg:GridColumn Header="Properties" Binding="{Binding PropertiesGridDescription}" Visible="True"/>
-            <dxg:GridColumn Header="Softwares" Binding="{Binding SoftwaresGridDescription}" Visible="False"/>
+            <dxg:GridColumn Header="Correspond Firmware" Binding="{Binding SoftwaresGridDescription}" Visible="False"/>
             <dxg:GridColumn Header="Documents" Binding="{Binding DocumentsGridDescription}" Visible="False"/>
         </dxg:GridControl.Columns>
         </dxg:GridControl>

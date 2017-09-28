@@ -270,6 +270,7 @@ namespace VersionManagement.ViewModels
                         ItemIdentification = -1,
                         Software = this.NewSoftwareVersion(DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software),
                         BaseSoftware = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software,
+                        System = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.System,
                         Properties = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Properties,
                     });
                 }
@@ -281,6 +282,8 @@ namespace VersionManagement.ViewModels
                         ItemIdentification = -1,
                         Software = this.NewSoftwareRevision(DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software),
                         BaseSoftware = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Software,
+                        System = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.System,
+                        Customer = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Customer,
                         Properties = this.DatabaseDataGridViewModel.SelectedDatabaseItemViewModel.Properties,
                     });
                 }
