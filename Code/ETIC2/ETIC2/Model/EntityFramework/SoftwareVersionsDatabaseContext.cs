@@ -82,8 +82,9 @@ namespace ETIC2.Model.EntityFramework
 
             modelBuilder.Entity<ConfigurationParameterFile>()
                 .HasMany(e => e.InitialStateFirmware)
-                .WithOptional(e => e.ConfigurationParameterFile)
-                .HasForeignKey(e => e.ConfigurationParameterFile_ID);
+                .WithRequired(e => e.ConfigurationParameterFile)
+                .HasForeignKey(e => e.ConfigurationParameterFile_ID)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ControllerAssemblyVariant>()
                 .Property(e => e.Enum)
@@ -123,8 +124,9 @@ namespace ETIC2.Model.EntityFramework
 
             modelBuilder.Entity<DriveParameterFile>()
                 .HasMany(e => e.InitialStateFirmware)
-                .WithOptional(e => e.DriveParameterFile)
-                .HasForeignKey(e => e.DriveParameterFile_ID);
+                .WithRequired(e => e.DriveParameterFile)
+                .HasForeignKey(e => e.DriveParameterFile_ID)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FailureType>()
                 .Property(e => e.Name)
@@ -354,18 +356,21 @@ namespace ETIC2.Model.EntityFramework
 
             modelBuilder.Entity<SoftwareVersions>()
                 .HasMany(e => e.InitialStateFirmware)
-                .WithOptional(e => e.SoftwareVersions)
-                .HasForeignKey(e => e.SoftwareVersions_Id_Firmware);
+                .WithRequired(e => e.SoftwareVersions)
+                .HasForeignKey(e => e.SoftwareVersions_Id_Firmware)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SoftwareVersions>()
                 .HasMany(e => e.InitialStateFirmware1)
-                .WithOptional(e => e.SoftwareVersions1)
-                .HasForeignKey(e => e.SoftwareVersions_Id_MotionController);
+                .WithRequired(e => e.SoftwareVersions1)
+                .HasForeignKey(e => e.SoftwareVersions_Id_MotionController)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<SoftwareVersions>()
                 .HasMany(e => e.InitialStateFirmware2)
-                .WithOptional(e => e.SoftwareVersions2)
-                .HasForeignKey(e => e.SoftwareVersions_Id_Interface);
+                .WithRequired(e => e.SoftwareVersions2)
+                .HasForeignKey(e => e.SoftwareVersions_Id_Interface)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<StatusType>()
                 .Property(e => e.Name)
@@ -386,8 +391,9 @@ namespace ETIC2.Model.EntityFramework
 
             modelBuilder.Entity<TestCollection>()
                 .HasMany(e => e.InitialStateFirmware)
-                .WithOptional(e => e.TestCollection)
-                .HasForeignKey(e => e.TestCollection_Id);
+                .WithRequired(e => e.TestCollection)
+                .HasForeignKey(e => e.TestCollection_Id)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TestCollectionResult>()
                 .Property(e => e.UserName)

@@ -25,7 +25,7 @@ namespace ETIC2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("101")]
+        [global::System.Configuration.DefaultSettingValueAttribute("110")]
         public int ETIC2Version {
             get {
                 return ((int)(this["ETIC2Version"]));
@@ -49,7 +49,7 @@ namespace ETIC2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("101")]
+        [global::System.Configuration.DefaultSettingValueAttribute("110")]
         public int DatabaseVersion {
             get {
                 return ((int)(this["DatabaseVersion"]));
@@ -61,7 +61,7 @@ namespace ETIC2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DESKTOP-N4UJ39P\\ANDREAS_DATABASE")]
+        [global::System.Configuration.DefaultSettingValueAttribute("chva0012")]
         public string ServerName {
             get {
                 return ((string)(this["ServerName"]));

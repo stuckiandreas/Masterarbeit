@@ -22,7 +22,7 @@ namespace ETIC2.Model.EntityFramework
         [StringLength(400)]
         public string Modification { get; set; }
 
-        public TimeSpan? Durating { get; set; }
+        public int? TimeInSecond { get; set; }
 
         public int? ModulName_Id { get; set; }
 

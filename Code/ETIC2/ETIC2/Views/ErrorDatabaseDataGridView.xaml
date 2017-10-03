@@ -12,7 +12,7 @@
 
     <DockPanel LastChildFill="True" Background="LightGray">
 
-        <dx:UniformStackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+        <dx:UniformStackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
             <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
@@ -22,10 +22,10 @@
                          ItemsSource="{Binding TestErrorMessageViewModels}"
                          SelectionMode="Row"
                          Loaded="GridControl_Loaded" LostFocus="GridControl_LostFocus"
-                         EnableSmartColumnsGeneration="True">
+                         EnableSmartColumnsGeneration="True" dx:ThemeManager.Theme="Office2007Black">
             <dxg:GridControl.View>
                 <dxg:TableView x:Name="ErrorView" ScrollingMode="Smart" AllowEditing="False" BestFitArea="Rows"
-                               NavigationStyle="Row" ShowGroupPanel="True" AllowColumnFiltering="False" AllowScrollToFocusedRow="True"                            
+                               NavigationStyle="Row" ShowGroupPanel="False" AllowColumnFiltering="False" AllowScrollToFocusedRow="True"                            
                                ShowTotalSummary="False" AutoWidth="True" ShowAutoFilterRow="True" ShowSearchPanelMode="Always"/>
             </dxg:GridControl.View>
             <dxg:GridControl.Columns>

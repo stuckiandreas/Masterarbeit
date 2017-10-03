@@ -10,7 +10,7 @@
     
     <Grid>
         <DockPanel LastChildFill="True">
-            <Label Content="{Binding Label}" Height="25" MinWidth="100" DockPanel.Dock="Left"/>
+            <Label Content="{Binding Label}" Height="25" MinWidth="170" DockPanel.Dock="Left"/>
             <dxe:ComboBoxEdit DisplayMember="SelectedItem" SelectedItem="{Binding SelectedItemFilter}" ItemsSource="{Binding ItemListFilter}" Height="25" MinWidth="100" ToolTip="{Binding ToolTip}" IsTextEditable="False" AllowSpinOnMouseWheel="False"/>
         </DockPanel>
         <Grid.ContextMenu>

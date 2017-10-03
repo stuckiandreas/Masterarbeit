@@ -26,23 +26,23 @@ namespace ETIC2.ViewModels
         //Input labels
         private const string FailureTypeLabel = "Failure Type:";
 
-        private const string StatusTypeLabel = "Status Type";
+        private const string StatusTypeLabel = "Status Type:";
 
-        private const string ControllerTypeLabel = "Controller Type";
+        private const string ControllerTypeLabel = "Controller Type:";
 
-        private const string HardwareIdentificationLevel1Label = "Hardware Identification Level 1";
+        private const string HardwareIdentificationLevel1Label = "Hardware Identification Level 1:";
 
-        private const string HardwareIdentificationLevel2Label = "Hardware Identification Level 2";
+        private const string HardwareIdentificationLevel2Label = "Hardware Identification Level 2:";
 
-        private const string BugLabel = "Bug";
+        private const string BugLabel = "Bug:";
 
-        private const string CommentLabel = "Comment";
+        private const string CommentLabel = "Comment:";
 
-        private const string PriorityLabel = "Priority";
+        private const string PriorityLabel = "Priority:";
 
-        private const string DateFoundLabel = "Date Found";
+        private const string DateFoundLabel = "Date Found:";
 
-        private const string DateFixedLabel = "Date Fixed";
+        private const string DateFixedLabel = "Date Fixed:";
 
         private readonly ETIC2Model etic2Model;
 
@@ -361,7 +361,7 @@ namespace ETIC2.ViewModels
                 string.Empty,
                 SelectionItemType.FailureType,
                 this.etic2Model,
-                false);
+                true);
             this.FailureType.ToolTip = "Right click to edit the failure type list";
 
             this.StatusType = new DefinedSelectionInputListViewModel(
@@ -370,7 +370,7 @@ namespace ETIC2.ViewModels
                 string.Empty,
                 SelectionItemType.StatusType,
                 this.etic2Model,
-                false);
+                true);
             this.StatusType.ToolTip = "Right click to edit the status type list";
 
             this.Priority = new DefinedSelectionInputListViewModel(

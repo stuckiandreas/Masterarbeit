@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     
     <DockPanel LastChildFill="True">
-        <Label  Content="{Binding Label}" Height="25" MinWidth="100" DockPanel.Dock="Left"/>
+        <Label  Content="{Binding Label}" Height="25" MinWidth="170" DockPanel.Dock="Left"/>
         <dxe:DateEdit DateTime="{Binding DateTimeInput, UpdateSourceTrigger=PropertyChanged}" Height="25" ShowToday ="True"/>
     </DockPanel>
 

@@ -13,14 +13,14 @@
             <ComboBox Width="100" ToolTip="Diffrent database views" ItemsSource="{Binding DatabaseDataGridItems}" SelectedItem="{Binding DatabaseDataGridSelectedItem}"/>
         </StackPanel>
 
-        <ContentControl Content="{Binding DetailedInformationViewModel}" MaxHeight="500">
+        <ContentControl Content="{Binding DetailedInformationViewModel}" MaxHeight="500" DockPanel.Dock="Top">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding DetailInformationViewVisibility}" Value="True">
+                        <DataTrigger Binding="{Binding Path=IsDetailedInformationViewVisibility}" Value="True">
                             <Setter Property="Visibility" Value="Visible" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding DetailInformationViewVisibility}" Value="False">
+                        <DataTrigger Binding="{Binding Path=IsDetailedInformationViewVisibility}" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </Style.Triggers>

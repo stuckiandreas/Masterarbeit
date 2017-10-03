@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="ETIC2Version" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">101</Value>
+      <Value Profile="(Default)">110</Value>
     </Setting>
     <Setting Name="DatabaseName" Type="System.String" Scope="User">
       <Value Profile="(Default)">SoftwareVersionsDatabase</Value>
     </Setting>
     <Setting Name="DatabaseVersion" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">101</Value>
+      <Value Profile="(Default)">110</Value>
     </Setting>
     <Setting Name="ServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">DESKTOP-N4UJ39P\ANDREAS_DATABASE</Value>
+      <Value Profile="(Default)">chva0012</Value>
     </Setting>
   </Settings>
 </SettingsFile>

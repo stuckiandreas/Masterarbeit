@@ -89,7 +89,7 @@ namespace ETIC2.ViewModels
         /// <summary>
         /// Defined if the DetailView is active (only if buglist is selected)
         /// </summary>
-        private bool detailInformationViewVisibility;
+        private bool isDetailedInformationViewVisibility;
 
         /// <summary>
         /// Before a item is saving in the database, the database will update. In this time the selection item is changing (need this information to prevent a warning)
@@ -134,7 +134,7 @@ namespace ETIC2.ViewModels
             this.DatabaseDataGridItems.Add(DatabaseDataGridViewModel.Buglist.ToString());
             this.databaseDataGridSelectedItem = DatabaseDataGridViewModel.Firmware.ToString();
             this.SetActiveDatabaseDataGridViewModel();
-            this.detailInformationViewVisibility = false;
+            this.isDetailedInformationViewVisibility = false;
         }
 
         public ObservableCollection<string> DatabaseDataGridItems { get; }
@@ -207,17 +207,17 @@ namespace ETIC2.ViewModels
             }
         }
 
-        public bool DetailInformationViewVisibility
+        public bool IsDetailedInformationViewVisibility
         {
             get
             {
-                return this.detailInformationViewVisibility;
+                return this.isDetailedInformationViewVisibility;
             }
 
             set
             {
-                this.detailInformationViewVisibility = value;
-                this.OnPropertyChanged("DetailInformationViewVisibility");
+                this.isDetailedInformationViewVisibility = value;
+                this.OnPropertyChanged("IsDetailedInformationViewVisibility");
             }
         }
 
@@ -254,7 +254,7 @@ namespace ETIC2.ViewModels
             //Add an empty entrys if no empty entry exists in database yet. This is needed to allow the user to leave the selection empty.
             //Add an empty entry if no empty entry exist in database yet. So its possible to delete an item in a list.
             //Otherwise the user must create an own empty entry.
-            if (!this.etic2Model.BuglistSelectedItem.GetFailureTypes()
+            /*if (!this.etic2Model.BuglistSelectedItem.GetFailureTypes()
                  .Any(x => string.IsNullOrEmpty(x.Name)))
                 this.etic2Model.BuglistSelectedItem.AddFailureType(string.Empty);
 
@@ -272,7 +272,7 @@ namespace ETIC2.ViewModels
 
             if (!this.etic2Model.BuglistSelectedItem.GetPriorities()
                  .Any(x => string.IsNullOrEmpty(x.Name)))
-                this.etic2Model.BuglistSelectedItem.AddStatusType(string.Empty);
+                this.etic2Model.BuglistSelectedItem.AddStatusType(string.Empty);*/
 
             this.RefreshDataGrid();
 
@@ -609,22 +609,22 @@ namespace ETIC2.ViewModels
             if (this.databaseDataGridSelectedItem == DatabaseDataGridViewModel.Firmware.ToString())
             {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is FirmwareDatabaseDataGridViewModel).Single();
-                this.detailInformationViewVisibility = false;
+                this.IsDetailedInformationViewVisibility = false;
             }
             else if (this.databaseDataGridSelectedItem == DatabaseDataGridViewModel.Hardware.ToString())
             {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is HardwareDatabaseDataGridViewModel).Single();
-                this.detailInformationViewVisibility = false;
+                this.IsDetailedInformationViewVisibility = false;
             }
             else if (this.databaseDataGridSelectedItem == DatabaseDataGridViewModel.Error.ToString())
             {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is ErrorDatabaseDataGridViewModel).Single();
-                this.detailInformationViewVisibility = false;
+                this.IsDetailedInformationViewVisibility = false;
             }
             else
             {
                 this.SelectedViewModel = this.allDatabaseDataGridViewModels.Where(x => x is BuglistDatabaseDataGridViewModel).Single();
-                this.detailInformationViewVisibility = true;
+                this.IsDetailedInformationViewVisibility = true;
             }    
         }
     }

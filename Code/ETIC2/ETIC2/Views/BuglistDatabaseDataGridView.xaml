@@ -27,7 +27,7 @@
             <dxg:GridControl.View>
                 <dxg:TableView x:Name="Buglist" FocusedRow="{Binding SelectedDatabaseItemViewModel, Mode=TwoWay}" ScrollingMode="Smart" AllowEditing="False"
                                NavigationStyle="Row" ShowGroupPanel="False" AllowColumnFiltering="False" AllowScrollToFocusedRow="True"                            
-                               ShowTotalSummary="False" AutoWidth="True" ShowAutoFilterRow="True"/>
+                               ShowTotalSummary="False" AutoWidth="True" ShowAutoFilterRow="True" ShowSearchPanelMode="Default"/>
             </dxg:GridControl.View>
             <dxg:GridControl.Columns>
                 <dxg:GridColumn Header="Failure Type" Binding="{Binding FailureType}"/>

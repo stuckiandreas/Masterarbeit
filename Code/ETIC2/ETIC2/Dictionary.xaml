@@ -82,8 +82,8 @@
         <inputViews:DateTimeInputView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type inputViewModels:DefinedSelectionListsInputViewModel}">
-        <inputViews:DefinedSelectionListsInputView />
+    <DataTemplate DataType="{x:Type inputViewModels:DefinedSelectionInputListViewModel}">
+        <inputViews:DefinedSelectionInputListView />
     </DataTemplate>
 
 </ResourceDictionary>

@@ -17,19 +17,19 @@ namespace ETIC2.Model.EntityFramework
 
         public int Id { get; set; }
 
-        public int? SoftwareVersions_Id_Firmware { get; set; }
+        public int SoftwareVersions_Id_Firmware { get; set; }
 
         public DateTime ValveFirmwareReleaseTime { get; set; }
 
-        public int? SoftwareVersions_Id_MotionController { get; set; }
+        public int SoftwareVersions_Id_MotionController { get; set; }
 
-        public int? SoftwareVersions_Id_Interface { get; set; }
+        public int SoftwareVersions_Id_Interface { get; set; }
 
-        public int? DriveParameterFile_ID { get; set; }
+        public int DriveParameterFile_ID { get; set; }
 
-        public int? ConfigurationParameterFile_ID { get; set; }
+        public int ConfigurationParameterFile_ID { get; set; }
 
-        public int? TestCollection_Id { get; set; }
+        public int TestCollection_Id { get; set; }
 
         public virtual ConfigurationParameterFile ConfigurationParameterFile { get; set; }
 
