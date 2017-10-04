@@ -230,6 +230,7 @@ namespace ETIC2.ViewModels
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent += this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent += this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
             this.detailedInformationViewModel.ItemChangedEvent += this.DetailedInformationViewModel_ItemChangedEvent;
+            this.buglistDatabaseDataGridViewModel.SelectedItemChanged += this.BuglistDatabaseDataGridViewModel_SelectedItemChanged;
 
             // Subscribe base class events
             base.SubscribeEvents();
@@ -244,6 +245,7 @@ namespace ETIC2.ViewModels
             this.hardwareDatabaseDataGridViewModel.RefreshChangedEvent -= this.HardwareDatabaseDataGridViewModel_RefreshChangedEvent;
             this.errorDatabaseDataGridViewModel.RefreshChangedEvent -= this.ErrorDatabaseDataGridViewModel_RefreshChangedEvent;
             this.detailedInformationViewModel.ItemChangedEvent -= this.DetailedInformationViewModel_ItemChangedEvent;
+            this.buglistDatabaseDataGridViewModel.SelectedItemChanged -= this.BuglistDatabaseDataGridViewModel_SelectedItemChanged;
 
             // Unsubscribe base class events
             base.UnsubscribeEvents();
@@ -251,29 +253,6 @@ namespace ETIC2.ViewModels
 
         public override void Init()
         {
-            //Add an empty entrys if no empty entry exists in database yet. This is needed to allow the user to leave the selection empty.
-            //Add an empty entry if no empty entry exist in database yet. So its possible to delete an item in a list.
-            //Otherwise the user must create an own empty entry.
-            /*if (!this.etic2Model.BuglistSelectedItem.GetFailureTypes()
-                 .Any(x => string.IsNullOrEmpty(x.Name)))
-                this.etic2Model.BuglistSelectedItem.AddFailureType(string.Empty);
-
-            if (!this.etic2Model.BuglistSelectedItem.GetStatusTypes()
-                 .Any(x => string.IsNullOrEmpty(x.Name)))
-                this.etic2Model.BuglistSelectedItem.AddStatusType(string.Empty);
-
-            if (!this.etic2Model.BuglistSelectedItem.GetHardwareIdentificationLevels1()
-                 .Any(x => string.IsNullOrEmpty(x.Name)))
-                this.etic2Model.BuglistSelectedItem.AddHardwareIdentificationLevel1(string.Empty);
-
-            if (!this.etic2Model.BuglistSelectedItem.GetHardwareIdentificationLevels2()
-                 .Any(x => string.IsNullOrEmpty(x.Name)))
-                this.etic2Model.BuglistSelectedItem.AddHardwareIdentificationLevel2(string.Empty);
-
-            if (!this.etic2Model.BuglistSelectedItem.GetPriorities()
-                 .Any(x => string.IsNullOrEmpty(x.Name)))
-                this.etic2Model.BuglistSelectedItem.AddStatusType(string.Empty);*/
-
             this.RefreshDataGrid();
 
             // Init base class
@@ -357,6 +336,29 @@ namespace ETIC2.ViewModels
             catch (Exception ex)
             {
                 this.ViewModelEvents.OnHandleError(this, new ExpectedErrorHandlerEventArgs(ex.Message));
+            }
+        }
+
+        private void BuglistDatabaseDataGridViewModel_SelectedItemChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //only to change the selelected item, if the user want it explicit (when user edit a new software item)
+                if (this.detailedInformationViewModel.IsNewItemSet && this.isReloadDataGrid == false)
+                {
+                    UserFeedbackQuestionEventArgs changeWithoutSaving = new UserFeedbackQuestionEventArgs("Are you sure to change the buglist item without saving?");
+                    this.ViewModelEvents.OnUserFeedback(this, changeWithoutSaving);
+
+                    if (changeWithoutSaving.Result == MessageBoxResult.No)
+                        return;
+                }
+
+                if (this.BuglistDatabaseDataGridViewModel.SelectedDatabaseItemViewModel != null)
+                    this.detailedInformationViewModel.SetDetailedInformation(BuglistDatabaseDataGridViewModel.SelectedDatabaseItemViewModel);
+            }
+            catch (Exception ex)
+            {
+                this.ViewModelEvents.OnHandleError(this, new UnexpectedErrorHandlerEventArgs(ex));
             }
         }
 

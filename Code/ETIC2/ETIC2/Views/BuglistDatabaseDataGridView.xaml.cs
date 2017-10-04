@@ -79,6 +79,9 @@ namespace ETIC2.Views
                 link.Landscape = true;
                 link.CreateDocument(true);
                 link.ExportToPdf(fullPdfPath);
+
+                //open file after create
+                System.Diagnostics.Process.Start(fullPdfPath);
             }
             catch
             {
@@ -139,18 +142,21 @@ namespace ETIC2.Views
                 }
             }
 
-            string fullPdfPath = this.buglistPath + this.buglistCsvName;
+            string fullCsvPath = this.buglistPath + this.buglistCsvName;
             try
             {
                 var link = new PrintableControlLink(Buglist);
                 link.Landscape = true;
                 link.CreateDocument(true);
-                link.ExportToCsv(fullPdfPath);
+                link.ExportToCsv(fullCsvPath);
+
+                //open file after create
+                System.Diagnostics.Process.Start(fullCsvPath);
             }
             catch
             {
                 //check if File is already in use
-                bool fileInUse = HelpFunctions.Helpers.IsFileInUse(fullPdfPath);
+                bool fileInUse = HelpFunctions.Helpers.IsFileInUse(fullCsvPath);
 
                 // inform user, that the file is not possible to open
                 if (fileInUse == true)

@@ -70,12 +70,14 @@ namespace ETIC2.Model
                 emptyBuglist.Id = buglistItemDatabase.Id;
                 emptyBuglist.FailureType = this.GetFailureType((int)buglistItemDatabase.FailureType_Id);
                 emptyBuglist.StatusType = this.GetStatusType((int)buglistItemDatabase.StatusType_Id);
-                emptyBuglist.ControllerType = this.GetControllerTypeEnum((int)buglistItemDatabase.ControllerType_Id);
+                emptyBuglist.ControllerType = this.GetControllerTyp((int)buglistItemDatabase.ControllerType_Id);
                 emptyBuglist.HardwareIdentificationLevel1 = this.GetHardwareIdentificationLevel1((int)buglistItemDatabase.HardwareIdentificationLevel1_Id);
-                emptyBuglist.HardwareIdentificationLevel2 = this.GetHardwareIdentificationLevel1((int)buglistItemDatabase.HardwareIdentificationLevel2_Id);
+                emptyBuglist.HardwareIdentificationLevel2 = this.GetHardwareIdentificationLevel2((int)buglistItemDatabase.HardwareIdentificationLevel2_Id);
                 emptyBuglist.Bug = buglistItemDatabase.Bug;
                 emptyBuglist.Comment = buglistItemDatabase.Comment;
                 emptyBuglist.Priority = this.GetPriority((int)buglistItemDatabase.Priority_Id);
+                emptyBuglist.DateFound = buglistItemDatabase.DateFound;
+                emptyBuglist.DateFixed = buglistItemDatabase.DateFixed;
 
                 buglist.Add(emptyBuglist);
             }
@@ -93,6 +95,7 @@ namespace ETIC2.Model
             buglistDatabase.Id = buglistItem.Id;
             buglistDatabase.FailureType_Id = this.GetFailureTypId(buglistItem.FailureType);
             buglistDatabase.StatusType_Id = this.GetStatusTypeId(buglistItem.StatusType);
+            buglistDatabase.ControllerType_Id = this.GetControllerTypId(buglistItem.ControllerType);
             buglistDatabase.HardwareIdentificationLevel1_Id = this.GetHardwareIdentificationLevel1Id(buglistItem.HardwareIdentificationLevel1);
             buglistDatabase.HardwareIdentificationLevel2_Id = this.GetHardwareIdentificationLevel2Id(buglistItem.HardwareIdentificationLevel2);
             buglistDatabase.Bug = buglistItem.Bug;
@@ -158,6 +161,16 @@ namespace ETIC2.Model
         private int GetFailureTypId(string failureTypeName)
         {
             return databaseContext.FailureType.Where(x => x.Name == failureTypeName).FirstOrDefault().Id;
+        }
+
+        private string GetControllerTyp(int controllerTypeId)
+        {
+            return databaseContext.ControllerType.Where(x => x.Id == controllerTypeId).FirstOrDefault().Enum;
+        }
+
+        private int GetControllerTypId(string controllerTypeName)
+        {
+            return databaseContext.ControllerType.Where(x => x.Enum == controllerTypeName).FirstOrDefault().Id;
         }
 
         private string GetStatusType(int statusTypeId)

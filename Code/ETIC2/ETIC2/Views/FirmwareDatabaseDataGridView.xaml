@@ -15,7 +15,7 @@
         <dx:UniformStackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding RefreshCommand}" Content="Refresh" ToolTip="Refresh test results view" Height="20" Width="70"/>
             <Button Click="Print" Content="Print" Height="20" Width="70"/>
-            <Button Click="PDF" Content="PDF" ToolTip="Export test result view as a pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
+            <Button Click="PDF" Content="PDF" ToolTip="c:\ETIC2\Reports\FirmwareTestResult.pdf" DockPanel.Dock="Top" Height="20" Width="70"/>
         </dx:UniformStackPanel>
         
         <dxg:GridControl x:Name="grid" ItemsSource="{Binding InitialStateFirmwareViewModels}" AutoPopulateColumns="True" 

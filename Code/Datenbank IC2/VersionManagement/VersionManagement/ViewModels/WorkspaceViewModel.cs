@@ -97,7 +97,6 @@ namespace VersionManagement.ViewModels
             this.databaseDataGridViewModel.SelectedItemChanged -= this.DatabaseDataGridViewModel_SelectedItemChanged;
             this.databaseDataGridViewModel.RefreshDataGridChangedEvent -= this.DatabaseDataGridViewModel_RefreshDataGridChangedEvent;
             this.detailedInformationViewModel.SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent -= this.DetailedInformationViewModel_SelectedItemFromDefinedSelectionDoubleListInputViewModelEvent;
-            this.databaseDataGridViewModel.SelectedItemChanged -= this.DatabaseDataGridViewModel_SelectedItemChanged;
             this.detailedInformationViewModel.UnsubscribeEvents();
             this.ViewModelEvents.ChangeDatabaseSettings -= this.ViewModelEvents_ChangeDatabaseSettings;
             this.ViewModelEvents.RenameSelectionItemInDatabase -= this.ViewModelEvents_RenameSelectionItemInDatabase;

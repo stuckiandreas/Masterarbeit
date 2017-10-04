@@ -329,8 +329,8 @@ namespace ETIC2.ViewModels
 
             this.FillInputs(
                 this.databaseItemViewModel.FailureType,
-                this.databaseItemViewModel.Priority,
                 this.databaseItemViewModel.StatusType,
+                this.databaseItemViewModel.Priority,
                 this.databaseItemViewModel.ControllerType,
                 this.databaseItemViewModel.HardwareIdentificationLevel1,
                 this.databaseItemViewModel.HardwareIdentificationLevel2,
@@ -388,7 +388,7 @@ namespace ETIC2.ViewModels
                 string.Empty,
                 SelectionItemType.ControllerType,
                 this.etic2Model,
-                true);
+                false);
 
             this.HardwareIdentificationLevel1 = new DefinedSelectionInputListViewModel(
                 this.viewModelEvents,
@@ -469,8 +469,8 @@ namespace ETIC2.ViewModels
                     ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
                     HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
                     HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
-                    DateFound = DateTime.UtcNow,
-                    DateFixed = null,
+                    DateFound = (DateTime)this.DateFound.DateTimeInput,
+                    DateFixed = this.DateFixed.DateTimeInput,
                     Bug = this.Bug.TextInput,
                     Comment = this.Comment.TextInput
                 };
@@ -486,8 +486,8 @@ namespace ETIC2.ViewModels
                     ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
                     HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
                     HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
-                    DateFound = DateTime.UtcNow,
-                    DateFixed = null,
+                    DateFound = (DateTime)this.DateFound.DateTimeInput,
+                    DateFixed = this.DateFixed.DateTimeInput,
                     Bug = this.Bug.TextInput,
                     Comment = this.Comment.TextInput
                 };
@@ -552,6 +552,14 @@ namespace ETIC2.ViewModels
         {
             if (this.ItemChangedEvent != null)
                 this.ItemChangedEvent(sender, addNewItemEventArgs);
+        }
+
+        private DateTime GetDateTime(string dateTimeString)
+        {
+            if (string.IsNullOrEmpty(dateTimeString))
+                return DateTime.Now;
+
+            return Convert.ToDateTime(dateTimeString);
         }
     }
 }

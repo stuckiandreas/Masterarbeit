@@ -10,7 +10,7 @@
     
     <DockPanel LastChildFill="True">
         <Label  Content="{Binding Label}" Height="25" MinWidth="170" DockPanel.Dock="Left"/>
-        <dxe:DateEdit DateTime="{Binding DateTimeInput, UpdateSourceTrigger=PropertyChanged}" Height="25" ShowToday ="True"/>
+        <dxe:DateEdit DateTime="{Binding DateTimeInput, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
     </DockPanel>
 
 </UserControl>

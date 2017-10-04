@@ -10,7 +10,7 @@
     <StackPanel Orientation="Vertical">
         <ContentControl Content="{Binding TextInputViewModel}"/>
 
-        <Button Content="{Binding ButtonText}" IsDefault="True" Command="{Binding ExecuteCommand}" HorizontalAlignment="Right" Height="20" Width="40">
+        <Button Content="{Binding ButtonText}" IsDefault="True" Command="{Binding ExecuteCommand}" HorizontalAlignment="Right" Height="20" Width="50">
             <Button.InputBindings>
                 <KeyBinding Command="{Binding ExecuteCommand}" Key="Enter"/>
             </Button.InputBindings>

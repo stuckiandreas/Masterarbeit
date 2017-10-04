@@ -39,9 +39,9 @@
         <ContentControl Content ="{Binding Comment}"  Grid.Column ="1" Grid.Row="1"/>
 
         <dx:UniformStackPanel Grid.Column ="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Command="{Binding SaveCommand}" Content="Save" Height="20" Width="50"/>
-            <Button Command="{Binding NewCommand}" Content="New" Height="20" Width="50"/>
-            <Button Command="{Binding DeleteCommand}" Content="Delete" Height="20" Width="50"/>
+            <Button Command="{Binding SaveCommand}" Content="Save" Height="20" Width="70"/>
+            <Button Command="{Binding NewCommand}" Content="New" Height="20" Width="70"/>
+            <Button Command="{Binding DeleteCommand}" Content="Delete" Height="20" Width="70"/>
         </dx:UniformStackPanel>
     </Grid>
     

@@ -23,6 +23,7 @@ namespace ETIC2.Views
         private string dataGridControlSettingsETIC2Path = @"c:\\ETIC2\Settings\errorDataGirdControlSettings.xml";
         private string etic2Path = @"c:\\ETIC2\Reports\";
         private string etic2PdfName = "ErrorTestResult.pdf";
+        private string etic2CsvName = "ErrorTestResult.csv";
 
         public ErrorDatabaseDataGridView()
         {
@@ -117,6 +118,47 @@ namespace ETIC2.Views
             }
 
             ((GridControl)sender).SaveLayoutToXml(this.dataGridControlSettingsETIC2Path);
+        }
+
+        /// <summary>
+        /// This code has to be in code behind because it manages view information
+        /// Shows a csv version of the buglist view (in landscape format)
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">instance containing the event data</param>
+        private void CSV(object sender, RoutedEventArgs e)
+        {
+            //path not exist -> create directory
+            if (!Directory.Exists(this.etic2Path))
+            {
+                System.IO.Directory.CreateDirectory(this.etic2Path);
+                if (!Directory.Exists(this.etic2Path))
+                {
+                    MessageBox.Show("Directory not exist", "error export error csv", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
+            string fullCsvPath = this.etic2Path + this.etic2CsvName;
+            try
+            {
+                var link = new PrintableControlLink(ErrorView);
+                link.Landscape = true;
+                link.CreateDocument(true);
+                link.ExportToCsv(fullCsvPath);
+
+                //open file after create
+                System.Diagnostics.Process.Start(fullCsvPath);
+            }
+            catch
+            {
+                //check if File is already in use
+                bool fileInUse = HelpFunctions.Helpers.IsFileInUse(fullCsvPath);
+
+                // inform user, that the file is not possible to open
+                if (fileInUse == true)
+                    MessageBox.Show("File is already in use", "error export error csv", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
