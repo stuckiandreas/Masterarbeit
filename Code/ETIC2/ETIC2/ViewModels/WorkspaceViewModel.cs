@@ -10,8 +10,8 @@ namespace ETIC2.ViewModels
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Windows.Threading;
     using System.Windows;
+    using System.Windows.Threading;
     using BuglistViewModels;
     using Events;
     using Events.EventArgs.BuglistItem;
@@ -534,7 +534,7 @@ namespace ETIC2.ViewModels
 
                 //check if the buglist item already exist in the database
                 List<Buglist> buglistItems = this.etic2Model.BuglistItem.GetApplicationBuglist();
-                if (buglistItems.Any(x => x.Bug == databaseItemViewModel.Bug && x.DateFound == databaseItemViewModel.DateFound))
+                if (buglistItems.Any(x => x.Bug == databaseItemViewModel.Bug))
                 {
                     this.ViewModelEvents.OnUserFeedback(this, new UserFeedbackInfoEventArgs(string.Format("{0} does already exist in database and can not be saved again!", databaseItemViewModel.Bug)));
                     return;
@@ -542,30 +542,53 @@ namespace ETIC2.ViewModels
 
                 this.etic2Model.BuglistItem.AddBuglistItem(buglistItem);
 
+                buglistItem = this.etic2Model.BuglistItem.GetApplicationBuglistItem(buglistItem.Bug);
+
                 if (buglistItem != null)
                     this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel(buglistItem));
             }
             else
             {
-                this.etic2Model.BuglistItem.UpdateBuglistItemInDatabase(new Buglist()
+                //only save dateFixed if the status type is not open
+                if (databaseItemViewModel.StatusType == "open")
                 {
-                    Id = databaseItemViewModel.ItemIdentification,
-                    FailureType = databaseItemViewModel.FailureType,
-                    StatusType = databaseItemViewModel.StatusType,
-                    ControllerType = databaseItemViewModel.ControllerType,
-                    HardwareIdentificationLevel1 = databaseItemViewModel.HardwareIdentificationLevel1,
-                    HardwareIdentificationLevel2 = databaseItemViewModel.HardwareIdentificationLevel2,
-                    Bug = databaseItemViewModel.Bug,
-                    Comment = databaseItemViewModel.Comment,
-                    Priority = databaseItemViewModel.Priority,
-                    DateFound = databaseItemViewModel.DateFound,
-                    DateFixed = databaseItemViewModel.DateFixed
-                });
+                    this.etic2Model.BuglistItem.UpdateBuglistItemInDatabase(new Buglist()
+                    {
+                        Id = databaseItemViewModel.ItemIdentification,
+                        FailureType = databaseItemViewModel.FailureType,
+                        StatusType = databaseItemViewModel.StatusType,
+                        ControllerType = databaseItemViewModel.ControllerType,
+                        HardwareIdentificationLevel1 = databaseItemViewModel.HardwareIdentificationLevel1,
+                        HardwareIdentificationLevel2 = databaseItemViewModel.HardwareIdentificationLevel2,
+                        Bug = databaseItemViewModel.Bug,
+                        Comment = databaseItemViewModel.Comment,
+                        Priority = databaseItemViewModel.Priority,
+                        DateFound = databaseItemViewModel.DateFound,
+                        DateFixed = null
+                    });
+                }
+                else
+                {
+                    this.etic2Model.BuglistItem.UpdateBuglistItemInDatabase(new Buglist()
+                    {
+                        Id = databaseItemViewModel.ItemIdentification,
+                        FailureType = databaseItemViewModel.FailureType,
+                        StatusType = databaseItemViewModel.StatusType,
+                        ControllerType = databaseItemViewModel.ControllerType,
+                        HardwareIdentificationLevel1 = databaseItemViewModel.HardwareIdentificationLevel1,
+                        HardwareIdentificationLevel2 = databaseItemViewModel.HardwareIdentificationLevel2,
+                        Bug = databaseItemViewModel.Bug,
+                        Comment = databaseItemViewModel.Comment,
+                        Priority = databaseItemViewModel.Priority,
+                        DateFound = databaseItemViewModel.DateFound,
+                        DateFixed = databaseItemViewModel.DateFixed
+                    });
+                }
             }
 
             this.LoadBuglistDataGrid();
             this.buglistDatabaseDataGridViewModel.SelectedDatabaseItemViewModel = this.buglistDatabaseDataGridViewModel.DatabaseItemViewModels.Where(
-                x => x.Bug == databaseItemViewModel.Bug && x.DateFound == databaseItemViewModel.DateFound).FirstOrDefault();
+                x => x.Bug == databaseItemViewModel.Bug).FirstOrDefault();
         }
 
         private void DeleteItem(DatabaseItemViewModel databaseItemViewModel)
@@ -599,7 +622,9 @@ namespace ETIC2.ViewModels
 
             this.detailedInformationViewModel.SetDetailedInformation(new DatabaseItemViewModel()
             {
-                ItemIdentification = -1
+                ItemIdentification = -1,
+                DateFound = DateTime.UtcNow,
+                DateFixed = null
             });
         }
 

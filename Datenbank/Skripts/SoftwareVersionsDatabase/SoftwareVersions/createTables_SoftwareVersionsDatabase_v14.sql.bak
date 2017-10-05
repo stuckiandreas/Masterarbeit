@@ -436,7 +436,7 @@ CREATE TABLE FailureType(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(100) NOT NULL);	
 	
-/*open, solved, no solution, no adjustment*/
+/*open, solved, no solution*/
 CREATE TABLE StatusType(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(100) NOT NULL);
@@ -453,7 +453,7 @@ CREATE TABLE HardwareIdentificationLevel1(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(100) NOT NULL);
 
-/*Interface: RS232, EtherCAT, DeviceNET, Logic; Option: Cluster, PFO; Valve: SFV, FaceSeal, R62;*/
+/*Interface: RS232/EtherCAT, DeviceNET, Logic; Option: Cluster, PFO; Valve: SFV, FaceSeal, R62;*/
 CREATE TABLE HardwareIdentificationLevel2(
 	Id int IDENTITY(0,1) PRIMARY KEY,
 	Name VARCHAR(100) NOT NULL);

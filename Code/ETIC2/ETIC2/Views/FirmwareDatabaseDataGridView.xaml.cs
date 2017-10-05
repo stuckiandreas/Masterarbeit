@@ -75,6 +75,7 @@ namespace ETIC2.Views
                 link.Landscape = true;
                 link.CreateDocument(true);
                 link.ExportToPdf(fullPdfPath);
+
                 //open file after create
                 System.Diagnostics.Process.Start(fullPdfPath);
             }

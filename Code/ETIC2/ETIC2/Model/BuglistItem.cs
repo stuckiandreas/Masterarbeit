@@ -27,10 +27,10 @@ namespace ETIC2.Model
         /// <param name="bug">The bug.</param>
         /// <param name="dateFound">The date found.</param>
         /// <returns>Buglist item which has the same Bug description and date found entry</returns>
-        public Application.BuglistView.Buglist GetApplicationBuglistItem(string bug, DateTime dateFound)
+        public Application.BuglistView.Buglist GetApplicationBuglistItem(string bug)
         {
             Application.BuglistView.Buglist emptyBuglist;
-            EntityFramework.Buglist buglistItemDatabase = databaseContext.Buglist.Where(x => x.Bug == bug && x.DateFound == dateFound).FirstOrDefault();
+            EntityFramework.Buglist buglistItemDatabase = databaseContext.Buglist.Where(x => x.Bug == bug).FirstOrDefault();
 
             emptyBuglist = new Application.BuglistView.Buglist()
             {
@@ -40,9 +40,11 @@ namespace ETIC2.Model
             emptyBuglist.Id = buglistItemDatabase.Id;
             emptyBuglist.FailureType = this.GetFailureType((int)buglistItemDatabase.FailureType_Id);
             emptyBuglist.StatusType = this.GetStatusType((int)buglistItemDatabase.StatusType_Id);
-            emptyBuglist.ControllerType = this.GetControllerTypeEnum((int)buglistItemDatabase.ControllerType_Id);
+            emptyBuglist.ControllerType = this.GetControllerTyp((int)buglistItemDatabase.ControllerType_Id);
             emptyBuglist.HardwareIdentificationLevel1 = this.GetHardwareIdentificationLevel1((int)buglistItemDatabase.HardwareIdentificationLevel1_Id);
-            emptyBuglist.HardwareIdentificationLevel2 = this.GetHardwareIdentificationLevel1((int)buglistItemDatabase.HardwareIdentificationLevel2_Id);
+            emptyBuglist.HardwareIdentificationLevel2 = this.GetHardwareIdentificationLevel2((int)buglistItemDatabase.HardwareIdentificationLevel2_Id);
+            emptyBuglist.DateFound = buglistItemDatabase.DateFound;
+            emptyBuglist.DateFixed = buglistItemDatabase.DateFixed;
             emptyBuglist.Bug = buglistItemDatabase.Bug;
             emptyBuglist.Comment = buglistItemDatabase.Comment;
             emptyBuglist.Priority = this.GetPriority((int)buglistItemDatabase.Priority_Id);
@@ -135,7 +137,7 @@ namespace ETIC2.Model
             {
                 buglistItemToUpdate.FailureType_Id = this.GetFailureTypId(buglistItem.FailureType);
                 buglistItemToUpdate.StatusType_Id = this.GetStatusTypeId(buglistItem.StatusType);
-                buglistItemToUpdate.ControllerType_Id = this.GetStatusTypeId(buglistItem.StatusType);
+                buglistItemToUpdate.ControllerType_Id = this.GetControllerTypId(buglistItem.ControllerType);
                 buglistItemToUpdate.HardwareIdentificationLevel1_Id = this.GetHardwareIdentificationLevel1Id(buglistItem.HardwareIdentificationLevel1);
                 buglistItemToUpdate.HardwareIdentificationLevel2_Id = this.GetHardwareIdentificationLevel2Id(buglistItem.HardwareIdentificationLevel2);
                 buglistItemToUpdate.Bug = buglistItem.Bug;

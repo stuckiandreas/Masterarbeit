@@ -30,13 +30,13 @@
                                ShowTotalSummary="False" AutoWidth="True" ShowAutoFilterRow="True" ShowSearchPanelMode="Default"/>
             </dxg:GridControl.View>
             <dxg:GridControl.Columns>
-                <dxg:GridColumn Header="Failure Type" Binding="{Binding FailureType}"/>
+                <dxg:GridColumn Header="Failure Type" Binding="{Binding FailureType}" Visible="False"/>
                 <dxg:GridColumn Header="StatusType" Binding="{Binding StatusType}"/>
                 <dxg:GridColumn Header="Priority" Binding="{Binding Priority}"/>
                 <dxg:GridColumn Header="Controller Type" Binding="{Binding ControllerType}"/>
                 <dxg:GridColumn Header="Hardware Identification Level 1" Binding="{Binding HardwareIdentificationLevel1}" Visible="False"/>
                 <dxg:GridColumn Header="Hardware Identification Level 2" Binding="{Binding HardwareIdentificationLevel2}" Visible="False"/>
-                <dxg:GridColumn Header="Date Found" Binding="{Binding DateFound, StringFormat=d}" Visible="False"/>
+                <dxg:GridColumn Header="Date Found" Binding="{Binding DateFound, StringFormat=d}" Visible="True"/>
                 <dxg:GridColumn Header="Date Fixed" Binding="{Binding DateFixed, StringFormat=d}" Visible="False"/>
                 <dxg:GridColumn Header="Bug" Binding="{Binding Bug}"/>
                 <dxg:GridColumn Header="Comment" Binding="{Binding Comment}" Visible="False"/>

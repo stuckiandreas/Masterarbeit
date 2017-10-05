@@ -290,20 +290,41 @@ namespace ETIC2.ViewModels
         {
             DatabaseItemViewModel item = this.GetDatabaseItemViewModel();
 
-            return new Buglist()
+            //only save dateFixed if the status type is not open
+            if (databaseItemViewModel.StatusType == "open")
             {
-                Id = item.ItemIdentification,
-                FailureType = item.FailureType,
-                StatusType = item.StatusType,
-                Priority = item.Priority,
-                ControllerType = item.ControllerType,
-                HardwareIdentificationLevel1 = item.HardwareIdentificationLevel1,
-                HardwareIdentificationLevel2 = item.HardwareIdentificationLevel2,
-                DateFound = item.DateFound,
-                DateFixed = item.DateFixed,
-                Bug = item.Bug,
-                Comment = item.Comment
-            };
+                return new Buglist()
+                {
+                    Id = item.ItemIdentification,
+                    FailureType = item.FailureType,
+                    StatusType = item.StatusType,
+                    Priority = item.Priority,
+                    ControllerType = item.ControllerType,
+                    HardwareIdentificationLevel1 = item.HardwareIdentificationLevel1,
+                    HardwareIdentificationLevel2 = item.HardwareIdentificationLevel2,
+                    DateFound = item.DateFound,
+                    DateFixed = null,
+                    Bug = item.Bug,
+                    Comment = item.Comment
+                };
+            }
+            else
+            {
+                return new Buglist()
+                {
+                    Id = item.ItemIdentification,
+                    FailureType = item.FailureType,
+                    StatusType = item.StatusType,
+                    Priority = item.Priority,
+                    ControllerType = item.ControllerType,
+                    HardwareIdentificationLevel1 = item.HardwareIdentificationLevel1,
+                    HardwareIdentificationLevel2 = item.HardwareIdentificationLevel2,
+                    DateFound = item.DateFound,
+                    DateFixed = item.DateFixed,
+                    Bug = item.Bug,
+                    Comment = item.Comment
+                };
+            }
         }
 
         /// <summary>
@@ -460,37 +481,79 @@ namespace ETIC2.ViewModels
             //only if the grid is never loaded before
             if (this.databaseItemViewModel != null)
             {
-                return new DatabaseItemViewModel()
+                //only save dateFixed if the status type is not open
+                if (this.databaseItemViewModel.StatusType == "open")
                 {
-                    ItemIdentification = this.databaseItemViewModel.ItemIdentification,
-                    FailureType = this.FailureType.SelectedItemFilter.SelectedItem,
-                    StatusType = this.StatusType.SelectedItemFilter.SelectedItem,
-                    Priority = this.Priority.SelectedItemFilter.SelectedItem,
-                    ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
-                    HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
-                    HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
-                    DateFound = (DateTime)this.DateFound.DateTimeInput,
-                    DateFixed = this.DateFixed.DateTimeInput,
-                    Bug = this.Bug.TextInput,
-                    Comment = this.Comment.TextInput
-                };
+                    return new DatabaseItemViewModel()
+                    {
+                        ItemIdentification = this.databaseItemViewModel.ItemIdentification,
+                        FailureType = this.FailureType.SelectedItemFilter.SelectedItem,
+                        StatusType = this.StatusType.SelectedItemFilter.SelectedItem,
+                        Priority = this.Priority.SelectedItemFilter.SelectedItem,
+                        ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
+                        DateFound = (DateTime)this.DateFound.DateTimeInput,
+                        DateFixed = null,
+                        Bug = this.Bug.TextInput,
+                        Comment = this.Comment.TextInput
+                    };
+                }
+                else
+                {
+                    return new DatabaseItemViewModel()
+                    {
+                        ItemIdentification = this.databaseItemViewModel.ItemIdentification,
+                        FailureType = this.FailureType.SelectedItemFilter.SelectedItem,
+                        StatusType = this.StatusType.SelectedItemFilter.SelectedItem,
+                        Priority = this.Priority.SelectedItemFilter.SelectedItem,
+                        ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
+                        DateFound = (DateTime)this.DateFound.DateTimeInput,
+                        DateFixed = this.DateFixed.DateTimeInput,
+                        Bug = this.Bug.TextInput,
+                        Comment = this.Comment.TextInput
+                    };
+                }
             }
             else
             {
-                return new DatabaseItemViewModel()
+                //only save dateFixed if the status type is not open
+                if (this.databaseItemViewModel.StatusType == "open")
                 {
-                    ItemIdentification = 0,
-                    FailureType = this.FailureType.SelectedItemFilter.SelectedItem,
-                    StatusType = this.StatusType.SelectedItemFilter.SelectedItem,
-                    Priority = this.Priority.SelectedItemFilter.SelectedItem,
-                    ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
-                    HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
-                    HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
-                    DateFound = (DateTime)this.DateFound.DateTimeInput,
-                    DateFixed = this.DateFixed.DateTimeInput,
-                    Bug = this.Bug.TextInput,
-                    Comment = this.Comment.TextInput
-                };
+                    return new DatabaseItemViewModel()
+                    {
+                        ItemIdentification = 0,
+                        FailureType = this.FailureType.SelectedItemFilter.SelectedItem,
+                        StatusType = this.StatusType.SelectedItemFilter.SelectedItem,
+                        Priority = this.Priority.SelectedItemFilter.SelectedItem,
+                        ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
+                        DateFound = (DateTime)this.DateFound.DateTimeInput,
+                        DateFixed = null,
+                        Bug = this.Bug.TextInput,
+                        Comment = this.Comment.TextInput
+                    };
+                }
+                else
+                {
+                    return new DatabaseItemViewModel()
+                    {
+                        ItemIdentification = 0,
+                        FailureType = this.FailureType.SelectedItemFilter.SelectedItem,
+                        StatusType = this.StatusType.SelectedItemFilter.SelectedItem,
+                        Priority = this.Priority.SelectedItemFilter.SelectedItem,
+                        ControllerType = this.ControllerType.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel1 = this.HardwareIdentificationLevel1.SelectedItemFilter.SelectedItem,
+                        HardwareIdentificationLevel2 = this.HardwareIdentificationLevel2.SelectedItemFilter.SelectedItem,
+                        DateFound = (DateTime)this.DateFound.DateTimeInput,
+                        DateFixed = this.DateFixed.DateTimeInput,
+                        Bug = this.Bug.TextInput,
+                        Comment = this.Comment.TextInput
+                    };
+                }
             }
         }
 

@@ -50,7 +50,7 @@ namespace VersionManagement.ViewModels
 
         private const string DocumentsLabel = "Documents: ";
 
-        private const string PropertiesLabel = "Properties: ";
+        private const string PropertiesLabel = ", StringFormat=dProperties: ";
 
         private readonly VersionManagementModel versionManagementModel;
 
